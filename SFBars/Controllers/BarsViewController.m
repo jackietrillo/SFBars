@@ -1,0 +1,133 @@
+//
+//  StreetBarsViewController.m
+//  Streets
+//
+//  Created by JACKIE TRILLO on 11/26/14.
+//  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
+//
+
+#import "BarsViewController.h"
+#import "Bar.h"
+#import "BarTableViewCell.h"
+#import "BarWebViewController.h"
+#import "StreetMapViewController.h"
+
+@interface BarsViewController ()
+
+
+@property (readwrite, nonatomic, strong) NSMutableArray* dataSource;
+
+@end
+
+@implementation BarsViewController
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self initController];
+}
+
+-(void)initController {
+    self.canDisplayBannerAds = YES;
+    self.dataSource = self.street.bars;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return self.dataSource.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSInteger rowIndex = indexPath.row;
+    Bar* bar = self.dataSource[rowIndex];
+    
+    BarTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    cell.nameLabel.text = bar.name;
+    cell.descripLabel.text = bar.descrip;
+    cell.addressLabel.text = bar.address;
+    cell.hoursLabel.text = bar.hours;
+    cell.websiteButton.tag = indexPath.row;
+    cell.mapButton.tag = indexPath.row;
+    
+   // [cell.websiteButton setTitle: bar.websiteUrl forState:UIControlStateNormal];
+    NSString* imageName = [bar.imageUrl substringToIndex: bar.imageUrl.length - 4]; //minus .png
+   
+    if (imageName != nil) {
+        
+        //@try
+        //{
+            UIImage* image = [UIImage imageNamed:imageName];
+            cell.logo.image = image;
+      //  }
+       // @catch(NSException* ex)
+       // {
+        //    NSLog(@"Could not load image %@", imageName);
+        //}
+
+    }
+    
+    return cell;
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+  //  BarTableViewCell *cell = (BarTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
+   // [self setCellColor:[UIColor yellowColor] ForCell:cell];  //highlight colour
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Reset Colour.
+    //BarTableViewCell *cell = (BarTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+   // [self setCellColor:[UIColor blackColor] ForCell:cell]; //normal color
+    
+}
+
+- (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell {
+    
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = color;
+    [cell setSelectedBackgroundView:bgColorView];
+}
+
+#pragma mark - Navigation
+
+-(IBAction)unWindToBar:(UIStoryboardSegue*)segue
+{
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.destinationViewController isKindOfClass: [BarWebViewController class]])
+    {
+        BarWebViewController* barWebViewController = segue.destinationViewController;
+        UIButton* button = (UIButton*)(sender);
+        Bar* bar = self.dataSource[button.tag]; //tag contains the NSIndexPath.row
+        barWebViewController.url = bar.websiteUrl;
+    }
+    if ([segue.destinationViewController isKindOfClass: [StreetMapViewController class]])
+    {
+        StreetMapViewController* streetMapViewController = segue.destinationViewController;
+        UIButton* button = (UIButton*)(sender);
+        Bar* bar = self.dataSource[button.tag]; //tag contains the NSIndexPath.row
+        streetMapViewController.street = bar.street;
+        streetMapViewController.selectedBar = bar;
+    }
+}
+/*
+-(void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    //NSLog(@"Trait collection = %@", newCollection);
+}
+*/
+@end

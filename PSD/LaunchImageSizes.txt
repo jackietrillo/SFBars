@@ -1,0 +1,15 @@
+IPhone 4s
+320 X 480 1x
+640 X 960 2x  
+
+iPhone 5s
+640 x 1136 2x
+
+
+Launch Images
+750 x 1334 (@2x) for portrait
+1334 x 750 (@2x) for landscape
+For iPhone 6 Plus:
+
+1242 x 2208 (@3x) for portrait
+2208 x 1242 (@3x) for landscape
