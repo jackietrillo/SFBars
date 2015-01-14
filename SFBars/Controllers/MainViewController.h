@@ -1,16 +1,13 @@
 //
-//  ViewController.h
-//  SanFranciscoStreets
+//  MainViewController.h
+//  SFBars
 //
-//  Created by JACKIE TRILLO on 11/11/14.
-//  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
+//  Created by JACKIE TRILLO on 1/13/15.
+//  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
 
-@interface MainViewController : UIViewController
-
+@interface MainViewController : UITableViewController
 
 @end
-
