@@ -13,7 +13,6 @@
 
 @interface StreetManager()
     @property (readwrite, nonatomic, strong) NSMutableArray* streets;
-    @property (readwrite, nonatomic, strong) NSMutableArray* hotSpots;
 @end
 
 @implementation StreetManager

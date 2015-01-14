@@ -6,21 +6,20 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BarsManager.h"
+#import "BarManager.h"
 #import "Bar.h"
-#import "BarsViewController.h"
+#import "BarViewController.h"
 #import "BarTableViewCell.h"
 #import "BarWebViewController.h"
 #import "StreetMapViewController.h"
 
-@interface BarsViewController ()
-
+@interface BarViewController ()
 
 @property (readwrite, nonatomic, strong) NSMutableArray* dataSource;
 
 @end
 
-@implementation BarsViewController
+@implementation BarViewController
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -35,10 +34,19 @@
 -(void)initController {
     self.canDisplayBannerAds = YES;
     
+    BarManager* barManager = [[BarManager alloc] init];
     
+    self.dataSource = [[NSMutableArray alloc] init];
     
-    
-    //self.dataSource = self.street.bars;
+    NSMutableArray* bars = barManager.bars;
+    for (int i = 0 ; i < bars.count; i++) {
+        Bar* tempBar = bars[i];
+        
+        if (tempBar.streetId == self.barTypeId)
+        {
+            [self.dataSource addObject:tempBar];
+        }
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

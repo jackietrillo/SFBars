@@ -16,7 +16,7 @@
 @property (readonly, nonatomic, strong) NSString* imageUrl;
 @property (readonly, nonatomic) double latitude;
 @property (readonly, nonatomic) double longitude;
-@property (readwrite, nonatomic, strong) NSMutableArray* bars;
+@property (readonly, nonatomic, strong) NSMutableArray* bars;
 
 +(id)initFromDictionary:(NSDictionary*)dict;
 

@@ -10,7 +10,7 @@
 #import <iAd/iAd.h>
 #import "Street.h"
 
-@interface BarsViewController : UIViewController
+@interface BarViewController : UIViewController
 
 @property (nonatomic, strong) NSNumber* barTypeId;
 @property (nonatomic, strong) IBOutlet UITableView* tableView;

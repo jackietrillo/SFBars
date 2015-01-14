@@ -1,0 +1,42 @@
+[
+{
+"barTypeId": 1,
+"name": "Gay",
+"imageUrl": "TableCell-QBar.png"
+},
+{
+"barTypeId": 6,
+"name": "Wine Bar",
+"imageUrl": "TableCell-Iron&Gold.png"
+},
+{
+"barTyped": 10,
+"name": "Dance Club",
+"imageUrl": "CollectionCell-Churchill.png"
+},
+{
+"barTypeId": 5,
+"name": "Live Music",
+"imageUrl": "CollectionCell-ElRio.png"
+},
+{
+"barTypeId": 2,
+"name": "Hipster",
+"imageUrl": "CollectionCell-Blackbird.png"
+},
+{
+"barTypeId": 3,
+"name": "Dive Bar",
+"imageUrl": "CollectionCell-TheMint.png"
+},
+{
+"barTypeId": 4,
+"name": "Karaoke",
+"imageUrl": "CollectionCell-TheMix.png"
+},
+{
+"barTypeId": 2,
+"name": "Wine Bar",
+"imageUrl": "CollectionCell-TheCafe.png"
+}
+]

@@ -25,6 +25,8 @@
 @property (readonly, nonatomic) double longitude;
 @property (readonly, nonatomic) Street* street;
 
++(id)initFromDictionary:(NSDictionary*)dict;
+
 +(id)initFromDictionary:(NSDictionary*)dict withStreet: (Street*) street;
 
 

@@ -6,29 +6,28 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "StreetViewController.h"
 #import "StreetTableViewCell.h"
 #import "StreetManager.h"
-#import "BarsViewController.h"
+#import "BarViewController.h"
 #import "StreetMapViewController.h"
 
-@interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface StreetViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readwrite, nonatomic, strong) NSMutableArray* dataSource;
 
 @end
 
-@implementation MainViewController
+@implementation StreetViewController
 
-static NSString* CellIdentifier = @"Cell";
+static NSString* reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
-     [self.navigationController setToolbarHidden:YES animated:YES];
-    
+    [self.navigationController setToolbarHidden:YES animated:YES];
     
     [self initController];
 }
@@ -49,12 +48,7 @@ static NSString* CellIdentifier = @"Cell";
     NSInteger rowIndex = indexPath.row;
     Street* street = self.dataSource[rowIndex];
     
-    StreetTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    
-   // NSString* imageName = [street.imageUrl substringToIndex: street.imageUrl.length - 4]; //remove .png
-  //  UIImage* image = [UIImage imageNamed:imageName];
-    //cell.imageView.image = image;
+    StreetTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier forIndexPath:indexPath];
     
     cell.nameLabel.text = street.name;
   
@@ -87,7 +81,7 @@ static NSString* CellIdentifier = @"Cell";
         NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths)
         {
-            StreetTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+            StreetTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier: reuseIdentifier forIndexPath:indexPath];
             
             cell.backgroundView.alpha = 0;
             [UIView animateWithDuration:1
@@ -130,9 +124,9 @@ static NSString* CellIdentifier = @"Cell";
 #pragma mark - Navigation
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
-     BarsViewController* barsViewController = segue.destinationViewController;
-     barsViewController.street = self.dataSource[indexPath.row];
+   //  NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
+    // BarViewController* barsViewController = segue.destinationViewController;
+    // barsViewController.street = self.dataSource[indexPath.row];
  }
 
 @end

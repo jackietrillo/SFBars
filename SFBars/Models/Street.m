@@ -17,6 +17,8 @@
 @property (readwrite, nonatomic, strong) NSString* imageUrl;
 @property (readwrite, nonatomic) double latitude;
 @property (readwrite, nonatomic) double longitude;
+@property (readwrite, nonatomic, strong) NSMutableArray* bars;
+
 @end
 
 @implementation Street

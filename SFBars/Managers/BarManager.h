@@ -10,4 +10,6 @@
 
 @interface BarManager : NSObject
 
+@property (readonly, nonatomic, strong) NSMutableArray* bars;
+
 @end

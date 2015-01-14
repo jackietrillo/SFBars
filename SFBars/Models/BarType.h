@@ -10,4 +10,11 @@
 
 @interface BarType : NSObject
 
+@property (readonly, nonatomic, strong) NSNumber* barTypeId;
+@property (readonly, nonatomic, strong) NSString* name;
+@property (readonly, nonatomic, strong) NSString* imageUrl;
+//@property (readonly, nonatomic, strong) NSMutableArray* bars;
+
++(id)initFromDictionary:(NSDictionary*)dict;
+
 @end

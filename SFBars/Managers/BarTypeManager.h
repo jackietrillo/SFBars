@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface BarTypeManager : NSObject
-
+    @property (readonly, nonatomic, strong) NSMutableArray* barTypes;
 @end

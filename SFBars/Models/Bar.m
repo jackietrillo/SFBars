@@ -41,11 +41,31 @@ static const NSString* LONGITUDE = @"longitude";
 static const NSString* IMAGEURL = @"imageUrl";
 static const NSString* WEBSITEURL = @"websiteUrl";
 static const NSString* FACEBOOKURL = @"facebookUrl";
+static const NSString* STREET = @"sfStreet";
 
 -(id)init {
     self = [super init];
     
     return self;
+}
+
++(id)initFromDictionary:(NSDictionary*)dict
+{
+    Bar* bar = [[Bar alloc] init];
+    bar.barId = dict[BARID];
+    bar.streetId = dict[STREETID];
+    bar.name = dict[NAME];
+    bar.descrip = dict[DESCRIPTION];
+    bar.address = dict[ADDRESS];
+    bar.phone = dict[PHONE];
+    bar.hours = dict[HOURS];
+    bar.latitude = [dict[LATITUDE] doubleValue];
+    bar.longitude = [dict[LONGITUDE] doubleValue];
+    bar.imageUrl = dict[IMAGEURL];
+    bar.websiteUrl = dict[WEBSITEURL];
+    bar.facebookUrl = dict[FACEBOOKURL];
+    bar.street = nil;
+    return bar;
 }
 
 +(id)initFromDictionary:(NSDictionary*)dict withStreet: (Street*) street

@@ -6,63 +6,124 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
+#import "BarTypeManager.h"
 #import "MainViewController.h"
+#import "BarViewController.h"
+#import "BarType.h"
 
-@interface MainViewController ()
+@interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (readwrite, nonatomic, strong) NSMutableArray* dataByType;
+@property (readwrite, nonatomic, strong) NSMutableArray* dataByLocation;
 @end
 
 @implementation MainViewController
 
+static NSString* reuseIdentifier = @"Cell";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self.navigationController setToolbarHidden:YES animated:YES];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self initController];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)initController {
+    
+    BarTypeManager* barTypeManager = [[BarTypeManager alloc] init];
+    self.dataByType = barTypeManager.barTypes;
+    
+    self.dataByLocation = [[NSMutableArray alloc] init];
+    [self.dataByLocation addObject:@"By Street"];
+    [self.dataByLocation addObject:@"Mission"];
+    [self.dataByLocation addObject:@"Castro"];
+    [self.dataByLocation addObject:@"All"];
+    
+    self.tableView.delegate = self;
+    self.tableView.contentInset = UIEdgeInsetsZero;
+    self.canDisplayBannerAds = YES;
 }
-
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    switch(section)
+    {
+        case 0:
+            return @"Search";
+        case 1:
+            return @"  ";
+        default:
+            return 0;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    
+    switch(section)
+    {
+        case 0:
+            return [self.dataByType count];
+        case 1:
+            return [self.dataByLocation count];
+        default:
+            return 0;
+    }
 }
 
-/*
+-(void)setCellStyle:(UITableViewCell *)cell {
+
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    UIView *selectedBackgroundView = [[UIView alloc] init];
+    selectedBackgroundView.backgroundColor = [UIColor purpleColor];
+    cell.selectedBackgroundView = selectedBackgroundView;
+    cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
+    cell.imageView.frame = CGRectMake(50,500,500,500);
+    cell.indentationLevel = 100;
+    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
+  
+    [cell.detailTextLabel setTextColor:[UIColor grayColor]];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    
+    switch(indexPath.section)
+    {
+        case 0:
+                if (indexPath.row < self.dataByType.count)
+                {
+                    BarType* barType = (BarType*)[self.dataByType objectAtIndex:indexPath.row];
+                    cell.textLabel.text = barType.name;
+                    cell.detailTextLabel.text = @"More text";
+                    [self setCellStyle:cell];
+                    
+                }
+                break;
+        case 1:
+                if (indexPath.row < self.dataByLocation.count)
+                {
+                    cell.textLabel.text = [self.dataByLocation objectAtIndex:indexPath.row];
+                    [self setCellStyle:cell];
+                    cell.detailTextLabel.text = @"More text";
+                }
+                break;
+    }
     
     return cell;
 }
-*/
 
 /*
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+        return NO;
 }
-*/
 
-/*
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
@@ -71,30 +132,17 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
 */
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
+    BarViewController* barsViewController = segue.destinationViewController;
+    BarType* barType = self.dataByType[indexPath.row];
+    barsViewController.barTypeId = barType.barTypeId;
 }
-*/
+
 
 @end
