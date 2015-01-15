@@ -12,7 +12,6 @@
 
 @interface StreetMapViewController : UIViewController
 
-@property (readwrite, nonatomic, strong) Street* street;
 @property (readwrite, nonatomic, strong) Bar* selectedBar;
 
 

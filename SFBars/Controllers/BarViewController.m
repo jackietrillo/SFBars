@@ -31,6 +31,10 @@
     [self initController];
 }
 
+- (IBAction)unwindToBar:(UIStoryboardSegue *)unwindSegue
+{
+}
+
 -(void)initController {
     self.canDisplayBannerAds = YES;
     
@@ -72,16 +76,14 @@
    
     if (imageName != nil) {
         
-        //@try
-        //{
-            UIImage* image = [UIImage imageNamed:imageName];
-            cell.logo.image = image;
-      //  }
-       // @catch(NSException* ex)
-       // {
-        //    NSLog(@"Could not load image %@", imageName);
-        //}
-
+        UIImage* image = [UIImage imageNamed:imageName];
+        
+        if (image == nil)
+        {
+            image = [UIImage imageNamed:@"DefaultImage-Bar"];
+        }
+        cell.logo.image = image;
+     
     }
     
     return cell;
@@ -130,7 +132,7 @@
         StreetMapViewController* streetMapViewController = segue.destinationViewController;
         UIButton* button = (UIButton*)(sender);
         Bar* bar = self.dataSource[button.tag]; //tag contains the NSIndexPath.row
-        streetMapViewController.street = bar.street;
+      //  streetMapViewController.street = bar.street;
         streetMapViewController.selectedBar = bar;
     }
 }

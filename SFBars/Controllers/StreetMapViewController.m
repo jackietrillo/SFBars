@@ -43,7 +43,17 @@
         MKCoordinateRegion adjustedRegion = [mapView regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 300, 300)];
         [mapView setRegion:adjustedRegion animated:YES];
 
-        //add bar annotations
+        //Add pin
+        MKPointAnnotation *pin = [[MKPointAnnotation alloc]init];
+        pin.title = self.selectedBar.name;
+        pin.coordinate = CLLocationCoordinate2DMake(self.selectedBar.latitude, self.selectedBar.longitude);
+        [self.mapView addAnnotation:pin];
+        
+        //Select pin
+        [self.mapView selectAnnotation:pin animated:true];
+            
+        
+        /*
         for (int i= 0; i < self.street.bars.count; i++) {
             Bar* bar = self.street.bars[i];
             
@@ -57,6 +67,7 @@
                 [self.mapView selectAnnotation:pin animated:true];
             }
         }
+         */
     }
     self.isMapLoaded = YES;
 }

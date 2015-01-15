@@ -43,6 +43,7 @@ static NSString* reuseIdentifier = @"Cell";
     
     self.tableView.delegate = self;
     self.tableView.contentInset = UIEdgeInsetsZero;
+    self.tableView.sectionIndexBackgroundColor =[ UIColor blueColor];
     self.canDisplayBannerAds = YES;
 }
 
@@ -50,14 +51,15 @@ static NSString* reuseIdentifier = @"Cell";
     return 2;
 }
 
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
     switch(section)
     {
         case 0:
-            return @"Search";
+            return @"";
         case 1:
-            return @"  ";
+            return @"Search";
         default:
             return 0;
     }
@@ -76,15 +78,41 @@ static NSString* reuseIdentifier = @"Cell";
     }
 }
 
+/*
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *tempView=[[UIView alloc]initWithFrame:CGRectMake(0,200,300,244)];
+    tempView.backgroundColor=[UIColor blackColor];
+    
+    UILabel *tempLabel=[[UILabel alloc]initWithFrame:CGRectMake(15,0,300,44)];
+    tempLabel.backgroundColor=[UIColor clearColor];
+    tempLabel.shadowColor = [UIColor blackColor];
+    tempLabel.shadowOffset = CGSizeMake(0,2);
+    tempLabel.textColor = [UIColor blueColor]; //here you can change the text color of header.
+  
+    
+    if(section == 0) {
+        tempLabel.text = @"Search";
+    }
+    else {
+        tempLabel.text = @"Location";
+    }
+    
+    [tempView addSubview:tempLabel];
+    
+    return tempView;
+}
+ */
+
 -(void)setCellStyle:(UITableViewCell *)cell {
 
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     UIView *selectedBackgroundView = [[UIView alloc] init];
-    selectedBackgroundView.backgroundColor = [UIColor purpleColor];
+    selectedBackgroundView.backgroundColor = [UIColor lightTextColor];
     cell.selectedBackgroundView = selectedBackgroundView;
     cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     cell.imageView.frame = CGRectMake(50,500,500,500);
-    cell.indentationLevel = 100;
+    cell.indentationLevel = 0;
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
   
     [cell.detailTextLabel setTextColor:[UIColor grayColor]];

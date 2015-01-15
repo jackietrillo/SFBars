@@ -21,10 +21,10 @@
 }
 
 -(void)initController {
+    
     self.canDisplayBannerAds = YES;
     self.webView.scalesPageToFit = YES;
-    [self.closeButton setTitle:[NSString stringWithUTF8String:"\uf00d"] forState:UIControlStateNormal];
-    self.closeButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+   
     
     NSURL* launchURL = [NSURL URLWithString:self.url];
     NSURLRequest* requestObj = [NSURLRequest requestWithURL:launchURL];

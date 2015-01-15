@@ -67,7 +67,7 @@
 },
 {
 "sfBarId": 1118,
-"sfStreetId": 10,
+"sfStreetId": 5,
 "name": "Slim's",
 "descrip": "Musician-owned live music club",
 "address": "333 11TH Street",
@@ -89,7 +89,7 @@
 },
 {
 "sfBarId": 1125,
-"sfStreetId": 9,
+"sfStreetId": 1,
 "name": "Harvey's",
 "descrip": "Named for gay activist Harvey Milk, this bar offers drinks, food, trivia & comedy shows.",
 "address": "500 Castro Street",
@@ -111,7 +111,7 @@
 },
 {
 "sfBarId": 1120,
-"sfStreetId": 9,
+"sfStreetId": 1,
 "name": "Midnight Sun",
 "descrip": "Video Bar & longtime Castro fixture",
 "address": "4067 18th St",
@@ -133,7 +133,7 @@
 },
 {
 "sfBarId": 1123,
-"sfStreetId": 9,
+"sfStreetId": 1,
 "name": "Moby Dick",
 "descrip": "Storied Bar",
 "address": "4049 18th St",
@@ -155,7 +155,7 @@
 },
 {
 "sfBarId": 1124,
-"sfStreetId": 9,
+"sfStreetId": 1,
 "name": "The Edge",
 "descrip": "Local gay bar with nightly themes",
 "address": "4149 18th Street",
@@ -177,7 +177,7 @@
 },
 {
 "sfBarId": 1121,
-"sfStreetId": 9,
+"sfStreetId": 1,
 "name": "The Mix",
 "descrip": "Bar",
 "address": "4086 18th St",
@@ -199,7 +199,7 @@
 },
 {
 "sfBarId": 1122,
-"sfStreetId": 9,
+"sfStreetId": 1,
 "name": "Toad Hall",
 "descrip": "Dance Club",
 "address": "4146 18th St",
@@ -265,7 +265,7 @@
 },
 {
 "sfBarId": 1113,
-"sfStreetId": 1,
+"sfStreetId": 6,
 "name": "Blush! Wine Bar",
 "descrip": "Dozens of vintages plus bistro fare",
 "address": "476 Castro St",
@@ -331,7 +331,7 @@
 },
 {
 "sfBarId": 1148,
-"sfStreetId": 5,
+"sfStreetId": 8,
 "name": "Churchill",
 "descrip": "Cool, comfy spot for seasonal cocktails",
 "address": "198 Church St",
@@ -353,7 +353,7 @@
 },
 {
 "sfBarId": 1147,
-"sfStreetId": 5,
+"sfStreetId": 7,
 "name": "Pilsner Inn",
 "descrip": "Gay Pub and sports bar with a garden patio",
 "address": "225 Church St",
@@ -375,7 +375,7 @@
 },
 {
 "sfBarId": 1150,
-"sfStreetId": 6,
+"sfStreetId": 2,
 "name": "Brass Tacks",
 "descrip": "Laid-back, yet stylish bar pours cocktails, wines on tap & craft beers under snazzy light fixtures. Laid-back, yet stylish bar pours cocktails, wines on tap & craft beers under snazzy light fixtures.",
 "address": "488 Hayes Street",
@@ -397,7 +397,7 @@
 },
 {
 "sfBarId": 1151,
-"sfStreetId": 6,
+"sfStreetId": 8,
 "name": "Noir Lounge",
 "descrip": "Swanky wine bar & brewpub with a vintage Jazz-era vibe screens old films throughout",
 "address": "581 Hayes Street",
@@ -419,7 +419,7 @@
 },
 {
 "sfBarId": 1149,
-"sfStreetId": 6,
+"sfStreetId": 8,
 "name": "Sugar Lounge",
 "descrip": "Intimate lounge with sweet specialty drinks & free happy-hour snacks in a sleek space with sofas",
 "address": "377 Hayes Street",
@@ -441,7 +441,7 @@
 },
 {
 "sfBarId": 1135,
-"sfStreetId": 3,
+"sfStreetId": 1,
 "name": "Beaux",
 "descrip": "Gay bar with dance music all night",
 "address": "2344 Market St",
@@ -463,7 +463,7 @@
 },
 {
 "sfBarId": 1137,
-"sfStreetId": 3,
+"sfStreetId": 8,
 "name": "Blackbird",
 "descrip": "Inventive drinks in refined, loungey bar",
 "address": "2124 Market St",
@@ -485,7 +485,7 @@
 },
 {
 "sfBarId": 1141,
-"sfStreetId": 3,
+"sfStreetId": 8,
 "name": "Local Edition",
 "descrip": "An extensive cocktail menu is offered at this underground lounge with a vintage newspaper theme.",
 "address": "691 Market Street",
@@ -529,7 +529,7 @@
 },
 {
 "sfBarId": 1138,
-"sfStreetId": 3,
+"sfStreetId": 6,
 "name": "Press Club",
 "descrip": "Stylish underground wine bar",
 "address": "20 Yerba Buena Lane",
@@ -573,7 +573,7 @@
 },
 {
 "sfBarId": 1133,
-"sfStreetId": 3,
+"sfStreetId": 10,
 "name": "The Cafe",
 "descrip": "Dance Club with DJs and theme events",
 "address": "2369 Market St",
@@ -595,7 +595,7 @@
 },
 {
 "sfBarId": 1134,
-"sfStreetId": 3,
+"sfStreetId": 4,
 "name": "The Mint Karaoke",
 "descrip": "Legendary Karaoke bar",
 "address": "1942 Market St",
@@ -727,7 +727,7 @@
 },
 {
 "sfBarId": 1144,
-"sfStreetId": 4,
+"sfStreetId": 2,
 "name": "The Royal Cuckoo",
 "descrip": "The barkeeps spin vintage records at this dark bar with church pew seating & a throwback vibe",
 "address": "3202 Mission Street",
@@ -749,7 +749,7 @@
 },
 {
 "sfBarId": 1128,
-"sfStreetId": 2,
+"sfStreetId": 5,
 "name": "Amnesia",
 "descrip": "Club revered for big range of live music",
 "address": "853 Valencia St",
@@ -771,7 +771,7 @@
 },
 {
 "sfBarId": 1131,
-"sfStreetId": 2,
+"sfStreetId": 10,
 "name": "Blondie's Bar",
 "descrip": "Loud music and lots of booze plus patio",
 "address": "540 Valencia St",
@@ -859,7 +859,7 @@
 },
 {
 "sfBarId": 1129,
-"sfStreetId": 2,
+"sfStreetId": 1,
 "name": "Lexington Club",
 "descrip": "Lesbian bar with pool & jukebox or DJs",
 "address": "3464 19th St",

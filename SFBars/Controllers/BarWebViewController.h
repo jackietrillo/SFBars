@@ -12,7 +12,7 @@
 @interface BarWebViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UIWebView* webView;
-@property (nonatomic, weak) IBOutlet UIButton* closeButton;
+
 
 @property (nonatomic, strong) NSString* url;
 

@@ -64,6 +64,7 @@ static const NSString* STREET = @"sfStreet";
     bar.imageUrl = dict[IMAGEURL];
     bar.websiteUrl = dict[WEBSITEURL];
     bar.facebookUrl = dict[FACEBOOKURL];
+    
     bar.street = nil;
     return bar;
 }
