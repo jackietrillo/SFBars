@@ -40,9 +40,11 @@
     
     BarManager* barManager = [[BarManager alloc] init];
     
-    self.dataSource = [[NSMutableArray alloc] init];
+   // self.dataSource = [[NSMutableArray alloc] init];
     
-    NSMutableArray* bars = barManager.bars;
+    self.dataSource = [barManager getBarsByBarType: self.barTypeId];
+ 
+    /*
     for (int i = 0 ; i < bars.count; i++) {
         Bar* tempBar = bars[i];
         
@@ -50,7 +52,7 @@
         {
             [self.dataSource addObject:tempBar];
         }
-    }
+    }*/
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

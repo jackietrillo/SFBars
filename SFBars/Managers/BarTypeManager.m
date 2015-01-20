@@ -18,7 +18,7 @@
 
 @implementation BarTypeManager
 
-static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/barTypes";
+static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/barType";
 
 -(id)init {
     self = [super init];
@@ -35,7 +35,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/barTypes"
 
 -(BOOL)loadData {
    
-    /*
+    
     ConnectionHelper* conn = [[ConnectionHelper alloc] init];
     NSData* data = [conn sendSyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
     
@@ -43,10 +43,10 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/barTypes"
         
         return false;
     }
-     */
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"BarTypes" ofType:@"txt"];
-    NSData* data = [NSData dataWithContentsOfFile:path];
+    
+  //  NSString* path = [[NSBundle mainBundle] pathForResource:@"BarTypes" ofType:@"txt"];
+  //  NSData* data = [NSData dataWithContentsOfFile:path];
     
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&errorData];

@@ -12,41 +12,37 @@
 
 @interface BarManager()
 
-@property (readwrite, nonatomic, strong) NSMutableArray* bars;
+//@property (readwrite, nonatomic, strong) NSMutableArray* bars;
 
 @end
 
 @implementation BarManager
 
-static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars";
+static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
 
 -(id)init {
     self = [super init];
     
     if (self) {
         
-        _bars = [[NSMutableArray alloc] init];
         
-        //TODO: expose this method and check return value
-        [self loadData];
     }
     return self;
 }
 
--(BOOL)loadData {
+
+-(NSMutableArray* )getBarsByBarType: (NSNumber*)barTypeId {
     
-    /*
+     NSString* barTypeUrl = [serviceUrl stringByAppendingString:[barTypeId stringValue]];
+     
      ConnectionHelper* conn = [[ConnectionHelper alloc] init];
-     NSData* data = [conn sendSyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+     NSData* data = [conn sendSyncRequest:barTypeUrl method:@"GET" accept:@"application/json"];
      
      if (data == nil) {
      
      return false;
      }
-     */
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"Bars" ofType:@"txt"];
-    NSData* data = [NSData dataWithContentsOfFile:path];
     
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&errorData];
@@ -55,16 +51,17 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars";
         return false;
     }
     
+    NSMutableArray* bars = [[NSMutableArray alloc] init];
+    
     if (arrayData.count > 0)
     {
         for (int i = 0; i < arrayData.count; i++) {
             NSDictionary* dictTemp = arrayData[i];
             Bar* bar = [Bar initFromDictionary:dictTemp];
-            [self.bars addObject:bar];
+            [bars addObject:bar];
         }
     }
     
-    return true;
+    return bars;
 }
-
 @end
