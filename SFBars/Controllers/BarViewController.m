@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BarManager.h"
 #import "Bar.h"
 #import "BarViewController.h"
 #import "BarTableViewCell.h"
@@ -21,6 +20,8 @@
 
 @implementation BarViewController
 
+static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
+
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
@@ -31,36 +32,77 @@
     [self initController];
 }
 
-- (IBAction)unwindToBar:(UIStoryboardSegue *)unwindSegue
+-(void)initController
 {
-}
-
--(void)initController {
+    NSString* barTypeUrl = [serviceUrl stringByAppendingString:[self.barTypeId stringValue]];
+    
+    [self sendAsyncRequest:barTypeUrl method:@"GET" accept:@"application/json"];
+  
     self.canDisplayBannerAds = YES;
-    
-    BarManager* barManager = [[BarManager alloc] init];
-    
-   // self.dataSource = [[NSMutableArray alloc] init];
-    
-    self.dataSource = [barManager getBarsByBarType: self.barTypeId];
- 
-    /*
-    for (int i = 0 ; i < bars.count; i++) {
-        Bar* tempBar = bars[i];
-        
-        if (tempBar.streetId == self.barTypeId)
-        {
-            [self.dataSource addObject:tempBar];
-        }
-    }*/
+
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+-(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    [urlRequest setHTTPMethod:method];
+    [urlRequest setValue:accept forHTTPHeaderField:@"Accept"];
+    
+    NSOperationQueue* queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest
+                                       queue: queue
+                           completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError)
+     {
+         dispatch_async(dispatch_get_main_queue(), ^{
+             
+             if (connectionError == nil)
+             {
+                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                 [self loadData:data];
+             }
+             else
+             {
+                 //TODO: check error type and alert user
+             }
+         });
+     }];
+}
+
+-(void)loadData: (NSData*)data
+{
+    NSError* errorData;
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&errorData];
+    
+    if (errorData != nil) {
+       //TODO: alert user
+    }
+    
+    NSMutableArray* bars = [[NSMutableArray alloc] init];
+    
+    if (arrayData.count > 0)
+    {
+        for (int i = 0; i < arrayData.count; i++)
+        {
+            NSDictionary* dictTemp = arrayData[i];
+            Bar* bar = [Bar initFromDictionary:dictTemp];
+            [bars addObject:bar];
+        }
+    }
+
+    self.dataSource = bars;
+    [self.tableView reloadData];
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return self.dataSource.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     NSInteger rowIndex = indexPath.row;
     Bar* bar = self.dataSource[rowIndex];
@@ -85,7 +127,6 @@
             image = [UIImage imageNamed:@"DefaultImage-Bar"];
         }
         cell.logo.image = image;
-     
     }
     
     return cell;
@@ -119,6 +160,10 @@
 
 #pragma mark - Navigation
 
+- (IBAction)unwindToBar:(UIStoryboardSegue *)unwindSegue
+{
+    
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
