@@ -25,7 +25,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="1wE-fg-8mS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="8K1-b5-Bz7" kind="relationship" relationship="rootViewController" id="7SW-XH-Xn3"/>
@@ -67,7 +67,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <segue destination="mQ5-sf-Jxx" kind="show" id="brz-ny-XEp"/>
+                                            <segue destination="mQ5-sf-Jxx" kind="show" identifier="barSegue" id="brz-ny-XEp"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -86,6 +86,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KgL-tt-EZ7"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="MsB-He-FWA" id="uCd-uN-RER"/>
                     </connections>
