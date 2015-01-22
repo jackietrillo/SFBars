@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "Street.h"
+#import "BaseEntity.h"
 
-@interface Bar : NSObject
+@interface Bar: BaseEntity
 
 @property (readonly, nonatomic, strong) NSNumber* barId;
 @property (readonly, nonatomic, strong) NSNumber* streetId;
@@ -18,7 +18,7 @@
 @property (readonly, nonatomic, strong) NSString* address;
 @property (readonly, nonatomic, strong) NSString* phone;
 @property (readonly, nonatomic, strong) NSString* hours;
-@property (readonly, nonatomic, strong) NSString* imageUrl;
+//@property (readonly, nonatomic, strong) NSString* imageUrl;
 @property (readonly, nonatomic, strong) NSString* websiteUrl;
 @property (readonly, nonatomic, strong) NSString* facebookUrl;
 @property (readonly, nonatomic) double latitude;

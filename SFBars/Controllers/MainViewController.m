@@ -53,48 +53,69 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
                                        queue: queue
                            completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError)
      {
+         NSMutableArray* arrayData;
+         if (connectionError == nil && data != nil)
+         {
+             arrayData = [self parseData:data];
+         }
+         else
+         {
+             //TODO: alert user
+         }
+         
          dispatch_async(dispatch_get_main_queue(), ^{
              
-             if (connectionError == nil)
+             if (arrayData != nil)
              {
-                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                 [self loadData:data];
+                 [self loadData: arrayData];
              }
              else
              {
-                 //TODO: check error type and alert user
+                 //TODO: alert user
              }
          });
+
      }];
 }
 
--(void)loadData: (NSData*)data
+-(NSMutableArray*)parseData: (NSData*)jsonData
 {
     NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&errorData];
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
     
     if (errorData != nil) {
         //TODO: alert user
     }
     
-    self.dataByType = [[NSMutableArray alloc] init];
+    NSMutableArray* dataByType = [[NSMutableArray alloc] init];
     if (arrayData.count > 0)
     {
         for (int i = 0; i < arrayData.count; i++)
         {
             NSDictionary* dictTemp = arrayData[i];
             BarType* barType = [BarType initFromDictionary:dictTemp];
-            [self.dataByType addObject:barType];
+            [dataByType addObject:barType];
         }
     }
     
-     self.dataByLocation = [[NSMutableArray alloc] init];
+    return dataByType;
+}
+
+-(void)loadData: (NSMutableArray*) data
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    
+    self.tableView.delegate = self;
+    
+    self.dataByType = data;
+    
+    self.dataByLocation = [[NSMutableArray alloc] init];
     [self.dataByLocation addObject:@"By Street"];
     [self.dataByLocation addObject:@"Mission"];
     [self.dataByLocation addObject:@"Castro"];
     [self.dataByLocation addObject:@"All"];
-
-    self.tableView.delegate = self;
+    
     self.tableView.contentInset = UIEdgeInsetsZero;
     self.tableView.sectionIndexBackgroundColor =[ UIColor blueColor];
     [self.tableView reloadData];

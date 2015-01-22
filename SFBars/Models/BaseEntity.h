@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface BaseEntity : NSObject
+
+@property (readwrite, nonatomic, strong) NSString* imageUrl;
+@property (nonatomic, strong) UIImage* icon;
 
 @end

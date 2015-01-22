@@ -34,6 +34,8 @@
 		82A5C8061A632B9800D55A54 /* glyphicons-halflings-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C7FF1A632B9800D55A54 /* glyphicons-halflings-regular.ttf */; };
 		82A5C8071A632B9800D55A54 /* Mfglabs.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C8001A632B9800D55A54 /* Mfglabs.ttf */; };
 		82A5C8091A632BD900D55A54 /* LaunchImage-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C8081A632BD900D55A54 /* LaunchImage-568h@2x.png */; };
+		82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C131A70830100E71F40 /* ImageDownloader.m */; };
+		82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C161A70838500E71F40 /* BaseEntity.m */; };
 		82BB5FED1A64993A002F5578 /* StreetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB5FEC1A64993A002F5578 /* StreetViewController.m */; };
 		82BB5FF01A649E55002F5578 /* BarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB5FEF1A649E55002F5578 /* BarType.m */; };
 		82BB5FF21A64A16A002F5578 /* SFBars.txt in Resources */ = {isa = PBXBuildFile; fileRef = 82BB5FF11A64A16A002F5578 /* SFBars.txt */; };
@@ -98,6 +100,11 @@
 		82A5C7FF1A632B9800D55A54 /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "glyphicons-halflings-regular.ttf"; path = "SFBars/Resources/Fonts/glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
 		82A5C8001A632B9800D55A54 /* Mfglabs.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Mfglabs.ttf; path = SFBars/Resources/Fonts/Mfglabs.ttf; sourceTree = "<group>"; };
 		82A5C8081A632BD900D55A54 /* LaunchImage-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LaunchImage-568h@2x.png"; path = "SFBars/Resources/LaunchImage-568h@2x.png"; sourceTree = "<group>"; };
+		82BA4C121A70830100E71F40 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Common/ImageDownloader.h; sourceTree = "<group>"; };
+		82BA4C131A70830100E71F40 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Common/ImageDownloader.m; sourceTree = "<group>"; };
+		82BA4C151A70838500E71F40 /* BaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseEntity.h; path = SFBars/Models/BaseEntity.h; sourceTree = "<group>"; };
+		82BA4C161A70838500E71F40 /* BaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseEntity.m; path = SFBars/Models/BaseEntity.m; sourceTree = "<group>"; };
+		82BA4C181A7085B500E71F40 /* SFBars_prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFBars_prefix.pch; sourceTree = "<group>"; };
 		82BB5FEB1A64993A002F5578 /* StreetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreetViewController.h; path = SFBars/Controllers/StreetViewController.h; sourceTree = "<group>"; };
 		82BB5FEC1A64993A002F5578 /* StreetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreetViewController.m; path = SFBars/Controllers/StreetViewController.m; sourceTree = "<group>"; };
 		82BB5FEE1A649E55002F5578 /* BarType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarType.h; path = SFBars/Models/BarType.h; sourceTree = "<group>"; };
@@ -176,6 +183,7 @@
 			children = (
 				82A5C7811A63125C00D55A54 /* Info.plist */,
 				82A5C7821A63125C00D55A54 /* main.m */,
+				82BA4C181A7085B500E71F40 /* SFBars_prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -228,6 +236,8 @@
 				82A5C7EA1A63266100D55A54 /* Street.m */,
 				82BB5FEE1A649E55002F5578 /* BarType.h */,
 				82BB5FEF1A649E55002F5578 /* BarType.m */,
+				82BA4C151A70838500E71F40 /* BaseEntity.h */,
+				82BA4C161A70838500E71F40 /* BaseEntity.m */,
 			);
 			name = Models;
 			path = ..;
@@ -251,6 +261,8 @@
 			children = (
 				82A5C7C31A631FD500D55A54 /* ConnectionHelper.h */,
 				82A5C7C41A631FD500D55A54 /* ConnectionHelper.m */,
+				82BA4C121A70830100E71F40 /* ImageDownloader.h */,
+				82BA4C131A70830100E71F40 /* ImageDownloader.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -425,6 +437,7 @@
 				82A5C7EC1A63266100D55A54 /* Street.m in Sources */,
 				82BB5FFA1A64ABC4002F5578 /* BarManager.m in Sources */,
 				82BB60081A64D763002F5578 /* BarViewController.m in Sources */,
+				82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */,
 				82BB5FF71A64ABA7002F5578 /* BarTypeManager.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
 				82BB5FF01A649E55002F5578 /* BarType.m in Sources */,
@@ -432,6 +445,7 @@
 				82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */,
 				82A5C7C51A631FD500D55A54 /* ConnectionHelper.m in Sources */,
 				82A5C7831A63125C00D55A54 /* main.m in Sources */,
+				82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

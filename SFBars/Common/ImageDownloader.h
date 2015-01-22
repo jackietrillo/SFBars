@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseEntity.h"
 
 @interface ImageDownloader : NSObject
 
+@property (nonatomic, strong) BaseEntity* entity;
+
+@property (nonatomic, copy) void (^completionHandler)(void);
+
+- (void)startDownload;
+- (void)cancelDownload;
 @end

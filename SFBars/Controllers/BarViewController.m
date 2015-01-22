@@ -6,15 +6,17 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import "Bar.h"
+#import "ImageDownloader.h"
 #import "BarViewController.h"
 #import "BarTableViewCell.h"
 #import "BarWebViewController.h"
 #import "StreetMapViewController.h"
+#import "Bar.h"
 
-@interface BarViewController ()
+@interface BarViewController () <UIScrollViewDelegate>
 
 @property (readwrite, nonatomic, strong) NSMutableArray* dataSource;
+@property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 
 @end
 
@@ -22,14 +24,36 @@
 
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     [self initController];
+}
+
+- (void)terminateImageDownloads
+{
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    
+    [self.imageDownloadsInProgress removeAllObjects];
+}
+
+- (void)dealloc
+{
+    [self terminateImageDownloads];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    
+    [self terminateImageDownloads];
 }
 
 -(void)initController
@@ -39,7 +63,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     [self sendAsyncRequest:barTypeUrl method:@"GET" accept:@"application/json"];
   
     self.canDisplayBannerAds = YES;
-
+    
+    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
 }
 
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept
@@ -57,25 +82,23 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
                                        queue: queue
                            completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError)
      {
+         NSMutableArray* arrayData;
+         if (connectionError == nil && data != nil)
+         {
+           arrayData = [self parseData:data];
+         }
+    
          dispatch_async(dispatch_get_main_queue(), ^{
              
-             if (connectionError == nil)
-             {
-                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                 [self loadData:data];
-             }
-             else
-             {
-                 //TODO: check error type and alert user
-             }
+             [self loadData: arrayData];
          });
      }];
 }
 
--(void)loadData: (NSData*)data
+-(NSMutableArray*)parseData: (NSData*)jsonData
 {
     NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&errorData];
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
     
     if (errorData != nil) {
        //TODO: alert user
@@ -92,18 +115,24 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
             [bars addObject:bar];
         }
     }
+    
+    return bars;
+}
 
-    self.dataSource = bars;
+-(void)loadData: (NSMutableArray*) arrayData
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    self.dataSource = arrayData;
     [self.tableView reloadData];
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.dataSource.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     NSInteger rowIndex = indexPath.row;
     Bar* bar = self.dataSource[rowIndex];
     
@@ -115,44 +144,44 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     cell.websiteButton.tag = indexPath.row;
     cell.mapButton.tag = indexPath.row;
     
-   // [cell.websiteButton setTitle: bar.websiteUrl forState:UIControlStateNormal];
-    NSString* imageName = [bar.imageUrl substringToIndex: bar.imageUrl.length - 4]; //minus .png
-   
-    if (imageName != nil) {
-        
-        UIImage* image = [UIImage imageNamed:imageName];
-        
-        if (image == nil)
+    if (!bar.icon)
+    {
+        if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
         {
-            image = [UIImage imageNamed:@"DefaultImage-Bar"];
+            [self startImageDownload:bar forIndexPath:indexPath];
         }
-        cell.logo.image = image;
+        // if a download is deferred or in progress, return a placeholder image
+        cell.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     }
-    
+    else
+    {
+        cell.logo.image = bar.icon ;
+    }
+
     return cell;
 }
 
 
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-  //  BarTableViewCell *cell = (BarTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    
-   // [self setCellColor:[UIColor yellowColor] ForCell:cell];  //highlight colour
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   //BarTableViewCell *cell = (BarTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+   //[self setCellColor:[UIColor yellowColor] ForCell:cell];  //highlight colour
 }
 
-- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Reset Colour.
-    //BarTableViewCell *cell = (BarTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-   // [self setCellColor:[UIColor blackColor] ForCell:cell]; //normal color
-    
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   // Reset Colour.
+   //BarTableViewCell *cell = (BarTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+   //[self setCellColor:[UIColor blackColor] ForCell:cell]; //normal color
 }
 
-- (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell {
-    
+- (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell
+{
     UIView *bgColorView = [[UIView alloc] init];
     bgColorView.backgroundColor = color;
     [cell setSelectedBackgroundView:bgColorView];
@@ -165,8 +194,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     if ([segue.destinationViewController isKindOfClass: [BarWebViewController class]])
     {
         BarWebViewController* barWebViewController = segue.destinationViewController;
@@ -179,13 +208,72 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
         StreetMapViewController* streetMapViewController = segue.destinationViewController;
         UIButton* button = (UIButton*)(sender);
         Bar* bar = self.dataSource[button.tag]; //tag contains the NSIndexPath.row
-      //  streetMapViewController.street = bar.street;
         streetMapViewController.selectedBar = bar;
     }
 }
-/*
--(void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-    //NSLog(@"Trait collection = %@", newCollection);
+
+#pragma mark - Table cell image download support
+
+- (void)startImageDownload:(Bar*)bar forIndexPath:(NSIndexPath *)indexPath
+{
+    ImageDownloader *imageDownloader = (self.imageDownloadsInProgress)[indexPath];
+    if (imageDownloader == nil)
+    {
+        imageDownloader = [[ImageDownloader alloc] init];
+        imageDownloader.Entity = bar;
+    
+        [imageDownloader setCompletionHandler:^{
+            
+            BarTableViewCell* cell = (BarTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        
+            if (bar.icon != nil)
+            {
+                cell.logo.image = bar.icon;
+            }
+            else
+            {
+                cell.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
+            }
+            
+            [self.imageDownloadsInProgress removeObjectForKey:indexPath];
+            
+        }];
+      
+        (self.imageDownloadsInProgress)[indexPath] = imageDownloader;
+        [imageDownloader startDownload];
+    }
 }
-*/
+
+- (void)loadImagesForOnscreenRows
+{
+    if (self.dataSource.count > 0)
+    {
+        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths)
+        {
+            Bar* bar = (self.dataSource)[indexPath.row];
+            
+            if (!bar.icon)  // Avoid the download if there is already an icon
+            {
+                [self startImageDownload:bar forIndexPath:indexPath];
+            }
+        }
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+    {
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenRows];
+}
+
 @end
