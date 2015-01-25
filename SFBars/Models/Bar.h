@@ -18,9 +18,11 @@
 @property (readonly, nonatomic, strong) NSString* address;
 @property (readonly, nonatomic, strong) NSString* phone;
 @property (readonly, nonatomic, strong) NSString* hours;
-//@property (readonly, nonatomic, strong) NSString* imageUrl;
+@property (readwrite, nonatomic, strong) NSString* imageUrl;
 @property (readonly, nonatomic, strong) NSString* websiteUrl;
+@property (readonly, nonatomic, strong) NSString* calendarUrl;
 @property (readonly, nonatomic, strong) NSString* facebookUrl;
+@property (readonly, nonatomic, strong) NSString* yelpUrl;
 @property (readonly, nonatomic) double latitude;
 @property (readonly, nonatomic) double longitude;
 @property (readonly, nonatomic) Street* street;

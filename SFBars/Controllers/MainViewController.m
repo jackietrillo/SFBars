@@ -35,6 +35,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 {
     [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
     
+    self.tableView.hidden = YES;
     self.canDisplayBannerAds = YES;
 }
 
@@ -119,6 +120,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     self.tableView.contentInset = UIEdgeInsetsZero;
     self.tableView.sectionIndexBackgroundColor =[ UIColor blueColor];
     [self.tableView reloadData];
+    self.tableView.hidden = NO;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -231,7 +233,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
     BarViewController* barsViewController = segue.destinationViewController;
     BarType* barType = self.dataByType[indexPath.row];

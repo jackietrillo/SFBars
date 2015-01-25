@@ -6,19 +6,15 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import <MapKit/MapKit.h>
-#import <Foundation/Foundation.h>
-#import "StreetMapViewController.h"
-#import "Bar.h"
+#import "BarMapViewController.h"
 
-@interface StreetMapViewController () <MKMapViewDelegate>
+@interface BarMapViewController () <MKMapViewDelegate>
 
 @property (nonatomic) BOOL isMapLoaded;
 @property (nonatomic, weak) IBOutlet MKMapView* mapView;
-
 @end
 
-@implementation StreetMapViewController
+@implementation BarMapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,48 +22,45 @@
     [self initController];
 }
 
--(void) initController {
-    
+-(void) initController
+{
     self.canDisplayBannerAds = YES;
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
     self.isMapLoaded = NO;
+    
+    //back button
+    NSString* backButtonText = [NSString stringWithUTF8String:"\uf053"]; //chevron
+    backButtonText = [backButtonText stringByAppendingString: @" Back"];
+    [self.backButton setTitle: backButtonText forState:UIControlStateNormal];
 }
 
 - (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
     
-    if (!self.isMapLoaded) {
-        
+    if (!self.isMapLoaded)
+    {        
         //zoom in to the  region
         CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(self.selectedBar.latitude, self.selectedBar.longitude);
-        MKCoordinateRegion adjustedRegion = [mapView regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 300, 300)];
+        MKCoordinateRegion adjustedRegion = [mapView regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 10000, 10000)];
         [mapView setRegion:adjustedRegion animated:YES];
 
-        //Add pin
-        MKPointAnnotation *pin = [[MKPointAnnotation alloc]init];
+        //add bar pin
+        MKPointAnnotation* pin = [[MKPointAnnotation alloc]init];
         pin.title = self.selectedBar.name;
         pin.coordinate = CLLocationCoordinate2DMake(self.selectedBar.latitude, self.selectedBar.longitude);
         [self.mapView addAnnotation:pin];
         
-        //Select pin
-        [self.mapView selectAnnotation:pin animated:true];
-            
-        
-        /*
-        for (int i= 0; i < self.street.bars.count; i++) {
-            Bar* bar = self.street.bars[i];
-            
-            MKPointAnnotation *pin = [[MKPointAnnotation alloc]init];
-            pin.title = bar.name;
-            
-            pin.coordinate = CLLocationCoordinate2DMake(bar.latitude, bar.longitude);
+        if(self.currentLocation != nil)
+        {
+            //add user current location pin
+            pin = [[MKPointAnnotation alloc]init];
+            pin.title = @"Your Location";
+            pin.coordinate = CLLocationCoordinate2DMake(self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
             [self.mapView addAnnotation:pin];
-            
-            if (bar.name == self.selectedBar.name) {
-                [self.mapView selectAnnotation:pin animated:true];
-            }
         }
-         */
+        //select pin
+        [self.mapView selectAnnotation:pin animated:true];
+        
     }
     self.isMapLoaded = YES;
 }

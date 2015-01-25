@@ -10,7 +10,7 @@
 #import "StreetTableViewCell.h"
 #import "StreetManager.h"
 #import "BarViewController.h"
-#import "StreetMapViewController.h"
+#import "BarMapViewController.h"
 
 @interface StreetViewController () <UITableViewDataSource, UITableViewDelegate>
 

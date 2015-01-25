@@ -13,14 +13,16 @@
 
 @property (readwrite, nonatomic, strong) NSNumber* barId;
 @property (readwrite, nonatomic, strong) NSNumber* streetId;
+@property (readwrite, nonatomic, strong) NSNumber* districtId;
 @property (readwrite, nonatomic, strong) NSString* name;
 @property (readwrite, nonatomic, strong) NSString* descrip;
 @property (readwrite, nonatomic, strong) NSString* address;
 @property (readwrite, nonatomic, strong) NSString* phone;
 @property (readwrite, nonatomic, strong) NSString* hours;
-@property (readwrite, nonatomic, strong) NSString* imageUrl;
 @property (readwrite, nonatomic, strong) NSString* websiteUrl;
+@property (readwrite, nonatomic, strong) NSString* calendarUrl;
 @property (readwrite, nonatomic, strong) NSString* facebookUrl;
+@property (readwrite, nonatomic, strong) NSString* yelpUrl;
 @property (readwrite, nonatomic) double latitude;
 @property (readwrite, nonatomic) double longitude;
 @property (readwrite, nonatomic) Street* street;
@@ -29,8 +31,9 @@
 
 @implementation Bar
 
-static const NSString* BARID = @"sfBarId";
-static const NSString* STREETID = @"sfStreetId";
+static const NSString* BARID = @"barId";
+static const NSString* STREETID = @"streetId";
+static const NSString* DISTRICTID = @"districtId";
 static const NSString* NAME = @"name";
 static const NSString* DESCRIPTION = @"descrip";
 static const NSString* ADDRESS = @"address";
@@ -40,10 +43,12 @@ static const NSString* LATITUDE = @"latitude";
 static const NSString* LONGITUDE = @"longitude";
 static const NSString* IMAGEURL = @"imageUrl";
 static const NSString* WEBSITEURL = @"websiteUrl";
+static const NSString* CALENDARURL = @"calendarUrl";
 static const NSString* FACEBOOKURL = @"facebookUrl";
-static const NSString* STREET = @"sfStreet";
+static const NSString* YELPURL = @"yelpUrl";
 
--(id)init {
+-(id)init
+{
     self = [super init];
     
     return self;
@@ -54,6 +59,7 @@ static const NSString* STREET = @"sfStreet";
     Bar* bar = [[Bar alloc] init];
     bar.barId = dict[BARID];
     bar.streetId = dict[STREETID];
+    bar.districtId = dict[DISTRICTID];
     bar.name = dict[NAME];
     bar.descrip = dict[DESCRIPTION];
     bar.address = dict[ADDRESS];
@@ -63,9 +69,9 @@ static const NSString* STREET = @"sfStreet";
     bar.longitude = [dict[LONGITUDE] doubleValue];
     bar.imageUrl = dict[IMAGEURL];
     bar.websiteUrl = dict[WEBSITEURL];
+    bar.calendarUrl = dict[CALENDARURL];
     bar.facebookUrl = dict[FACEBOOKURL];
-    
-    bar.street = nil;
+    bar.yelpUrl = dict[YELPURL];
     return bar;
 }
 
@@ -84,7 +90,9 @@ static const NSString* STREET = @"sfStreet";
     bar.imageUrl = dict[IMAGEURL];
     bar.websiteUrl = dict[WEBSITEURL];
     bar.facebookUrl = dict[FACEBOOKURL];
+    bar.yelpUrl = dict[YELPURL];
     bar.street = street;
+
     return bar;
 }
 

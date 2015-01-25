@@ -18,7 +18,6 @@
 
 @end
 
-
 @implementation ImageDownloader
 
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
@@ -43,7 +42,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
     self.imageConnection = nil;
     self.activeDownload = nil;
 }
-
 
 #pragma mark - NSURLConnectionDelegate
 

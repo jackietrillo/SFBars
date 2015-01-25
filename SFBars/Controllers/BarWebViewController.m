@@ -23,29 +23,32 @@
 -(void)initController {
     
     self.canDisplayBannerAds = YES;
-    self.webView.scalesPageToFit = YES;
    
+   
+    NSString* backButtonText = [NSString stringWithUTF8String:"\uf053"]; //chevron
+    backButtonText = [backButtonText stringByAppendingString: @" Back"];
+    [self.backButton setTitle: backButtonText forState:UIControlStateNormal];
     
-    NSURL* launchURL = [NSURL URLWithString:self.url];
-    NSURLRequest* requestObj = [NSURLRequest requestWithURL:launchURL];
-    [self.webView loadRequest:requestObj];
-
+    if (self.url != nil)
+    {
+        NSURL* launchURL = [NSURL URLWithString:self.url];
+        NSURLRequest* request = [NSURLRequest requestWithURL:launchURL];
+        [self.webView loadRequest:request];
+        
+         self.webView.scalesPageToFit = YES;
+    }
+    else
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Information" message:@"Calendar is not avaible at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
 }
-*/
+
 
 @end

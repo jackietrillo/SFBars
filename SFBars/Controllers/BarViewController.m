@@ -10,7 +10,8 @@
 #import "BarViewController.h"
 #import "BarTableViewCell.h"
 #import "BarWebViewController.h"
-#import "StreetMapViewController.h"
+#import "BarDetailsViewController.h"
+#import "BarMapViewController.h"
 #import "Bar.h"
 
 @interface BarViewController () <UIScrollViewDelegate>
@@ -41,6 +42,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
     [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
     
+    self.tableView.hidden = YES;
     [self.imageDownloadsInProgress removeAllObjects];
 }
 
@@ -124,6 +126,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     self.dataSource = arrayData;
     [self.tableView reloadData];
+    self.tableView.hidden = NO;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -187,30 +190,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     [cell setSelectedBackgroundView:bgColorView];
 }
 
-#pragma mark - Navigation
-
-- (IBAction)unwindToBar:(UIStoryboardSegue *)unwindSegue
-{
-    
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.destinationViewController isKindOfClass: [BarWebViewController class]])
-    {
-        BarWebViewController* barWebViewController = segue.destinationViewController;
-        UIButton* button = (UIButton*)(sender);
-        Bar* bar = self.dataSource[button.tag]; //tag contains the NSIndexPath.row
-        barWebViewController.url = bar.websiteUrl;
-    }
-    if ([segue.destinationViewController isKindOfClass: [StreetMapViewController class]])
-    {
-        StreetMapViewController* streetMapViewController = segue.destinationViewController;
-        UIButton* button = (UIButton*)(sender);
-        Bar* bar = self.dataSource[button.tag]; //tag contains the NSIndexPath.row
-        streetMapViewController.selectedBar = bar;
-    }
-}
 
 #pragma mark - Table cell image download support
 
@@ -275,5 +254,38 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 {
     [self loadImagesForOnscreenRows];
 }
+
+#pragma mark - Navigation
+
+- (IBAction)unwindToBar:(UIStoryboardSegue *)unwindSegue
+{
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass: [BarWebViewController class]])
+    {
+        BarWebViewController* barWebViewController = segue.destinationViewController;
+        UIButton* button = (UIButton*)(sender);
+        Bar* bar = self.dataSource[button.tag]; //tag contains the NSIndexPath.row
+        barWebViewController.url = bar.websiteUrl;
+    }
+    if ([segue.destinationViewController isKindOfClass: [BarMapViewController class]])
+    {
+        BarMapViewController* barMapViewController = segue.destinationViewController;
+        UIButton* button = (UIButton*)(sender);
+        Bar* bar = self.dataSource[button.tag]; //tag contains the NSIndexPath.row
+        barMapViewController.selectedBar = bar;
+    }
+    if ([segue.destinationViewController isKindOfClass: [BarDetailsViewController class]])
+    {
+        BarDetailsViewController* barDetailsViewController = segue.destinationViewController;
+        NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
+        barDetailsViewController.selectedBar = self.dataSource[indexPath.row];
+    }
+    
+}
+
 
 @end
