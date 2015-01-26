@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
 
-@interface StreetViewController : UIViewController
+@interface DistrictViewController : UIViewController
 
 
 @end

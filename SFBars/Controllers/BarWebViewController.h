@@ -15,6 +15,4 @@
 @property (readwrite, nonatomic, weak) IBOutlet UIButton* backButton;
 @property (nonatomic, strong) NSString* url;
 
-
-
 @end

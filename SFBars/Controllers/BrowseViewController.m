@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "BrowseViewController.h"
 
 
-@interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface BrowseViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (readwrite, nonatomic, strong) NSMutableArray* dataByType;
-@property (readwrite, nonatomic, strong) NSMutableArray* dataByLocation;
+@property (readwrite, nonatomic, strong) NSMutableArray* data;
+
 @end
 
-@implementation MainViewController
+@implementation BrowseViewController
 
 static NSString* reuseIdentifier = @"Cell";
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
@@ -37,11 +37,14 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     self.tableView.hidden = YES;
     self.canDisplayBannerAds = YES;
     
-    UIBarButtonItem *showMenuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu:)];
+    UIBarButtonItem *showMenuButton = [[UIBarButtonItem alloc] init];
     UIBarButtonItem* showSettingsButton = [[UIBarButtonItem alloc] init];
     
     [showSettingsButton setTarget:self];
     [showSettingsButton setAction:@selector(showSettings:)];
+    
+    [showMenuButton setTarget:self];
+    [showMenuButton setAction:@selector(showMenu:)];
     
     UIFont* font = [UIFont fontWithName:@"fontawesome" size:28.0];
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
@@ -49,10 +52,11 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     [showSettingsButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
     [showSettingsButton setTitle:[NSString stringWithUTF8String:"\uf013"]];
     
+    [showMenuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
+    [showMenuButton setTitle:[NSString stringWithUTF8String:"\uf039"]];
+    
     self.navigationItem.leftBarButtonItem = showMenuButton;
     self.navigationItem.rightBarButtonItem = showSettingsButton;
-    
-
 }
 
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept
@@ -121,17 +125,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 -(void)loadData: (NSMutableArray*) data
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
-    
     self.tableView.delegate = self;
-    
-    self.dataByType = data;
-    
-    self.dataByLocation = [[NSMutableArray alloc] init];
-    [self.dataByLocation addObject:@"By Street"];
-    [self.dataByLocation addObject:@"Mission"];
-    [self.dataByLocation addObject:@"Castro"];
-    [self.dataByLocation addObject:@"All"];
+    self.data = data;
     
     self.tableView.contentInset = UIEdgeInsetsZero;
     self.tableView.sectionIndexBackgroundColor =[ UIColor blueColor];
@@ -141,20 +136,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch(section)
-    {
-        case 0:
-            return @"";
-        case 1:
-            return @"Search";
-        default:
-            return 0;
-    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -162,9 +144,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     switch(section)
     {
         case 0:
-            return [self.dataByType count];
-        case 1:
-            return [self.dataByLocation count];
+            return [self.data count];
         default:
             return 0;
     }
@@ -182,10 +162,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     tempLabel.textColor = [UIColor blueColor]; //here you can change the text color of header.
   
     if(section == 0) {
-        tempLabel.text = @"Search";
-    }
-    else {
-        tempLabel.text = @"Location";
+        tempLabel.text = @"Brose";
     }
     
     [tempView addSubview:tempLabel];
@@ -199,41 +176,29 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
     
-   //cell.selectedBackgroundView.backgroundColor = [UIColor greenColor];
     cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
-   //cell.imageView.highlightedImage = [UIImage imageNamed:@"DefaultImage-Bar"];
     cell.imageView.frame = CGRectMake(50,500,500,500);
     cell.indentationLevel = 0;
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
-  
     [cell.detailTextLabel setTextColor:[UIColor grayColor]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     switch(indexPath.section)
     {
         case 0:
-            if (indexPath.row < self.dataByType.count)
-            {
-                BarType* barType = (BarType*)[self.dataByType objectAtIndex:indexPath.row];
-                cell.textLabel.text = barType.name;
-                cell.detailTextLabel.text = @"More text";
-                [self setCellStyle:cell];
-                
-            }
-            break;
-        case 1:
-            if (indexPath.row < self.dataByLocation.count)
-            {
-                cell.textLabel.text = [self.dataByLocation objectAtIndex:indexPath.row];
-                [self setCellStyle:cell];
-                cell.detailTextLabel.text = @"More text";
-            }
-            break;
+        if (indexPath.row < self.data.count)
+        {
+            BarType* barType = (BarType*)[self.data objectAtIndex:indexPath.row];
+            cell.textLabel.text = barType.name;
+           
+            [self setCellStyle:cell];
+            
+        }
+        break;
     }
     
     return cell;
@@ -256,7 +221,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 {
     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
     BarViewController* barsViewController = segue.destinationViewController;
-    BarType* barType = self.dataByType[indexPath.row];
+    BarType* barType = self.data[indexPath.row];
     barsViewController.barTypeId = barType.barTypeId;
 }
 

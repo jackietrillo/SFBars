@@ -10,8 +10,7 @@
 
 @interface BarDetailsViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
-@property  (readwrite, nonatomic)  CLLocationManager* locationManager;
-@property (readwrite, nonatomic, strong) CLLocation* currentLocation;
+
 
 @end
 
@@ -25,6 +24,10 @@
 
 -(void)initController
 {
+    
+   // UIBarButtonItem* actionMenuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu:)];
+    //self.navigationItem.rightBarButtonItem = actionMenuButton;
+    
     //back button
     NSString* backButtonText = [NSString stringWithUTF8String:"\uf053"]; //chevron
     backButtonText = [backButtonText stringByAppendingString: @" Back"];
@@ -52,8 +55,6 @@
     {
         self.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     }
-    
-   // [self initLocationManager];
     
 }
 
@@ -129,33 +130,6 @@
     [self presentViewController:messageComposeViewController animated:YES completion:nil];
 }
 
-/*
--(void)initLocationManager
-{
-    self.locationManager = [[CLLocationManager alloc] init];
-    
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    self.locationManager.distanceFilter = 500;
-    
-    [self.locationManager requestAlwaysAuthorization]; //TODO: test in iOS 7
-
-    [self.locationManager startUpdatingLocation];
-}
- */
-
-#pragma mark - CLLocationManagerDelegate
-
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [errorAlert show];
-    NSLog(@"Error: %@",error.description);
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    self.currentLocation = [locations lastObject];
-}
 
 #pragma mark - Navigation
 
@@ -192,7 +166,6 @@
     {
         BarMapViewController* barMapViewController = segue.destinationViewController;
 
-        barMapViewController.currentLocation = self.currentLocation;
         barMapViewController.selectedBar = self.selectedBar;
     }
 

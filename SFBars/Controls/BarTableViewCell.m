@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
   
     UIView *selectedBackgroundView = [[UIView alloc] init];
-    UIColor* color = [self colorWithRGBHex:0x0000ff];
+    UIColor* color = [self colorWithRGBHex:0xcccccc];
     selectedBackgroundView.backgroundColor = color;
     self.selectedBackgroundView = selectedBackgroundView;
 

@@ -11,6 +11,6 @@
 #import "MenuViewController.h"
 #import "BarType.h"
 
-@interface MainViewController : UIViewController
+@interface BrowseViewController : UIViewController
 
 @end

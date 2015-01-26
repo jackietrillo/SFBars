@@ -6,20 +6,18 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import "StreetViewController.h"
+#import "DistrictViewController.h"
 #import "StreetTableViewCell.h"
-#import "StreetManager.h"
-#import "BarViewController.h"
-#import "BarMapViewController.h"
 
-@interface StreetViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@interface DistrictViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readwrite, nonatomic, strong) NSMutableArray* dataSource;
 
 @end
 
-@implementation StreetViewController
+@implementation DistrictViewController
 
 static NSString* reuseIdentifier = @"Cell";
 
@@ -27,76 +25,35 @@ static NSString* reuseIdentifier = @"Cell";
     
     [super viewDidLoad];
     
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    
     [self initController];
 }
 
 -(void)initController {
-    StreetManager* streetManager = [[StreetManager alloc] init];
-    self.dataSource = streetManager.streets;
+   
+ 
     self.tableView.delegate = self;
     
     self.canDisplayBannerAds = YES;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.dataSource.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger rowIndex = indexPath.row;
-    Street* street = self.dataSource[rowIndex];
     
-    StreetTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier forIndexPath:indexPath];
+   // NSInteger rowIndex = indexPath.row;
     
-    cell.nameLabel.text = street.name;
+    
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier forIndexPath:indexPath];
+    
+   // cell.textLabel.text = street.name;
   
     return cell;
 }
 
-//Not used
--(void)addFilterToImageView: (UIImageView*)imageView {
 
-     CIImage *beginImage = [CIImage imageWithCGImage:[imageView.image CGImage]];
-     CIContext *context = [CIContext contextWithOptions:nil];
-     
-     CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues: kCIInputImageKey, beginImage, @"inputIntensity", [NSNumber numberWithFloat:0.4], nil];
-     
-     CIImage *outputImage = [filter outputImage];
-     
-     CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
-     UIImage *newImg = [UIImage imageWithCGImage:cgimg];
-     
-     [imageView setImage:newImg];
-     
-     CGImageRelease(cgimg);
-}
-
-
-- (void)animateTableCells
-{
-    if (self.dataSource.count > 0)
-    {
-        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
-        for (NSIndexPath *indexPath in visiblePaths)
-        {
-            StreetTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier: reuseIdentifier forIndexPath:indexPath];
-            
-            cell.backgroundView.alpha = 0;
-            [UIView animateWithDuration:1
-                             delay: 0.0
-                             options: UIViewAnimationOptionCurveEaseInOut
-                             animations:^(void) {
-                                 cell.backgroundView.alpha = 1;
-                             }
-                             completion: ^(BOOL finished)
-                             {
-                             }];
-
-        }
-    }
-}
 
 
 #pragma mark - UIScrollViewDelegate

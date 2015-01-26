@@ -7,7 +7,6 @@
 //
 
 #import "NavigationViewController.h"
-#import "StreetViewController.h"
 
 @interface NavigationViewController () <UINavigationControllerDelegate>
 
@@ -23,16 +22,10 @@
 // Called when the navigation controller shows a new top view controller via a push, pop or setting of the view controller stack.
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if ([viewController isKindOfClass: [StreetViewController class]])
-    {
-        [self setToolbarHidden:YES];
-        [self setNavigationBarHidden:YES animated:YES];
-    }
-    else
-    {
-        [self setToolbarHidden:YES animated:YES];
-        [self setNavigationBarHidden:NO animated:NO];
-    }
+  
+    [self setToolbarHidden:YES animated:YES];
+    [self setNavigationBarHidden:NO animated:NO];
+    
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated

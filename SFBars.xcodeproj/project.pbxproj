@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8234548E1A65B0CF001D029A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8234548D1A65B0CF001D029A /* MainViewController.m */; };
+		828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE6151A761A8B00D2466D /* BrowseViewController.m */; };
+		828FE61C1A761AB200D2466D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61B1A761AB200D2466D /* SettingsViewController.m */; };
 		82A5C7831A63125C00D55A54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7821A63125C00D55A54 /* main.m */; };
 		82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7851A63125C00D55A54 /* AppDelegate.m */; };
 		82A5C78C1A63125C00D55A54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C78A1A63125C00D55A54 /* Main.storyboard */; };
@@ -17,7 +18,6 @@
 		82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7D01A63260B00D55A54 /* BarTableViewCell.m */; };
 		82A5C7D41A63260B00D55A54 /* StreetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7D21A63260B00D55A54 /* StreetTableViewCell.m */; };
 		82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7D61A63263400D55A54 /* BarWebViewController.m */; };
-		82A5C7E61A63263400D55A54 /* StreetTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7E01A63263400D55A54 /* StreetTabBarViewController.m */; };
 		82A5C7EB1A63266100D55A54 /* Bar.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7E81A63266100D55A54 /* Bar.m */; };
 		82A5C7EC1A63266100D55A54 /* Street.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7EA1A63266100D55A54 /* Street.m */; };
 		82A5C7F01A63267500D55A54 /* StreetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7EF1A63267500D55A54 /* StreetManager.m */; };
@@ -32,7 +32,6 @@
 		82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C131A70830100E71F40 /* ImageDownloader.m */; };
 		82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C161A70838500E71F40 /* BaseEntity.m */; };
 		82BA4C1A1A70CD8E00E71F40 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82BA4C191A70CD8E00E71F40 /* Images.xcassets */; };
-		82BB5FED1A64993A002F5578 /* StreetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB5FEC1A64993A002F5578 /* StreetViewController.m */; };
 		82BB5FF01A649E55002F5578 /* BarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB5FEF1A649E55002F5578 /* BarType.m */; };
 		82BB5FF71A64ABA7002F5578 /* BarTypeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB5FF61A64ABA7002F5578 /* BarTypeManager.m */; };
 		82BB5FFA1A64ABC4002F5578 /* BarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB5FF91A64ABC4002F5578 /* BarManager.m */; };
@@ -41,6 +40,7 @@
 		82BF8A1D1A7481BE00237060 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BF8A1C1A7481BE00237060 /* MessageUI.framework */; };
 		82BF8A211A74978C00237060 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BF8A201A74978C00237060 /* CoreLocation.framework */; };
 		82BF8A241A74A69900237060 /* BarMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF8A231A74A69900237060 /* BarMapViewController.m */; };
+		82C705FB1A75BCAC0045F973 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C705FA1A75BCAC0045F973 /* MenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +54,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8234548C1A65B0CF001D029A /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = SFBars/Controllers/MainViewController.h; sourceTree = "<group>"; };
-		8234548D1A65B0CF001D029A /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = SFBars/Controllers/MainViewController.m; sourceTree = "<group>"; };
+		828FE6141A761A8B00D2466D /* BrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrowseViewController.h; path = SFBars/Controllers/BrowseViewController.h; sourceTree = "<group>"; };
+		828FE6151A761A8B00D2466D /* BrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrowseViewController.m; path = SFBars/Controllers/BrowseViewController.m; sourceTree = "<group>"; };
+		828FE6161A761A8B00D2466D /* DistrictViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DistrictViewController.h; path = SFBars/Controllers/DistrictViewController.h; sourceTree = "<group>"; };
+		828FE6171A761A8B00D2466D /* DistrictViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistrictViewController.m; path = SFBars/Controllers/DistrictViewController.m; sourceTree = "<group>"; };
+		828FE61A1A761AB200D2466D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = SFBars/Controllers/SettingsViewController.h; sourceTree = "<group>"; };
+		828FE61B1A761AB200D2466D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = SFBars/Controllers/SettingsViewController.m; sourceTree = "<group>"; };
+		828FE61D1A761B7200D2466D /* BarDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailsViewController.m; path = SFBars/Controllers/BarDetailsViewController.m; sourceTree = "<group>"; };
 		82A5C77D1A63125C00D55A54 /* SFBars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFBars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A5C7811A63125C00D55A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82A5C7821A63125C00D55A54 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -76,8 +81,6 @@
 		82A5C7D61A63263400D55A54 /* BarWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarWebViewController.m; path = SFBars/Controllers/BarWebViewController.m; sourceTree = "<group>"; };
 		82A5C7D91A63263400D55A54 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationViewController.h; path = SFBars/Controllers/NavigationViewController.h; sourceTree = "<group>"; };
 		82A5C7DA1A63263400D55A54 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationViewController.m; path = SFBars/Controllers/NavigationViewController.m; sourceTree = "<group>"; };
-		82A5C7DF1A63263400D55A54 /* StreetTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreetTabBarViewController.h; path = SFBars/Controllers/StreetTabBarViewController.h; sourceTree = "<group>"; };
-		82A5C7E01A63263400D55A54 /* StreetTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreetTabBarViewController.m; path = SFBars/Controllers/StreetTabBarViewController.m; sourceTree = "<group>"; };
 		82A5C7E71A63266100D55A54 /* Bar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bar.h; path = SFBars/Models/Bar.h; sourceTree = "<group>"; };
 		82A5C7E81A63266100D55A54 /* Bar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bar.m; path = SFBars/Models/Bar.m; sourceTree = "<group>"; };
 		82A5C7E91A63266100D55A54 /* Street.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Street.h; path = SFBars/Models/Street.h; sourceTree = "<group>"; };
@@ -97,8 +100,6 @@
 		82BA4C161A70838500E71F40 /* BaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseEntity.m; path = SFBars/Models/BaseEntity.m; sourceTree = "<group>"; };
 		82BA4C181A7085B500E71F40 /* SFBars_prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFBars_prefix.pch; sourceTree = "<group>"; };
 		82BA4C191A70CD8E00E71F40 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SFBars/Images.xcassets; sourceTree = "<group>"; };
-		82BB5FEB1A64993A002F5578 /* StreetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreetViewController.h; path = SFBars/Controllers/StreetViewController.h; sourceTree = "<group>"; };
-		82BB5FEC1A64993A002F5578 /* StreetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreetViewController.m; path = SFBars/Controllers/StreetViewController.m; sourceTree = "<group>"; };
 		82BB5FEE1A649E55002F5578 /* BarType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarType.h; path = SFBars/Models/BarType.h; sourceTree = "<group>"; };
 		82BB5FEF1A649E55002F5578 /* BarType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarType.m; path = SFBars/Models/BarType.m; sourceTree = "<group>"; };
 		82BB5FF51A64ABA7002F5578 /* BarTypeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarTypeManager.h; path = Managers/BarTypeManager.h; sourceTree = "<group>"; };
@@ -113,6 +114,8 @@
 		82BF8A201A74978C00237060 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		82BF8A221A74A69900237060 /* BarMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarMapViewController.h; path = SFBars/Controllers/BarMapViewController.h; sourceTree = "<group>"; };
 		82BF8A231A74A69900237060 /* BarMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarMapViewController.m; path = SFBars/Controllers/BarMapViewController.m; sourceTree = "<group>"; };
+		82C705F91A75BCAC0045F973 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = SFBars/Controllers/MenuViewController.h; sourceTree = "<group>"; };
+		82C705FA1A75BCAC0045F973 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = SFBars/Controllers/MenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +143,6 @@
 		82A5C7741A63125C00D55A54 = {
 			isa = PBXGroup;
 			children = (
-				82BF8A201A74978C00237060 /* CoreLocation.framework */,
 				82A5C77F1A63125C00D55A54 /* SFBars */,
 				82A5C7991A63125C00D55A54 /* SFBarsTests */,
 				82A5C80A1A632C1800D55A54 /* Framework */,
@@ -206,6 +208,11 @@
 			isa = PBXGroup;
 			children = (
 				82BF8A191A74392800237060 /* BarDetailsViewController.h */,
+				828FE61D1A761B7200D2466D /* BarDetailsViewController.m */,
+				828FE6141A761A8B00D2466D /* BrowseViewController.h */,
+				828FE6151A761A8B00D2466D /* BrowseViewController.m */,
+				828FE6161A761A8B00D2466D /* DistrictViewController.h */,
+				828FE6171A761A8B00D2466D /* DistrictViewController.m */,
 				82BF8A1A1A74392800237060 /* BarDetailsViewController.m */,
 				82BF8A221A74A69900237060 /* BarMapViewController.h */,
 				82BF8A231A74A69900237060 /* BarMapViewController.m */,
@@ -215,12 +222,10 @@
 				82A5C7D61A63263400D55A54 /* BarWebViewController.m */,
 				82A5C7D91A63263400D55A54 /* NavigationViewController.h */,
 				82A5C7DA1A63263400D55A54 /* NavigationViewController.m */,
-				82BB5FEB1A64993A002F5578 /* StreetViewController.h */,
-				82BB5FEC1A64993A002F5578 /* StreetViewController.m */,
-				82A5C7DF1A63263400D55A54 /* StreetTabBarViewController.h */,
-				82A5C7E01A63263400D55A54 /* StreetTabBarViewController.m */,
-				8234548C1A65B0CF001D029A /* MainViewController.h */,
-				8234548D1A65B0CF001D029A /* MainViewController.m */,
+				82C705F91A75BCAC0045F973 /* MenuViewController.h */,
+				82C705FA1A75BCAC0045F973 /* MenuViewController.m */,
+				828FE61A1A761AB200D2466D /* SettingsViewController.h */,
+				828FE61B1A761AB200D2466D /* SettingsViewController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -302,6 +307,7 @@
 		82A5C80A1A632C1800D55A54 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				82BF8A201A74978C00237060 /* CoreLocation.framework */,
 				82BF8A1C1A7481BE00237060 /* MessageUI.framework */,
 				82A5C7F61A632A1600D55A54 /* iAd.framework */,
 				82A5C7F41A632A1100D55A54 /* MapKit.framework */,
@@ -416,16 +422,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */,
-				82BB5FED1A64993A002F5578 /* StreetViewController.m in Sources */,
 				82A5C7EB1A63266100D55A54 /* Bar.m in Sources */,
 				82A5C7D41A63260B00D55A54 /* StreetTableViewCell.m in Sources */,
 				82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */,
-				8234548E1A65B0CF001D029A /* MainViewController.m in Sources */,
-				82A5C7E61A63263400D55A54 /* StreetTabBarViewController.m in Sources */,
 				82A5C7EC1A63266100D55A54 /* Street.m in Sources */,
 				82BB5FFA1A64ABC4002F5578 /* BarManager.m in Sources */,
+				82C705FB1A75BCAC0045F973 /* MenuViewController.m in Sources */,
 				82BB60081A64D763002F5578 /* BarViewController.m in Sources */,
 				82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */,
+				828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */,
 				82BF8A1B1A74392800237060 /* BarDetailsViewController.m in Sources */,
 				82BB5FF71A64ABA7002F5578 /* BarTypeManager.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
@@ -434,6 +439,7 @@
 				82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */,
 				82BF8A241A74A69900237060 /* BarMapViewController.m in Sources */,
 				82A5C7C51A631FD500D55A54 /* ConnectionHelper.m in Sources */,
+				828FE61C1A761AB200D2466D /* SettingsViewController.m in Sources */,
 				82A5C7831A63125C00D55A54 /* main.m in Sources */,
 				82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */,
 			);
