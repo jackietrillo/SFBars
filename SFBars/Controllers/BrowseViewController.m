@@ -7,8 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import "BarViewController.h"
-#import "BarType.h"
+
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -37,6 +36,23 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     
     self.tableView.hidden = YES;
     self.canDisplayBannerAds = YES;
+    
+    UIBarButtonItem *showMenuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu:)];
+    UIBarButtonItem* showSettingsButton = [[UIBarButtonItem alloc] init];
+    
+    [showSettingsButton setTarget:self];
+    [showSettingsButton setAction:@selector(showSettings:)];
+    
+    UIFont* font = [UIFont fontWithName:@"fontawesome" size:28.0];
+    NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
+    
+    [showSettingsButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
+    [showSettingsButton setTitle:[NSString stringWithUTF8String:"\uf013"]];
+    
+    self.navigationItem.leftBarButtonItem = showMenuButton;
+    self.navigationItem.rightBarButtonItem = showSettingsButton;
+    
+
 }
 
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept
@@ -231,6 +247,11 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 
 #pragma mark - Navigation
 
+- (IBAction)unwindToBrowse:(UIStoryboardSegue *)unwindSegue
+{
+    
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
@@ -239,5 +260,20 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     barsViewController.barTypeId = barType.barTypeId;
 }
 
+- (void)showSettings:(id)sender
+{
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+    
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)showMenu:(id)sender
+{
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
+    
+    [self presentViewController:vc animated:YES completion:nil];
+}
 
 @end

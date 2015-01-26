@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BarViewController.h"
+#import "MenuViewController.h"
+#import "BarType.h"
 
 @interface MainViewController : UIViewController
 
