@@ -56,6 +56,23 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
     self.imageConnection = nil;
 }
 
+-(UIImage*)addFilterToImage: (UIImage*)image{
+    
+    CIContext *imgContext = [CIContext contextWithOptions:nil];
+    
+    CIImage *bgnImage = [[CIImage alloc] initWithImage:image];
+    
+    CIFilter *imgFilter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues: kCIInputImageKey, bgnImage, @"inputIntensity", [NSNumber numberWithFloat:0.5], nil];
+    CIImage *myOutputImage = [imgFilter outputImage];
+    
+    CGImageRef cgImgRef = [imgContext  createCGImage:myOutputImage fromRect:[myOutputImage extent]];
+    UIImage *newImgWithFilter = [UIImage imageWithCGImage:cgImgRef];
+    
+    CGImageRelease(cgImgRef);
+    return newImgWithFilter;
+    
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     UIImage *image = [[UIImage alloc] initWithData:self.activeDownload];
@@ -76,6 +93,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
     }
     else
     {
+       // UIImage* imageWithFilter = [self addFilterToImage: image];
         self.entity.icon = image;
     }
     

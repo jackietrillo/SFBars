@@ -20,7 +20,6 @@
 		82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7D61A63263400D55A54 /* BarWebViewController.m */; };
 		82A5C7EB1A63266100D55A54 /* Bar.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7E81A63266100D55A54 /* Bar.m */; };
 		82A5C7EC1A63266100D55A54 /* Street.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7EA1A63266100D55A54 /* Street.m */; };
-		82A5C7F01A63267500D55A54 /* StreetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7EF1A63267500D55A54 /* StreetManager.m */; };
 		82A5C7F51A632A1100D55A54 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A5C7F41A632A1100D55A54 /* MapKit.framework */; };
 		82A5C7F71A632A1600D55A54 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A5C7F61A632A1600D55A54 /* iAd.framework */; };
 		82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7DA1A63263400D55A54 /* NavigationViewController.m */; };
@@ -33,8 +32,6 @@
 		82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C161A70838500E71F40 /* BaseEntity.m */; };
 		82BA4C1A1A70CD8E00E71F40 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82BA4C191A70CD8E00E71F40 /* Images.xcassets */; };
 		82BB5FF01A649E55002F5578 /* BarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB5FEF1A649E55002F5578 /* BarType.m */; };
-		82BB5FF71A64ABA7002F5578 /* BarTypeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB5FF61A64ABA7002F5578 /* BarTypeManager.m */; };
-		82BB5FFA1A64ABC4002F5578 /* BarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB5FF91A64ABC4002F5578 /* BarManager.m */; };
 		82BB60081A64D763002F5578 /* BarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB60071A64D763002F5578 /* BarViewController.m */; };
 		82BF8A1B1A74392800237060 /* BarDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF8A1A1A74392800237060 /* BarDetailsViewController.m */; };
 		82BF8A1D1A7481BE00237060 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BF8A1C1A7481BE00237060 /* MessageUI.framework */; };
@@ -85,8 +82,6 @@
 		82A5C7E81A63266100D55A54 /* Bar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bar.m; path = SFBars/Models/Bar.m; sourceTree = "<group>"; };
 		82A5C7E91A63266100D55A54 /* Street.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Street.h; path = SFBars/Models/Street.h; sourceTree = "<group>"; };
 		82A5C7EA1A63266100D55A54 /* Street.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Street.m; path = SFBars/Models/Street.m; sourceTree = "<group>"; };
-		82A5C7EE1A63267500D55A54 /* StreetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreetManager.h; path = Managers/StreetManager.h; sourceTree = "<group>"; };
-		82A5C7EF1A63267500D55A54 /* StreetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreetManager.m; path = Managers/StreetManager.m; sourceTree = "<group>"; };
 		82A5C7F41A632A1100D55A54 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		82A5C7F61A632A1600D55A54 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		82A5C7FA1A632B9800D55A54 /* Dashicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Dashicons.ttf; path = SFBars/Resources/Fonts/Dashicons.ttf; sourceTree = "<group>"; };
@@ -102,10 +97,6 @@
 		82BA4C191A70CD8E00E71F40 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SFBars/Images.xcassets; sourceTree = "<group>"; };
 		82BB5FEE1A649E55002F5578 /* BarType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarType.h; path = SFBars/Models/BarType.h; sourceTree = "<group>"; };
 		82BB5FEF1A649E55002F5578 /* BarType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarType.m; path = SFBars/Models/BarType.m; sourceTree = "<group>"; };
-		82BB5FF51A64ABA7002F5578 /* BarTypeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarTypeManager.h; path = Managers/BarTypeManager.h; sourceTree = "<group>"; };
-		82BB5FF61A64ABA7002F5578 /* BarTypeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarTypeManager.m; path = Managers/BarTypeManager.m; sourceTree = "<group>"; };
-		82BB5FF81A64ABC4002F5578 /* BarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarManager.h; path = Managers/BarManager.h; sourceTree = "<group>"; };
-		82BB5FF91A64ABC4002F5578 /* BarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarManager.m; path = Managers/BarManager.m; sourceTree = "<group>"; };
 		82BB60061A64D763002F5578 /* BarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarViewController.h; path = SFBars/Controllers/BarViewController.h; sourceTree = "<group>"; };
 		82BB60071A64D763002F5578 /* BarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarViewController.m; path = SFBars/Controllers/BarViewController.m; sourceTree = "<group>"; };
 		82BF8A191A74392800237060 /* BarDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailsViewController.h; path = SFBars/Controllers/BarDetailsViewController.h; sourceTree = "<group>"; };
@@ -163,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				82A5C7A91A631F3B00D55A54 /* Common */,
-				82A5C7ED1A63266500D55A54 /* Managers */,
 				82A5C7A61A631F0B00D55A54 /* Controllers */,
 				82A5C7A71A631F1300D55A54 /* Models */,
 				82A5C7AA1A631F9F00D55A54 /* Controls */,
@@ -278,19 +268,6 @@
 				82A5C7D21A63260B00D55A54 /* StreetTableViewCell.m */,
 			);
 			name = Controls;
-			sourceTree = "<group>";
-		};
-		82A5C7ED1A63266500D55A54 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				82A5C7EE1A63267500D55A54 /* StreetManager.h */,
-				82A5C7EF1A63267500D55A54 /* StreetManager.m */,
-				82BB5FF51A64ABA7002F5578 /* BarTypeManager.h */,
-				82BB5FF61A64ABA7002F5578 /* BarTypeManager.m */,
-				82BB5FF81A64ABC4002F5578 /* BarManager.h */,
-				82BB5FF91A64ABC4002F5578 /* BarManager.m */,
-			);
-			name = Managers;
 			sourceTree = "<group>";
 		};
 		82A5C7F91A632B6400D55A54 /* Fonts */ = {
@@ -426,16 +403,13 @@
 				82A5C7D41A63260B00D55A54 /* StreetTableViewCell.m in Sources */,
 				82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */,
 				82A5C7EC1A63266100D55A54 /* Street.m in Sources */,
-				82BB5FFA1A64ABC4002F5578 /* BarManager.m in Sources */,
 				82C705FB1A75BCAC0045F973 /* MenuViewController.m in Sources */,
 				82BB60081A64D763002F5578 /* BarViewController.m in Sources */,
 				82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */,
 				828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */,
 				82BF8A1B1A74392800237060 /* BarDetailsViewController.m in Sources */,
-				82BB5FF71A64ABA7002F5578 /* BarTypeManager.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
 				82BB5FF01A649E55002F5578 /* BarType.m in Sources */,
-				82A5C7F01A63267500D55A54 /* StreetManager.m in Sources */,
 				82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */,
 				82BF8A241A74A69900237060 /* BarMapViewController.m in Sources */,
 				82A5C7C51A631FD500D55A54 /* ConnectionHelper.m in Sources */,

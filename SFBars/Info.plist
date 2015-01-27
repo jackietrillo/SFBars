@@ -28,6 +28,7 @@
 	<string>Location is required to find your current location</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Dashicons.ttf</string>
 		<string>DroidSans.ttf</string>
 		<string>FontAwesome.ttf</string>
 	</array>

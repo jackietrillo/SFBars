@@ -46,17 +46,18 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     [showMenuButton setTarget:self];
     [showMenuButton setAction:@selector(showMenu:)];
     
-    UIFont* font = [UIFont fontWithName:@"fontawesome" size:28.0];
+    UIFont* font = [UIFont fontWithName:@"Dashicons" size:30.0];
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
     [showSettingsButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    [showSettingsButton setTitle:[NSString stringWithUTF8String:"\uf013"]];
+    [showSettingsButton setTitle:[NSString stringWithUTF8String:"\uf111"]];
     
     [showMenuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    [showMenuButton setTitle:[NSString stringWithUTF8String:"\uf039"]];
+    [showMenuButton setTitle:[NSString stringWithUTF8String:"\uf333"]];
     
     self.navigationItem.leftBarButtonItem = showMenuButton;
     self.navigationItem.rightBarButtonItem = showSettingsButton;
+    //self.navigationItem.title = @"BROWSE";
 }
 
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept
@@ -223,6 +224,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     BarViewController* barsViewController = segue.destinationViewController;
     BarType* barType = self.data[indexPath.row];
     barsViewController.barTypeId = barType.barTypeId;
+    barsViewController.barTypeText = barType.name;
 }
 
 - (void)showSettings:(id)sender
@@ -230,7 +232,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
     
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showMenu:(id)sender
@@ -238,7 +240,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
     
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

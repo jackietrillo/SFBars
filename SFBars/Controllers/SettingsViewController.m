@@ -20,18 +20,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.settingsData = [[NSMutableArray alloc] init];
+    [self initController];
+}
+
+-(void)initController
+{
+    [self initNavigation];
+    [self loadData];
+}
+
+-(void)initNavigation
+{
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] init];
     
+    [doneButton setTarget:self];
+    [doneButton setAction:@selector(backToBrowse:)];
+    
+    UIFont* font = [UIFont fontWithName:@"fontawesome" size:30.0];
+    NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
+    
+    [doneButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
+    [doneButton setTitle:[NSString stringWithUTF8String:"\uf00c"]];
+    
+    self.navigationItem.rightBarButtonItem = doneButton;
+    self.navigationItem.title = @"SETTINGS";
+    
+    [self.navigationItem setHidesBackButton:YES animated:YES];
+}
+
+- (void)loadData
+{
+    self.settingsData = [[NSMutableArray alloc] init];
     [self.settingsData addObject:@"Rate App"];
     [self.settingsData addObject:@"Feedback"];
     [self.settingsData addObject:@"Contact Us"];
-    [self.settingsData addObject:@"Upgrade"];
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)setCellStyle:(UITableViewCell *)cell
@@ -42,13 +64,34 @@
     cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     cell.imageView.frame = CGRectMake(50,500,500,500);
     cell.indentationLevel = 0;
-   // cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
-   // [cell.detailTextLabel setTextColor:[UIColor grayColor]];
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
+    
+    switch(section)
+    {
+        case 0:
+            [headerView setBackgroundColor:[UIColor darkGrayColor]];
+            break;
+        case 1:
+            [headerView setBackgroundColor:[UIColor darkGrayColor]];
+            break;
+        default:
+            return 0;
+    }
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -56,7 +99,9 @@
     switch(section)
     {
         case 0:
-            return @"Settings";
+            return @" ";
+        case 1:
+            return @" ";
         default:
             return 0;
     }
@@ -68,6 +113,8 @@
     {
         case 0:
             return [self.settingsData count];
+        case 1:
+            return 1;
         default:
             return 0;
     }
@@ -76,17 +123,27 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger rowIndex = indexPath.row;
-    NSString* text = self.settingsData[rowIndex];
     
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    cell.textLabel.text = text;
     
+    switch(indexPath.section)
+    {
+        case 0:
+            cell.textLabel.text = self.settingsData[rowIndex];
+            break;
+            
+        case 1:
+            cell.textLabel.text = @"Upgrade";
+            break;
+            
+        default:
+            break;
+    }
     [self setCellStyle:cell];
-    
     return cell;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -94,6 +151,10 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
+- (void)backToBrowse: (id)sender
+{
+    [self performSegueWithIdentifier:@"unwindToBrowse" sender:self];
+}
 
 @end

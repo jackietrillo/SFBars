@@ -60,6 +60,10 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 
 -(void)initController
 {
+    
+   // [self.navigationItem.leftBarButtonItem setTitle: @"Back"];
+    self.navigationItem.title = self.barTypeText;
+    
     NSString* barTypeUrl = [serviceUrl stringByAppendingString:[self.barTypeId stringValue]];
     
     [self sendAsyncRequest:barTypeUrl method:@"GET" accept:@"application/json"];
@@ -158,10 +162,46 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     }
     else
     {
-        cell.logo.image = bar.icon ;
+       // UIImage* filteredImage = [self addFilterToImage: bar.icon];
+        cell.logo.image = bar.icon;
+        
     }
 
     return cell;
+}
+
+-(UIImage*)addFilterToImage: (UIImage*)image{
+    
+    CIContext *imgContext = [CIContext contextWithOptions:nil];
+    
+    CIImage *bgnImage = [[CIImage alloc] initWithImage:image];
+    
+    CIFilter *imgFilter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues: kCIInputImageKey, bgnImage, @"inputIntensity", [NSNumber numberWithFloat:0.5], nil];
+    CIImage *myOutputImage = [imgFilter outputImage];
+    
+    CGImageRef cgImgRef = [imgContext  createCGImage:myOutputImage fromRect:[myOutputImage extent]];
+    UIImage *newImgWithFilter = [UIImage imageWithCGImage:cgImgRef];
+    
+    CGImageRelease(cgImgRef);
+    return newImgWithFilter;
+    
+}
+
+-(void)addFilterToImageView: (UIImageView*)imageView {
+    
+    CIContext *imgContext = [CIContext contextWithOptions:nil];
+    
+    CIImage *bgnImage = [[CIImage alloc] initWithImage:imageView.image];
+    
+    CIFilter *imgFilter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues: kCIInputImageKey, bgnImage, @"inputIntensity", [NSNumber numberWithFloat:0.8], nil];
+    CIImage *myOutputImage = [imgFilter outputImage];
+    
+    CGImageRef cgImgRef = [imgContext  createCGImage:myOutputImage fromRect:[myOutputImage extent]];
+    UIImage *newImgWithFilter = [UIImage imageWithCGImage:cgImgRef];
+    
+    [imageView setImage:newImgWithFilter];
+    
+    CGImageRelease(cgImgRef);
 }
 
 

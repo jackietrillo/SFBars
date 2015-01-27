@@ -12,6 +12,7 @@
 
 @interface BarViewController : UIViewController
 
+@property (nonatomic, strong) NSString* barTypeText;
 @property (nonatomic, strong) NSNumber* barTypeId;
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 

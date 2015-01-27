@@ -10,8 +10,6 @@
 
 @interface BarDetailsViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
-
-
 @end
 
 @implementation BarDetailsViewController
@@ -24,9 +22,8 @@
 
 -(void)initController
 {
-    
-   // UIBarButtonItem* actionMenuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu:)];
-    //self.navigationItem.rightBarButtonItem = actionMenuButton;
+   //UIBarButtonItem* actionMenuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu:)];
+   //self.navigationItem.rightBarButtonItem = actionMenuButton;
     
     //back button
     NSString* backButtonText = [NSString stringWithUTF8String:"\uf053"]; //chevron
@@ -55,7 +52,6 @@
     {
         self.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     }
-    
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
@@ -106,6 +102,7 @@
     
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
+
 #pragma mark - Events
 
 -(IBAction)tappedSendMail:(id)sender
@@ -129,7 +126,6 @@
     
     [self presentViewController:messageComposeViewController animated:YES completion:nil];
 }
-
 
 #pragma mark - Navigation
 
@@ -168,8 +164,6 @@
 
         barMapViewController.selectedBar = self.selectedBar;
     }
-
 }
-
 
 @end
