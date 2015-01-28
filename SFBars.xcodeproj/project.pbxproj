@@ -38,6 +38,8 @@
 		82BF8A211A74978C00237060 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BF8A201A74978C00237060 /* CoreLocation.framework */; };
 		82BF8A241A74A69900237060 /* BarMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF8A231A74A69900237060 /* BarMapViewController.m */; };
 		82C705FB1A75BCAC0045F973 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C705FA1A75BCAC0045F973 /* MenuViewController.m */; };
+		82DF03F91A7815E700A451DC /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 82DF03F81A7815E700A451DC /* Menu.json */; };
+		82DF04011A78231D00A451DC /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DF04001A78231D00A451DC /* MenuItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,10 @@
 		82BF8A231A74A69900237060 /* BarMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarMapViewController.m; path = SFBars/Controllers/BarMapViewController.m; sourceTree = "<group>"; };
 		82C705F91A75BCAC0045F973 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = SFBars/Controllers/MenuViewController.h; sourceTree = "<group>"; };
 		82C705FA1A75BCAC0045F973 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = SFBars/Controllers/MenuViewController.m; sourceTree = "<group>"; };
+		82DF03F81A7815E700A451DC /* Menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Menu.json; path = SFBars/Resources/Menu.json; sourceTree = "<group>"; };
+		82DF03FF1A78231D00A451DC /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuItem.h; path = SFBars/Models/MenuItem.h; sourceTree = "<group>"; };
+		82DF04001A78231D00A451DC /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuItem.m; path = SFBars/Models/MenuItem.m; sourceTree = "<group>"; };
+		82DF04021A786C0100A451DC /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +232,8 @@
 			children = (
 				82A5C7E71A63266100D55A54 /* Bar.h */,
 				82A5C7E81A63266100D55A54 /* Bar.m */,
+				82DF03FF1A78231D00A451DC /* MenuItem.h */,
+				82DF04001A78231D00A451DC /* MenuItem.m */,
 				82A5C7E91A63266100D55A54 /* Street.h */,
 				82A5C7EA1A63266100D55A54 /* Street.m */,
 				82BB5FEE1A649E55002F5578 /* BarType.h */,
@@ -242,6 +250,7 @@
 			children = (
 				82BA4C191A70CD8E00E71F40 /* Images.xcassets */,
 				82A5C8081A632BD900D55A54 /* LaunchImage-568h@2x.png */,
+				82DF03F81A7815E700A451DC /* Menu.json */,
 				82A5C7F91A632B6400D55A54 /* Fonts */,
 			);
 			name = Resources;
@@ -273,6 +282,7 @@
 		82A5C7F91A632B6400D55A54 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				82DF04021A786C0100A451DC /* glyphicons-halflings-regular.ttf */,
 				82A5C7FA1A632B9800D55A54 /* Dashicons.ttf */,
 				82A5C7FB1A632B9800D55A54 /* DroidSans-Bold.ttf */,
 				82A5C7FC1A632B9800D55A54 /* DroidSans.ttf */,
@@ -380,6 +390,7 @@
 				82A5C8011A632B9800D55A54 /* Dashicons.ttf in Resources */,
 				82BA4C1A1A70CD8E00E71F40 /* Images.xcassets in Resources */,
 				82A5C8091A632BD900D55A54 /* LaunchImage-568h@2x.png in Resources */,
+				82DF03F91A7815E700A451DC /* Menu.json in Resources */,
 				82A5C7CE1A63250400D55A54 /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +412,7 @@
 				82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */,
 				82A5C7EB1A63266100D55A54 /* Bar.m in Sources */,
 				82A5C7D41A63260B00D55A54 /* StreetTableViewCell.m in Sources */,
+				82DF04011A78231D00A451DC /* MenuItem.m in Sources */,
 				82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */,
 				82A5C7EC1A63266100D55A54 /* Street.m in Sources */,
 				82C705FB1A75BCAC0045F973 /* MenuViewController.m in Sources */,

@@ -8,6 +8,12 @@
 
 #import "BaseEntity.h"
 
+@interface  BaseEntity()
+
+
+
+@end
+
 @implementation BaseEntity
 
     

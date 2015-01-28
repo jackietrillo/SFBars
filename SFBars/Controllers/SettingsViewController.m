@@ -45,7 +45,7 @@
     self.navigationItem.rightBarButtonItem = doneButton;
     self.navigationItem.title = @"SETTINGS";
     
-    [self.navigationItem setHidesBackButton:YES animated:YES];
+   // [self.navigationItem setHidesBackButton:YES animated:YES];
 }
 
 - (void)loadData
@@ -154,7 +154,7 @@
 
 - (void)backToBrowse: (id)sender
 {
-    [self performSegueWithIdentifier:@"unwindToBrowse" sender:self];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

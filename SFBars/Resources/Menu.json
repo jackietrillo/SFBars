@@ -1,0 +1,50 @@
+[
+  {
+    "menuItemId": 1,
+    "section": 0,
+    "name": "Browse",
+    "imageUrl": "Icon-Browse"
+  },
+  {
+    "menuItemId": 2,
+    "section": 0,
+    "name": "Near Me",
+    "imageUrl": "Icon-NearMe"
+  },
+  {
+    "menuItemId": 3,
+    "section": 0,
+    "name": "Music",
+    "imageUrl": "Icon-Music"
+ },
+  {
+    "menuItemId": 3,
+    "section": 0,
+    "name": "Top List",
+    "imageUrl": "Icon-TopList"
+  },
+  {
+    "menuItemId": 4,
+    "section": 0,
+    "name": "Events",
+    "imageUrl": "Icon-Events"
+ },
+ {
+    "menuItemId": 5,
+    "section": 0,
+    "name": "Parties",
+    "imageUrl": "Icon-Parties"
+  },
+  {
+    "menuItemId": 6,
+    "section": 0,
+    "name": "Starred",
+    "imageUrl": "Icon-Starred"
+ },
+ {
+    "menuItemId": 7,
+    "section": 1,
+    "name": "Settings",
+    "imageUrl": "Icon-Settings"
+ }
+]

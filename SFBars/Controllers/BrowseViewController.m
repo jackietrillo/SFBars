@@ -100,6 +100,18 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
      }];
 }
 
+-(void)loadData: (NSMutableArray*) data
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    self.tableView.delegate = self;
+    self.data = data;
+    
+    self.tableView.contentInset = UIEdgeInsetsZero;
+    self.tableView.sectionIndexBackgroundColor =[ UIColor blueColor];
+    [self.tableView reloadData];
+    self.tableView.hidden = NO;
+}
+
 -(NSMutableArray*)parseData: (NSData*)jsonData
 {
     NSError* errorData;
@@ -121,18 +133,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     }
     
     return dataByType;
-}
-
--(void)loadData: (NSMutableArray*) data
-{
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    self.tableView.delegate = self;
-    self.data = data;
-    
-    self.tableView.contentInset = UIEdgeInsetsZero;
-    self.tableView.sectionIndexBackgroundColor =[ UIColor blueColor];
-    [self.tableView reloadData];
-    self.tableView.hidden = NO;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

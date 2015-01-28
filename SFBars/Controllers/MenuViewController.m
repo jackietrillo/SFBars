@@ -11,8 +11,8 @@
 @interface MenuViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (readwrite, nonatomic, strong) NSMutableArray* menuData;
-
+@property (readwrite, nonatomic, strong) NSMutableArray* menuDataTop;
+@property (readwrite, nonatomic, strong) NSMutableArray* menuDataBottom;
 @end
 
 @implementation MenuViewController
@@ -32,43 +32,49 @@
 
 -(void)loadData
 {
-    self.menuData = [[NSMutableArray alloc] init];
-    [self.menuData addObject:@"Browse"];
-    [self.menuData addObject:@"Near Me"];
-    [self.menuData addObject:@"Top List"];
-    [self.menuData addObject:@"Parties"];
-    [self initNavigation];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"json"];
+    NSData* data = [NSData dataWithContentsOfFile:path];
+
+    [self parseData:data];
+}
+
+-(void)parseData: (NSData*)jsonData
+{
+    NSError* errorData;
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
+    
+    if (errorData != nil)
+    {
+       //TODO: Alert User
+    }
+    
+    self.menuDataTop = [[NSMutableArray alloc] init];
+    self.menuDataBottom = [[NSMutableArray alloc] init];
+    
+    if (arrayData.count > 0)
+    {
+        for (int i = 0; i < arrayData.count; i++) {
+            NSDictionary* dictTemp = arrayData[i];
+            
+            MenuItem* menuItem = [MenuItem initFromDictionary: dictTemp];
+            
+            if (menuItem.section == 0)
+            {
+                [self.menuDataTop addObject:menuItem];
+            }
+            else if (menuItem.section == 1)
+            {
+                [self.menuDataBottom addObject:menuItem];
+            }
+        }
+    }
+
 }
 
 -(void)initNavigation
 {
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] init];
-    
-    [doneButton setTarget:self];
-    [doneButton setAction:@selector(backToBrowse:)];
-    
-    UIFont* font = [UIFont fontWithName:@"fontawesome" size:30.0];
-    NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
-    
-    [doneButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    [doneButton setTitle:[NSString stringWithUTF8String:"\uf00c"]];
-    
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationItem.rightBarButtonItem = doneButton;
     self.navigationItem.title = @"MENU";
-    
     [self.navigationItem setHidesBackButton:YES animated:YES];
-}
-
--(void)setCellStyle:(UITableViewCell *)cell
-{
-    [cell.textLabel setTextColor:[UIColor whiteColor]];
-    cell.textLabel.highlightedTextColor = [UIColor blackColor];
-    
-    cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
-    cell.imageView.frame = CGRectMake(50,500,500,500);
-    cell.indentationLevel = 0;
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -78,10 +84,10 @@
     switch(section)
     {
         case 0:
-             [headerView setBackgroundColor:[UIColor darkGrayColor]];
+             [headerView setBackgroundColor:[UIColor blackColor]];
             break;
         case 1:
-            [headerView setBackgroundColor:[UIColor darkGrayColor]];
+            [headerView setBackgroundColor:[UIColor blackColor]];
             break;
         default:
             return 0;
@@ -122,43 +128,87 @@
     switch(section)
     {
         case 0:
-            return [self.menuData count];
+            return [self.menuDataTop count];
         case 1:
-            return 1;
+            return [self.menuDataBottom count];
         default:
             return 0;
     }
 }
 
+-(void)setCellStyle:(UITableViewCell *)cell
+{
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    cell.textLabel.highlightedTextColor = [UIColor blackColor];
+    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger rowIndex = indexPath.row;
-    
+    MenuItem* menuItem;
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     switch(indexPath.section)
     {
         case 0:
-            cell.textLabel.text = self.menuData[rowIndex];
+            menuItem = (MenuItem*)self.menuDataTop[rowIndex];
+            cell.textLabel.text = menuItem.name;
+            cell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
-            
         case 1:
-            cell.textLabel.text = @"My Favorites";
+             menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
+             cell.textLabel.text = menuItem.name;
+             cell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
-        
         default:
             break;
     }
+    
     [self setCellStyle:cell];
+    
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSInteger rowIndex = indexPath.row;
+    MenuItem* menuItem;
+    
+    switch(indexPath.section)
+    {
+        case 0:
+            menuItem = (MenuItem*)self.menuDataTop[rowIndex];
+            
+            if ([menuItem.name isEqualToString:@"Browse"])
+            {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+            
+            break;
+        case 1:
+            menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
+            
+            if ([menuItem.name isEqualToString:@"Settings"])
+            {
+                SettingsViewController* vc = [[SettingsViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+
+            break;
+        default:
+            break;
+    }
+    
+}
 
  #pragma mark - Navigation
 
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
 
- }
+}
 
 - (void)backToBrowse: (id)sender
 {
