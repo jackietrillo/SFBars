@@ -8,14 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
-#import "Street.h"
+#import "ImageDownloader.h"
+#import "BarWebViewController.h"
+#import "BarDetailsViewController.h"
+#import "BarMapViewController.h"
+#import "Bar.h"
+#import "BarTableViewCell.h"
+
 
 @interface BarViewController : UIViewController
 
-@property (nonatomic, strong) NSString* barTypeText;
-@property (nonatomic, strong) NSNumber* barTypeId;
+@property (readwrite, nonatomic, strong) NSString* barTypeText;
+@property (readwrite, nonatomic, strong) NSNumber* barTypeId;
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 
-
+@property (readwrite, nonatomic, strong) NSMutableArray* bars;
 
 @end

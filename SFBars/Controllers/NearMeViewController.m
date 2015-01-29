@@ -6,20 +6,20 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BrowseViewController.h"
+#import "NearMeViewController.h"
 
 
-@interface BrowseViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface NearMeViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readwrite, nonatomic, strong) NSMutableArray* data;
 
 @end
 
-@implementation BrowseViewController
+@implementation NearMeViewController
 
 static NSString* reuseIdentifier = @"Cell";
-static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
+static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/district/";
 
 - (void)viewDidLoad
 {
@@ -34,12 +34,12 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 {
     self.tableView.hidden = YES;
     self.canDisplayBannerAds = YES;
-    
+
     [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
     
     //menu button
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] init];
-    
+  
     UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
@@ -50,7 +50,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     [menuButton setAction:@selector(showMenu:)];
     
     self.navigationItem.leftBarButtonItem = menuButton;
-    self.navigationItem.title = @"BROWSE"; //TODO: Localize
+    self.navigationItem.title = @"NEAR ME"; //TODO: Localize
 }
 
 
@@ -58,7 +58,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
+    
     NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     
     [urlRequest setHTTPMethod:method];
@@ -91,7 +91,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
                  //TODO: alert user
              }
          });
-
+         
      }];
 }
 
@@ -102,7 +102,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     self.data = data;
     
     self.tableView.contentInset = UIEdgeInsetsZero;
-    self.tableView.sectionIndexBackgroundColor =[ UIColor blueColor];
     [self.tableView reloadData];
     self.tableView.hidden = NO;
 }
@@ -117,55 +116,65 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
         //TODO: alert user
     }
     
-    NSMutableArray* dataByType = [[NSMutableArray alloc] init];
+    NSMutableArray* nearMeData = [[NSMutableArray alloc] init];
     if (arrayData.count > 0)
     {
         for (int i = 0; i < arrayData.count; i++)
         {
             NSDictionary* dictTemp = arrayData[i];
-            BarType* barType = [BarType initFromDictionary:dictTemp];
-            [dataByType addObject:barType];
+            District* district = [District initFromDictionary:dictTemp];
+            [nearMeData addObject:district];
         }
     }
     
-    return dataByType;
+    return nearMeData;
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
+    
+    switch(section)
+    {
+        case 0:
+            [headerView setBackgroundColor:[UIColor blackColor]];
+            break;
+
+        default:
+            break;
+    }
+    return headerView;
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
+    
+    switch(section)
+    {
+        case 0:
+            [footerView setBackgroundColor:[UIColor blackColor]];
+            break;
+            
+        default:
+            break;
+    }
+    return footerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    switch(section)
-    {
-        case 0:
-            return [self.data count];
-        default:
-            return 0;
-    }
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *tempView=[[UIView alloc]initWithFrame:CGRectMake(0,200,300,244)];
-    tempView.backgroundColor=[UIColor blackColor];
-    
-    UILabel *tempLabel=[[UILabel alloc]initWithFrame:CGRectMake(15,0,300,44)];
-    tempLabel.backgroundColor=[UIColor clearColor];
-    tempLabel.shadowColor = [UIColor blackColor];
-    tempLabel.shadowOffset = CGSizeMake(0,2);
-    tempLabel.textColor = [UIColor blueColor]; //here you can change the text color of header.
-  
-    if(section == 0)
-    {
-        tempLabel.text = @"Browse";
-    }
-    
-    [tempView addSubview:tempLabel];
-    
-    return tempView;
 }
 
 -(void)setCellStyle:(UITableViewCell *)cell
@@ -177,7 +186,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     cell.imageView.frame = CGRectMake(50,500,500,500);
     cell.indentationLevel = 0;
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
-    [cell.detailTextLabel setTextColor:[UIColor grayColor]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -187,24 +195,29 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     switch(indexPath.section)
     {
         case 0:
-        if (indexPath.row < self.data.count)
-        {
-            BarType* barType = (BarType*)[self.data objectAtIndex:indexPath.row];
-            cell.textLabel.text = barType.name;
-           
-            [self setCellStyle:cell];
-            
-        }
-        break;
+            if (indexPath.row < self.data.count)
+            {
+                District* district = (District*)[self.data objectAtIndex:indexPath.row];
+                cell.textLabel.text = district.name;
+                
+                [self setCellStyle:cell];
+                
+            }
+            break;
     }
     
     return cell;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.data.count;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-  //  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    //  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
 }
 
 #pragma mark - Navigation
@@ -218,9 +231,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 {
     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
     BarViewController* barsViewController = segue.destinationViewController;
-    BarType* barType = self.data[indexPath.row];
-    barsViewController.barTypeId = barType.barTypeId;
-    barsViewController.barTypeText = barType.name;
+    District* district = self.data[indexPath.row];
+    barsViewController.bars = district.bars;
 }
 
 - (void)showSettings:(id)sender
@@ -235,7 +247,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 - (void)showMenu:(id)sender
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-   
+    
     UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
     
     [self.navigationController pushViewController:vc animated:YES];

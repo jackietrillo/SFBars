@@ -27,6 +27,7 @@
 -(void)initController
 {
     [self initNavigation];
+    
     [self loadData];
 }
 
@@ -53,9 +54,9 @@
     
     if (arrayData.count > 0)
     {
-        for (int i = 0; i < arrayData.count; i++) {
+        for (int i = 0; i < arrayData.count; i++)
+        {
             NSDictionary* dictTemp = arrayData[i];
-            
             MenuItem* menuItem = [MenuItem initFromDictionary: dictTemp];
             
             if (menuItem.section == 0)
@@ -68,12 +69,11 @@
             }
         }
     }
-
 }
 
 -(void)initNavigation
 {
-    self.navigationItem.title = @"MENU";
+    self.navigationItem.title = @"SF BARS"; //TODO localize
     [self.navigationItem setHidesBackButton:YES animated:YES];
 }
 
@@ -90,7 +90,7 @@
             [headerView setBackgroundColor:[UIColor blackColor]];
             break;
         default:
-            return 0;
+             break;;
     }
     return headerView;
 }
@@ -105,8 +105,8 @@
     return 2;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-   
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
     return 0.0f;
 }
 
@@ -172,7 +172,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     NSInteger rowIndex = indexPath.row;
     MenuItem* menuItem;
     
@@ -183,24 +182,33 @@
             
             if ([menuItem.name isEqualToString:@"Browse"])
             {
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                BrowseViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BrowseViewController"];
+                [self.navigationController pushViewController:vc animated:YES];
             }
-            
+            else if ([menuItem.name isEqualToString:@"Near Me"])
+            {
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                NearMeViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"NearMeViewController"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
             break;
+            
         case 1:
             menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
             
             if ([menuItem.name isEqualToString:@"Settings"])
             {
-                SettingsViewController* vc = [[SettingsViewController alloc] init];
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                SettingsViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
-
+            
             break;
+            
         default:
             break;
     }
-    
 }
 
  #pragma mark - Navigation

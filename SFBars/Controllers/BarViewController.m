@@ -6,18 +6,12 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import "ImageDownloader.h"
 #import "BarViewController.h"
-#import "BarTableViewCell.h"
-#import "BarWebViewController.h"
-#import "BarDetailsViewController.h"
-#import "BarMapViewController.h"
-#import "Bar.h"
 
 @interface BarViewController () <UIScrollViewDelegate>
 
 @property (readwrite, nonatomic, strong) NSMutableArray* dataSource;
-@property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
+@property (nonatomic, nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 
 @end
 
@@ -60,13 +54,18 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 
 -(void)initController
 {
+    if (self.bars != nil)
+    {
+       self.dataSource = self.bars;
+    }
+    else
+    {
+        self.navigationItem.title = self.barTypeText;
     
-   // [self.navigationItem.leftBarButtonItem setTitle: @"Back"];
-    self.navigationItem.title = self.barTypeText;
+        NSString* barTypeUrl = [serviceUrl stringByAppendingString:[self.barTypeId stringValue]];
     
-    NSString* barTypeUrl = [serviceUrl stringByAppendingString:[self.barTypeId stringValue]];
-    
-    [self sendAsyncRequest:barTypeUrl method:@"GET" accept:@"application/json"];
+        [self sendAsyncRequest:barTypeUrl method:@"GET" accept:@"application/json"];
+    }
   
     self.canDisplayBannerAds = YES;
     

@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import "Street.h"
 #import "BaseEntity.h"
+#import "District.h"
 
 @interface Bar: BaseEntity
 
@@ -23,13 +23,15 @@
 @property (readonly, nonatomic, strong) NSString* calendarUrl;
 @property (readonly, nonatomic, strong) NSString* facebookUrl;
 @property (readonly, nonatomic, strong) NSString* yelpUrl;
+//@property (readonly, nonatomic, strong) District* district;
 @property (readonly, nonatomic) double latitude;
 @property (readonly, nonatomic) double longitude;
-@property (readonly, nonatomic) Street* street;
+
+
 
 +(id)initFromDictionary:(NSDictionary*)dict;
 
-+(id)initFromDictionary:(NSDictionary*)dict withStreet: (Street*) street;
+//+(id)initFromDictionary:(NSDictionary*)dict withDistrict: (District*) district;
 
 
 @end

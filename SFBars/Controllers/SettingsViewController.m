@@ -45,7 +45,7 @@
     self.navigationItem.rightBarButtonItem = doneButton;
     self.navigationItem.title = @"SETTINGS";
     
-   // [self.navigationItem setHidesBackButton:YES animated:YES];
+    [self.navigationItem setHidesBackButton:YES animated:YES];
 }
 
 - (void)loadData
@@ -73,13 +73,13 @@
     switch(section)
     {
         case 0:
-            [headerView setBackgroundColor:[UIColor darkGrayColor]];
+            [headerView setBackgroundColor:[UIColor blackColor]];
             break;
         case 1:
-            [headerView setBackgroundColor:[UIColor darkGrayColor]];
+            [headerView setBackgroundColor:[UIColor blackColor]];
             break;
         default:
-            return 0;
+            break;
     }
     return headerView;
 }
@@ -146,10 +146,8 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
 }
 
 - (void)backToBrowse: (id)sender

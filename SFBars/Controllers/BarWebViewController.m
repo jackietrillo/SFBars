@@ -24,7 +24,6 @@
     
     self.canDisplayBannerAds = YES;
    
-   
     NSString* backButtonText = [NSString stringWithUTF8String:"\uf053"]; //chevron
     backButtonText = [backButtonText stringByAppendingString: @" Back"];
     [self.backButton setTitle: backButtonText forState:UIControlStateNormal];

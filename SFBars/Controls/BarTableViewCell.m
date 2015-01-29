@@ -1,6 +1,6 @@
 //
 //  BarTableViewCell.m
-//  Streets
+//  
 //
 //  Created by JACKIE TRILLO on 11/26/14.
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.

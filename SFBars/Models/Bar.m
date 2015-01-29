@@ -7,7 +7,6 @@
 //
 
 #import "Bar.h"
-#import "Street.h"
 
 @interface Bar()
 
@@ -25,7 +24,7 @@
 @property (readwrite, nonatomic, strong) NSString* yelpUrl;
 @property (readwrite, nonatomic) double latitude;
 @property (readwrite, nonatomic) double longitude;
-@property (readwrite, nonatomic) Street* street;
+//@property (readwrite, nonatomic, strong) District* district;
 
 @end
 
@@ -75,23 +74,11 @@ static const NSString* YELPURL = @"yelpUrl";
     return bar;
 }
 
-+(id)initFromDictionary:(NSDictionary*)dict withStreet: (Street*) street
++(id)initFromDictionary:(NSDictionary*)dict withDistrict: (District*) district
 {
-    Bar* bar = [[Bar alloc] init];
-    bar.barId = dict[BARID];
-    bar.streetId = dict[STREETID];
-    bar.name = dict[NAME];
-    bar.descrip = dict[DESCRIPTION];
-    bar.address = dict[ADDRESS];
-    bar.phone = dict[PHONE];
-    bar.hours = dict[HOURS];
-    bar.latitude = [dict[LATITUDE] doubleValue];
-    bar.longitude = [dict[LONGITUDE] doubleValue];
-    bar.imageUrl = dict[IMAGEURL];
-    bar.websiteUrl = dict[WEBSITEURL];
-    bar.facebookUrl = dict[FACEBOOKURL];
-    bar.yelpUrl = dict[YELPURL];
-    bar.street = street;
+    Bar* bar = [Bar initFromDictionary: dict];
+  
+    //bar.district = district;
 
     return bar;
 }

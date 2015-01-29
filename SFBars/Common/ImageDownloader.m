@@ -70,7 +70,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
     
     CGImageRelease(cgImgRef);
     return newImgWithFilter;
-    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection

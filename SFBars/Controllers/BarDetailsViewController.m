@@ -14,7 +14,8 @@
 
 @implementation BarDetailsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
    
     [self initController];
@@ -107,7 +108,7 @@
 
 -(IBAction)tappedSendMail:(id)sender
 {
-   MFMailComposeViewController* mailComposeViewController = [[MFMailComposeViewController alloc] init];
+    MFMailComposeViewController* mailComposeViewController = [[MFMailComposeViewController alloc] init];
    [mailComposeViewController setSubject:self.selectedBar.name];
    [mailComposeViewController setMessageBody:self.selectedBar.address isHTML:YES];
     mailComposeViewController.mailComposeDelegate = self;

@@ -23,8 +23,8 @@
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
   
-    [self setToolbarHidden:YES animated:YES];
-    [self setNavigationBarHidden:NO animated:NO];
+  //  [self setToolbarHidden:YES animated:YES];
+   // [self setNavigationBarHidden:NO animated:NO];
     
 }
 
