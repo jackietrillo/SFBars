@@ -13,6 +13,7 @@
 #import "BarWebViewController.h"
 #import "BarMapViewController.h"
 #import "BarDetailItem.h"
+#import "BarDetailHeaderViewCell.h"
 #import "Bar.h"
 
 @interface BarDetailsViewController : UIViewController

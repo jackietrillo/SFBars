@@ -23,40 +23,47 @@
   {
   "barDetailItemId": 4,
   "section": 0,
-  "name": "Top List",
-  "imageUrl": "Icon-Yelp",
+  "name": "Facebook Page",
+  "imageUrl": "Icon-Facebook",
   "statusFlag": 1
   },
   {
   "barDetailItemId": 5,
-  "section": 1,
-  "name": "Saved",
-  "imageUrl": "Icon-Star",
+  "section": 0,
+  "name": "Yelp Reviews",
+  "imageUrl": "Icon-Yelp",
   "statusFlag": 1
   },
   {
   "barDetailItemId": 6,
+  "section": 1,
+  "name": "Save",
+  "imageUrl": "Icon-Star",
+  "statusFlag": 1
+  },
+  {
+  "barDetailItemId": 7,
   "section": 2,
   "name": "Message",
   "imageUrl": "Icon-TextMessage",
   "statusFlag": 1
   },
   {
-  "barDetailItemId": 7,
+  "barDetailItemId": 8,
   "section": 2,
   "name": "Email",
   "imageUrl": "Icon-Email",
   "statusFlag": 1
   },
   {
-  "barDetailItemId": 8,
+  "barDetailItemId": 9,
   "section": 2,
   "name": "Facebook Like",
   "imageUrl": "Icon-FacebookLike",
   "statusFlag": 1
   },
   {
-  "barDetailItemId": 9,
+  "barDetailItemId": 10,
   "section": 2,
   "name": "Tweet",
   "imageUrl": "Icon-Twitter",

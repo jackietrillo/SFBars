@@ -30,8 +30,20 @@
     [self initNavigation];
     
     [self loadData];
-       // self.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     
+    NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"BarDetailHeaderViewCell" owner:nil options:nil];
+    
+    BarDetailHeaderViewCell* headerView = [xib lastObject];
+    headerView.frame = CGRectMake(0, 0, 150, 150);
+    if (self.selectedBar.icon != nil)
+    {
+        headerView.logo.image = self.selectedBar.icon;
+    }
+    else
+    {
+        headerView.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
+    }
+    self.tableView.tableHeaderView = headerView;
 }
 
 - (void)initNavigation
@@ -45,7 +57,6 @@
     NSData* data = [NSData dataWithContentsOfFile:path];
     
     [self parseData:data];
-    
 }
 
 -(void)parseData: (NSData*)jsonData
@@ -87,20 +98,27 @@
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
+    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 50)];
+    headerView.backgroundColor = [UIColor blackColor];
+    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, tableView.bounds.size.width - 10, 50)];
+    titleLabel.font = [UIFont fontWithName: @"Helvetica Neuve" size: 8.0];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    titleLabel.numberOfLines = 0;
+    titleLabel.textColor = [UIColor whiteColor];
+    [headerView addSubview:titleLabel];
     
     switch(section)
     {
         case 0:
-            [headerView setBackgroundColor:[UIColor blackColor]];
+            titleLabel.text = self.selectedBar.descrip;
             break;
         case 1:
-            [headerView setBackgroundColor:[UIColor blackColor]];
+            titleLabel.text = @"Favorite";
             break;
         case 2:
-            [headerView setBackgroundColor:[UIColor blackColor]];
+            titleLabel.text = @"Share";
             break;
-
         default:
             break;;
     }
@@ -109,7 +127,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10;
+    switch(section)
+    {
+        case 0:
+            return 50;
+        case 1:
+            return 30;
+        case 2:
+            return 30;
+        default:
+            return 0;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -120,21 +148,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.0f;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch(section)
-    {
-        case 0:
-            return self.selectedBar.descrip;
-        case 1:
-            return @"Favorite";
-        case 2:
-            return @"Share";
-        default:
-            return 0;
-    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -164,7 +177,7 @@
     NSInteger rowIndex = indexPath.row;
     BarDetailItem* dataItem;
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    
+
     switch(indexPath.section)
     {
         case 0:
@@ -184,6 +197,11 @@
             break;
         default:
             break;
+    }
+    
+    if (cell.imageView.image == nil)
+    {
+        cell.imageView.image = [UIImage imageNamed:@"Icon-Search"];
     }
     
     [self setCellStyle:cell];
