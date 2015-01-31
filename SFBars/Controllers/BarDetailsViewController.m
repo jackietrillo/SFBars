@@ -8,8 +8,12 @@
 
 #import "BarDetailsViewController.h"
 
-@interface BarDetailsViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+@interface BarDetailsViewController () <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (readwrite, nonatomic, strong) NSMutableArray* dataDetail;
+@property (readwrite, nonatomic, strong) NSMutableArray* dataFavorite;
+@property (readwrite, nonatomic, strong) NSMutableArray* dataShare;
 @end
 
 @implementation BarDetailsViewController
@@ -23,37 +27,208 @@
 
 -(void)initController
 {
-   //UIBarButtonItem* actionMenuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu:)];
-   //self.navigationItem.rightBarButtonItem = actionMenuButton;
+    [self initNavigation];
     
-    //back button
-    NSString* backButtonText = [NSString stringWithUTF8String:"\uf053"]; //chevron
-    backButtonText = [backButtonText stringByAppendingString: @" Back"];
-    [self.backButton setTitle: backButtonText forState:UIControlStateNormal];
+    [self loadData];
+       // self.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     
-    self.nameLabel.text = self.selectedBar.name;
-    self.descripLabel.text = self.selectedBar.descrip;
-    self.addressLabel.text = self.selectedBar.address;
+}
+
+- (void)initNavigation
+{
+    self.navigationItem.title = [self.selectedBar.name uppercaseString];
+}
+
+-(void)loadData
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"BarDetail" ofType:@"json"];
+    NSData* data = [NSData dataWithContentsOfFile:path];
     
-    //action buttons
-    [self.websiteButton setTitle: [NSString stringWithUTF8String:"\uf015"] forState:UIControlStateNormal];
-    [self.calendarButton setTitle: [NSString stringWithUTF8String:"\uf073"] forState:UIControlStateNormal];
-    [self.mapsButton setTitle: [NSString stringWithUTF8String:"\uf041"] forState:UIControlStateNormal];
-    [self.facebookButton setTitle: [NSString stringWithUTF8String:"\uf09a"] forState:UIControlStateNormal];
-    [self.yelpButton setTitle: [NSString stringWithUTF8String:"\uf1e9"] forState:UIControlStateNormal];
-    [self.messageButton setTitle: [NSString stringWithUTF8String:"\uf075"] forState:UIControlStateNormal];
-    [self.emailButton setTitle: [NSString stringWithUTF8String:"\uf003"] forState:UIControlStateNormal];
+    [self parseData:data];
     
-    //logo
-    if (self.selectedBar.icon != nil)
+}
+
+-(void)parseData: (NSData*)jsonData
+{
+    NSError* errorData;
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
+    
+    if (errorData != nil)
     {
-        self.logo.image = self.selectedBar.icon;
+        //TODO: Alert User
     }
-    else
+    
+    self.dataDetail = [[NSMutableArray alloc] init];
+    self.dataFavorite = [[NSMutableArray alloc] init];
+    self.dataShare = [[NSMutableArray alloc] init];
+    
+    if (arrayData.count > 0)
     {
-        self.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
+        for (int i = 0; i < arrayData.count; i++)
+        {
+            NSDictionary* dictTemp = arrayData[i];
+            BarDetailItem* item = [BarDetailItem initFromDictionary: dictTemp];
+            
+            if (item.section == 0 && item.statusFlag == 1)
+            {
+                [self.dataDetail addObject:item];
+            }
+            else if (item.section == 1 && item.statusFlag == 1)
+            {
+                [self.dataFavorite addObject:item];
+            }
+            else if (item.section == 2 && item.statusFlag == 1)
+            {
+                [self.dataShare addObject:item];
+            }
+        }
     }
 }
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
+    
+    switch(section)
+    {
+        case 0:
+            [headerView setBackgroundColor:[UIColor blackColor]];
+            break;
+        case 1:
+            [headerView setBackgroundColor:[UIColor blackColor]];
+            break;
+        case 2:
+            [headerView setBackgroundColor:[UIColor blackColor]];
+            break;
+
+        default:
+            break;;
+    }
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 3;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.0f;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch(section)
+    {
+        case 0:
+            return self.selectedBar.descrip;
+        case 1:
+            return @"Favorite";
+        case 2:
+            return @"Share";
+        default:
+            return 0;
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    switch(section)
+    {
+        case 0:
+            return [self.dataDetail count];
+        case 1:
+            return [self.dataFavorite count];
+        case 2:
+            return [self.dataShare count];
+        default:
+            return 0;
+    }
+}
+
+-(void)setCellStyle:(UITableViewCell *)cell
+{
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    cell.textLabel.highlightedTextColor = [UIColor blackColor];
+    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger rowIndex = indexPath.row;
+    BarDetailItem* dataItem;
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    switch(indexPath.section)
+    {
+        case 0:
+            dataItem = (BarDetailItem*)self.dataDetail[rowIndex];
+            cell.textLabel.text = dataItem.name;
+            cell.imageView.image = [UIImage imageNamed:dataItem.imageUrl];
+            break;
+        case 1:
+            dataItem = (BarDetailItem*)self.dataFavorite[rowIndex];
+            cell.textLabel.text = dataItem.name;
+            cell.imageView.image = [UIImage imageNamed:dataItem.imageUrl];
+            break;
+        case 2:
+            dataItem = (BarDetailItem*)self.dataShare[rowIndex];
+            cell.textLabel.text = dataItem.name;
+            cell.imageView.image = [UIImage imageNamed:dataItem.imageUrl];
+            break;
+        default:
+            break;
+    }
+    
+    [self setCellStyle:cell];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger rowIndex = indexPath.row;
+    BarDetailItem* dataItem;
+    
+    switch(indexPath.section)
+    {
+        case 0:
+            dataItem = (BarDetailItem*)self.dataDetail[rowIndex];
+            
+            if (dataItem.barDetailItemId == 1)
+            {
+               // UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+               // BrowseViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BrowseViewController"];
+               // [self.navigationController pushViewController:vc animated:YES];
+            }
+            else if ([dataItem.name isEqualToString:@"Near Me"])
+            {
+
+            }
+            else if ([dataItem.name isEqualToString:@"Top List"])
+            {
+            }
+            else if ([dataItem.name isEqualToString:@"Parties"])
+            {
+      
+            }
+            break;
+            
+        case 1:
+                 
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 #pragma mark - MFMailComposeViewControllerDelegate
 

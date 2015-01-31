@@ -18,8 +18,7 @@
 
 @interface BarViewController : UIViewController
 
-@property (readwrite, nonatomic, strong) NSString* barTypeText;
-@property (readwrite, nonatomic, strong) NSNumber* barTypeId;
+@property (readwrite, nonatomic, strong) NSString* titleText;
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 
 @property (readwrite, nonatomic, strong) NSMutableArray* bars;

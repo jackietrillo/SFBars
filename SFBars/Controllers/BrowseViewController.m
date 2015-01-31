@@ -35,8 +35,13 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     self.tableView.hidden = YES;
     self.canDisplayBannerAds = YES;
     
-    [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+    [self initNavigation];
     
+    [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+}
+
+-(void)initNavigation
+{
     //menu button
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] init];
     
@@ -51,6 +56,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     
     self.navigationItem.leftBarButtonItem = menuButton;
     self.navigationItem.title = @"BROWSE"; //TODO: Localize
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 
@@ -219,8 +225,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
     BarViewController* barsViewController = segue.destinationViewController;
     BarType* barType = self.data[indexPath.row];
-    barsViewController.barTypeId = barType.barTypeId;
-    barsViewController.barTypeText = barType.name;
+    barsViewController.titleText = barType.name;
+    barsViewController.bars = barType.bars;
 }
 
 - (void)showSettings:(id)sender

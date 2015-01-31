@@ -10,6 +10,8 @@
 #import "SettingsViewController.h"
 #import "BrowseViewController.h"
 #import "NearMeViewController.h"
+#import "TopListViewController.h"
+#import "PartiesViewController.h"
 #import "MenuItem.h"
 
 @interface MenuViewController : UIViewController

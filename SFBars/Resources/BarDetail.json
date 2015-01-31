@@ -1,0 +1,65 @@
+ [
+  {
+  "barDetailItemId": 1,
+  "section": 0,
+  "name": "Address",
+  "imageUrl": "Icon-Map",
+  "statusFlag": 1
+  },
+  {
+  "barDetailItemId": 2,
+  "section": 0,
+  "name": "Website",
+  "imageUrl": "Icon-Home",
+  "statusFlag": 1
+  },
+  {
+  "barDetailItemId": 3,
+  "section": 0,
+  "name": "Events",
+  "imageUrl": "Icon-Calendar",
+  "statusFlag": 1
+  },
+  {
+  "barDetailItemId": 4,
+  "section": 0,
+  "name": "Top List",
+  "imageUrl": "Icon-Yelp",
+  "statusFlag": 1
+  },
+  {
+  "barDetailItemId": 5,
+  "section": 1,
+  "name": "Saved",
+  "imageUrl": "Icon-Star",
+  "statusFlag": 1
+  },
+  {
+  "barDetailItemId": 6,
+  "section": 2,
+  "name": "Message",
+  "imageUrl": "Icon-TextMessage",
+  "statusFlag": 1
+  },
+  {
+  "barDetailItemId": 7,
+  "section": 2,
+  "name": "Email",
+  "imageUrl": "Icon-Email",
+  "statusFlag": 1
+  },
+  {
+  "barDetailItemId": 8,
+  "section": 2,
+  "name": "Facebook Like",
+  "imageUrl": "Icon-FacebookLike",
+  "statusFlag": 1
+  },
+  {
+  "barDetailItemId": 9,
+  "section": 2,
+  "name": "Tweet",
+  "imageUrl": "Icon-Twitter",
+  "statusFlag": 1
+  }
+  ]

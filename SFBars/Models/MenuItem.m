@@ -13,7 +13,7 @@
 @property (readwrite, nonatomic) NSString* name;
 @property (readwrite, nonatomic) NSInteger menuItemId;
 @property (readwrite, nonatomic) NSInteger section;
-
+@property (readwrite, nonatomic) NSInteger statusFlag;
 @end
 
 @implementation MenuItem
@@ -22,6 +22,7 @@ static const NSString* MENUITEMID = @"menuItemId";
 static const NSString* SECTION = @"section";
 static const NSString* NAME = @"name";
 static const NSString* IMAGEURL = @"imageUrl";
+static const NSString* STATUSFLAG = @"statusFlag";
 
 -(id)init
 {
@@ -37,6 +38,7 @@ static const NSString* IMAGEURL = @"imageUrl";
     menuItem.section = [dict[SECTION] longValue];
     menuItem.name = dict[NAME];
     menuItem.imageUrl = dict[IMAGEURL];
+    menuItem.statusFlag = [dict[STATUSFLAG] longValue];
     return menuItem;
 }
 

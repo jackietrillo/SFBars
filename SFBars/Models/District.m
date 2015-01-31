@@ -20,10 +20,10 @@
 
 static const NSString* DISTRICTID = @"districtId";
 static const NSString* NAME = @"name";
-
 static const NSString* BARS = @"bars";
 
--(id)init {
+-(id)init
+{
     self = [super init];
     
     return self;

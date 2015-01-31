@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61D1A761B7200D2466D /* BarDetailsViewController.m */; };
+		8285AE891A7C4D4D004858FD /* BarDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 8285AE881A7C4D4D004858FD /* BarDetail.json */; };
+		8285AE8C1A7C546F004858FD /* BarDetailItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8285AE8B1A7C546F004858FD /* BarDetailItem.m */; };
 		828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE6151A761A8B00D2466D /* BrowseViewController.m */; };
 		828FE61C1A761AB200D2466D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61B1A761AB200D2466D /* SettingsViewController.m */; };
 		82A5C7831A63125C00D55A54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7821A63125C00D55A54 /* main.m */; };
@@ -32,11 +35,13 @@
 		82BA4C1A1A70CD8E00E71F40 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82BA4C191A70CD8E00E71F40 /* Images.xcassets */; };
 		82BB5FF01A649E55002F5578 /* BarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB5FEF1A649E55002F5578 /* BarType.m */; };
 		82BB60081A64D763002F5578 /* BarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB60071A64D763002F5578 /* BarViewController.m */; };
-		82BF8A1B1A74392800237060 /* BarDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF8A1A1A74392800237060 /* BarDetailsViewController.m */; };
 		82BF8A1D1A7481BE00237060 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BF8A1C1A7481BE00237060 /* MessageUI.framework */; };
 		82BF8A211A74978C00237060 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BF8A201A74978C00237060 /* CoreLocation.framework */; };
 		82BF8A241A74A69900237060 /* BarMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF8A231A74A69900237060 /* BarMapViewController.m */; };
 		82C705FB1A75BCAC0045F973 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C705FA1A75BCAC0045F973 /* MenuViewController.m */; };
+		82CF532B1A7C2D610087F0F5 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CF532A1A7C2D610087F0F5 /* GoogleMaps.framework */; };
+		82CF532E1A7C2E800087F0F5 /* TopListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CF532D1A7C2E800087F0F5 /* TopListViewController.m */; };
+		82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CF53301A7C2E9B0087F0F5 /* PartiesViewController.m */; };
 		82DF03F91A7815E700A451DC /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 82DF03F81A7815E700A451DC /* Menu.json */; };
 		82DF04011A78231D00A451DC /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DF04001A78231D00A451DC /* MenuItem.m */; };
 		82E917311A7987D3002D610E /* glyphicons-halflings-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DF04021A786C0100A451DC /* glyphicons-halflings-regular.ttf */; };
@@ -55,6 +60,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8285AE881A7C4D4D004858FD /* BarDetail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BarDetail.json; path = SFBars/Resources/BarDetail.json; sourceTree = "<group>"; };
+		8285AE8A1A7C546F004858FD /* BarDetailItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailItem.h; path = SFBars/Models/BarDetailItem.h; sourceTree = "<group>"; };
+		8285AE8B1A7C546F004858FD /* BarDetailItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailItem.m; path = SFBars/Models/BarDetailItem.m; sourceTree = "<group>"; };
 		828FE6141A761A8B00D2466D /* BrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrowseViewController.h; path = SFBars/Controllers/BrowseViewController.h; sourceTree = "<group>"; };
 		828FE6151A761A8B00D2466D /* BrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrowseViewController.m; path = SFBars/Controllers/BrowseViewController.m; sourceTree = "<group>"; };
 		828FE61A1A761AB200D2466D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = SFBars/Controllers/SettingsViewController.h; sourceTree = "<group>"; };
@@ -100,13 +108,17 @@
 		82BB60061A64D763002F5578 /* BarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarViewController.h; path = SFBars/Controllers/BarViewController.h; sourceTree = "<group>"; };
 		82BB60071A64D763002F5578 /* BarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarViewController.m; path = SFBars/Controllers/BarViewController.m; sourceTree = "<group>"; };
 		82BF8A191A74392800237060 /* BarDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailsViewController.h; path = SFBars/Controllers/BarDetailsViewController.h; sourceTree = "<group>"; };
-		82BF8A1A1A74392800237060 /* BarDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailsViewController.m; path = SFBars/Controllers/BarDetailsViewController.m; sourceTree = "<group>"; };
 		82BF8A1C1A7481BE00237060 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		82BF8A201A74978C00237060 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		82BF8A221A74A69900237060 /* BarMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarMapViewController.h; path = SFBars/Controllers/BarMapViewController.h; sourceTree = "<group>"; };
 		82BF8A231A74A69900237060 /* BarMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarMapViewController.m; path = SFBars/Controllers/BarMapViewController.m; sourceTree = "<group>"; };
 		82C705F91A75BCAC0045F973 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = SFBars/Controllers/MenuViewController.h; sourceTree = "<group>"; };
 		82C705FA1A75BCAC0045F973 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = SFBars/Controllers/MenuViewController.m; sourceTree = "<group>"; };
+		82CF532A1A7C2D610087F0F5 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "Frameworks/GoogleMaps-iOS-1.9.1/GoogleMaps.framework"; sourceTree = "<group>"; };
+		82CF532C1A7C2E800087F0F5 /* TopListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopListViewController.h; path = SFBars/Controllers/TopListViewController.h; sourceTree = "<group>"; };
+		82CF532D1A7C2E800087F0F5 /* TopListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopListViewController.m; path = SFBars/Controllers/TopListViewController.m; sourceTree = "<group>"; };
+		82CF532F1A7C2E9B0087F0F5 /* PartiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartiesViewController.h; path = SFBars/Controllers/PartiesViewController.h; sourceTree = "<group>"; };
+		82CF53301A7C2E9B0087F0F5 /* PartiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartiesViewController.m; path = SFBars/Controllers/PartiesViewController.m; sourceTree = "<group>"; };
 		82DF03F81A7815E700A451DC /* Menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Menu.json; path = SFBars/Resources/Menu.json; sourceTree = "<group>"; };
 		82DF03FF1A78231D00A451DC /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuItem.h; path = SFBars/Models/MenuItem.h; sourceTree = "<group>"; };
 		82DF04001A78231D00A451DC /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuItem.m; path = SFBars/Models/MenuItem.m; sourceTree = "<group>"; };
@@ -122,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82CF532B1A7C2D610087F0F5 /* GoogleMaps.framework in Frameworks */,
 				82BF8A211A74978C00237060 /* CoreLocation.framework in Frameworks */,
 				82BF8A1D1A7481BE00237060 /* MessageUI.framework in Frameworks */,
 				82A5C7F71A632A1600D55A54 /* iAd.framework in Frameworks */,
@@ -142,6 +155,7 @@
 		82A5C7741A63125C00D55A54 = {
 			isa = PBXGroup;
 			children = (
+				82CF532A1A7C2D610087F0F5 /* GoogleMaps.framework */,
 				82A5C77F1A63125C00D55A54 /* SFBars */,
 				82A5C7991A63125C00D55A54 /* SFBarsTests */,
 				82A5C80A1A632C1800D55A54 /* Framework */,
@@ -167,8 +181,6 @@
 				82A5C7AA1A631F9F00D55A54 /* Controls */,
 				82A5C7841A63125C00D55A54 /* AppDelegate.h */,
 				82A5C7851A63125C00D55A54 /* AppDelegate.m */,
-				82A5C7CC1A63250400D55A54 /* LaunchScreen.xib */,
-				82A5C78A1A63125C00D55A54 /* Main.storyboard */,
 				82A5C7A81A631F2100D55A54 /* Resources */,
 				82A5C7801A63125C00D55A54 /* Supporting Files */,
 			);
@@ -209,7 +221,6 @@
 				828FE61D1A761B7200D2466D /* BarDetailsViewController.m */,
 				828FE6141A761A8B00D2466D /* BrowseViewController.h */,
 				828FE6151A761A8B00D2466D /* BrowseViewController.m */,
-				82BF8A1A1A74392800237060 /* BarDetailsViewController.m */,
 				82BF8A221A74A69900237060 /* BarMapViewController.h */,
 				82E917321A79B25E002D610E /* NearMeViewController.h */,
 				82E917331A79B25E002D610E /* NearMeViewController.m */,
@@ -224,6 +235,10 @@
 				82C705FA1A75BCAC0045F973 /* MenuViewController.m */,
 				828FE61A1A761AB200D2466D /* SettingsViewController.h */,
 				828FE61B1A761AB200D2466D /* SettingsViewController.m */,
+				82CF532C1A7C2E800087F0F5 /* TopListViewController.h */,
+				82CF532D1A7C2E800087F0F5 /* TopListViewController.m */,
+				82CF532F1A7C2E9B0087F0F5 /* PartiesViewController.h */,
+				82CF53301A7C2E9B0087F0F5 /* PartiesViewController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -242,6 +257,8 @@
 				82BB5FEF1A649E55002F5578 /* BarType.m */,
 				82BA4C151A70838500E71F40 /* BaseEntity.h */,
 				82BA4C161A70838500E71F40 /* BaseEntity.m */,
+				8285AE8A1A7C546F004858FD /* BarDetailItem.h */,
+				8285AE8B1A7C546F004858FD /* BarDetailItem.m */,
 			);
 			name = Models;
 			path = ..;
@@ -250,9 +267,12 @@
 		82A5C7A81A631F2100D55A54 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				82A5C7CC1A63250400D55A54 /* LaunchScreen.xib */,
+				82A5C78A1A63125C00D55A54 /* Main.storyboard */,
 				82BA4C191A70CD8E00E71F40 /* Images.xcassets */,
 				82A5C8081A632BD900D55A54 /* LaunchImage-568h@2x.png */,
 				82DF03F81A7815E700A451DC /* Menu.json */,
+				8285AE881A7C4D4D004858FD /* BarDetail.json */,
 				82A5C7F91A632B6400D55A54 /* Fonts */,
 			);
 			name = Resources;
@@ -387,6 +407,7 @@
 			files = (
 				82E917311A7987D3002D610E /* glyphicons-halflings-regular.ttf in Resources */,
 				82A5C8021A632B9800D55A54 /* DroidSans-Bold.ttf in Resources */,
+				8285AE891A7C4D4D004858FD /* BarDetail.json in Resources */,
 				82A5C8041A632B9800D55A54 /* FontAwesome.ttf in Resources */,
 				82A5C78C1A63125C00D55A54 /* Main.storyboard in Resources */,
 				82A5C8031A632B9800D55A54 /* DroidSans.ttf in Resources */,
@@ -412,17 +433,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */,
 				82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */,
 				82A5C7EB1A63266100D55A54 /* Bar.m in Sources */,
 				82A5C7D41A63260B00D55A54 /* StreetTableViewCell.m in Sources */,
 				82DF04011A78231D00A451DC /* MenuItem.m in Sources */,
 				82E917341A79B25E002D610E /* NearMeViewController.m in Sources */,
 				82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */,
+				82CF532E1A7C2E800087F0F5 /* TopListViewController.m in Sources */,
 				82C705FB1A75BCAC0045F973 /* MenuViewController.m in Sources */,
 				82BB60081A64D763002F5578 /* BarViewController.m in Sources */,
+				8285AE8C1A7C546F004858FD /* BarDetailItem.m in Sources */,
 				82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */,
 				828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */,
-				82BF8A1B1A74392800237060 /* BarDetailsViewController.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
 				82BB5FF01A649E55002F5578 /* BarType.m in Sources */,
 				82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */,
@@ -430,6 +453,7 @@
 				82E917371A79B4D7002D610E /* District.m in Sources */,
 				82A5C7C51A631FD500D55A54 /* ConnectionHelper.m in Sources */,
 				828FE61C1A761AB200D2466D /* SettingsViewController.m in Sources */,
+				82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */,
 				82A5C7831A63125C00D55A54 /* main.m in Sources */,
 				82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */,
 			);
@@ -460,6 +484,7 @@
 				82A5C78B1A63125C00D55A54 /* Base */,
 			);
 			name = Main.storyboard;
+			path = SFBars;
 			sourceTree = "<group>";
 		};
 		82A5C7CC1A63250400D55A54 /* LaunchScreen.xib */ = {
@@ -468,6 +493,7 @@
 				82A5C7CD1A63250400D55A54 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = SFBars;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -553,6 +579,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/GoogleMaps-iOS-1.9.1",
+				);
 				INFOPLIST_FILE = SFBars/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -563,6 +593,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/GoogleMaps-iOS-1.9.1",
+				);
 				INFOPLIST_FILE = SFBars/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

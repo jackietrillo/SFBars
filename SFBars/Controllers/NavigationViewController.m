@@ -22,15 +22,16 @@
 // Called when the navigation controller shows a new top view controller via a push, pop or setting of the view controller stack.
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-  
-  //  [self setToolbarHidden:YES animated:YES];
-   // [self setNavigationBarHidden:NO animated:NO];
+ 
     
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+   // viewController.navigationItem.backBarButtonItem.title = @" ";
     
+    [self.navigationItem.leftBarButtonItem setBackButtonTitlePositionAdjustment:UIOffsetMake(-1000, -1000)
+                                                         forBarMetrics:UIBarMetricsDefault];
 }
 
 /*

@@ -31,11 +31,19 @@
     [self loadData];
 }
 
+-(void)initNavigation
+{
+    self.navigationItem.title = @"SF BARS"; //TODO localize
+    [self.navigationItem setHidesBackButton:YES animated:YES];
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+}
+
 -(void)loadData
 {
     NSString* path = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"json"];
     NSData* data = [NSData dataWithContentsOfFile:path];
-
+    
     [self parseData:data];
 }
 
@@ -59,22 +67,16 @@
             NSDictionary* dictTemp = arrayData[i];
             MenuItem* menuItem = [MenuItem initFromDictionary: dictTemp];
             
-            if (menuItem.section == 0)
+            if (menuItem.section == 0 && menuItem.statusFlag == 1)
             {
                 [self.menuDataTop addObject:menuItem];
             }
-            else if (menuItem.section == 1)
+            else if (menuItem.section == 1 && menuItem.statusFlag == 1)
             {
                 [self.menuDataBottom addObject:menuItem];
             }
         }
     }
-}
-
--(void)initNavigation
-{
-    self.navigationItem.title = @"SF BARS"; //TODO localize
-    [self.navigationItem setHidesBackButton:YES animated:YES];
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -190,6 +192,18 @@
             {
                 UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 NearMeViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"NearMeViewController"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else if ([menuItem.name isEqualToString:@"Top List"])
+            {
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                TopListViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"TopListViewController"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else if ([menuItem.name isEqualToString:@"Parties"])
+            {
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                PartiesViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"PartiesViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
             break;

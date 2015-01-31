@@ -10,7 +10,7 @@
 
 @interface BarViewController () <UIScrollViewDelegate>
 
-@property (readwrite, nonatomic, strong) NSMutableArray* dataSource;
+@property (readwrite, nonatomic, strong) NSMutableArray* data;
 @property (nonatomic, nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 
 @end
@@ -31,15 +31,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     [self initController];
 }
 
-- (void)terminateImageDownloads
-{
-    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
-    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
-    
-    self.tableView.hidden = YES;
-    [self.imageDownloadsInProgress removeAllObjects];
-}
-
 - (void)dealloc
 {
     [self terminateImageDownloads];
@@ -56,50 +47,27 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 {
     if (self.bars != nil)
     {
-       self.dataSource = self.bars;
+       self.data = self.bars;
     }
     else
     {
-        self.navigationItem.title = self.barTypeText;
+       //TODO: alert user
     
-        NSString* barTypeUrl = [serviceUrl stringByAppendingString:[self.barTypeId stringValue]];
-    
-        [self sendAsyncRequest:barTypeUrl method:@"GET" accept:@"application/json"];
     }
-  
     self.canDisplayBannerAds = YES;
     
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+    
+    [self initNavigation];
 }
 
--(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept
+-(void)initNavigation
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    self.navigationItem.title = [self.titleText uppercaseString];
     
-    NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    
-    [urlRequest setHTTPMethod:method];
-    [urlRequest setValue:accept forHTTPHeaderField:@"Accept"];
-    
-    NSOperationQueue* queue = [[NSOperationQueue alloc] init];
-    
-    [NSURLConnection sendAsynchronousRequest:urlRequest
-                                       queue: queue
-                           completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError)
-     {
-         NSMutableArray* arrayData;
-         if (connectionError == nil && data != nil)
-         {
-           arrayData = [self parseData:data];
-         }
-    
-         dispatch_async(dispatch_get_main_queue(), ^{
-             
-             [self loadData: arrayData];
-         });
-     }];
-}
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 
+}
 -(NSMutableArray*)parseData: (NSData*)jsonData
 {
     NSError* errorData;
@@ -127,20 +95,20 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 -(void)loadData: (NSMutableArray*) arrayData
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    self.dataSource = arrayData;
+    self.data = arrayData;
     [self.tableView reloadData];
     self.tableView.hidden = NO;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    return self.data.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger rowIndex = indexPath.row;
-    Bar* bar = self.dataSource[rowIndex];
+    Bar* bar = self.data[rowIndex];
     
     BarTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     cell.nameLabel.text = bar.name;
@@ -232,6 +200,15 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 
 #pragma mark - Table cell image download support
 
+- (void)terminateImageDownloads
+{
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    
+    self.tableView.hidden = YES;
+    [self.imageDownloadsInProgress removeAllObjects];
+}
+
 - (void)startImageDownload:(Bar*)bar forIndexPath:(NSIndexPath *)indexPath
 {
     ImageDownloader *imageDownloader = (self.imageDownloadsInProgress)[indexPath];
@@ -264,12 +241,12 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 
 - (void)loadImagesForOnscreenRows
 {
-    if (self.dataSource.count > 0)
+    if (self.data.count > 0)
     {
         NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths)
         {
-            Bar* bar = (self.dataSource)[indexPath.row];
+            Bar* bar = (self.data)[indexPath.row];
             
             if (!bar.icon)  // Avoid the download if there is already an icon
             {
@@ -307,21 +284,21 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     {
         BarWebViewController* barWebViewController = segue.destinationViewController;
         UIButton* button = (UIButton*)(sender);
-        Bar* bar = self.dataSource[button.tag]; //tag contains the NSIndexPath.row
+        Bar* bar = self.data[button.tag]; //tag contains the NSIndexPath.row
         barWebViewController.url = bar.websiteUrl;
     }
     if ([segue.destinationViewController isKindOfClass: [BarMapViewController class]])
     {
         BarMapViewController* barMapViewController = segue.destinationViewController;
         UIButton* button = (UIButton*)(sender);
-        Bar* bar = self.dataSource[button.tag]; //tag contains the NSIndexPath.row
+        Bar* bar = self.data[button.tag]; //tag contains the NSIndexPath.row
         barMapViewController.selectedBar = bar;
     }
     if ([segue.destinationViewController isKindOfClass: [BarDetailsViewController class]])
     {
         BarDetailsViewController* barDetailsViewController = segue.destinationViewController;
         NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
-        barDetailsViewController.selectedBar = self.dataSource[indexPath.row];
+        barDetailsViewController.selectedBar = self.data[indexPath.row];
     }
     
 }

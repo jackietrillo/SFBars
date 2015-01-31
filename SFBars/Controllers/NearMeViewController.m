@@ -32,14 +32,17 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
 
 -(void)initController
 {
+    [self initNavigation];
     self.tableView.hidden = YES;
     self.canDisplayBannerAds = YES;
-
     [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
-    
+}
+
+-(void)initNavigation
+{
     //menu button
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] init];
-  
+    
     UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
@@ -51,8 +54,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     
     self.navigationItem.leftBarButtonItem = menuButton;
     self.navigationItem.title = @"NEAR ME"; //TODO: Localize
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
-
 
 //TODO: move into helper class
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept
@@ -91,7 +94,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
                  //TODO: alert user
              }
          });
-         
      }];
 }
 
@@ -232,6 +234,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
     BarViewController* barsViewController = segue.destinationViewController;
     District* district = self.data[indexPath.row];
+    barsViewController.titleText = district.name;
     barsViewController.bars = district.bars;
 }
 
