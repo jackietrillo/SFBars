@@ -14,9 +14,10 @@
 		8285AE911A7C69FC004858FD /* BarDetailHeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8285AE901A7C69FC004858FD /* BarDetailHeaderViewCell.xib */; };
 		828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE6151A761A8B00D2466D /* BrowseViewController.m */; };
 		828FE61C1A761AB200D2466D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61B1A761AB200D2466D /* SettingsViewController.m */; };
+		8291A6CA1A7DC0D00060D3FB /* Settings.json in Resources */ = {isa = PBXBuildFile; fileRef = 8291A6C91A7DC0D00060D3FB /* Settings.json */; };
+		8291A6CD1A7DC4510060D3FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8291A6CB1A7DC4510060D3FB /* Main.storyboard */; };
 		82A5C7831A63125C00D55A54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7821A63125C00D55A54 /* main.m */; };
 		82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7851A63125C00D55A54 /* AppDelegate.m */; };
-		82A5C78C1A63125C00D55A54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C78A1A63125C00D55A54 /* Main.storyboard */; };
 		82A5C79D1A63125C00D55A54 /* SFBarsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C79C1A63125C00D55A54 /* SFBarsTests.m */; };
 		82A5C7C51A631FD500D55A54 /* ConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7C41A631FD500D55A54 /* ConnectionHelper.m */; };
 		82A5C7CE1A63250400D55A54 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C7CC1A63250400D55A54 /* LaunchScreen.xib */; };
@@ -73,12 +74,13 @@
 		828FE61A1A761AB200D2466D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = SFBars/Controllers/SettingsViewController.h; sourceTree = "<group>"; };
 		828FE61B1A761AB200D2466D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = SFBars/Controllers/SettingsViewController.m; sourceTree = "<group>"; };
 		828FE61D1A761B7200D2466D /* BarDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailsViewController.m; path = SFBars/Controllers/BarDetailsViewController.m; sourceTree = "<group>"; };
+		8291A6C91A7DC0D00060D3FB /* Settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Settings.json; path = SFBars/Resources/Settings.json; sourceTree = "<group>"; };
+		8291A6CC1A7DC4510060D3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SFBars/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		82A5C77D1A63125C00D55A54 /* SFBars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFBars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A5C7811A63125C00D55A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82A5C7821A63125C00D55A54 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		82A5C7841A63125C00D55A54 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		82A5C7851A63125C00D55A54 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		82A5C78B1A63125C00D55A54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		82A5C7961A63125C00D55A54 /* SFBarsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SFBarsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A5C79B1A63125C00D55A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82A5C79C1A63125C00D55A54 /* SFBarsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFBarsTests.m; sourceTree = "<group>"; };
@@ -273,11 +275,12 @@
 			isa = PBXGroup;
 			children = (
 				82A5C7CC1A63250400D55A54 /* LaunchScreen.xib */,
-				82A5C78A1A63125C00D55A54 /* Main.storyboard */,
 				82BA4C191A70CD8E00E71F40 /* Images.xcassets */,
+				8291A6CB1A7DC4510060D3FB /* Main.storyboard */,
 				82A5C8081A632BD900D55A54 /* LaunchImage-568h@2x.png */,
 				82DF03F81A7815E700A451DC /* Menu.json */,
 				8285AE881A7C4D4D004858FD /* BarDetail.json */,
+				8291A6C91A7DC0D00060D3FB /* Settings.json */,
 				82A5C7F91A632B6400D55A54 /* Fonts */,
 			);
 			name = Resources;
@@ -417,9 +420,10 @@
 				82A5C8021A632B9800D55A54 /* DroidSans-Bold.ttf in Resources */,
 				8285AE891A7C4D4D004858FD /* BarDetail.json in Resources */,
 				82A5C8041A632B9800D55A54 /* FontAwesome.ttf in Resources */,
+				8291A6CA1A7DC0D00060D3FB /* Settings.json in Resources */,
 				8285AE911A7C69FC004858FD /* BarDetailHeaderViewCell.xib in Resources */,
-				82A5C78C1A63125C00D55A54 /* Main.storyboard in Resources */,
 				82A5C8031A632B9800D55A54 /* DroidSans.ttf in Resources */,
+				8291A6CD1A7DC4510060D3FB /* Main.storyboard in Resources */,
 				82A5C8011A632B9800D55A54 /* Dashicons.ttf in Resources */,
 				82BA4C1A1A70CD8E00E71F40 /* Images.xcassets in Resources */,
 				82A5C8091A632BD900D55A54 /* LaunchImage-568h@2x.png in Resources */,
@@ -488,13 +492,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		82A5C78A1A63125C00D55A54 /* Main.storyboard */ = {
+		8291A6CB1A7DC4510060D3FB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				82A5C78B1A63125C00D55A54 /* Base */,
+				8291A6CC1A7DC4510060D3FB /* Base */,
 			);
 			name = Main.storyboard;
-			path = SFBars;
 			sourceTree = "<group>";
 		};
 		82A5C7CC1A63250400D55A54 /* LaunchScreen.xib */ = {

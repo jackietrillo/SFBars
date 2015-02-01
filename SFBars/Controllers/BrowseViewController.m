@@ -229,6 +229,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     barsViewController.bars = barType.bars;
 }
 
+/*
 - (void)showSettings:(id)sender
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -237,7 +238,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+*/
 - (void)showMenu:(id)sender
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

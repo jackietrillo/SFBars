@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuItem.h"
 
 @interface SettingsViewController : UIViewController
 

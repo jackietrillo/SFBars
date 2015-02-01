@@ -11,7 +11,8 @@
 @interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (readwrite, nonatomic, strong) NSMutableArray* settingsData;
+@property (readwrite, nonatomic, strong) NSMutableArray* menuDataTop;
+@property (readwrite, nonatomic, strong) NSMutableArray* menuDataBottom;
 
 @end
 
@@ -48,22 +49,49 @@
     [self.navigationItem setHidesBackButton:YES animated:YES];
 }
 
-- (void)loadData
+-(void)loadData
 {
-    self.settingsData = [[NSMutableArray alloc] init];
-    [self.settingsData addObject:@"Rate App"];
-    [self.settingsData addObject:@"Feedback"];
-    [self.settingsData addObject:@"Contact Us"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"json"];
+    NSData* data = [NSData dataWithContentsOfFile:path];
+    
+    [self parseData:data];
 }
 
+-(void)parseData: (NSData*)jsonData
+{
+    NSError* errorData;
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
+    
+    if (errorData != nil)
+    {
+        //TODO: Alert User
+    }
+    
+    self.menuDataTop = [[NSMutableArray alloc] init];
+    self.menuDataBottom = [[NSMutableArray alloc] init];
+    
+    if (arrayData.count > 0)
+    {
+        for (int i = 0; i < arrayData.count; i++)
+        {
+            NSDictionary* dictTemp = arrayData[i];
+            MenuItem* menuItem = [MenuItem initFromDictionary: dictTemp];
+            
+            if (menuItem.section == 0 && menuItem.statusFlag == 1)
+            {
+                [self.menuDataTop addObject:menuItem];
+            }
+            else if (menuItem.section == 1 && menuItem.statusFlag == 1)
+            {
+                [self.menuDataBottom addObject:menuItem];
+            }
+        }
+    }
+}
 -(void)setCellStyle:(UITableViewCell *)cell
 {
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
-    
-    cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
-    cell.imageView.frame = CGRectMake(50,500,500,500);
-    cell.indentationLevel = 0;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -112,9 +140,9 @@
     switch(section)
     {
         case 0:
-            return [self.settingsData count];
+            return [self.menuDataTop count];
         case 1:
-            return 1;
+            return [self.menuDataBottom count];
         default:
             return 0;
     }
@@ -123,23 +151,27 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger rowIndex = indexPath.row;
-    
+    MenuItem* menuItem;
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     switch(indexPath.section)
     {
         case 0:
-            cell.textLabel.text = self.settingsData[rowIndex];
+            menuItem = (MenuItem*)self.menuDataTop[rowIndex];
+            cell.textLabel.text = menuItem.name;
+            cell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
-            
         case 1:
-            cell.textLabel.text = @"Upgrade";
+            menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
+            cell.textLabel.text = menuItem.name;
+            cell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
-            
         default:
             break;
     }
+    
     [self setCellStyle:cell];
+    
     return cell;
 }
 

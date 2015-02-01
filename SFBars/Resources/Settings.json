@@ -1,0 +1,23 @@
+ [
+  {
+  "menuItemId": 1,
+  "section": 0,
+  "name": "Rate App",
+  "imageUrl": "Icon-Star",
+  "statusFlag": 1
+  },
+  {
+  "menuItemId": 2,
+  "section": 0,
+  "name": "Feedback",
+  "imageUrl": "Icon-Email",
+  "statusFlag": 1
+  },
+  {
+  "menuItemId": 3,
+  "section": 1,
+  "name": "Upgrade",
+  "imageUrl": "Icon-Upgrade",
+  "statusFlag": 1
+  }
+]

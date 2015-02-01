@@ -184,9 +184,9 @@
             
             if ([menuItem.name isEqualToString:@"Browse"])
             {
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                BrowseViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BrowseViewController"];
-                [self.navigationController pushViewController:vc animated:YES];
+               // UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+               // BrowseViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BrowseViewController"];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             }
             else if ([menuItem.name isEqualToString:@"Near Me"])
             {

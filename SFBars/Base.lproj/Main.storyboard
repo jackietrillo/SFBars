@@ -16,7 +16,7 @@
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="h2c-3e-a8P" kind="relationship" relationship="rootViewController" id="k2j-b3-A34"/>
+                        <segue destination="8K1-b5-Bz7" kind="relationship" relationship="rootViewController" id="aWT-rW-AH2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDa-al-L8k" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -73,7 +73,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Yz-Fv-MuX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EVo-x3-WaE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-10486" y="-1854"/>
+            <point key="canvasLocation" x="-11591" y="-387"/>
         </scene>
         <!--TopListViewController-->
         <scene sceneID="eTX-BP-YKr">
@@ -186,7 +186,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FKY-rF-iNY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rH1-Dc-Jab" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-11569" y="-1085"/>
+            <point key="canvasLocation" x="-10927" y="-387"/>
         </scene>
         <!--BrowseViewController-->
         <scene sceneID="y7q-6v-cY7">
@@ -200,7 +200,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="100" sectionHeaderHeight="5" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="MsB-He-FWA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="100" sectionHeaderHeight="5" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="MsB-He-FWA">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.97523099069999997" green="1" blue="0.183450474" alpha="1" colorSpace="calibratedRGB"/>

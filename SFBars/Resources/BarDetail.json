@@ -7,6 +7,13 @@
   "statusFlag": 1
   },
   {
+  "barDetailItemId": 1,
+  "section": 0,
+  "name": "Phone",
+  "imageUrl": "Icon-Phone",
+  "statusFlag": 1
+  },
+  {
   "barDetailItemId": 2,
   "section": 0,
   "name": "Website",
@@ -37,7 +44,7 @@
   {
   "barDetailItemId": 6,
   "section": 1,
-  "name": "Save",
+  "name": "Save as Favorite",
   "imageUrl": "Icon-Star",
   "statusFlag": 1
   },
