@@ -22,5 +22,5 @@
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 
 @property (readwrite, nonatomic, strong) NSMutableArray* bars;
-
+@property (readwrite, nonatomic, strong) NSMutableArray* savedBars;
 @end

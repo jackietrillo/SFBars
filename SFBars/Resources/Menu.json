@@ -1,56 +1,63 @@
 [
-  {
-    "menuItemId": 1,
-    "section": 0,
-    "name": "Browse",
-    "imageUrl": "Icon-Search",
-    "statusFlag": 1
+ {
+     "menuItemId": 1,
+     "section": 0,
+     "name": "Search",
+     "imageUrl": "Icon-Search",
+     "statusFlag": 1
   },
   {
     "menuItemId": 2,
+    "section": 0,
+    "name": "Browse",
+    "imageUrl": "Icon-Browse",
+    "statusFlag": 1
+  },
+  {
+    "menuItemId": 3,
     "section": 0,
     "name": "Near Me",
     "imageUrl": "Icon-Map",
     "statusFlag": 1
   },
   {
-    "menuItemId": 3,
+    "menuItemId": 4,
     "section": 0,
     "name": "Music",
     "imageUrl": "Icon-Music",
-    "statusFlag": 0
+    "statusFlag": 1
  },
   {
-    "menuItemId": 3,
+    "menuItemId": 5,
     "section": 0,
     "name": "Top List",
     "imageUrl": "Icon-TopList",
     "statusFlag": 1
   },
   {
-    "menuItemId": 4,
+    "menuItemId": 6,
     "section": 0,
     "name": "Events",
     "imageUrl": "Icon-Calendar",
     "statusFlag": 0
  },
  {
-    "menuItemId": 5,
+    "menuItemId": 7,
     "section": 0,
     "name": "Parties",
     "imageUrl": "Icon-Parties",
     "statusFlag": 1
   },
   {
-    "menuItemId": 6,
-    "section": 0,
-    "name": "Starred",
+    "menuItemId": 8,
+    "section": 1,
+    "name": "Saved",
     "imageUrl": "Icon-Star",
     "statusFlag": 1
  },
  {
-    "menuItemId": 7,
-    "section": 1,
+    "menuItemId": 9,
+    "section": 2,
     "name": "Settings",
     "imageUrl": "Icon-Settings",
     "statusFlag": 1

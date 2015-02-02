@@ -49,7 +49,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
     [menuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    [menuButton setTitle:[NSString stringWithUTF8String:"\ue055"]];
+    [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
     
     [menuButton setTarget:self];
     [menuButton setAction:@selector(showMenu:)];
@@ -186,8 +186,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     [cell.detailTextLabel setTextColor:[UIColor grayColor]];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     switch(indexPath.section)
@@ -207,16 +207,14 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
   //  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
 }
 
 #pragma mark - Navigation
 
-- (IBAction)unwindToBrowse:(UIStoryboardSegue *)unwindSegue
-{
+- (IBAction)unwindToBrowse:(UIStoryboardSegue *)unwindSegue {
     
 }
 
@@ -229,23 +227,9 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     barsViewController.bars = barType.bars;
 }
 
-/*
-- (void)showSettings:(id)sender
-{
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
-    
-    [self.navigationController pushViewController:vc animated:YES];
-}
-*/
-- (void)showMenu:(id)sender
-{
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-   
-    UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
-    
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)showMenu:(id)sender {
+
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

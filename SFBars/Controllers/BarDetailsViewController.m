@@ -18,15 +18,16 @@
 
 @implementation BarDetailsViewController
 
-- (void)viewDidLoad
-{
+static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
+
+- (void)viewDidLoad {
     [super viewDidLoad];
    
     [self initController];
 }
 
--(void)initController
-{
+-(void)initController {
+    
     [self initNavigation];
     
     [self loadData];
@@ -46,21 +47,21 @@
     self.tableView.tableHeaderView = headerView;
 }
 
-- (void)initNavigation
-{
+- (void)initNavigation {
+    
     self.navigationItem.title = [self.selectedBar.name uppercaseString];
 }
 
--(void)loadData
-{
+-(void)loadData {
+    
     NSString* path = [[NSBundle mainBundle] pathForResource:@"BarDetail" ofType:@"json"];
     NSData* data = [NSData dataWithContentsOfFile:path];
     
     [self parseData:data];
 }
 
--(void)parseData: (NSData*)jsonData
-{
+-(void)parseData: (NSData*)jsonData {
+    
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
     
@@ -96,25 +97,27 @@
     }
 }
 
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 50)];
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView* headerView = [[UIView alloc] init];
     headerView.backgroundColor = [UIColor blackColor];
-    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, tableView.bounds.size.width - 10, 50)];
-    titleLabel.font = [UIFont fontWithName: @"Helvetica Neuve" size: 8.0];
+    
+    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, -30, tableView.bounds.size.width-10, 100)];
+    [titleLabel setFont:[UIFont fontWithName: @"Helvetica Neue" size: 15.0f]];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     titleLabel.numberOfLines = 0;
-    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textColor = [UIColor grayColor];
+    
     [headerView addSubview:titleLabel];
     
-    switch(section)
-    {
+    switch(section) {
+            
         case 0:
             titleLabel.text = self.selectedBar.descrip;
             break;
         case 1:
-            titleLabel.text = @"Favorite";
+            titleLabel.text = @"";
             break;
         case 2:
             titleLabel.text = @"Share";
@@ -125,33 +128,41 @@
     return headerView;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
     switch(section)
     {
         case 0:
-            return 50;
+            return 30;
         case 1:
-            return 30;
+            return 10;
         case 2:
-            return 30;
+            return 20;
         default:
             return 0;
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 0.0f;
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    
+    switch(section)
+    {
+        case 0:
+            return 0.0f;
+        case 1:
+            return 0.0f;
+        case 2:
+            return 100.0f;
+        default:
+            return 0;
+    }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch(section)
     {
         case 0:
@@ -165,40 +176,48 @@
     }
 }
 
--(void)setCellStyle:(UITableViewCell *)cell
-{
+-(NSString*)getPropertyValue:(NSString*)propertyName forSelectedBar:(Bar*)bar {
+    
+    if([propertyName isEqualToString:@"Address"]) {
+        return bar.address;
+    }
+    else if ([propertyName isEqualToString:@"Phone"]){
+         return bar.phone;
+    }
+    else {
+        return propertyName;
+    }
+}
+
+-(void)setCellStyle:(UITableViewCell *)cell {
+    
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     NSInteger rowIndex = indexPath.row;
     BarDetailItem* dataItem;
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
-    switch(indexPath.section)
-    {
+    switch(indexPath.section) {
         case 0:
             dataItem = (BarDetailItem*)self.dataDetail[rowIndex];
-            cell.textLabel.text = dataItem.name;
-            cell.imageView.image = [UIImage imageNamed:dataItem.imageUrl];
             break;
         case 1:
             dataItem = (BarDetailItem*)self.dataFavorite[rowIndex];
-            cell.textLabel.text = dataItem.name;
-            cell.imageView.image = [UIImage imageNamed:dataItem.imageUrl];
             break;
         case 2:
             dataItem = (BarDetailItem*)self.dataShare[rowIndex];
-            cell.textLabel.text = dataItem.name;
-            cell.imageView.image = [UIImage imageNamed:dataItem.imageUrl];
             break;
         default:
             break;
     }
     
+    cell.textLabel.text =  [self getPropertyValue: dataItem.name forSelectedBar:self.selectedBar];
+    cell.imageView.image = [UIImage imageNamed:dataItem.imageUrl];
     if (cell.imageView.image == nil)
     {
         cell.imageView.image = [UIImage imageNamed:@"Icon-Search"];
@@ -217,31 +236,95 @@
     switch(indexPath.section)
     {
         case 0:
-            dataItem = (BarDetailItem*)self.dataDetail[rowIndex];
             
-            if (dataItem.barDetailItemId == 1)
-            {
-               // UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-               // BrowseViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BrowseViewController"];
-               // [self.navigationController pushViewController:vc animated:YES];
+            dataItem = (BarDetailItem*)self.dataDetail[rowIndex];
+            if ([dataItem.name isEqualToString:@"Address"]) {
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                BarMapViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarMapViewController"];
+                vc.selectedBar = self.selectedBar;
+                [self.navigationController pushViewController:vc animated:YES];
             }
-            else if ([dataItem.name isEqualToString:@"Near Me"])
-            {
-
+            else if ([dataItem.name isEqualToString:@"Phone"]) {
+               NSString* phoneNumber = [self.selectedBar.phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
+               phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+               phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+               NSURL* tel = [NSURL URLWithString:[NSString stringWithFormat:@"tel:1-%@", phoneNumber]];
+                if ([[UIApplication sharedApplication] canOpenURL: tel]) {
+                    [[UIApplication sharedApplication] openURL: tel];
+                }
+                else {
+                    //TODO: how do we log this error?
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Unable to dial phone number" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [alertView show];
+                }
             }
-            else if ([dataItem.name isEqualToString:@"Top List"])
-            {
+            else if ([dataItem.name isEqualToString:@"Website"]) {
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                BarWebViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarWebViewController"];
+                vc.url = self.selectedBar.websiteUrl;
+                [self.navigationController pushViewController:vc animated:YES];
             }
-            else if ([dataItem.name isEqualToString:@"Parties"])
-            {
-      
+            else if ([dataItem.name isEqualToString:@"Events"]) {
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                BarWebViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarWebViewController"];
+                vc.url = self.selectedBar.calendarUrl;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else if ([dataItem.name isEqualToString:@"Facebook Page"]) {
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                BarWebViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarWebViewController"];
+                vc.url = self.selectedBar.facebookUrl;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else if ([dataItem.name isEqualToString:@"Yelp Reviews"]) {
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                BarWebViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarWebViewController"];
+                vc.url = self.selectedBar.yelpUrl;
+                [self.navigationController pushViewController:vc animated:YES];
             }
             break;
             
         case 1:
-                 
+             dataItem = (BarDetailItem*)self.dataFavorite[rowIndex];
+            if ([dataItem.name isEqualToString:@"Save"]) {
+              
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+               
+                NSMutableDictionary* savedBarsDict = [[defaults dictionaryForKey:SAVEDBARSDICT] mutableCopy];
+                if (savedBarsDict == nil) {
+                    savedBarsDict = [[NSMutableDictionary alloc] init];
+                }
+                
+                NSObject* barId =  [savedBarsDict objectForKey:self.selectedBar.barId];
+                if (barId == nil) {
+                    [savedBarsDict setValue:self.selectedBar.barId forKey:[self.selectedBar.barId stringValue]];
+               
+                    //TODO: localize
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alertView show];
+                    
+                } else {
+                    
+                    [savedBarsDict removeObjectForKey:self.selectedBar.barId];
+                    
+                    //TODO: localize
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Unsaved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alertView show];
+                }
+                
+                [defaults setObject:savedBarsDict forKey:SAVEDBARSDICT];
+
+            }
             break;
-            
+            case 2:
+                dataItem = (BarDetailItem*)self.dataShare[rowIndex];
+                if ([dataItem.name isEqualToString:@"Message"]) {
+                    [self tappedSendSMS];
+                }
+                else if ([dataItem.name isEqualToString:@"Email"]) {
+                    [self tappedSendMail];
+                }
+            break;
         default:
             break;
     }
@@ -252,22 +335,16 @@
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
-    switch (result)
-    {
+    switch (result) {
         case MFMailComposeResultCancelled:
-           //NSLog(@"Cancelled");
             break;
         case MFMailComposeResultSaved:
-           ///NSLog(@"Saved");
             break;
         case MFMailComposeResultSent:
-           //NSLog(@"Sent");
             break;
         case MFMailComposeResultFailed:
-           //NSLog(@"Failed");
             break;
         default:
-           //NSLog(@"Not sent");
             break;
     }
     
@@ -281,16 +358,12 @@
     switch (result)
     {
         case MessageComposeResultCancelled:
-            //NSLog(@"Cancelled");
             break;
         case MessageComposeResultSent:
-            ///NSLog(@"Sent");
             break;
-        case MessageComposeResultFailed :
-            //NSLog(@"Failed");
+        case MessageComposeResultFailed:
             break;
         default:
-            //NSLog(@"Not sent");
             break;
     }
     
@@ -299,8 +372,8 @@
 
 #pragma mark - Events
 
--(IBAction)tappedSendMail:(id)sender
-{
+-(void)tappedSendMail {
+    
     MFMailComposeViewController* mailComposeViewController = [[MFMailComposeViewController alloc] init];
    [mailComposeViewController setSubject:self.selectedBar.name];
    [mailComposeViewController setMessageBody:self.selectedBar.address isHTML:YES];
@@ -309,8 +382,8 @@
    [self presentViewController:mailComposeViewController animated:YES completion:nil];
 }
 
--(IBAction)tappedSendSMS:(id)sender
-{
+-(void)tappedSendSMS {
+    
     MFMessageComposeViewController* messageComposeViewController = [[MFMessageComposeViewController alloc] init];
     [messageComposeViewController setSubject:self.selectedBar.name];
     
@@ -325,39 +398,12 @@
 
  - (IBAction)unwindToBarDetails:(UIStoryboardSegue *)unwindSegue
  {
- 
+   //
  }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.destinationViewController isKindOfClass: [BarWebViewController class]])
-    {
-        BarWebViewController* barWebViewController = segue.destinationViewController;
-        
-        if ([segue.identifier isEqualToString: @"websiteSegue"])
-        {
-            barWebViewController.url = self.selectedBar.websiteUrl;
-        }
-        if ([segue.identifier isEqualToString: @"calendarSegue"])
-        {
-            barWebViewController.url = self.selectedBar.calendarUrl;
-        }
-        if ([segue.identifier isEqualToString: @"facebookSegue"])
-        {
-            barWebViewController.url = self.selectedBar.facebookUrl;
-        }
-        if ([segue.identifier isEqualToString: @"yelpSegue"])
-        {
-            barWebViewController.url = self.selectedBar.yelpUrl;
-        }
-    }
-    
-    if ([segue.destinationViewController isKindOfClass: [BarMapViewController class]])
-    {
-        BarMapViewController* barMapViewController = segue.destinationViewController;
-
-        barMapViewController.selectedBar = self.selectedBar;
-    }
+   //
 }
 
 @end

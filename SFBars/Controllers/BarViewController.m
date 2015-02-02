@@ -17,8 +17,6 @@
 
 @implementation BarViewController
 
-static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
-
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -95,7 +93,9 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 -(void)loadData: (NSMutableArray*) arrayData
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+   
     self.data = arrayData;
+    
     [self.tableView reloadData];
     self.tableView.hidden = NO;
 }

@@ -83,4 +83,39 @@ static const NSString* YELPURL = @"yelpUrl";
     return bar;
 }
 
+/*
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        self.question = [decoder decodeObjectForKey:@"question"];
+        self.categoryName = [decoder decodeObjectForKey:@"category"];
+        bar.barId = dict[BARID];
+        bar.streetId = dict[STREETID];
+        bar.districtId = dict[DISTRICTID];
+        bar.name = dict[NAME];
+        bar.descrip = dict[DESCRIPTION];
+        bar.address = dict[ADDRESS];
+        bar.phone = dict[PHONE];
+        bar.hours = dict[HOURS];
+        bar.latitude = [dict[LATITUDE] doubleValue];
+        bar.longitude = [dict[LONGITUDE] doubleValue];
+        bar.imageUrl = dict[IMAGEURL];
+        bar.websiteUrl = dict[WEBSITEURL];
+        bar.calendarUrl = dict[CALENDARURL];
+        bar.facebookUrl = dict[FACEBOOKURL];
+        bar.yelpUrl = dict[YELPURL];
+
+    }
+    return self;
+       
+}
+
+-(void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    [encoder encodeObject:self.question forKey:@"question"];
+    [encoder encodeObject:self.categoryName forKey:@"category"];
+    [encoder encodeObject:self.subCategoryName forKey:@"subcategory"];
+}
+*/
+
 @end

@@ -15,6 +15,13 @@
   },
   {
   "menuItemId": 3,
+  "section": 0,
+  "name": "Report a Problem",
+  "imageUrl": "Icon-Wrench",
+  "statusFlag": 1
+  },
+  {
+  "menuItemId": 4,
   "section": 1,
   "name": "Upgrade",
   "imageUrl": "Icon-Upgrade",
