@@ -7,7 +7,7 @@
 //
 
 #import "BrowseViewController.h"
-
+#import "AppDelegate.h"
 
 @interface BrowseViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -21,29 +21,40 @@
 static NSString* reuseIdentifier = @"Cell";
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    
+   
     [self initController];
 }
 
--(void)initController
-{
+-(void)initController {
     self.tableView.hidden = YES;
     self.canDisplayBannerAds = YES;
-    
+   
+    [self.navigationController setToolbarHidden:YES animated:YES];
+   
+   
+  //  self.tableView.contentInset = UIEdgeInsetsZero;
+   
     [self initNavigation];
     
-    [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+    
+    AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    if (delegate.cachedBarTypes == nil)
+    {
+        [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+    }
+    else
+    {
+        [self loadData:delegate.cachedBarTypes];
+    }
 }
 
--(void)initNavigation
-{
+-(void)initNavigation {
     //menu button
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] init];
+    UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
     
     UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
@@ -59,10 +70,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
-
 //TODO: move into helper class
--(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept
-{
+-(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
     NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -90,6 +99,12 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
              
              if (arrayData != nil)
              {
+                 AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                 if (delegate.cachedBarTypes == nil)
+                 {
+                     delegate.cachedBarTypes = arrayData;
+                 }
+                 
                  [self loadData: arrayData];
              }
              else
@@ -101,20 +116,20 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
      }];
 }
 
--(void)loadData: (NSMutableArray*) data
-{
+-(void)loadData: (NSMutableArray*) data {
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     self.tableView.delegate = self;
     self.data = data;
-    
-    self.tableView.contentInset = UIEdgeInsetsZero;
-    self.tableView.sectionIndexBackgroundColor =[ UIColor blueColor];
+
+   
+   // self.tableView.sectionIndexBackgroundColor =[ UIColor blueColor];
     [self.tableView reloadData];
     self.tableView.hidden = NO;
 }
 
--(NSMutableArray*)parseData: (NSData*)jsonData
-{
+-(NSMutableArray*)parseData: (NSData*)jsonData {
+    
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
     
@@ -137,13 +152,11 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     return dataByType;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch(section)
     {
         case 0:
@@ -153,9 +166,9 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     }
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *tempView=[[UIView alloc]initWithFrame:CGRectMake(0,200,300,244)];
+/*
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *tempView=[[UIView alloc]initWithFrame:CGRectMake(0,200,300,150)];
     tempView.backgroundColor=[UIColor blackColor];
     
     UILabel *tempLabel=[[UILabel alloc]initWithFrame:CGRectMake(15,0,300,44)];
@@ -173,23 +186,20 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     
     return tempView;
 }
-
--(void)setCellStyle:(UITableViewCell *)cell
-{
+*/
+-(void)setCellStyle:(UITableViewCell *)cell {
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
-    
     cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
-    cell.imageView.frame = CGRectMake(50,500,500,500);
-    cell.indentationLevel = 0;
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
+    
     [cell.detailTextLabel setTextColor:[UIColor grayColor]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
+     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     switch(indexPath.section)
     {
         case 0:

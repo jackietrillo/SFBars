@@ -24,7 +24,7 @@
 @property (readwrite, nonatomic, strong) NSString* yelpUrl;
 @property (readwrite, nonatomic) double latitude;
 @property (readwrite, nonatomic) double longitude;
-//@property (readwrite, nonatomic, strong) District* district;
+@property (readwrite, nonatomic, strong) District* district;
 
 @end
 
@@ -78,11 +78,10 @@ static const NSString* YELPURL = @"yelpUrl";
 {
     Bar* bar = [Bar initFromDictionary: dict];
   
-    //bar.district = district;
+    bar.district = district;
 
     return bar;
 }
-
 /*
 - (id)initWithCoder:(NSCoder *)decoder {
     if((self = [super init])) {

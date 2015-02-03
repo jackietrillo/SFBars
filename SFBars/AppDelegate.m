@@ -7,18 +7,22 @@
 //
 
 #import "AppDelegate.h"
+#import "BarType.h"
+#import "Bar.h"
 
 @interface AppDelegate ()
+
 
 @end
 
 @implementation AppDelegate
 
+static NSString* reuseIdentifier = @"Cell";
+
+static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
-    
-    
     return YES;
 }
 
@@ -43,5 +47,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 @end
