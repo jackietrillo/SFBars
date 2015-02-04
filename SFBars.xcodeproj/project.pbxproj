@@ -50,6 +50,10 @@
 		82E917311A7987D3002D610E /* glyphicons-halflings-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DF04021A786C0100A451DC /* glyphicons-halflings-regular.ttf */; };
 		82E917341A79B25E002D610E /* NearMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E917331A79B25E002D610E /* NearMeViewController.m */; };
 		82E917371A79B4D7002D610E /* District.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E917361A79B4D7002D610E /* District.m */; };
+		82E93AAD1A81676A0034F9D6 /* MusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E93AAC1A81676A0034F9D6 /* MusicViewController.m */; };
+		82E93AAF1A816A1E0034F9D6 /* Music.json in Resources */ = {isa = PBXBuildFile; fileRef = 82E93AAE1A816A1E0034F9D6 /* Music.json */; };
+		82E93AB11A816D530034F9D6 /* TopList.json in Resources */ = {isa = PBXBuildFile; fileRef = 82E93AB01A816D530034F9D6 /* TopList.json */; };
+		82E93AB31A816D830034F9D6 /* Parties.json in Resources */ = {isa = PBXBuildFile; fileRef = 82E93AB21A816D830034F9D6 /* Parties.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +138,11 @@
 		82E917331A79B25E002D610E /* NearMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearMeViewController.m; path = SFBars/Controllers/NearMeViewController.m; sourceTree = "<group>"; };
 		82E917351A79B4D7002D610E /* District.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = District.h; path = SFBars/Models/District.h; sourceTree = "<group>"; };
 		82E917361A79B4D7002D610E /* District.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = District.m; path = SFBars/Models/District.m; sourceTree = "<group>"; };
+		82E93AAB1A81676A0034F9D6 /* MusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MusicViewController.h; path = SFBars/Controllers/MusicViewController.h; sourceTree = "<group>"; };
+		82E93AAC1A81676A0034F9D6 /* MusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MusicViewController.m; path = SFBars/Controllers/MusicViewController.m; sourceTree = "<group>"; };
+		82E93AAE1A816A1E0034F9D6 /* Music.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Music.json; path = SFBars/Resources/Music.json; sourceTree = "<group>"; };
+		82E93AB01A816D530034F9D6 /* TopList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TopList.json; path = SFBars/Resources/TopList.json; sourceTree = "<group>"; };
+		82E93AB21A816D830034F9D6 /* Parties.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Parties.json; path = SFBars/Resources/Parties.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +255,8 @@
 				82CF532D1A7C2E800087F0F5 /* TopListViewController.m */,
 				82CF532F1A7C2E9B0087F0F5 /* PartiesViewController.h */,
 				82CF53301A7C2E9B0087F0F5 /* PartiesViewController.m */,
+				82E93AAB1A81676A0034F9D6 /* MusicViewController.h */,
+				82E93AAC1A81676A0034F9D6 /* MusicViewController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -282,6 +293,9 @@
 				8285AE881A7C4D4D004858FD /* BarDetail.json */,
 				8291A6C91A7DC0D00060D3FB /* Settings.json */,
 				82A5C7F91A632B6400D55A54 /* Fonts */,
+				82E93AAE1A816A1E0034F9D6 /* Music.json */,
+				82E93AB01A816D530034F9D6 /* TopList.json */,
+				82E93AB21A816D830034F9D6 /* Parties.json */,
 			);
 			name = Resources;
 			path = ..;
@@ -426,9 +440,12 @@
 				8291A6CD1A7DC4510060D3FB /* Main.storyboard in Resources */,
 				82A5C8011A632B9800D55A54 /* Dashicons.ttf in Resources */,
 				82BA4C1A1A70CD8E00E71F40 /* Images.xcassets in Resources */,
+				82E93AB11A816D530034F9D6 /* TopList.json in Resources */,
 				82A5C8091A632BD900D55A54 /* LaunchImage-568h@2x.png in Resources */,
+				82E93AB31A816D830034F9D6 /* Parties.json in Resources */,
 				82DF03F91A7815E700A451DC /* Menu.json in Resources */,
 				82A5C7CE1A63250400D55A54 /* LaunchScreen.xib in Resources */,
+				82E93AAF1A816A1E0034F9D6 /* Music.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */,
+				82E93AAD1A81676A0034F9D6 /* MusicViewController.m in Sources */,
 				82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */,
 				82A5C7EB1A63266100D55A54 /* Bar.m in Sources */,
 				82A5C7D41A63260B00D55A54 /* StreetTableViewCell.m in Sources */,

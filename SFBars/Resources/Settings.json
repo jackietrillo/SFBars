@@ -1,27 +1,27 @@
  [
   {
-  "menuItemId": 1,
+  "itemId": 1,
   "section": 0,
   "name": "Rate App",
   "imageUrl": "Icon-Star",
   "statusFlag": 1
   },
   {
-  "menuItemId": 2,
+  "itemId": 2,
   "section": 0,
   "name": "Feedback",
   "imageUrl": "Icon-Email",
   "statusFlag": 1
   },
   {
-  "menuItemId": 3,
+  "itemId": 3,
   "section": 0,
   "name": "Report a Problem",
   "imageUrl": "Icon-Wrench",
   "statusFlag": 1
   },
   {
-  "menuItemId": 4,
+  "itemId": 4,
   "section": 1,
   "name": "Upgrade",
   "imageUrl": "Icon-Upgrade",

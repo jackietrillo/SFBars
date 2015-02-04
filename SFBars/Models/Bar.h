@@ -13,7 +13,6 @@
 
 @property (readonly, nonatomic, strong) NSNumber* barId;
 @property (readonly, nonatomic, strong) NSNumber* streetId;
-@property (readonly, nonatomic, strong) NSString* name;
 @property (readonly, nonatomic, strong) NSString* descrip;
 @property (readonly, nonatomic, strong) NSString* address;
 @property (readonly, nonatomic, strong) NSString* phone;
@@ -23,7 +22,6 @@
 @property (readonly, nonatomic, strong) NSString* calendarUrl;
 @property (readonly, nonatomic, strong) NSString* facebookUrl;
 @property (readonly, nonatomic, strong) NSString* yelpUrl;
-//@property (readonly, nonatomic, strong) District* district;
 @property (readonly, nonatomic) double latitude;
 @property (readonly, nonatomic) double longitude;
 

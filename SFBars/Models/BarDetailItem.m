@@ -10,8 +10,8 @@
 
 @interface  BarDetailItem()
 
-@property (readwrite, nonatomic) NSString* name;
 @property (readwrite, nonatomic) NSInteger barDetailItemId;
+@property (readwrite, nonatomic) NSString* name;
 @property (readwrite, nonatomic) NSInteger section;
 @property (readwrite, nonatomic) NSInteger statusFlag;
 @end

@@ -44,7 +44,7 @@
     [doneButton setTitle:[NSString stringWithUTF8String:"\uf00c"]];
     
     self.navigationItem.rightBarButtonItem = doneButton;
-    self.navigationItem.title = @"SETTINGS";
+    self.navigationItem.title = @"SETTINGS";  //TODO: localize
     
     [self.navigationItem setHidesBackButton:YES animated:YES];
 }
@@ -57,8 +57,7 @@
     [self parseData:data];
 }
 
--(void)parseData: (NSData*)jsonData
-{
+-(void)parseData: (NSData*)jsonData {
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
     
@@ -79,23 +78,21 @@
             
             if (menuItem.section == 0 && menuItem.statusFlag == 1)
             {
-                [self.menuDataTop addObject:menuItem];
+                [self.menuDataTop addObject:menuItem];  //TODO: localize
             }
             else if (menuItem.section == 1 && menuItem.statusFlag == 1)
             {
-                [self.menuDataBottom addObject:menuItem];
+                [self.menuDataBottom addObject:menuItem];  //TODO: localize
             }
         }
     }
 }
--(void)setCellStyle:(UITableViewCell *)cell
-{
+-(void)setCellStyle:(UITableViewCell *)cell {
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
 }
 
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
     
     switch(section)
@@ -112,20 +109,16 @@
     return headerView;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 50;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch(section)
-    {
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch(section) {
         case 0:
             return @" ";
         case 1:
@@ -135,10 +128,9 @@
     }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    switch(section)
-    {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    switch(section) {
         case 0:
             return [self.menuDataTop count];
         case 1:
@@ -148,14 +140,12 @@
     }
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger rowIndex = indexPath.row;
     MenuItem* menuItem;
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
-    switch(indexPath.section)
-    {
+    switch(indexPath.section) {
         case 0:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
             cell.textLabel.text = menuItem.name;
@@ -175,6 +165,87 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger rowIndex = indexPath.row;
+    MenuItem* dataItem;
+    
+    switch(indexPath.section)
+    {
+        case 0:
+            dataItem = (MenuItem*)self.menuDataTop[rowIndex];
+            if ([dataItem.name isEqualToString:@"Rate App"]) {  //TODO: check id not string
+                [self tappedRateApp];
+            }
+            else if ([dataItem.name isEqualToString:@"Feedback"]) {
+                [self tappedSendFeedback];
+            }
+            else if ([dataItem.name isEqualToString:@"Report a Problem"]) {
+                [self tappedContactUs];
+            }
+            break;
+            
+        case 1:
+            dataItem = (MenuItem*)self.menuDataBottom[rowIndex];
+            
+            if ([dataItem.name isEqualToString:@"Upgrade"]) {
+                [self tappedUpgrade];
+            }
+                      break;
+        default:
+            break;
+    }
+}
+
+-(void)tappedSendFeedback {
+    
+    MFMailComposeViewController* mailComposeViewController = [[MFMailComposeViewController alloc] init];
+    [mailComposeViewController setSubject:@"Feedback"];  //TODO: localize
+    [mailComposeViewController setToRecipients:@[@"jackietrillo@hotmail.com"]];
+    mailComposeViewController.mailComposeDelegate = self;
+    
+    [self presentViewController:mailComposeViewController animated:YES completion:nil];
+}
+
+-(void)tappedContactUs {
+    
+    MFMailComposeViewController* mailComposeViewController = [[MFMailComposeViewController alloc] init];
+    mailComposeViewController.mailComposeDelegate = self;
+    [mailComposeViewController setSubject:@"Report a Problem"]; //TODO: localize
+    [mailComposeViewController setToRecipients:@[@"jackietrillo@hotmail.com"]];
+
+    [self presentViewController:mailComposeViewController animated:YES completion:nil];
+}
+
+-(void)tappedRateApp {
+    NSString* link = @"itms-apps://itunes.apple.com/app/375031865";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
+}
+
+-(void)tappedUpgrade {
+    NSString* link = @"itms-apps://itunes.apple.com/app/375031865";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            break;
+        case MFMailComposeResultSaved:
+            break;
+        case MFMailComposeResultSent:
+            break;
+        case MFMailComposeResultFailed:
+            break;
+        default:
+            break;
+    }
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - Navigation
 

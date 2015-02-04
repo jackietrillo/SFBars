@@ -11,7 +11,13 @@
 
 @interface BaseEntity : NSObject
 
+@property (readwrite, nonatomic) NSInteger itemId;
+@property (readwrite, nonatomic, strong) NSString* name;
+@property (readwrite, nonatomic) NSInteger section;
+@property (readwrite, nonatomic) NSInteger statusFlag;
 @property (readwrite, nonatomic, strong) NSString* imageUrl;
 @property (nonatomic, strong) UIImage* icon;
+
++(id)initFromDictionary:(NSDictionary*)dict forEntity:(BaseEntity*)baseEntity;
 
 @end

@@ -11,8 +11,6 @@
 
 @interface BarDetailItem : BaseEntity
 
-@property (readonly, nonatomic) NSInteger barDetailItemId;
-@property (readonly, nonatomic, strong) NSString* name;
 @property (readonly, nonatomic) NSInteger section;
 @property (readonly, nonatomic) NSInteger statusFlag;
 

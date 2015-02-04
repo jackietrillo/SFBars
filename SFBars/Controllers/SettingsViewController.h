@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "MenuItem.h"
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
 @end

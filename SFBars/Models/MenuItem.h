@@ -11,11 +11,6 @@
 
 @interface MenuItem : BaseEntity
 
-@property (readonly, nonatomic, strong) NSString* name;
-@property (readonly, nonatomic) NSInteger menuItemId;
-@property (readonly, nonatomic) NSInteger section;
-@property (readonly, nonatomic) NSInteger statusFlag;
-
 +(id)initFromDictionary:(NSDictionary*)dict;
 
 @end

@@ -12,8 +12,6 @@
 
 @interface District : BaseEntity
 
-@property (readonly, nonatomic) NSInteger districtId;
-@property (readonly, nonatomic, strong) NSString* name;
 @property (readonly, nonatomic, strong) NSMutableArray* bars;
 
 +(id)initFromDictionary:(NSDictionary*)dict;

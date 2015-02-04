@@ -197,6 +197,70 @@
             </objects>
             <point key="canvasLocation" x="-10927" y="-387"/>
         </scene>
+        <!--MusicViewController-->
+        <scene sceneID="lo9-Uz-fTi">
+            <objects>
+                <viewController storyboardIdentifier="MusicViewController" id="roo-pF-WOc" userLabel="MusicViewController" customClass="MusicViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tmo-w0-R46"/>
+                        <viewControllerLayoutGuide type="bottom" id="eKS-jS-JfX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RY8-79-ka6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lhk-hj-8Ce">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="9qk-XQ-zbQ">
+                                    <size key="itemSize" width="150" height="150"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="h94-mf-VyI">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBc-aP-MeU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Music" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB4-8F-BUi">
+                                                    <rect key="frame" x="41" y="117" width="64" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="roo-pF-WOc" id="xnw-o6-dPg"/>
+                                    <outlet property="delegate" destination="roo-pF-WOc" id="FT2-bv-wKz"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lhk-hj-8Ce" secondAttribute="trailing" id="EQ2-SN-XLt"/>
+                            <constraint firstItem="lhk-hj-8Ce" firstAttribute="bottom" secondItem="eKS-jS-JfX" secondAttribute="top" id="OTt-68-Zoq"/>
+                            <constraint firstItem="lhk-hj-8Ce" firstAttribute="leading" secondItem="RY8-79-ka6" secondAttribute="leading" id="Oi2-UZ-ZtX"/>
+                            <constraint firstItem="lhk-hj-8Ce" firstAttribute="top" secondItem="RY8-79-ka6" secondAttribute="top" id="UGS-u1-Ljt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="lhk-hj-8Ce" id="meA-SR-4xu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cuv-ER-uWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-10263" y="-387"/>
+        </scene>
         <!--BrowseViewController-->
         <scene sceneID="y7q-6v-cY7">
             <objects>
@@ -214,7 +278,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.97523099069999997" green="1" blue="0.183450474" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="8h4-oM-EkS">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="8h4-oM-EkS">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8h4-oM-EkS" id="vn8-f8-lSR">
@@ -278,7 +342,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hdt-Cy-Smy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9034" y="-412"/>
+            <point key="canvasLocation" x="-9575" y="-387"/>
         </scene>
         <!--NearMeViewController-->
         <scene sceneID="sLd-O9-fVe">
@@ -445,7 +509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBl-fU-nzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8981" y="-1903"/>
+            <point key="canvasLocation" x="-8981" y="-1859"/>
         </scene>
         <!--BarDetailsViewController-->
         <scene sceneID="pDj-IH-KWZ">

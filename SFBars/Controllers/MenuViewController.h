@@ -11,6 +11,7 @@
 #import "BrowseViewController.h"
 #import "NearMeViewController.h"
 #import "TopListViewController.h"
+#import "MusicViewController.h"
 #import "PartiesViewController.h"
 #import "MenuItem.h"
 

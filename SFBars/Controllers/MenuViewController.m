@@ -249,6 +249,12 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
                 TopListViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"TopListViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
+            else if ([menuItem.name isEqualToString:@"Music"]){
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                MusicViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MusicViewController"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+
             else if ([menuItem.name isEqualToString:@"Parties"]){
                 UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 PartiesViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"PartiesViewController"];

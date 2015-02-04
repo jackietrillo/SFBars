@@ -166,40 +166,19 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     }
 }
 
-/*
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *tempView=[[UIView alloc]initWithFrame:CGRectMake(0,200,300,150)];
-    tempView.backgroundColor=[UIColor blackColor];
-    
-    UILabel *tempLabel=[[UILabel alloc]initWithFrame:CGRectMake(15,0,300,44)];
-    tempLabel.backgroundColor=[UIColor clearColor];
-    tempLabel.shadowColor = [UIColor blackColor];
-    tempLabel.shadowOffset = CGSizeMake(0,2);
-    tempLabel.textColor = [UIColor blueColor]; //here you can change the text color of header.
-  
-    if(section == 0)
-    {
-        tempLabel.text = @"Browse";
-    }
-    
-    [tempView addSubview:tempLabel];
-    
-    return tempView;
-}
-*/
 -(void)setCellStyle:(UITableViewCell *)cell {
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
     cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
-    
+   // cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
+
     [cell.detailTextLabel setTextColor:[UIColor grayColor]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     switch(indexPath.section)
     {
         case 0:

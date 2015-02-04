@@ -21,8 +21,7 @@
 static NSString* reuseIdentifier = @"Cell";
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/district/";
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.navigationController setToolbarHidden:YES animated:YES];
@@ -30,16 +29,14 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     [self initController];
 }
 
--(void)initController
-{
+-(void)initController {
     [self initNavigation];
     self.tableView.hidden = YES;
     self.canDisplayBannerAds = YES;
     [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
 }
 
--(void)initNavigation
-{
+-(void)initNavigation {
     //menu button
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] init];
     
@@ -47,7 +44,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
     [menuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    [menuButton setTitle:[NSString stringWithUTF8String:"\ue055"]];
+    [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
     
     [menuButton setTarget:self];
     [menuButton setAction:@selector(showMenu:)];
@@ -58,8 +55,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
 }
 
 //TODO: move into helper class
--(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept
-{
+-(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -97,8 +93,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
      }];
 }
 
--(void)loadData: (NSMutableArray*) data
-{
+-(void)loadData: (NSMutableArray*) data {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     self.tableView.delegate = self;
     self.data = data;
@@ -108,21 +103,17 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     self.tableView.hidden = NO;
 }
 
--(NSMutableArray*)parseData: (NSData*)jsonData
-{
+-(NSMutableArray*)parseData: (NSData*)jsonData {
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
     
-    if (errorData != nil)
-    {
+    if (errorData != nil) {
         //TODO: alert user
     }
     
     NSMutableArray* nearMeData = [[NSMutableArray alloc] init];
-    if (arrayData.count > 0)
-    {
-        for (int i = 0; i < arrayData.count; i++)
-        {
+    if (arrayData.count > 0) {
+        for (int i = 0; i < arrayData.count; i++) {
             NSDictionary* dictTemp = arrayData[i];
             District* district = [District initFromDictionary:dictTemp];
             [nearMeData addObject:district];
@@ -132,12 +123,10 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     return nearMeData;
 }
 
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
     
-    switch(section)
-    {
+    switch(section) {
         case 0:
             [headerView setBackgroundColor:[UIColor blackColor]];
             break;
@@ -148,8 +137,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     return headerView;
 }
 
-- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
     
     switch(section)
@@ -164,23 +152,19 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     return footerView;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.0f;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 50;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(void)setCellStyle:(UITableViewCell *)cell
-{
+-(void)setCellStyle:(UITableViewCell *)cell {
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
     
@@ -190,12 +174,10 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    switch(indexPath.section)
-    {
+    switch(indexPath.section) {
         case 0:
             if (indexPath.row < self.data.count)
             {
@@ -211,13 +193,11 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     return cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.data.count;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
 }

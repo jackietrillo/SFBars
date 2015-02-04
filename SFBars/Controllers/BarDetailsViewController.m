@@ -130,8 +130,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    switch(section)
-    {
+    switch(section) {
         case 0:
             return 30;
         case 1:
