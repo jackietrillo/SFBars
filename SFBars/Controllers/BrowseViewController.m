@@ -34,11 +34,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
    
     [self.navigationController setToolbarHidden:YES animated:YES];
    
-   
-  //  self.tableView.contentInset = UIEdgeInsetsZero;
-   
     [self initNavigation];
-    
     
     AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     

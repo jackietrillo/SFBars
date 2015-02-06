@@ -10,13 +10,25 @@
 
 @interface NearMeViewController ()
 
+@property (nonatomic, strong) GMSMapView* mapView;
+
 @end
 
 @implementation NearMeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  
+    GMSCameraPosition* camera = [GMSCameraPosition cameraWithLatitude:37.761622 longitude:-122.435285 zoom:15];
+    
+    self.mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
+    self.mapView.mapType = kGMSTypeNormal;
+    self.mapView.myLocationEnabled = YES;
+    self.mapView.settings.myLocationButton = YES;
+    self.mapView.settings.compassButton = YES;
+    [self.mapView setMinZoom:10.0 maxZoom:18.0];
+    
+    self.view = self.mapView;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		820ABEF01A84406E0022192F /* NearMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820ABEEF1A84406E0022192F /* NearMeViewController.m */; };
+		820ABEF81A84475B0022192F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABEF71A84475B0022192F /* AVFoundation.framework */; };
+		820ABEFA1A84476A0022192F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABEF91A84476A0022192F /* CoreData.framework */; };
+		820ABEFC1A8447770022192F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABEFB1A8447770022192F /* CoreText.framework */; };
+		820ABEFE1A8447860022192F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABEFD1A8447860022192F /* GLKit.framework */; };
+		820ABF001A8447920022192F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABEFF1A8447920022192F /* ImageIO.framework */; };
+		820ABF021A8447AB0022192F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF011A8447AB0022192F /* libc++.dylib */; };
+		820ABF041A8447C90022192F /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF031A8447C90022192F /* libicucore.dylib */; };
+		820ABF061A8447DD0022192F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF051A8447DD0022192F /* libz.dylib */; };
+		820ABF081A8447E60022192F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF071A8447E60022192F /* OpenGLES.framework */; };
+		820ABF0A1A8447F50022192F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF091A8447F50022192F /* QuartzCore.framework */; };
+		820ABF0C1A8448030022192F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF0B1A8448030022192F /* SystemConfiguration.framework */; };
+		820ABF131A847A7D0022192F /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 820ABF121A847A7D0022192F /* GoogleMaps.bundle */; };
+		820ABF171A847B9D0022192F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF161A847B9D0022192F /* GoogleMaps.framework */; };
 		8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61D1A761B7200D2466D /* BarDetailsViewController.m */; };
 		8285AE891A7C4D4D004858FD /* BarDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 8285AE881A7C4D4D004858FD /* BarDetail.json */; };
 		8285AE8C1A7C546F004858FD /* BarDetailItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8285AE8B1A7C546F004858FD /* BarDetailItem.m */; };
@@ -42,13 +56,10 @@
 		82BF8A211A74978C00237060 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BF8A201A74978C00237060 /* CoreLocation.framework */; };
 		82BF8A241A74A69900237060 /* BarMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF8A231A74A69900237060 /* BarMapViewController.m */; };
 		82C705FB1A75BCAC0045F973 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C705FA1A75BCAC0045F973 /* MenuViewController.m */; };
-		82CF532B1A7C2D610087F0F5 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CF532A1A7C2D610087F0F5 /* GoogleMaps.framework */; };
 		82CF532E1A7C2E800087F0F5 /* TopListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CF532D1A7C2E800087F0F5 /* TopListViewController.m */; };
 		82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CF53301A7C2E9B0087F0F5 /* PartiesViewController.m */; };
 		82DF03F91A7815E700A451DC /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 82DF03F81A7815E700A451DC /* Menu.json */; };
 		82DF04011A78231D00A451DC /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DF04001A78231D00A451DC /* MenuItem.m */; };
-		82E917311A7987D3002D610E /* glyphicons-halflings-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82DF04021A786C0100A451DC /* glyphicons-halflings-regular.ttf */; };
-		82E917341A79B25E002D610E /* NearMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E917331A79B25E002D610E /* NearMeViewController.m */; };
 		82E917371A79B4D7002D610E /* District.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E917361A79B4D7002D610E /* District.m */; };
 		82E93AAD1A81676A0034F9D6 /* MusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E93AAC1A81676A0034F9D6 /* MusicViewController.m */; };
 		82E93AAF1A816A1E0034F9D6 /* Music.json in Resources */ = {isa = PBXBuildFile; fileRef = 82E93AAE1A816A1E0034F9D6 /* Music.json */; };
@@ -67,6 +78,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		820ABEEE1A84406E0022192F /* NearMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearMeViewController.h; path = SFBars/Controllers/NearMeViewController.h; sourceTree = "<group>"; };
+		820ABEEF1A84406E0022192F /* NearMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearMeViewController.m; path = SFBars/Controllers/NearMeViewController.m; sourceTree = "<group>"; };
+		820ABEF71A84475B0022192F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		820ABEF91A84476A0022192F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		820ABEFB1A8447770022192F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		820ABEFD1A8447860022192F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		820ABEFF1A8447920022192F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		820ABF011A8447AB0022192F /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		820ABF031A8447C90022192F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		820ABF051A8447DD0022192F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		820ABF071A8447E60022192F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		820ABF091A8447F50022192F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		820ABF0B1A8448030022192F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		820ABF121A847A7D0022192F /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
+		820ABF151A847AF20022192F /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "glyphicons-halflings-regular.ttf"; path = "SFBars/Resources/Fonts/glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
+		820ABF161A847B9D0022192F /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "../../Common/Frameworks/GoogleMaps-iOS-1.9.1/GoogleMaps.framework"; sourceTree = "<group>"; };
 		8285AE881A7C4D4D004858FD /* BarDetail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BarDetail.json; path = SFBars/Resources/BarDetail.json; sourceTree = "<group>"; };
 		8285AE8A1A7C546F004858FD /* BarDetailItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailItem.h; path = SFBars/Models/BarDetailItem.h; sourceTree = "<group>"; };
 		8285AE8B1A7C546F004858FD /* BarDetailItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailItem.m; path = SFBars/Models/BarDetailItem.m; sourceTree = "<group>"; };
@@ -125,7 +152,6 @@
 		82BF8A231A74A69900237060 /* BarMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarMapViewController.m; path = SFBars/Controllers/BarMapViewController.m; sourceTree = "<group>"; };
 		82C705F91A75BCAC0045F973 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = SFBars/Controllers/MenuViewController.h; sourceTree = "<group>"; };
 		82C705FA1A75BCAC0045F973 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = SFBars/Controllers/MenuViewController.m; sourceTree = "<group>"; };
-		82CF532A1A7C2D610087F0F5 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "Frameworks/GoogleMaps-iOS-1.9.1/GoogleMaps.framework"; sourceTree = "<group>"; };
 		82CF532C1A7C2E800087F0F5 /* TopListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopListViewController.h; path = SFBars/Controllers/TopListViewController.h; sourceTree = "<group>"; };
 		82CF532D1A7C2E800087F0F5 /* TopListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopListViewController.m; path = SFBars/Controllers/TopListViewController.m; sourceTree = "<group>"; };
 		82CF532F1A7C2E9B0087F0F5 /* PartiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartiesViewController.h; path = SFBars/Controllers/PartiesViewController.h; sourceTree = "<group>"; };
@@ -133,9 +159,6 @@
 		82DF03F81A7815E700A451DC /* Menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Menu.json; path = SFBars/Resources/Menu.json; sourceTree = "<group>"; };
 		82DF03FF1A78231D00A451DC /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuItem.h; path = SFBars/Models/MenuItem.h; sourceTree = "<group>"; };
 		82DF04001A78231D00A451DC /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuItem.m; path = SFBars/Models/MenuItem.m; sourceTree = "<group>"; };
-		82DF04021A786C0100A451DC /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
-		82E917321A79B25E002D610E /* NearMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearMeViewController.h; path = SFBars/Controllers/NearMeViewController.h; sourceTree = "<group>"; };
-		82E917331A79B25E002D610E /* NearMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearMeViewController.m; path = SFBars/Controllers/NearMeViewController.m; sourceTree = "<group>"; };
 		82E917351A79B4D7002D610E /* District.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = District.h; path = SFBars/Models/District.h; sourceTree = "<group>"; };
 		82E917361A79B4D7002D610E /* District.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = District.m; path = SFBars/Models/District.m; sourceTree = "<group>"; };
 		82E93AAB1A81676A0034F9D6 /* MusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MusicViewController.h; path = SFBars/Controllers/MusicViewController.h; sourceTree = "<group>"; };
@@ -150,10 +173,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82CF532B1A7C2D610087F0F5 /* GoogleMaps.framework in Frameworks */,
+				820ABF0C1A8448030022192F /* SystemConfiguration.framework in Frameworks */,
+				820ABF0A1A8447F50022192F /* QuartzCore.framework in Frameworks */,
+				820ABF081A8447E60022192F /* OpenGLES.framework in Frameworks */,
+				820ABF061A8447DD0022192F /* libz.dylib in Frameworks */,
+				820ABF041A8447C90022192F /* libicucore.dylib in Frameworks */,
+				820ABF021A8447AB0022192F /* libc++.dylib in Frameworks */,
+				820ABF001A8447920022192F /* ImageIO.framework in Frameworks */,
+				820ABEFE1A8447860022192F /* GLKit.framework in Frameworks */,
+				820ABEFC1A8447770022192F /* CoreText.framework in Frameworks */,
+				820ABEFA1A84476A0022192F /* CoreData.framework in Frameworks */,
+				820ABEF81A84475B0022192F /* AVFoundation.framework in Frameworks */,
 				82BF8A211A74978C00237060 /* CoreLocation.framework in Frameworks */,
 				82BF8A1D1A7481BE00237060 /* MessageUI.framework in Frameworks */,
 				82A5C7F71A632A1600D55A54 /* iAd.framework in Frameworks */,
+				820ABF171A847B9D0022192F /* GoogleMaps.framework in Frameworks */,
 				82A5C7F51A632A1100D55A54 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,10 +205,9 @@
 		82A5C7741A63125C00D55A54 = {
 			isa = PBXGroup;
 			children = (
-				82CF532A1A7C2D610087F0F5 /* GoogleMaps.framework */,
 				82A5C77F1A63125C00D55A54 /* SFBars */,
 				82A5C7991A63125C00D55A54 /* SFBarsTests */,
-				82A5C80A1A632C1800D55A54 /* Framework */,
+				82A5C80A1A632C1800D55A54 /* Frameworks */,
 				82A5C77E1A63125C00D55A54 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -238,8 +271,6 @@
 				828FE6141A761A8B00D2466D /* BrowseViewController.h */,
 				828FE6151A761A8B00D2466D /* BrowseViewController.m */,
 				82BF8A221A74A69900237060 /* BarMapViewController.h */,
-				82E917321A79B25E002D610E /* NearMeViewController.h */,
-				82E917331A79B25E002D610E /* NearMeViewController.m */,
 				82BF8A231A74A69900237060 /* BarMapViewController.m */,
 				82BB60061A64D763002F5578 /* BarViewController.h */,
 				82BB60071A64D763002F5578 /* BarViewController.m */,
@@ -257,6 +288,8 @@
 				82CF53301A7C2E9B0087F0F5 /* PartiesViewController.m */,
 				82E93AAB1A81676A0034F9D6 /* MusicViewController.h */,
 				82E93AAC1A81676A0034F9D6 /* MusicViewController.m */,
+				820ABEEE1A84406E0022192F /* NearMeViewController.h */,
+				820ABEEF1A84406E0022192F /* NearMeViewController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -329,7 +362,7 @@
 		82A5C7F91A632B6400D55A54 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				82DF04021A786C0100A451DC /* glyphicons-halflings-regular.ttf */,
+				820ABF151A847AF20022192F /* glyphicons-halflings-regular.ttf */,
 				82A5C7FA1A632B9800D55A54 /* Dashicons.ttf */,
 				82A5C7FB1A632B9800D55A54 /* DroidSans-Bold.ttf */,
 				82A5C7FC1A632B9800D55A54 /* DroidSans.ttf */,
@@ -338,15 +371,28 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		82A5C80A1A632C1800D55A54 /* Framework */ = {
+		82A5C80A1A632C1800D55A54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				820ABF161A847B9D0022192F /* GoogleMaps.framework */,
+				820ABF0B1A8448030022192F /* SystemConfiguration.framework */,
+				820ABF091A8447F50022192F /* QuartzCore.framework */,
+				820ABF071A8447E60022192F /* OpenGLES.framework */,
+				820ABF051A8447DD0022192F /* libz.dylib */,
+				820ABF121A847A7D0022192F /* GoogleMaps.bundle */,
+				820ABF031A8447C90022192F /* libicucore.dylib */,
+				820ABF011A8447AB0022192F /* libc++.dylib */,
+				820ABEFF1A8447920022192F /* ImageIO.framework */,
+				820ABEFD1A8447860022192F /* GLKit.framework */,
+				820ABEFB1A8447770022192F /* CoreText.framework */,
+				820ABEF91A84476A0022192F /* CoreData.framework */,
+				820ABEF71A84475B0022192F /* AVFoundation.framework */,
 				82BF8A201A74978C00237060 /* CoreLocation.framework */,
 				82BF8A1C1A7481BE00237060 /* MessageUI.framework */,
 				82A5C7F61A632A1600D55A54 /* iAd.framework */,
 				82A5C7F41A632A1100D55A54 /* MapKit.framework */,
 			);
-			name = Framework;
+			name = Frameworks;
 			path = SFBars;
 			sourceTree = "<group>";
 		};
@@ -430,7 +476,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82E917311A7987D3002D610E /* glyphicons-halflings-regular.ttf in Resources */,
+				820ABF131A847A7D0022192F /* GoogleMaps.bundle in Resources */,
 				82A5C8021A632B9800D55A54 /* DroidSans-Bold.ttf in Resources */,
 				8285AE891A7C4D4D004858FD /* BarDetail.json in Resources */,
 				82A5C8041A632B9800D55A54 /* FontAwesome.ttf in Resources */,
@@ -469,7 +515,6 @@
 				82A5C7EB1A63266100D55A54 /* Bar.m in Sources */,
 				82A5C7D41A63260B00D55A54 /* StreetTableViewCell.m in Sources */,
 				82DF04011A78231D00A451DC /* MenuItem.m in Sources */,
-				82E917341A79B25E002D610E /* NearMeViewController.m in Sources */,
 				82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */,
 				82CF532E1A7C2E800087F0F5 /* TopListViewController.m in Sources */,
 				8285AE8F1A7C69D4004858FD /* BarDetailHeaderViewCell.m in Sources */,
@@ -488,6 +533,7 @@
 				82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */,
 				82A5C7831A63125C00D55A54 /* main.m in Sources */,
 				82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */,
+				820ABEF01A84406E0022192F /* NearMeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +613,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -601,6 +648,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -613,6 +661,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/GoogleMaps-iOS-1.9.1",
+					"$(PROJECT_DIR)/SFBars",
+					"$(PROJECT_DIR)/SFBars/Frameworks",
+					"/Users/jackietrillo/code/Common/Frameworks/GoogleMaps-iOS-1.9.1",
 				);
 				INFOPLIST_FILE = SFBars/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -627,6 +678,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/GoogleMaps-iOS-1.9.1",
+					"$(PROJECT_DIR)/SFBars",
+					"$(PROJECT_DIR)/SFBars/Frameworks",
+					"/Users/jackietrillo/code/Common/Frameworks/GoogleMaps-iOS-1.9.1",
 				);
 				INFOPLIST_FILE = SFBars/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
