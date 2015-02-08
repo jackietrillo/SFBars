@@ -10,20 +10,15 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MessageUI/MessageUI.h>
+#import <MapKit/MapKit.h>
 #import "BarWebViewController.h"
-#import "BarMapViewController.h"
+#import "NearMeViewController.h"
 #import "BarDetailItem.h"
 #import "BarDetailHeaderViewCell.h"
 #import "Bar.h"
 
-@interface BarDetailsViewController : UIViewController
+@interface BarDetailsViewController : UIViewController <UIActionSheetDelegate>
 
 @property (readwrite, nonatomic, strong) Bar* selectedBar;
-
-
-
-
-
-
 
 @end

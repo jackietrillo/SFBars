@@ -59,17 +59,16 @@
     [self initNavigation];
 }
 
--(void)initNavigation
-{
+-(void)initNavigation {
     self.navigationItem.title = [self.titleText uppercaseString];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 
 }
--(NSMutableArray*)parseData: (NSData*)jsonData
-{
+
+-(NSMutableArray*)parseData: (NSData*)responseData {
     NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
     
     if (errorData != nil) {
        //TODO: alert user
@@ -131,13 +130,12 @@
     {
        // UIImage* filteredImage = [self addFilterToImage: bar.icon];
         cell.logo.image = bar.icon;
-        
     }
 
     return cell;
 }
 
--(UIImage*)addFilterToImage: (UIImage*)image{
+-(UIImage*)addFilterToImage: (UIImage*)image {
     
     CIContext *imgContext = [CIContext contextWithOptions:nil];
     
@@ -169,25 +167,6 @@
     [imageView setImage:newImgWithFilter];
     
     CGImageRelease(cgImgRef);
-}
-
-
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   //BarTableViewCell *cell = (BarTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-   //[self setCellColor:[UIColor yellowColor] ForCell:cell];  //highlight colour
-}
-
-- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   // Reset Colour.
-   //BarTableViewCell *cell = (BarTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-   //[self setCellColor:[UIColor blackColor] ForCell:cell]; //normal color
 }
 
 - (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell
@@ -273,27 +252,8 @@
 
 #pragma mark - Navigation
 
-- (IBAction)unwindToBar:(UIStoryboardSegue *)unwindSegue
-{
-    
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.destinationViewController isKindOfClass: [BarWebViewController class]])
-    {
-        BarWebViewController* barWebViewController = segue.destinationViewController;
-        UIButton* button = (UIButton*)(sender);
-        Bar* bar = self.data[button.tag]; //tag contains the NSIndexPath.row
-        barWebViewController.url = bar.websiteUrl;
-    }
-    if ([segue.destinationViewController isKindOfClass: [BarMapViewController class]])
-    {
-        BarMapViewController* barMapViewController = segue.destinationViewController;
-        UIButton* button = (UIButton*)(sender);
-        Bar* bar = self.data[button.tag]; //tag contains the NSIndexPath.row
-        barMapViewController.selectedBar = bar;
-    }
     if ([segue.destinationViewController isKindOfClass: [BarDetailsViewController class]])
     {
         BarDetailsViewController* barDetailsViewController = segue.destinationViewController;

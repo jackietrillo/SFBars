@@ -36,15 +36,13 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
    
     [self initNavigation];
     
-    AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    
-    if (delegate.cachedBarTypes == nil)
+    if (!self.appDelegate.cachedBarTypes)
     {
         [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
     }
     else
     {
-        [self loadData:delegate.cachedBarTypes];
+        [self loadData:self.appDelegate.cachedBarTypes];
     }
 }
 
@@ -66,71 +64,26 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
-//TODO: move into helper class
--(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
-    NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    
-    [urlRequest setHTTPMethod:method];
-    [urlRequest setValue:accept forHTTPHeaderField:@"Accept"];
-    
-    NSOperationQueue* queue = [[NSOperationQueue alloc] init];
-    
-    [NSURLConnection sendAsynchronousRequest:urlRequest
-                                       queue: queue
-                           completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError)
-     {
-         NSMutableArray* arrayData;
-         if (connectionError == nil && data != nil)
-         {
-             arrayData = [self parseData:data];
-         }
-         else
-         {
-             //TODO: alert user
-         }
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-             
-             if (arrayData != nil)
-             {
-                 AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-                 if (delegate.cachedBarTypes == nil)
-                 {
-                     delegate.cachedBarTypes = arrayData;
-                 }
-                 
-                 [self loadData: arrayData];
-             }
-             else
-             {
-                 //TODO: alert user
-             }
-         });
-
-     }];
-}
-
 -(void)loadData: (NSMutableArray*) data {
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    if (!self.appDelegate.cachedBarTypes) {
+        self.appDelegate.cachedBarTypes = data;
+    }
+    
+    self.tableView.hidden = NO;
     self.tableView.delegate = self;
     self.data = data;
-
-   
-   // self.tableView.sectionIndexBackgroundColor =[ UIColor blueColor];
     [self.tableView reloadData];
-    self.tableView.hidden = NO;
 }
 
--(NSMutableArray*)parseData: (NSData*)jsonData {
+-(NSMutableArray*)parseData: (NSData*)responseData {
     
     NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
     
-    if (errorData != nil)
-    {
+    if (errorData != nil) {
         //TODO: alert user
     }
     
@@ -166,9 +119,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
     cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
-   // cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
-
-    [cell.detailTextLabel setTextColor:[UIColor grayColor]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -184,7 +134,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
             cell.textLabel.text = barType.name;
            
             [self setCellStyle:cell];
-            
         }
         break;
     }
@@ -192,16 +141,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-  //  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-}
 
 #pragma mark - Navigation
-
-- (IBAction)unwindToBrowse:(UIStoryboardSegue *)unwindSegue {
-    
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

@@ -25,7 +25,12 @@ static NSString * const reuseIdentifier = @"Cell";
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    // Do any additional setup after loading the view.
+    [self initNavigation];
+}
+
+- (void)initNavigation {
+    
+    self.navigationItem.title = @"PARTIES"; //TODO: localize
 }
 
 - (void)didReceiveMemoryWarning {

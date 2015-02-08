@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import "BaseViewController.h"
+#import "AppDelegate.h"
+#import "Bar.h"
 
-@interface NearMeViewController : UIViewController
+@interface NearMeViewController : BaseViewController;
 
 @end

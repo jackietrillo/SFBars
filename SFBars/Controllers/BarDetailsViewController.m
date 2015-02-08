@@ -18,22 +18,23 @@
 
 @implementation BarDetailsViewController
 
-static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
+static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    [self initController];
+    [self initNavigation];
+    [self initTableViewHeader];
+    [self loadData];
 }
 
--(void)initController {
+- (void)initNavigation {
     
-    [self initNavigation];
-    
-    [self loadData];
-    
+    self.navigationItem.title = [self.selectedBar.name uppercaseString];
+}
+
+-(void)initTableViewHeader {
     NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"BarDetailHeaderViewCell" owner:nil options:nil];
-    
     BarDetailHeaderViewCell* headerView = [xib lastObject];
     headerView.frame = CGRectMake(0, 0, 150, 150);
     if (self.selectedBar.icon != nil)
@@ -47,11 +48,10 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
     self.tableView.tableHeaderView = headerView;
 }
 
-- (void)initNavigation {
-    
-    self.navigationItem.title = [self.selectedBar.name uppercaseString];
+-(void)initTableViewFooter {
+    UIView* tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 10.0)];
+    self.tableView.tableHeaderView = tableFooterView;
 }
-
 -(void)loadData {
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"BarDetail" ofType:@"json"];
@@ -65,8 +65,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
     
-    if (errorData != nil)
-    {
+    if (errorData != nil) {
         //TODO: Alert User
     }
     
@@ -74,23 +73,18 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
     self.dataFavorite = [[NSMutableArray alloc] init];
     self.dataShare = [[NSMutableArray alloc] init];
     
-    if (arrayData.count > 0)
-    {
-        for (int i = 0; i < arrayData.count; i++)
-        {
+    if (arrayData.count > 0) {
+        for (int i = 0; i < arrayData.count; i++) {
             NSDictionary* dictTemp = arrayData[i];
             BarDetailItem* item = [BarDetailItem initFromDictionary: dictTemp];
             
-            if (item.section == 0 && item.statusFlag == 1)
-            {
+            if (item.section == 0 && item.statusFlag == 1) {
                 [self.dataDetail addObject:item];
             }
-            else if (item.section == 1 && item.statusFlag == 1)
-            {
+            else if (item.section == 1 && item.statusFlag == 1) {
                 [self.dataFavorite addObject:item];
             }
-            else if (item.section == 2 && item.statusFlag == 1)
-            {
+            else if (item.section == 2 && item.statusFlag == 1) {
                 [self.dataShare addObject:item];
             }
         }
@@ -99,8 +93,8 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UIView* headerView = [[UIView alloc] init];
-    headerView.backgroundColor = [UIColor blackColor];
+    UIView* view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor blackColor];
     
     UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, -30, tableView.bounds.size.width-10, 100)];
     [titleLabel setFont:[UIFont fontWithName: @"Helvetica Neue" size: 15.0f]];
@@ -109,10 +103,9 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
     titleLabel.numberOfLines = 0;
     titleLabel.textColor = [UIColor grayColor];
     
-    [headerView addSubview:titleLabel];
+    [view addSubview:titleLabel];
     
     switch(section) {
-            
         case 0:
             titleLabel.text = self.selectedBar.descrip;
             break;
@@ -125,7 +118,14 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
         default:
             break;;
     }
-    return headerView;
+    return view;
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+   
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 50.0)];
+    view.backgroundColor = [UIColor blackColor];
+    return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -143,6 +143,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return 3;
 }
 
@@ -155,13 +156,14 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
         case 1:
             return 0.0f;
         case 2:
-            return 100.0f;
+            return 50.0f;
         default:
             return 0;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     switch(section)
     {
         case 0:
@@ -232,16 +234,12 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
     NSInteger rowIndex = indexPath.row;
     BarDetailItem* dataItem;
     
-    switch(indexPath.section)
-    {
+    switch(indexPath.section) {
         case 0:
-            
             dataItem = (BarDetailItem*)self.dataDetail[rowIndex];
             if ([dataItem.name isEqualToString:@"Address"]) {
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                BarMapViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarMapViewController"];
-                vc.selectedBar = self.selectedBar;
-                [self.navigationController pushViewController:vc animated:YES];
+                
+                [self openMapsActionSheet: self];
             }
             else if ([dataItem.name isEqualToString:@"Phone"]) {
                NSString* phoneNumber = [self.selectedBar.phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
@@ -252,7 +250,6 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
                     [[UIApplication sharedApplication] openURL: tel];
                 }
                 else {
-                    //TODO: how do we log this error?
                     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Unable to dial phone number" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                     [alertView show];
                 }
@@ -329,6 +326,47 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: localize
     }
 }
 
+-(void)openMapsActionSheet:(id)sender {
+   
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Open in Maps" //TODO: localize
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:@"Apple Maps", @"Google Maps", nil];
+    [sheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(self.selectedBar.latitude,self.selectedBar.longitude);
+    if (buttonIndex == 0) {
+       
+        MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:location addressDictionary:nil];
+        MKMapItem *item = [[MKMapItem alloc] initWithPlacemark:placemark];
+        item.name = self.selectedBar.name;
+        [item openInMapsWithLaunchOptions:nil];
+        
+    } else if (buttonIndex==1) {
+        /*TODO: use call back scheme instead
+         comgooglemaps-x-callback://?center=40.765819,-73.975866&zoom=14
+         &x-success=sourceapp://?resume=true
+         &x-source=SourceApp
+         */
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?daddr=%f,%f",location.latitude,location.longitude]];
+        if (![[UIApplication sharedApplication] canOpenURL:url]) {
+             //TODO: launch maps.google.com in safari instead of giving this alert.
+             UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Information"
+                                                                message:@"Google Maps is not installed on your device."
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Cancel"
+                                                       otherButtonTitles:nil];
+            
+            [alertView show];
+        } else {
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    }
+}
 
 #pragma mark - MFMailComposeViewControllerDelegate
 

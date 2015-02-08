@@ -20,8 +20,12 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self initNavigation];
+}
+
+- (void)initNavigation {
+    
+    self.navigationItem.title = @"TOP LIST"; //TODO: localize
 }
 
 - (void)didReceiveMemoryWarning {

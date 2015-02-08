@@ -326,42 +326,6 @@
             </objects>
             <point key="canvasLocation" x="-9768" y="-1859"/>
         </scene>
-        <!--BarMapViewController-->
-        <scene sceneID="F9x-Sj-rNx">
-            <objects>
-                <viewController storyboardIdentifier="BarMapViewController" id="2Gr-fs-CKA" userLabel="BarMapViewController" customClass="BarMapViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bGh-1I-LXg"/>
-                        <viewControllerLayoutGuide type="bottom" id="SzA-IB-Nad"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MmL-vy-7mx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNe-bl-Ocr">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="20" width="400" height="780"/>
-                                </variation>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="VNe-bl-Ocr" firstAttribute="top" secondItem="MmL-vy-7mx" secondAttribute="top" id="cEw-Qw-799"/>
-                            <constraint firstItem="VNe-bl-Ocr" firstAttribute="leading" secondItem="MmL-vy-7mx" secondAttribute="leading" id="ceU-VI-DAK"/>
-                            <constraint firstAttribute="trailing" secondItem="VNe-bl-Ocr" secondAttribute="trailing" id="s5l-HN-qiN"/>
-                            <constraint firstItem="VNe-bl-Ocr" firstAttribute="bottom" secondItem="SzA-IB-Nad" secondAttribute="top" id="yJb-Gi-pqq"/>
-                        </constraints>
-                    </view>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="mapView" destination="VNe-bl-Ocr" id="f0N-YD-bA8"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hdt-Cy-Smy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-9575" y="-387"/>
-        </scene>
         <!--NeighborhoodMeViewController-->
         <scene sceneID="sLd-O9-fVe">
             <objects>

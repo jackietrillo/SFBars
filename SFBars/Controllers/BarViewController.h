@@ -11,7 +11,6 @@
 #import "ImageDownloader.h"
 #import "BarWebViewController.h"
 #import "BarDetailsViewController.h"
-#import "BarMapViewController.h"
 #import "Bar.h"
 #import "BarTableViewCell.h"
 

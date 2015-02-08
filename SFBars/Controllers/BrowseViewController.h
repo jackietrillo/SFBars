@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 #import "BarViewController.h"
 #import "MenuViewController.h"
 #import "BarType.h"
 
-@interface BrowseViewController : UIViewController
+@interface BrowseViewController : BaseViewController
 
 @end
