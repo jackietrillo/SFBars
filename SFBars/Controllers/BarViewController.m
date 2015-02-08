@@ -8,7 +8,7 @@
 
 #import "BarViewController.h"
 
-@interface BarViewController () <UIScrollViewDelegate>
+@interface BarViewController () 
 
 @property (readwrite, nonatomic, strong) NSMutableArray* data;
 @property (nonatomic, nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
@@ -248,8 +248,6 @@
         NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
         barDetailsViewController.selectedBar = self.data[indexPath.row];
     }
-    
 }
-
 
 @end

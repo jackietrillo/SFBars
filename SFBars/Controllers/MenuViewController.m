@@ -267,7 +267,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
             
             if ([menuItem.name isEqualToString:@"Saved"]) {
                
-                //load up bars from NSUserDefaults
+                //load up saved bars from NSUserDefaults
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSMutableDictionary* savedBarsDict = [defaults objectForKey:SAVEDBARSDICT];
              
@@ -283,7 +283,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
                     
                     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                     BarViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarViewController"];
-                    vc.savedBars = savedBars;
+                    vc.bars = savedBars;
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                 else {

@@ -8,7 +8,7 @@
 
 #import "BarDetailsViewController.h"
 
-@interface BarDetailsViewController () <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+@interface BarDetailsViewController () 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readwrite, nonatomic, strong) NSMutableArray* dataDetail;
@@ -52,6 +52,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     UIView* tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 10.0)];
     self.tableView.tableHeaderView = tableFooterView;
 }
+
 -(void)loadData {
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"BarDetail" ofType:@"json"];

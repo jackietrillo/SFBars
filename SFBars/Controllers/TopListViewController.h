@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
+#import "AppDelegate.h"
+#import "BarDetailsViewController.h"
+#import "Bar.h"
 
-@interface TopListViewController : UITableViewController
+@interface TopListViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) IBOutlet UITableView* tableView;
 
 @end

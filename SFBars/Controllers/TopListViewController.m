@@ -10,17 +10,30 @@
 
 @interface TopListViewController ()
 
+@property (readwrite, nonatomic, strong) NSMutableArray* data;
+
 @end
 
 @implementation TopListViewController
 
+static NSString* reuseIdentifier = @"Cell";
+static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
+
     [self initNavigation];
+    
+    if (!self.appDelegate.cachedBars)
+    {
+        [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+    }
+    else
+    {
+        [self loadData: self.appDelegate.cachedBars];
+    }
+
 }
 
 - (void)initNavigation {
@@ -30,73 +43,105 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
+-(void)loadData: (NSMutableArray*) data {
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    if (!self.appDelegate.cachedBars) {
+        self.appDelegate.cachedBars = data;
+    }
+    
+    self.tableView.hidden = NO;
+    self.tableView.delegate = self;
+    self.data = data;
+    [self.tableView reloadData];
+}
+
+-(NSMutableArray*)parseData: (NSData*)responseData {
+    
+    NSError* errorData;
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
+    
+    if (errorData != nil) {
+        //TODO: alert user
+    }
+    
+    NSMutableArray* data = [[NSMutableArray alloc] init];
+    if (arrayData.count > 0)
+    {
+        for (int i = 0; i < arrayData.count; i++)
+        {
+            NSDictionary* dictTemp = arrayData[i];
+            Bar* bar = [Bar initFromDictionary:dictTemp];
+            [data addObject:bar];
+        }
+    }
+    return data;
+}
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 0;
+    
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 0;
+    
+    switch(section)
+    {
+        case 0:
+            return [self.data count];
+        default:
+            return 0;
+    }
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+-(void)setCellStyle:(UITableViewCell *)cell {
     
-    // Configure the cell...
+  //
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    
+    switch(indexPath.section)
+    {
+        case 0:
+            if (indexPath.row < self.data.count)
+            {
+                Bar* bar = (Bar*)[self.data objectAtIndex:indexPath.row];
+                UILabel* ranklabel = (UILabel*)[cell viewWithTag:1];
+                UILabel* namelabel = (UILabel*)[cell viewWithTag:2];
+                UILabel* descriplabel = (UILabel*)[cell viewWithTag:3];
+                
+                NSInteger rank = indexPath.row + 1;
+                ranklabel.text = [NSString stringWithFormat:@"%d", (int)rank];
+                namelabel.text = bar.name;
+                descriplabel.text = bar.descrip;
+                
+                [self setCellStyle:cell];
+            }
+            break;
+    }
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     
+     if ([segue.destinationViewController isKindOfClass: [BarDetailsViewController class]]) {
+         BarDetailsViewController* barDetailsViewController = segue.destinationViewController;
+         NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
+         barDetailsViewController.selectedBar = self.data[indexPath.row];
+     }
+ }
 
 @end

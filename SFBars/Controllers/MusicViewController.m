@@ -88,7 +88,7 @@
 
 -(void)setCellStyle:(UICollectionViewCell*)cell {
     cell.layer.borderWidth=1.0f;
-    cell.layer.borderColor=[UIColor yellowColor].CGColor;
+    cell.layer.borderColor=[UIColor whiteColor].CGColor;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:

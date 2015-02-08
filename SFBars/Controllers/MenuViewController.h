@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 #import "SettingsViewController.h"
 #import "BrowseViewController.h"
 #import "NearMeViewController.h"
@@ -15,6 +16,6 @@
 #import "PartiesViewController.h"
 #import "MenuItem.h"
 
-@interface MenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MenuViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

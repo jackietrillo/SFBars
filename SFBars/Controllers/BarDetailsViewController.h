@@ -17,7 +17,8 @@
 #import "BarDetailHeaderViewCell.h"
 #import "Bar.h"
 
-@interface BarDetailsViewController : UIViewController <UIActionSheetDelegate>
+@interface BarDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
+
 
 @property (readwrite, nonatomic, strong) Bar* selectedBar;
 

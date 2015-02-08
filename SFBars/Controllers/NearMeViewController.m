@@ -12,7 +12,6 @@
 @interface NearMeViewController ()
 
 @property (nonatomic, strong) GMSMapView* mapView;
-@property (nonatomic, strong) AppDelegate* appDelegate;
 
 @end
 

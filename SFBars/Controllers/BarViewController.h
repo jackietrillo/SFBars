@@ -15,11 +15,11 @@
 #import "BarTableViewCell.h"
 
 
-@interface BarViewController : UIViewController
+@interface BarViewController : UIViewController <UIScrollViewDelegate>
 
 @property (readwrite, nonatomic, strong) NSString* titleText;
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 
 @property (readwrite, nonatomic, strong) NSMutableArray* bars;
-@property (readwrite, nonatomic, strong) NSMutableArray* savedBars;
+
 @end
