@@ -34,21 +34,21 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 }
 
 -(void)initTableViewHeader {
+    
     NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"BarDetailHeaderViewCell" owner:nil options:nil];
     BarDetailHeaderViewCell* headerView = [xib lastObject];
     headerView.frame = CGRectMake(0, 0, 150, 150);
-    if (self.selectedBar.icon != nil)
-    {
+    if (self.selectedBar.icon != nil) {
         headerView.logo.image = self.selectedBar.icon;
     }
-    else
-    {
+    else {
         headerView.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     }
     self.tableView.tableHeaderView = headerView;
 }
 
 -(void)initTableViewFooter {
+    
     UIView* tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 10.0)];
     self.tableView.tableHeaderView = tableFooterView;
 }

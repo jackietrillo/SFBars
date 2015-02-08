@@ -19,13 +19,6 @@
     
     [super viewDidLoad];
     
-    [self initController];
-}
-
--(void)initController {
-    
-    [self initNavigation];
-
     [self loadData];
 }
 

@@ -26,47 +26,36 @@
 {
     [super viewDidLoad];
     
-    [self initController];
-}
-
-- (void)dealloc
-{
-    [self terminateImageDownloads];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    
-    [self terminateImageDownloads];
-}
-
--(void)initController
-{
-    if (self.bars != nil)
-    {
-       self.data = self.bars;
-    }
-    else
-    {
-       //TODO: alert user
-    
-    }
-    self.canDisplayBannerAds = YES;
-    
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
-    
+    self.canDisplayBannerAds = YES;
     [self initNavigation];
+    
+    if (self.bars != nil) {
+        self.data = self.bars;
+    }
+    else {
+        //TODO: alert user
+    }
+}
+
+- (void)dealloc {
+    [self terminateImageDownloads];
+}
+
+- (void)didReceiveMemoryWarning {
+    
+    [super didReceiveMemoryWarning];
+    [self terminateImageDownloads];
 }
 
 -(void)initNavigation {
-    self.navigationItem.title = [self.titleText uppercaseString];
     
+    self.navigationItem.title = [self.titleText uppercaseString];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
-
 }
 
 -(NSMutableArray*)parseData: (NSData*)responseData {
+    
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
     
@@ -175,7 +164,6 @@
     bgColorView.backgroundColor = color;
     [cell setSelectedBackgroundView:bgColorView];
 }
-
 
 #pragma mark - Table cell image download support
 

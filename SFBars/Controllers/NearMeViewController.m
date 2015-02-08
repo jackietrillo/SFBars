@@ -76,7 +76,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
         GMSMarker* marker = [self createMarker:data[i]];
         marker.map = self.mapView;
     }
-    
 }
 
 -(void)initMapView {
@@ -89,11 +88,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
         cameraLocation =   CLLocationCoordinate2DMake(37.761622, -122.435285); //TODO: remove hardcoded constants
     }
     
-    GMSCameraPosition* camera = [GMSCameraPosition cameraWithLatitude:cameraLocation.latitude
-                                                            longitude:cameraLocation.longitude
-                                                                 zoom:15
-                                                              bearing:0
-                                                         viewingAngle:120];
+    GMSCameraPosition* camera = [GMSCameraPosition cameraWithLatitude:cameraLocation.latitude longitude:cameraLocation.longitude zoom:15 bearing:0 viewingAngle:120];
     
     self.mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
     

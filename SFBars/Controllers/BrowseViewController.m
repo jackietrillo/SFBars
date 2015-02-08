@@ -24,24 +24,14 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   
-    [self initController];
-}
-
--(void)initController {
-    self.tableView.hidden = YES;
-    self.canDisplayBannerAds = YES;
-   
-    [self.navigationController setToolbarHidden:YES animated:YES];
-   
     [self initNavigation];
-    
-    if (!self.appDelegate.cachedBarTypes)
-    {
+    self.canDisplayBannerAds = YES;
+    self.tableView.hidden = YES;
+
+    if (!self.appDelegate.cachedBarTypes) {
         [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
     }
-    else
-    {
+    else {
         [self loadData:self.appDelegate.cachedBarTypes];
     }
 }
@@ -62,6 +52,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     self.navigationItem.leftBarButtonItem = menuButton;
     self.navigationItem.title = @"BROWSE"; //TODO: Localize
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+    
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 -(void)loadData: (NSMutableArray*) data {
@@ -97,15 +89,16 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
             [dataByType addObject:barType];
         }
     }
-    
     return dataByType;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     switch(section)
     {
         case 0:
@@ -116,6 +109,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 }
 
 -(void)setCellStyle:(UITableViewCell *)cell {
+    
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
     cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
@@ -144,8 +138,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
     BarViewController* barsViewController = segue.destinationViewController;
     BarType* barType = self.data[indexPath.row];

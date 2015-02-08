@@ -17,10 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initController];
+    [self initWebView];
 }
 
--(void)initController {
+-(void)initWebView {
     
     self.canDisplayBannerAds = YES;
    
