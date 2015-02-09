@@ -1,8 +1,8 @@
 //
-//  PartiesViewController.m
+//  MusicViewController.m
 //  SFBars
 //
-//  Created by JACKIE TRILLO on 1/30/15.
+//  Created by JACKIE TRILLO on 2/3/15.
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
@@ -10,94 +10,116 @@
 
 @interface PartiesViewController ()
 
+@property (readwrite, nonatomic, strong) NSMutableArray* data;
 @end
 
 @implementation PartiesViewController
 
-static NSString * const reuseIdentifier = @"Cell";
-
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
+    [self loadData];
     [self initNavigation];
 }
 
-- (void)initNavigation {
+-(void)initNavigation {
+    //menu button
+    UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
     
-    self.navigationItem.title = @"PARTIES"; //TODO: localize
+    UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
+    NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
+    
+    [menuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
+    [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
+    
+    [menuButton setTarget:self];
+    [menuButton setAction:@selector(showMenu:)];
+    
+    self.navigationItem.leftBarButtonItem = menuButton;
+    self.navigationItem.title = @"PARTIES"; //TODO: Localize
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)loadData {
+    
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"Parties" ofType:@"json"];
+    NSData* data = [NSData dataWithContentsOfFile:path];
+    
+    [self parseData:data];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)parseData: (NSData*)jsonData {
+    
+    NSError* errorData;
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
+    
+    if (errorData != nil) {
+        //TODO: log error
+        //TODO: alert User
+    }
+    
+    self.data = [[NSMutableArray alloc] init];
+    
+    if (arrayData.count > 0) {
+        
+        for (int i = 0; i < arrayData.count; i++) {
+            
+            NSDictionary* dictTemp = arrayData[i];
+            MenuItem* menuItem = [MenuItem initFromDictionary: dictTemp];
+            
+            [self.data addObject:menuItem];
+            
+        }
+    }
 }
-*/
 
-#pragma mark <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-
-    return 0;
-}
-
+#pragma UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
-    return 0;
+    
+    switch (section) {
+        case 0:
+            return self.data.count;
+            
+        default:
+            return 0;
+    }
 }
 
+-(void)setCellStyle:(UICollectionViewCell*)cell {
+    cell.layer.borderWidth=1.0f;
+    cell.layer.borderColor=[UIColor whiteColor].CGColor;
+}
+
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Configure the cell
+    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    UIImageView* imageView = (UIImageView*)[cell viewWithTag:1];
+    imageView.frame = cell.bounds;
+    imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
+    
+    UILabel* textlabel = (UILabel*)[cell viewWithTag:2];
+    
+    MenuItem* menuItem = (MenuItem*)self.data[indexPath.row];
+    textlabel.text = menuItem.name;
+    
+    [self setCellStyle:cell];
     
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
+#pragma mark - Navigation
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
+- (void)showMenu:(id)sender {
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end

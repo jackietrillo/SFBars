@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-#import "SettingsViewController.h"
+#import "SearchViewController.h"
 #import "BrowseViewController.h"
 #import "NearMeViewController.h"
 #import "TopListViewController.h"
 #import "MusicViewController.h"
 #import "PartiesViewController.h"
+#import "SettingsViewController.h"
 #import "MenuItem.h"
 
 @interface MenuViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>

@@ -19,6 +19,7 @@
 		820ABF081A8447E60022192F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF071A8447E60022192F /* OpenGLES.framework */; };
 		820ABF0A1A8447F50022192F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF091A8447F50022192F /* QuartzCore.framework */; };
 		820ABF0C1A8448030022192F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF0B1A8448030022192F /* SystemConfiguration.framework */; };
+		826D03551A881CBC0051189B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 826D03541A881CBC0051189B /* SearchViewController.m */; };
 		8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61D1A761B7200D2466D /* BarDetailsViewController.m */; };
 		8285AE891A7C4D4D004858FD /* BarDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 8285AE881A7C4D4D004858FD /* BarDetail.json */; };
 		8285AE8C1A7C546F004858FD /* BarDetailItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8285AE8B1A7C546F004858FD /* BarDetailItem.m */; };
@@ -93,6 +94,8 @@
 		820ABF091A8447F50022192F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		820ABF0B1A8448030022192F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		820ABF151A847AF20022192F /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "glyphicons-halflings-regular.ttf"; path = "SFBars/Resources/Fonts/glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
+		826D03531A881CBC0051189B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = SFBars/Controllers/SearchViewController.h; sourceTree = "<group>"; };
+		826D03541A881CBC0051189B /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = SFBars/Controllers/SearchViewController.m; sourceTree = "<group>"; };
 		8285AE881A7C4D4D004858FD /* BarDetail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BarDetail.json; path = SFBars/Resources/BarDetail.json; sourceTree = "<group>"; };
 		8285AE8A1A7C546F004858FD /* BarDetailItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailItem.h; path = SFBars/Models/BarDetailItem.h; sourceTree = "<group>"; };
 		8285AE8B1A7C546F004858FD /* BarDetailItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailItem.m; path = SFBars/Models/BarDetailItem.m; sourceTree = "<group>"; };
@@ -156,7 +159,7 @@
 		82D6680C1A86DBB4004B19DB /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = SFBars/Controllers/BaseViewController.h; sourceTree = "<group>"; };
 		82D6680D1A86DBB4004B19DB /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = SFBars/Controllers/BaseViewController.m; sourceTree = "<group>"; };
 		82D668131A86E0E7004B19DB /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Frameworks/GoogleMaps.framework; sourceTree = SOURCE_ROOT; };
-		82D668151A86E133004B19DB /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		82D668151A86E133004B19DB /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		82DF03F81A7815E700A451DC /* Menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Menu.json; path = SFBars/Resources/Menu.json; sourceTree = "<group>"; };
 		82DF03FF1A78231D00A451DC /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuItem.h; path = SFBars/Models/MenuItem.h; sourceTree = "<group>"; };
 		82DF04001A78231D00A451DC /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuItem.m; path = SFBars/Models/MenuItem.m; sourceTree = "<group>"; };
@@ -206,7 +209,6 @@
 		82A5C7741A63125C00D55A54 = {
 			isa = PBXGroup;
 			children = (
-				82D668151A86E133004B19DB /* GoogleMaps.bundle */,
 				82A5C77F1A63125C00D55A54 /* SFBars */,
 				82A5C7991A63125C00D55A54 /* SFBarsTests */,
 				82A5C80A1A632C1800D55A54 /* Frameworks */,
@@ -276,6 +278,8 @@
 				82BB60071A64D763002F5578 /* BarViewController.m */,
 				82A5C7D51A63263400D55A54 /* BarWebViewController.h */,
 				82A5C7D61A63263400D55A54 /* BarWebViewController.m */,
+				826D03531A881CBC0051189B /* SearchViewController.h */,
+				826D03541A881CBC0051189B /* SearchViewController.m */,
 				82A5C7D91A63263400D55A54 /* NavigationViewController.h */,
 				82A5C7DA1A63263400D55A54 /* NavigationViewController.m */,
 				82C705F91A75BCAC0045F973 /* MenuViewController.h */,
@@ -376,6 +380,7 @@
 		82A5C80A1A632C1800D55A54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82D668151A86E133004B19DB /* GoogleMaps.bundle */,
 				82D668131A86E0E7004B19DB /* GoogleMaps.framework */,
 				820ABF0B1A8448030022192F /* SystemConfiguration.framework */,
 				820ABF091A8447F50022192F /* QuartzCore.framework */,
@@ -525,6 +530,7 @@
 				82BB60081A64D763002F5578 /* BarViewController.m in Sources */,
 				8285AE8C1A7C546F004858FD /* BarDetailItem.m in Sources */,
 				82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */,
+				826D03551A881CBC0051189B /* SearchViewController.m in Sources */,
 				828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
 				82BB5FF01A649E55002F5578 /* BarType.m in Sources */,

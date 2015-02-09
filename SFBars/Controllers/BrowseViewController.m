@@ -112,6 +112,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
+    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
     cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
 }
 

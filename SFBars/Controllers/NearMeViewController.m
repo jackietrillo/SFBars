@@ -87,7 +87,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
         cameraLocation =   CLLocationCoordinate2DMake(37.761622, -122.435285); //TODO: remove hardcoded constants
     }
     
-    GMSCameraPosition* camera = [GMSCameraPosition cameraWithLatitude:cameraLocation.latitude longitude:cameraLocation.longitude zoom:15 bearing:0 viewingAngle:120];
+    GMSCameraPosition* camera = [GMSCameraPosition cameraWithLatitude:cameraLocation.latitude longitude:cameraLocation.longitude zoom:0 bearing:0 viewingAngle:0];
     
     self.mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
     
@@ -99,6 +99,9 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     [self.mapView setMinZoom:10.0 maxZoom:20.0];
     
     self.view = self.mapView;
+    
+    [self.mapView animateToZoom:15];
+    [self.mapView animateToViewingAngle:120];
 }
 
 -(GMSMarker*)createMarker:(Bar*)bar {

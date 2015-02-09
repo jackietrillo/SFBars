@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "TopListViewController.h"
+#import "SearchViewController.h"
 
-@interface TopListViewController ()
+@interface SearchViewController ()
 
 @property (readwrite, nonatomic, strong) NSMutableArray* data;
 
 @end
 
-@implementation TopListViewController
+@implementation SearchViewController
 
 static NSString* reuseIdentifier = @"Cell";
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
@@ -38,8 +38,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 - (void)initNavigation {
     
-    self.navigationItem.title = @"TOP LIST"; //TODO: localize
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+    self.navigationItem.title = @"SEARCH"; //TODO: localize
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,10 +69,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     }
     
     NSMutableArray* data = [[NSMutableArray alloc] init];
-    if (arrayData.count > 0)
-    {
-        for (int i = 0; i < arrayData.count; i++)
-        {
+    if (arrayData.count > 0) {
+        for (int i = 0; i < arrayData.count; i++) {
             NSDictionary* dictTemp = arrayData[i];
             Bar* bar = [Bar initFromDictionary:dictTemp];
             [data addObject:bar];
@@ -103,13 +100,12 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 -(void)setCellStyle:(UITableViewCell *)cell {
     
-    UILabel* ranklabel = (UILabel*)[cell viewWithTag:1];
-    UILabel* namelabel = (UILabel*)[cell viewWithTag:2];
-    UILabel* descriplabel = (UILabel*)[cell viewWithTag:3];
-    
-    ranklabel.highlightedTextColor = [UIColor whiteColor];
-    namelabel.highlightedTextColor = [UIColor grayColor];
-    descriplabel.highlightedTextColor = [UIColor blackColor];
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    cell.textLabel.highlightedTextColor = [UIColor blackColor];
+    [cell.detailTextLabel setTextColor:[UIColor whiteColor]];
+    cell.detailTextLabel.numberOfLines = 0;
+    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [cell.detailTextLabel sizeToFit];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -122,14 +118,9 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
             if (indexPath.row < self.data.count)
             {
                 Bar* bar = (Bar*)[self.data objectAtIndex:indexPath.row];
-                UILabel* ranklabel = (UILabel*)[cell viewWithTag:1];
-                UILabel* namelabel = (UILabel*)[cell viewWithTag:2];
-                UILabel* descriplabel = (UILabel*)[cell viewWithTag:3];
+                cell.textLabel.text = bar.name;
+                cell.detailTextLabel.text = bar.descrip;
                 
-                NSInteger rank = indexPath.row + 1;
-                ranklabel.text = [NSString stringWithFormat:@"%d", (int)rank];
-                namelabel.text = bar.name;
-                descriplabel.text = bar.descrip;
                 [self setCellStyle:cell];
             }
             break;
@@ -138,25 +129,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    
-    cell.selectedBackgroundView = [[UIView alloc] init];
-    cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
-    
-    //Hack because seperator disappear when cell is selected
-    UIView* separatorLineTop = [[UIView alloc] initWithFrame:CGRectMake(10, 0, cell.bounds.size.width, 0.5)];
-    separatorLineTop.backgroundColor = [UIColor yellowColor];
-    
-    [cell.selectedBackgroundView addSubview:separatorLineTop];
-    
-    UIView* separatorLineBotton = [[UIView alloc] initWithFrame:CGRectMake(10, cell.bounds.size.height - 1, cell.bounds.size.width , 0.5)];
-    separatorLineBotton.backgroundColor = [UIColor yellowColor];
-    [cell.selectedBackgroundView addSubview:separatorLineBotton];
-    
-    return YES;
-}
 
 #pragma mark - Navigation
 

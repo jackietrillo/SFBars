@@ -51,10 +51,10 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
     NSString* path = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"json"];
     NSData* data = [NSData dataWithContentsOfFile:path];
     
-    [self parseData:data];
+    [self parseData2:data];
 }
 
--(void)parseData: (NSData*)jsonData {
+-(void)parseData2: (NSData*)jsonData {
     
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
@@ -234,6 +234,11 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
         case 0:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
             
+            if ([menuItem.name isEqualToString:@"Search"]) {
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                SearchViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
             if ([menuItem.name isEqualToString:@"Browse"]) {
                 UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 BrowseViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BrowseViewController"];
@@ -271,7 +276,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSMutableDictionary* savedBarsDict = [defaults objectForKey:SAVEDBARSDICT];
              
-                if (savedBarsDict != nil && savedBarsDict.count > 0) {
+                if (savedBarsDict != nil && savedBarsDict.count == 110) {
                     NSMutableArray* savedBars = [[NSMutableArray alloc] init];
                
                     for (id key in savedBarsDict) {
