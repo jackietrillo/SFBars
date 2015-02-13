@@ -10,9 +10,9 @@
 
 @interface Bar()
 
-@property (readwrite, nonatomic, strong) NSNumber* barId;
-@property (readwrite, nonatomic, strong) NSNumber* streetId;
-@property (readwrite, nonatomic, strong) NSNumber* districtId;
+@property (readwrite, nonatomic) NSInteger barId;
+@property (readwrite, nonatomic) NSInteger districtId;
+@property (readwrite, nonatomic) NSInteger musicTypeId;
 @property (readwrite, nonatomic, strong) NSString* name;
 @property (readwrite, nonatomic, strong) NSString* descrip;
 @property (readwrite, nonatomic, strong) NSString* address;
@@ -31,8 +31,8 @@
 @implementation Bar
 
 static const NSString* BARID = @"barId";
-static const NSString* STREETID = @"streetId";
 static const NSString* DISTRICTID = @"districtId";
+static const NSString* MUSICTYPEID = @"musicTypeId";
 static const NSString* NAME = @"name";
 static const NSString* DESCRIPTION = @"descrip";
 static const NSString* ADDRESS = @"address";
@@ -56,9 +56,13 @@ static const NSString* YELPURL = @"yelpUrl";
 +(id)initFromDictionary:(NSDictionary*)dict
 {
     Bar* bar = [[Bar alloc] init];
-    bar.barId = dict[BARID];
-    bar.streetId = dict[STREETID];
-    bar.districtId = dict[DISTRICTID];
+    bar.barId = [dict[BARID] longValue];
+    if (!dict[DISTRICTID]) {
+        bar.districtId = [dict[DISTRICTID] longValue];
+    }
+    if (!dict[MUSICTYPEID]) {
+        bar.musicTypeId = [dict[MUSICTYPEID] longValue];
+    }
     bar.name = dict[NAME];
     bar.descrip = dict[DESCRIPTION];
     bar.address = dict[ADDRESS];

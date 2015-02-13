@@ -9,16 +9,20 @@
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
 #import "ImageDownloader.h"
+#import "BaseViewController.h"
 #import "BarWebViewController.h"
 #import "BarDetailsViewController.h"
 #import "Bar.h"
 #import "BarTableViewCell.h"
+#import "Enums.h"
 
-
-@interface BarViewController : UIViewController <UIScrollViewDelegate>
+@interface BarViewController : BaseViewController <UIScrollViewDelegate>
 
 @property (readwrite, nonatomic, strong) NSString* titleText;
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
+
+@property (readwrite, nonatomic) FilterType filterType;
+@property (readwrite, nonatomic) NSInteger filterId;
 
 @property (readwrite, nonatomic, strong) NSMutableArray* bars;
 

@@ -109,7 +109,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     
     ranklabel.highlightedTextColor = [UIColor whiteColor];
     namelabel.highlightedTextColor = [UIColor grayColor];
-    descriplabel.highlightedTextColor = [UIColor blackColor];
+    descriplabel.highlightedTextColor = [UIColor grayColor];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

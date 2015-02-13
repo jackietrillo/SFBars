@@ -58,10 +58,10 @@
 		82CF532E1A7C2E800087F0F5 /* TopListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CF532D1A7C2E800087F0F5 /* TopListViewController.m */; };
 		82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CF53301A7C2E9B0087F0F5 /* PartiesViewController.m */; };
 		82D6680E1A86DBB4004B19DB /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D6680D1A86DBB4004B19DB /* BaseViewController.m */; };
-		82D668141A86E0E7004B19DB /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D668131A86E0E7004B19DB /* GoogleMaps.framework */; };
 		82D668161A86E133004B19DB /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82D668151A86E133004B19DB /* GoogleMaps.bundle */; };
 		82DF03F91A7815E700A451DC /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 82DF03F81A7815E700A451DC /* Menu.json */; };
 		82DF04011A78231D00A451DC /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DF04001A78231D00A451DC /* MenuItem.m */; };
+		82E8E1931A8DAC620042F2C4 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D668131A86E0E7004B19DB /* GoogleMaps.framework */; };
 		82E917371A79B4D7002D610E /* District.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E917361A79B4D7002D610E /* District.m */; };
 		82E93AAD1A81676A0034F9D6 /* MusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E93AAC1A81676A0034F9D6 /* MusicViewController.m */; };
 		82E93AAF1A816A1E0034F9D6 /* Music.json in Resources */ = {isa = PBXBuildFile; fileRef = 82E93AAE1A816A1E0034F9D6 /* Music.json */; };
@@ -163,6 +163,7 @@
 		82DF03F81A7815E700A451DC /* Menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Menu.json; path = SFBars/Resources/Menu.json; sourceTree = "<group>"; };
 		82DF03FF1A78231D00A451DC /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuItem.h; path = SFBars/Models/MenuItem.h; sourceTree = "<group>"; };
 		82DF04001A78231D00A451DC /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuItem.m; path = SFBars/Models/MenuItem.m; sourceTree = "<group>"; };
+		82E8E1921A8DAB1A0042F2C4 /* Enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Enums.h; path = Common/Enums.h; sourceTree = "<group>"; };
 		82E917351A79B4D7002D610E /* District.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = District.h; path = SFBars/Models/District.h; sourceTree = "<group>"; };
 		82E917361A79B4D7002D610E /* District.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = District.m; path = SFBars/Models/District.m; sourceTree = "<group>"; };
 		82E93AAB1A81676A0034F9D6 /* MusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MusicViewController.h; path = SFBars/Controllers/MusicViewController.h; sourceTree = "<group>"; };
@@ -177,6 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82E8E1931A8DAC620042F2C4 /* GoogleMaps.framework in Frameworks */,
 				820ABF0C1A8448030022192F /* SystemConfiguration.framework in Frameworks */,
 				820ABF0A1A8447F50022192F /* QuartzCore.framework in Frameworks */,
 				820ABF081A8447E60022192F /* OpenGLES.framework in Frameworks */,
@@ -191,7 +193,6 @@
 				82BF8A211A74978C00237060 /* CoreLocation.framework in Frameworks */,
 				82BF8A1D1A7481BE00237060 /* MessageUI.framework in Frameworks */,
 				82A5C7F71A632A1600D55A54 /* iAd.framework in Frameworks */,
-				82D668141A86E0E7004B19DB /* GoogleMaps.framework in Frameworks */,
 				82A5C7F51A632A1100D55A54 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +348,7 @@
 				82A5C7C41A631FD500D55A54 /* ConnectionHelper.m */,
 				82BA4C121A70830100E71F40 /* ImageDownloader.h */,
 				82BA4C131A70830100E71F40 /* ImageDownloader.m */,
+				82E8E1921A8DAB1A0042F2C4 /* Enums.h */,
 			);
 			name = Common;
 			sourceTree = "<group>";

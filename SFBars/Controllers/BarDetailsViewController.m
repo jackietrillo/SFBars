@@ -292,20 +292,20 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
                     savedBarsDict = [[NSMutableDictionary alloc] init];
                 }
                 
-                NSObject* barId =  [savedBarsDict objectForKey:self.selectedBar.barId];
+                NSString* barIdAsString =  [NSString stringWithFormat:@"%d", (int)self.selectedBar.barId];
+                
+                NSObject* barId =  [savedBarsDict objectForKey:barIdAsString];
                 if (barId == nil) {
-                    [savedBarsDict setValue:self.selectedBar.barId forKey:[self.selectedBar.barId stringValue]];
+                    [savedBarsDict setValue:barIdAsString forKey:barIdAsString];
                
-                    //TODO: localize
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]; //TODO: localize
                     [alertView show];
                     
                 } else {
                     
-                    [savedBarsDict removeObjectForKey:self.selectedBar.barId];
+                    [savedBarsDict removeObjectForKey:barIdAsString];
                     
-                    //TODO: localize
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Unsaved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Unsaved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]; //TODO: localize
                     [alertView show];
                 }
                 

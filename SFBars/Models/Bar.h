@@ -11,8 +11,9 @@
 
 @interface Bar: BaseEntity
 
-@property (readonly, nonatomic, strong) NSNumber* barId;
-@property (readonly, nonatomic, strong) NSNumber* streetId;
+@property (readonly, nonatomic) NSInteger barId;
+@property (readonly, nonatomic) NSInteger districtId;
+@property (readonly, nonatomic) NSInteger barTypeId;
 @property (readonly, nonatomic, strong) NSString* descrip;
 @property (readonly, nonatomic, strong) NSString* address;
 @property (readonly, nonatomic, strong) NSString* phone;
@@ -25,11 +26,6 @@
 @property (readonly, nonatomic) double latitude;
 @property (readonly, nonatomic) double longitude;
 
-
-
 +(id)initFromDictionary:(NSDictionary*)dict;
-
-//+(id)initFromDictionary:(NSDictionary*)dict withDistrict: (District*) district;
-
 
 @end

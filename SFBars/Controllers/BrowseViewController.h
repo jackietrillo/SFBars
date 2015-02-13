@@ -11,6 +11,8 @@
 #import "BarViewController.h"
 #import "MenuViewController.h"
 #import "BarType.h"
+#import "AppDelegate.h"
+#import "Enums.h"
 
 @interface BrowseViewController : BaseViewController
 

@@ -17,24 +17,23 @@
 
 @implementation BarViewController
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-}
+static NSString* reuseIdentifier = @"Cell";
+static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     self.canDisplayBannerAds = YES;
-    [self initNavigation];
+    self.tableView.hidden = YES;
+    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     
-    if (self.bars != nil) {
-        self.data = self.bars;
+    [self initNavigation];
+
+    if (!self.appDelegate.cachedBars) {
+        [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
     }
     else {
-        //TODO: alert user
+        [self loadData:self.appDelegate.cachedBars];
     }
 }
 
@@ -65,10 +64,8 @@
     
     NSMutableArray* bars = [[NSMutableArray alloc] init];
     
-    if (arrayData.count > 0)
-    {
-        for (int i = 0; i < arrayData.count; i++)
-        {
+    if (arrayData.count > 0) {
+        for (int i = 0; i < arrayData.count; i++) {
             NSDictionary* dictTemp = arrayData[i];
             Bar* bar = [Bar initFromDictionary:dictTemp];
             [bars addObject:bar];
@@ -78,11 +75,30 @@
     return bars;
 }
 
--(void)loadData: (NSMutableArray*) arrayData
-{
+-(void)loadData: (NSMutableArray*) data {
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
    
-    self.data = arrayData;
+    if (!data) {
+        return;
+    }
+    
+    if (!self.appDelegate.cachedBars) {
+        self.appDelegate.cachedBars = data;
+    }
+    
+    if (self.filterType != FilterByNotAssigned && self.filterId > 0) {
+        NSMutableArray* filteredData = [[NSMutableArray alloc] init];
+        for (int i = 0; i < data.count; i++) {
+            Bar* bar = (Bar*)data[i];
+            
+            [filteredData addObject:bar];
+        }
+        self.data = filteredData;
+    }
+    else {
+        self.data = data;
+    }
     
     [self.tableView reloadData];
     self.tableView.hidden = NO;

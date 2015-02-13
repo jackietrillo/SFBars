@@ -11,7 +11,7 @@
 
 @interface BarType()
 
-@property (readwrite, nonatomic, strong) NSNumber* barTypeId;
+@property (readwrite, nonatomic) NSInteger barTypeId;
 @property (readwrite, nonatomic, strong) NSString* name;
 @property (readwrite, nonatomic, strong) NSString* imageUrl;
 @property (readwrite, nonatomic, strong) NSMutableArray* bars;
@@ -34,22 +34,23 @@ static const NSString* BARS = @"bars";
 +(id)initFromDictionary:(NSDictionary*)dict
 {
     BarType* barType = [[BarType alloc] init];
-    barType.barTypeId = dict[BARTYPEID];
+    barType.barTypeId = [dict[BARTYPEID] longValue];
     barType.name = dict[NAME];
     barType.imageUrl = dict[IMAGEURL];
     
-    NSArray* arrayBarData = dict[BARS];
+    NSArray* bars = dict[BARS];
     
-    barType.bars = [[NSMutableArray alloc] init];
-    
-    //load bars
-    for (int i = 0; i < arrayBarData.count ; i++)
-    {
-        NSDictionary* dictTemp = arrayBarData[i];
-        Bar* bar = [Bar initFromDictionary:dictTemp ];
-        [barType.bars addObject:bar];
+    if (bars) {
+        barType.bars = [[NSMutableArray alloc] init];
+        
+        //load bars
+        for (int i = 0; i < bars.count ; i++)
+        {
+            NSDictionary* dictTemp = bars[i];
+            Bar* bar = [Bar initFromDictionary:dictTemp ];
+            [barType.bars addObject:bar];
+        }
     }
-    
     return barType;
 }
 

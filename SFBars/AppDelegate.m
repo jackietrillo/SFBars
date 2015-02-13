@@ -19,7 +19,7 @@
 
 static NSString* reuseIdentifier = @"Cell";
 
-static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
+static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
@@ -50,6 +50,4 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
-
 @end

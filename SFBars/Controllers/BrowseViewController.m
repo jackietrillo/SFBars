@@ -7,7 +7,7 @@
 //
 
 #import "BrowseViewController.h"
-#import "AppDelegate.h"
+
 
 @interface BrowseViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -37,7 +37,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 }
 
 -(void)initNavigation {
-    //menu button
     UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
     
     UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
@@ -60,14 +59,19 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
+    if (!data) {
+        return;
+    }
+    
     if (!self.appDelegate.cachedBarTypes) {
         self.appDelegate.cachedBarTypes = data;
     }
-    
+
     self.tableView.hidden = NO;
     self.tableView.delegate = self;
     self.data = data;
     [self.tableView reloadData];
+    
 }
 
 -(NSMutableArray*)parseData: (NSData*)responseData {
@@ -75,21 +79,33 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
     
-    if (errorData != nil) {
-        //TODO: alert user
-    }
-    
-    NSMutableArray* dataByType = [[NSMutableArray alloc] init];
-    if (arrayData.count > 0)
-    {
-        for (int i = 0; i < arrayData.count; i++)
+    @try {
+       
+        NSMutableArray* dataByType = [[NSMutableArray alloc] init];
+        if (arrayData.count > 0)
         {
-            NSDictionary* dictTemp = arrayData[i];
-            BarType* barType = [BarType initFromDictionary:dictTemp];
-            [dataByType addObject:barType];
+            for (int i = 0; i < arrayData.count; i++)
+            {
+                NSDictionary* dictTemp = arrayData[i];
+                BarType* barType = [BarType initFromDictionary:dictTemp];
+                [dataByType addObject:barType];
+            }
         }
+        return dataByType;
+
     }
-    return dataByType;
+    @catch (NSException *exception) {
+        //TODO: localize
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Infromation"
+                                                            message:@"Unable to retrieve data at this time. Please try again later."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        
+        [alertView show];
+        
+        return nil;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -145,7 +161,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     BarViewController* barsViewController = segue.destinationViewController;
     BarType* barType = self.data[indexPath.row];
     barsViewController.titleText = barType.name;
-    barsViewController.bars = barType.bars;
+    barsViewController.filterId = barType.barTypeId;
+    //barsViewController.filterType = FilterByNotAssigned;
 }
 
 - (void)showMenu:(id)sender {
