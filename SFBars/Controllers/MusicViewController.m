@@ -46,6 +46,8 @@
     NSData* data = [NSData dataWithContentsOfFile:path];
     
     [self parseData:data];
+    
+    data = nil;
 }
 
 -(void)parseData: (NSData*)jsonData {

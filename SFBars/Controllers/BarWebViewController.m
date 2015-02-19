@@ -20,6 +20,11 @@
     [self initWebView];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    NSString* className = NSStringFromClass ([self class]);
+    NSLog(@"%@", className);
+}
 -(void)initWebView {
     
     self.canDisplayBannerAds = YES;

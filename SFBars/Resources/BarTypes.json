@@ -1,0 +1,57 @@
+ [
+  {
+  "itemId": 1,
+  "name": "Dance Club",
+  "imageUrl": "TableCell-DanceClub"
+  },
+  {
+  "itemId": 2,
+  "name": "Dive Bar",
+  "imageUrl": "TableCell-DiveBar"
+  },
+  {
+  "itemId": 3,
+  "name": "Gay Bar",
+  "imageUrl": "TableCell-GayBar"
+  },
+  {
+  "itemId": 4,
+  "name": "Hipster",
+  "imageUrl": "TableCell-Hipster"
+  },
+  {
+  "itemId": 5,
+  "name": "Karaoke",
+  "imageUrl": "TableCell-Karaoke"
+  },
+  {
+  "itemId": 6,
+  "name": "Lesbian",
+  "imageUrl": "TableCell-Karaoke"
+  },
+  {
+  "itemId": 7,
+  "name": "Live Music",
+  "imageUrl": "TableCell-LiveMusic"
+  },
+  {
+  "itemId": 8,
+  "name": "Lounge",
+  "imageUrl": "TableCell-Lounge"
+  },
+  {
+  "itemId": 9,
+  "name": "Pub",
+  "imageUrl": "TableCell-Pub"
+  },
+  {
+  "itemId": 10,
+  "name": "Sport's Bar",
+  "imageUrl": "TableCell-SportsBar"
+  },
+  {
+  "itemId": 11,
+  "name": "Wine Bar",
+  "imageUrl": "TableCell-WineBar"
+  }
+  ]

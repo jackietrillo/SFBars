@@ -21,7 +21,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 
     [self initNavigation];
     

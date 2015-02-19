@@ -25,14 +25,18 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     [self initNavigation];
     [self initMapView];
     
-    if (!self.appDelegate.cachedBars)
-    {
+    if (!self.appDelegate.cachedBars) {
         [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
     }
-    else
-    {
+    else {
         [self loadData: self.appDelegate.cachedBars];
     }
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    NSString* className = NSStringFromClass ([self class]);
+    NSLog(@"%@", className);
 }
 
 - (void)initNavigation {
@@ -101,7 +105,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     self.view = self.mapView;
     
     [self.mapView animateToZoom:15];
-    [self.mapView animateToViewingAngle:120];
+    [self.mapView animateToViewingAngle:180];
 }
 
 -(GMSMarker*)createMarker:(Bar*)bar {

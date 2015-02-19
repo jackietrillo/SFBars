@@ -36,14 +36,18 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    NSString* className = NSStringFromClass ([self class]);
+    NSLog(@"%@", className);
+}
+
+
 - (void)initNavigation {
     
     self.navigationItem.title = @"SEARCH"; //TODO: localize
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 
 -(void)loadData: (NSMutableArray*) data {
     

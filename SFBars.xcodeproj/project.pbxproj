@@ -62,6 +62,7 @@
 		82D43C4E1A95722300B4196C /* MusicTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D43C4D1A95722300B4196C /* MusicTypes.json */; };
 		82D43C511A95726C00B4196C /* BarDetailItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D43C501A95726C00B4196C /* BarDetailItem.m */; };
 		82D43C531A95739200B4196C /* Districts.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D43C521A95739200B4196C /* Districts.json */; };
+		82D43C551A958CAC00B4196C /* BarTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D43C541A958CAC00B4196C /* BarTypes.json */; };
 		82D6680E1A86DBB4004B19DB /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D6680D1A86DBB4004B19DB /* BaseViewController.m */; };
 		82D668161A86E133004B19DB /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82D668151A86E133004B19DB /* GoogleMaps.bundle */; };
 		82E8E1931A8DAC620042F2C4 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D668131A86E0E7004B19DB /* GoogleMaps.framework */; };
@@ -164,6 +165,7 @@
 		82D43C4F1A95726C00B4196C /* BarDetailItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailItem.h; path = SFBars/Models/BarDetailItem.h; sourceTree = "<group>"; };
 		82D43C501A95726C00B4196C /* BarDetailItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailItem.m; path = SFBars/Models/BarDetailItem.m; sourceTree = "<group>"; };
 		82D43C521A95739200B4196C /* Districts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Districts.json; path = SFBars/Resources/Districts.json; sourceTree = "<group>"; };
+		82D43C541A958CAC00B4196C /* BarTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BarTypes.json; path = SFBars/Resources/BarTypes.json; sourceTree = "<group>"; };
 		82D6680C1A86DBB4004B19DB /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = SFBars/Controllers/BaseViewController.h; sourceTree = "<group>"; };
 		82D6680D1A86DBB4004B19DB /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = SFBars/Controllers/BaseViewController.m; sourceTree = "<group>"; };
 		82D668131A86E0E7004B19DB /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Frameworks/GoogleMaps.framework; sourceTree = SOURCE_ROOT; };
@@ -333,6 +335,7 @@
 				82D43C411A956FBB00B4196C /* MenuItems.json */,
 				82D43C4D1A95722300B4196C /* MusicTypes.json */,
 				82D43C521A95739200B4196C /* Districts.json */,
+				82D43C541A958CAC00B4196C /* BarTypes.json */,
 				82D43C431A956FC700B4196C /* BarDetailItems.json */,
 				82A5C7CC1A63250400D55A54 /* LaunchScreen.xib */,
 				8291A6C91A7DC0D00060D3FB /* Settings.json */,
@@ -496,6 +499,7 @@
 				82A5C8041A632B9800D55A54 /* FontAwesome.ttf in Resources */,
 				82D43C441A956FC700B4196C /* BarDetailItems.json in Resources */,
 				82D43C531A95739200B4196C /* Districts.json in Resources */,
+				82D43C551A958CAC00B4196C /* BarTypes.json in Resources */,
 				8291A6CA1A7DC0D00060D3FB /* Settings.json in Resources */,
 				8285AE911A7C69FC004858FD /* BarDetailHeaderViewCell.xib in Resources */,
 				82A5C8031A632B9800D55A54 /* DroidSans.ttf in Resources */,

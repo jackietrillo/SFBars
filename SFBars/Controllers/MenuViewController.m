@@ -31,6 +31,12 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
     [self loadData];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    NSString* className = NSStringFromClass ([self class]);
+    NSLog(@"%@", className);
+}
+
 -(void)initTableView {
     
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -52,6 +58,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
     NSData* data = [NSData dataWithContentsOfFile:path];
     
     [self parseMenuData:data];
+    data = nil;
 }
 
 -(void)parseMenuData: (NSData*)jsonData {

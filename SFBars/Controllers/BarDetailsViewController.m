@@ -28,6 +28,11 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     [self loadData];
 }
 
+- (void)didReceiveMemoryWarning {
+    NSString* className = NSStringFromClass ([self class]);
+    NSLog(@"%@", className);
+}
+
 - (void)initNavigation {
     
     self.navigationItem.title = [self.selectedBar.name uppercaseString];

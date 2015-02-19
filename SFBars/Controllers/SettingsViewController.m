@@ -8,7 +8,7 @@
 
 #import "SettingsViewController.h"
 
-@interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface SettingsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readwrite, nonatomic, strong) NSMutableArray* menuDataTop;
@@ -55,6 +55,7 @@
     NSData* data = [NSData dataWithContentsOfFile:path];
     
     [self parseData:data];
+    data = nil;
 }
 
 -(void)parseData: (NSData*)jsonData {

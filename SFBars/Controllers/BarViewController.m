@@ -41,10 +41,14 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     [self terminateImageDownloads];
 }
 
+
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
     [self terminateImageDownloads];
+    
+    NSString* className = NSStringFromClass ([self class]);
+    NSLog(@"%@", className);
 }
 
 -(void)initNavigation {
@@ -104,13 +108,11 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     self.tableView.hidden = NO;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.data.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger rowIndex = indexPath.row;
     Bar* bar = self.data[rowIndex];
     
@@ -122,8 +124,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     cell.websiteButton.tag = indexPath.row;
     cell.mapButton.tag = indexPath.row;
     
-    if (!bar.icon)
-    {
+    if (!bar.icon) {
         if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
         {
             [self startImageDownload:bar forIndexPath:indexPath];

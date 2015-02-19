@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseEntity.h"
+#import "Bar.h"
 
-@interface BarType : NSObject
+@interface BarType : BaseEntity
 
-@property (readonly, nonatomic) NSInteger barTypeId;
-@property (readonly, nonatomic, strong) NSString* name;
-@property (readonly, nonatomic, strong) NSString* imageUrl;
 @property (readonly, nonatomic, strong) NSMutableArray* bars;
 
 +(id)initFromDictionary:(NSDictionary*)dict;

@@ -10,6 +10,6 @@
 #import <MessageUI/MessageUI.h>
 #import "MenuItem.h"
 
-@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate>
+@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end

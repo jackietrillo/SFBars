@@ -7,22 +7,15 @@
 //
 
 #import "BarType.h"
-#import "Bar.h"
 
 @interface BarType()
 
-@property (readwrite, nonatomic) NSInteger barTypeId;
-@property (readwrite, nonatomic, strong) NSString* name;
-@property (readwrite, nonatomic, strong) NSString* imageUrl;
 @property (readwrite, nonatomic, strong) NSMutableArray* bars;
 
 @end
 
 @implementation BarType
 
-static const NSString* BARTYPEID = @"barTypeId";
-static const NSString* NAME = @"name";
-static const NSString* IMAGEURL = @"imageUrl";
 static const NSString* BARS = @"bars";
 
 -(id)init {
@@ -31,13 +24,10 @@ static const NSString* BARS = @"bars";
     return self;
 }
 
-+(id)initFromDictionary:(NSDictionary*)dict
-{
-    BarType* barType = [[BarType alloc] init];
-    barType.barTypeId = [dict[BARTYPEID] longValue];
-    barType.name = dict[NAME];
-    barType.imageUrl = dict[IMAGEURL];
-    
++(id)initFromDictionary:(NSDictionary*)dict {
+   
+    BarType* barType = [super initFromDictionary:dict forEntity:[[BarType alloc] init]];
+
     NSArray* bars = dict[BARS];
     
     if (bars) {
