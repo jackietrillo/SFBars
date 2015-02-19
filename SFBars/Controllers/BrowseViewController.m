@@ -29,11 +29,22 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     self.tableView.hidden = YES;
 
     if (!self.appDelegate.cachedBarTypes) {
-        [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"BarTypes" ofType:@"json"];
+        NSData* data = [NSData dataWithContentsOfFile:path];
+        
+        NSMutableArray* barTypesData  = [self parseData:data];
+        [self loadData:barTypesData];
+        data = nil;
     }
     else {
         [self loadData:self.appDelegate.cachedBarTypes];
     }
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    NSString* className = NSStringFromClass ([self class]);
+    NSLog(@"%@", className);
 }
 
 -(void)initNavigation {
@@ -161,8 +172,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     BarViewController* barsViewController = segue.destinationViewController;
     BarType* barType = self.data[indexPath.row];
     barsViewController.titleText = barType.name;
-    barsViewController.filterId = barType.barTypeId;
-    //barsViewController.filterType = FilterByNotAssigned;
+    barsViewController.filterId = barType.itemId;
+    barsViewController.filterType = FilterByNotAssigned;
 }
 
 - (void)showMenu:(id)sender {
