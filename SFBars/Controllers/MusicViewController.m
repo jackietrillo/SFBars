@@ -42,7 +42,7 @@
 
 -(void)loadData {
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"Music" ofType:@"json"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"MusicTypes" ofType:@"json"];
     NSData* data = [NSData dataWithContentsOfFile:path];
     
     [self parseData:data];

@@ -1,54 +1,53 @@
  [
   {
-  "$id": "1",
+  "itemId": "1",
   "districtId": 1,
   "name": "Bernal Heights",
-  "bars": []
   },
   {
-  "$id": "2",
+  "itemId": "2",
   "districtId": 2,
   "name": "Castro",
   "bars": []
   },
   {
-  "$id": "3",
+  "itemId": "3",
   "districtId": 3,
   "name": "Financial District",
   "bars": []
   },
   {
-  "$id": "4",
+  "itemId": "4",
   "districtId": 7,
   "name": "Mission",
   "bars": []
   },
   {
-  "$id": "5",
+  "itemId": "5",
   "districtId": 8,
   "name": "Pacific Heights",
   "bars": []
   },
   {
-  "$id": "6",
+  "itemId": "6",
   "districtId": 9,
   "name": "Noe Valley",
   "bars": []
   },
   {
-  "$id": "7",
+  "itemId": "7",
   "districtId": 11,
   "name": "Richmond",
   "bars": []
   },
   {
-  "$id": "8",
+  "itemId": "8",
   "districtId": 12,
   "name": "SoMa",
   "bars": []
   },
   {
-  "$id": "9",
+  "itemId": "9",
   "districtId": 15,
   "name": "Tenderloin",
   "bars": []

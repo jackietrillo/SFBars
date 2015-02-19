@@ -6,14 +6,13 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BarDetailItem.h"
+#import "TableRowDataItem.h"
 
-@interface  BarDetailItem()
-
+@interface  TableRowDataItem()
 
 @end
 
-@implementation BarDetailItem
+@implementation TableRowDataItem
 
 static const NSString* SECTION = @"section";
 
@@ -24,10 +23,9 @@ static const NSString* SECTION = @"section";
 }
 
 +(id)initFromDictionary:(NSDictionary*)dict {
-    
-    BarDetailItem* barDetailItem = [super initFromDictionary:dict forEntity:[[BarDetailItem alloc] init]];
-    barDetailItem.section = [dict[SECTION] longValue];
-    return barDetailItem;
+    TableRowDataItem* tableRowDataItem = [super initFromDictionary:dict forEntity:[[TableRowDataItem alloc] init]];
+    tableRowDataItem.section = [dict[SECTION] longValue];
+    return tableRowDataItem;
 }
 
 @end

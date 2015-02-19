@@ -166,8 +166,10 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 }
 
 - (void)showMenu:(id)sender {
-
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MenuViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

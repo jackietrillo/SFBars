@@ -24,18 +24,18 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
     
     [super viewDidLoad];
     
-    [self initController];
+    [self initNavigation];
+    
+    [self initTableView];
+    
+    [self loadData];
 }
 
--(void)initController {
-    
-    [self initNavigation];
+-(void)initTableView {
     
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.opaque = NO;
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MenuBackground"]];
-    
-    [self loadData];
 }
 
 -(void)initNavigation {
@@ -48,13 +48,13 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
 
 -(void)loadData {
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"Menu" ofType:@"json"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"MenuItems" ofType:@"json"];
     NSData* data = [NSData dataWithContentsOfFile:path];
     
-    [self parseData2:data];
+    [self parseMenuData:data];
 }
 
--(void)parseData2: (NSData*)jsonData {
+-(void)parseMenuData: (NSData*)jsonData {
     
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
@@ -169,8 +169,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
    
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor grayColor];
-    
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
+    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
@@ -240,9 +239,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
                 [self.navigationController pushViewController:vc animated:YES];
             }
             if ([menuItem.name isEqualToString:@"Browse"]) {
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                BrowseViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BrowseViewController"];
-                [self.navigationController pushViewController:vc animated:YES];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             }
             else if ([menuItem.name isEqualToString:@"Near Me"]) {
                 UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

@@ -1,18 +1,16 @@
 //
-//  Menu.h
+//  MusicType.h
 //  SFBars
 //
-//  Created by JACKIE TRILLO on 1/27/15.
+//  Created by JACKIE TRILLO on 2/18/15.
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseEntity.h"
+#import "TableRowDataItem.h"
 
-@interface BarDetailItem : BaseEntity
+@interface MusicType : BaseEntity
 
 @property (readwrite, nonatomic) NSInteger section;
-
-+(id)initFromDictionary:(NSDictionary*)dict;
 
 @end

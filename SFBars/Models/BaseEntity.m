@@ -15,7 +15,6 @@
 @implementation BaseEntity
 
 static const NSString* ITEMID = @"itemId";
-static const NSString* SECTION = @"section";
 static const NSString* NAME = @"name";
 static const NSString* IMAGEURL = @"imageUrl";
 static const NSString* STATUSFLAG = @"statusFlag";
@@ -29,8 +28,9 @@ static const NSString* STATUSFLAG = @"statusFlag";
 
 +(id)initFromDictionary:(NSDictionary*)dict forEntity:(BaseEntity*)baseEntity; {
     
-    baseEntity.itemId = [dict[ITEMID] longValue];
-    baseEntity.section = [dict[SECTION] longValue];
+    if (dict[ITEMID]) {
+        baseEntity.itemId = [dict[ITEMID] longValue];
+    }
     baseEntity.name = dict[NAME];
     baseEntity.imageUrl = dict[IMAGEURL];
     baseEntity.statusFlag = [dict[STATUSFLAG] longValue];

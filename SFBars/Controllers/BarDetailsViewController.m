@@ -55,7 +55,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 -(void)loadData {
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"BarDetail" ofType:@"json"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"BarDetailItems" ofType:@"json"];
     NSData* data = [NSData dataWithContentsOfFile:path];
     
     [self parseData:data];

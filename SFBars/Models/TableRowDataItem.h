@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseEntity.h"
 
-@interface BarDetailItem : BaseEntity
+@interface TableRowDataItem : BaseEntity
 
 @property (readwrite, nonatomic) NSInteger section;
 

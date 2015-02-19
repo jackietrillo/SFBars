@@ -1,46 +1,46 @@
  [
   {
-  "musicTypeId": 1,
+  "itemId": 1,
   "name": "Country",
   "imageUrl": "TableCell-Country.png"
   },
   {
-  "musicTypeId": 2,
+  "itemId": 2,
   "name": "Dance",
   "imageUrl": "TableCell-Dance.png"
   },
   {
-  "musicTypeId": 3,
+  "itemId": 3,
   "name": "Hip Hop",
   "imageUrl": "TableCell-HipHop.png"
   },
   {
-  "musicTypeId": 4,
+  "itemId": 4,
   "name": "Jazz",
   "imageUrl": "TableCell-Jazz.png"
   },
   {
-  "musicTypeId": 5,
+  "itemId": 5,
   "name": "Latino",
   "imageUrl": "TableCell-Latino.png"
   },
   {
-  "musicTypeId": 6,
+  "itemId": 6,
   "name": "Metal",
   "imageUrl": "TableCell-Metal.png"
   },
   {
-  "musicTypeId": 7,
+  "itemId": 7,
   "name": "Punk",
   "imageUrl": "TableCell-Punk.png"
   },
   {
-  "musicTypeId": 8,
+  "itemId": 8,
   "name": "Reggae",
   "imageUrl": "TableCell-Reggae.png"
   },
   {
-  "musicTypeId": 9,
+  "itemId": 9,
   "name": "Rock",
   "imageUrl": "TableCell-Rock.png"
   }

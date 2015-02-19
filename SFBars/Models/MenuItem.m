@@ -14,8 +14,9 @@
 
 @implementation MenuItem
 
--(id)init
-{
+static const NSString* SECTION = @"section";
+
+-(id)init {
     self = [super init];
     
     return self;
@@ -23,9 +24,9 @@
 
 +(id)initFromDictionary:(NSDictionary*)dict {
     
-    MenuItem* menuItem = [[MenuItem alloc] init];
-    
-    return [super initFromDictionary:dict forEntity:menuItem];
+    MenuItem* menuItem = [super initFromDictionary:dict forEntity:[[MenuItem alloc] init]];
+    menuItem.section = [dict[SECTION] longValue];
+    return menuItem;
 }
 
 @end
