@@ -47,7 +47,7 @@
     
     [self parseData:data];
     
-    data = nil;
+    data = nil; //TODO: does this free memory?
 }
 
 -(void)parseData: (NSData*)jsonData {

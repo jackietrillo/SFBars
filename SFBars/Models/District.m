@@ -10,13 +10,9 @@
 
 @interface District()
 
-@property (readwrite, nonatomic, strong) NSMutableArray* bars;
-
 @end
 
 @implementation District
-
-static const NSString* BARS = @"bars";
 
 -(id)init
 {
@@ -29,17 +25,6 @@ static const NSString* BARS = @"bars";
 {
     District* district = [super initFromDictionary:dict forEntity:[[District alloc] init]];
     
-    NSArray* arrayBarData = dict[BARS];
-    
-    district.bars = [[NSMutableArray alloc] init];
-    
-    //load bars
-    for (int i = 0; i < arrayBarData.count ; i++)
-    {
-        NSDictionary* dictTemp = arrayBarData[i];
-        Bar* bar = [Bar initFromDictionary:dictTemp ];
-        [district.bars addObject:bar];
-    }
     return district;
 }
 

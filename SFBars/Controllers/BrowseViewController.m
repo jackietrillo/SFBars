@@ -23,10 +23,11 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initNavigation];
     self.canDisplayBannerAds = YES;
     self.tableView.hidden = YES;
 
+    [self initNavigation];
+   
     if (!self.appDelegate.cachedBarTypes) {
         NSString* path = [[NSBundle mainBundle] pathForResource:@"BarTypes" ofType:@"json"];
         NSData* data = [NSData dataWithContentsOfFile:path];
@@ -65,7 +66,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
--(void)loadData: (NSMutableArray*) data {
+-(void)loadData:(NSMutableArray*) data {
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
@@ -84,7 +85,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     
 }
 
--(NSMutableArray*)parseData: (NSData*)responseData {
+-(NSMutableArray*)parseData:(NSData*)responseData {
     
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];

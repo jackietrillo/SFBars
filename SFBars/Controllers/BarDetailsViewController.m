@@ -43,6 +43,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"BarDetailHeaderViewCell" owner:nil options:nil];
     BarDetailHeaderViewCell* headerView = [xib lastObject];
     headerView.frame = CGRectMake(0, 0, 150, 150);
+    
     if (self.selectedBar.icon != nil) {
         headerView.logo.image = self.selectedBar.icon;
     }
@@ -233,8 +234,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger rowIndex = indexPath.row;
     BarDetailItem* dataItem;
     

@@ -15,6 +15,7 @@
 #import "MusicViewController.h"
 #import "PartiesViewController.h"
 #import "SettingsViewController.h"
+#import "NeighborhoodViewController.h"
 #import "MenuItem.h"
 
 @interface MenuViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>

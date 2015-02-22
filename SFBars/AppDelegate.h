@@ -12,8 +12,11 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
 @property (readwrite, nonatomic, strong) NSMutableArray* cachedBars;
 @property (readwrite, nonatomic, strong) NSMutableArray* cachedBarTypes;
+@property (readwrite, nonatomic, strong) NSMutableArray* cachedNeighborhoods;
+@property (readwrite, nonatomic, strong) NSMutableArray* cachedMusicTypes;
 
 @end
 

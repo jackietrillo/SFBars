@@ -6,38 +6,45 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "NearMeViewController.h"
+#import "NeighborhoodViewController.h"
 
 
-@interface NearMeViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface NeighborhoodViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readwrite, nonatomic, strong) NSMutableArray* data;
 
 @end
 
-@implementation NearMeViewController
+@implementation NeighborhoodViewController
 
-static NSString* reuseIdentifier = @"Cell";
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/district/";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    
-    [self initController];
-}
-
--(void)initController {
-    [self initNavigation];
-    self.tableView.hidden = YES;
     self.canDisplayBannerAds = YES;
-    [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+    
+    [self initNavigation];
+    
+    if (!self.appDelegate.cachedNeighborhoods) {
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"Districts" ofType:@"json"];
+        NSData* data = [NSData dataWithContentsOfFile:path];
+        
+        NSMutableArray* districts  = [self parseData:data];
+        [self loadData:districts];
+        
+        data = nil; //TODO: Does this free memory?
+    }
+    else {
+        [self loadData:self.appDelegate.cachedNeighborhoods];
+    }
 }
 
 -(void)initNavigation {
-    //menu button
+   
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    
+   
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] init];
     
     UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
@@ -50,57 +57,27 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     [menuButton setAction:@selector(showMenu:)];
     
     self.navigationItem.leftBarButtonItem = menuButton;
-    self.navigationItem.title = @"NEAR ME"; //TODO: Localize
+    self.navigationItem.title = @"NEIGHBORHOODS"; //TODO: Localize
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
-//TODO: move into helper class
--(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+-(void)loadData:(NSMutableArray*) data {
     
-    NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    
-    [urlRequest setHTTPMethod:method];
-    [urlRequest setValue:accept forHTTPHeaderField:@"Accept"];
-    
-    NSOperationQueue* queue = [[NSOperationQueue alloc] init];
-    
-    [NSURLConnection sendAsynchronousRequest:urlRequest
-                                       queue: queue
-                           completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError)
-     {
-         NSMutableArray* arrayData;
-         if (connectionError == nil && data != nil)
-         {
-             arrayData = [self parseData:data];
-         }
-         else
-         {
-             //TODO: alert user
-         }
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-             
-             if (arrayData != nil)
-             {
-                 [self loadData: arrayData];
-             }
-             else
-             {
-                 //TODO: alert user
-             }
-         });
-     }];
-}
-
--(void)loadData: (NSMutableArray*) data {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    if (!data) {
+        return;
+    }
+    
+    if (!self.appDelegate.cachedNeighborhoods) {
+        self.appDelegate.cachedNeighborhoods = data;
+    }
+    
+    self.tableView.hidden = NO;
     self.tableView.delegate = self;
     self.data = data;
-    
-    self.tableView.contentInset = UIEdgeInsetsZero;
     [self.tableView reloadData];
-    self.tableView.hidden = NO;
+    
 }
 
 -(NSMutableArray*)parseData: (NSData*)jsonData {
@@ -111,20 +88,20 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
         //TODO: alert user
     }
     
-    NSMutableArray* nearMeData = [[NSMutableArray alloc] init];
+    NSMutableArray* districts = [[NSMutableArray alloc] init];
     if (arrayData.count > 0) {
         for (int i = 0; i < arrayData.count; i++) {
             NSDictionary* dictTemp = arrayData[i];
             District* district = [District initFromDictionary:dictTemp];
-            [nearMeData addObject:district];
+            [districts addObject:district];
         }
     }
     
-    return nearMeData;
+    return districts;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 0)];
     
     switch(section) {
         case 0:
@@ -138,10 +115,9 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
+    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 0)];
     
-    switch(section)
-    {
+    switch(section) {
         case 0:
             [footerView setBackgroundColor:[UIColor blackColor]];
             break;
@@ -157,7 +133,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 50;
+    return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -167,11 +143,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
 -(void)setCellStyle:(UITableViewCell *)cell {
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
-    
     cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
-    cell.imageView.frame = CGRectMake(50,500,500,500);
-    cell.indentationLevel = 0;
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
+    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -197,25 +170,16 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     return self.data.count;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-}
 
 #pragma mark - Navigation
-
-- (IBAction)unwindToBrowse:(UIStoryboardSegue *)unwindSegue
-{
-    
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
     BarViewController* barsViewController = segue.destinationViewController;
     District* district = self.data[indexPath.row];
-    barsViewController.titleText = district.name;
-    barsViewController.bars = district.bars;
+    barsViewController.filterIds = @[[[NSNumber numberWithInteger:district.itemId] stringValue]];
+    barsViewController.filterType = FilterByDistricts;
 }
 
 - (void)showSettings:(id)sender

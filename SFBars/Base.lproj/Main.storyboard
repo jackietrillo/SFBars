@@ -396,7 +396,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="lIQ-XU-sdU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="lIQ-XU-sdU">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.97523099069999997" green="1" blue="0.183450474" alpha="1" colorSpace="calibratedRGB"/>
@@ -421,12 +421,6 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="lIQ-XU-sdU" firstAttribute="bottom" secondItem="hy4-Cd-pIj" secondAttribute="top" id="4DI-Hy-gVa"/>
-                            <constraint firstItem="lIQ-XU-sdU" firstAttribute="top" secondItem="gcO-fe-jqV" secondAttribute="bottom" id="l2L-XX-NMg"/>
-                            <constraint firstAttribute="trailing" secondItem="lIQ-XU-sdU" secondAttribute="trailing" id="q7j-7e-AU2"/>
-                            <constraint firstItem="lIQ-XU-sdU" firstAttribute="leading" secondItem="Cl9-J1-h55" secondAttribute="leading" id="rLi-My-xhn"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title=" " id="Shj-XG-Rch"/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -690,7 +684,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vRb-xE-xTu"/>
+        <segue reference="uxe-9O-q1p"/>
         <segue reference="qff-De-rOf"/>
     </inferredMetricsTieBreakers>
 </document>

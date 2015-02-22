@@ -124,17 +124,17 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
                 }
                 break;
             case FilterByDistricts:
-                if ([self.filterIds containsObject: [NSNumber numberWithInteger:bar.districtId]] ) {
+                if ([self.filterIds containsObject: [[NSNumber numberWithInteger:bar.districtId] stringValue]]) {
                     [filteredData addObject:bar];
                 }
                 break;
             case FilterByMusicTypes:
-                if ([self.filterIds containsObject: [[NSNumber numberWithInteger:bar.musicTypeId] stringValue]] ) {
+                if ([self.filterIds containsObject: [[NSNumber numberWithInteger:bar.musicTypeId] stringValue]]) {
                     [filteredData addObject:bar];
                 }
                 break;
             case FilterByBarIds:
-                if ([self.filterIds containsObject: [NSNumber numberWithInteger:bar.barId]] ) {
+                if ([self.filterIds containsObject: [[NSNumber numberWithInteger:bar.barId] stringValue]]) {
                     [filteredData addObject:bar];
                 }
                 break;

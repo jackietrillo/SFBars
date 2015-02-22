@@ -45,6 +45,7 @@
 		82A5C8091A632BD900D55A54 /* LaunchImage-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C8081A632BD900D55A54 /* LaunchImage-568h@2x.png */; };
 		82A9149A1A9985BA0019D30A /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A914991A9985B90019D30A /* LoadingView.xib */; };
 		82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149C1A9985FF0019D30A /* LoadingView.m */; };
+		82A914A01A9990A40019D30A /* NeighborhoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149F1A9990A40019D30A /* NeighborhoodViewController.m */; };
 		82B828F61A85FE5700F90A33 /* glyphicons-halflings-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820ABF151A847AF20022192F /* glyphicons-halflings-regular.ttf */; };
 		82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C131A70830100E71F40 /* ImageDownloader.m */; };
 		82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C161A70838500E71F40 /* BaseEntity.m */; };
@@ -139,6 +140,8 @@
 		82A914991A9985B90019D30A /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingView.xib; path = Controls/LoadingView.xib; sourceTree = "<group>"; };
 		82A9149B1A9985FF0019D30A /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Controls/LoadingView.h; sourceTree = "<group>"; };
 		82A9149C1A9985FF0019D30A /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Controls/LoadingView.m; sourceTree = "<group>"; };
+		82A9149E1A9990A40019D30A /* NeighborhoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NeighborhoodViewController.h; path = SFBars/Controllers/NeighborhoodViewController.h; sourceTree = "<group>"; };
+		82A9149F1A9990A40019D30A /* NeighborhoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NeighborhoodViewController.m; path = SFBars/Controllers/NeighborhoodViewController.m; sourceTree = "<group>"; };
 		82BA4C121A70830100E71F40 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Common/ImageDownloader.h; sourceTree = "<group>"; };
 		82BA4C131A70830100E71F40 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Common/ImageDownloader.m; sourceTree = "<group>"; };
 		82BA4C151A70838500E71F40 /* BaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseEntity.h; path = SFBars/Models/BaseEntity.h; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 				826D03541A881CBC0051189B /* SearchViewController.m */,
 				82A5C7D91A63263400D55A54 /* NavigationViewController.h */,
 				82A5C7DA1A63263400D55A54 /* NavigationViewController.m */,
+				82A9149E1A9990A40019D30A /* NeighborhoodViewController.h */,
+				82A9149F1A9990A40019D30A /* NeighborhoodViewController.m */,
 				82C705F91A75BCAC0045F973 /* MenuViewController.h */,
 				82C705FA1A75BCAC0045F973 /* MenuViewController.m */,
 				828FE61A1A761AB200D2466D /* SettingsViewController.h */,
@@ -555,6 +560,7 @@
 				82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */,
 				82E917371A79B4D7002D610E /* District.m in Sources */,
 				82A5C7C51A631FD500D55A54 /* ConnectionHelper.m in Sources */,
+				82A914A01A9990A40019D30A /* NeighborhoodViewController.m in Sources */,
 				828FE61C1A761AB200D2466D /* SettingsViewController.m in Sources */,
 				82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */,
 				82A5C7831A63125C00D55A54 /* main.m in Sources */,

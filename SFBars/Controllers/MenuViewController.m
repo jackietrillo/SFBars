@@ -253,6 +253,11 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
                 NearMeViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"NearMeViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
+            else if ([menuItem.name isEqualToString:@"Neighborhoods"]) {
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                NeighborhoodViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"NeighborhoodViewController"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
             else if ([menuItem.name isEqualToString:@"Top List"]){
                 UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 TopListViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"TopListViewController"];
@@ -322,6 +327,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
 
  #pragma mark - Navigation
 
+/*
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
 }
@@ -333,5 +339,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
 - (IBAction)unwindToMenu:(UIStoryboardSegue *)unwindSegue {
     
 }
+ 
+ */
 
 @end

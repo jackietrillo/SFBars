@@ -12,5 +12,5 @@
 
 @interface MusicViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, retain) IBOutlet UICollectionView* collectionView;
 @end
