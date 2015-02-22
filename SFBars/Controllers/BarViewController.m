@@ -24,26 +24,16 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     [super viewDidLoad];
     
     self.canDisplayBannerAds = YES;
+    
     self.tableView.hidden = YES;
+    
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     
     [self initNavigation];
-
-    if (!self.appDelegate.cachedBars) {
-        
-        NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil];
-        
-        self.loadingView = [xib lastObject];
-        
-        self.loadingView.frame = self.view.bounds;
-        
-        [self.view addSubview:self.loadingView];
-        
-        [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
-    }
-    else {
-        [self loadData:self.appDelegate.cachedBars];
-    }
+    [self initLoadingView];
+    
+    [self getBars];
+    
 }
 
 - (void)dealloc {
@@ -62,50 +52,77 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
+-(void)initLoadingView {
+    
+    NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil];
+    
+    self.loadingView = [xib lastObject];
+    
+    self.loadingView.frame = self.view.bounds;
+    
+    [self.view addSubview:self.loadingView];
+}
+
+
+-(void)getBars {
+    
+    if (!self.appDelegate.cachedBars) {
+        
+        [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+    }
+    else {
+        
+        [self loadData:self.appDelegate.cachedBars];
+    }
+}
+
 -(NSMutableArray*)parseData: (NSData*)responseData {
-
+    
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
-
+    
     NSMutableArray* bars = [[NSMutableArray alloc] init];
     
     if (arrayData.count > 0) {
+        
         for (int i = 0; i < arrayData.count; i++) {
+            
             NSDictionary* dictTemp = arrayData[i];
+            
             Bar* bar = [Bar initFromDictionary:dictTemp];
+            
             [bars addObject:bar];
         }
     }
     
+    self.appDelegate.cachedBars = bars;
+    
     return bars;
+    
 }
 
 -(void)loadData: (NSMutableArray*) data {
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-   
-    if (!data) {
-        return;
+    if (data) {
+
+        if (self.filterType != FilterByNotAssigned && self.filterIds != nil) {
+            self.data = [self filterBars:data];
+        }
+        else {
+            self.data = data;
+        }
+        
+        [self.tableView reloadData];
+        
+        self.tableView.hidden = NO;
+    
     }
     
-    if (!self.appDelegate.cachedBars) {
-        self.appDelegate.cachedBars = data;
-    }
-    
-    if (self.filterType != FilterByNotAssigned && self.filterIds != nil) {
-        self.data = [self filterData:data];
-    }
-    else {
-        self.data = data;
-    }
-    
-    [self.tableView reloadData];
-    self.tableView.hidden = NO;
     if (self.loadingView) {
         self.loadingView.hidden = YES;
     }
 }
 
--(NSMutableArray*)filterData: (NSMutableArray*) data {
+-(NSMutableArray*)filterBars: (NSMutableArray*) data {
     
     NSMutableArray* filteredData = [[NSMutableArray alloc] init];
     

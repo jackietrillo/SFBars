@@ -22,8 +22,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    NSString* className = NSStringFromClass ([self class]);
-    NSLog(@"%@", className);
+    NSLog(@"%@", NSStringFromClass ([self class]));
 }
 
 -(void)initWebView {
@@ -42,7 +41,12 @@
          self.webView.scalesPageToFit = YES;
     }
     else {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Information" message:@"Calendar is not avaible at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info", @"Info")
+                                                        message: NSLocalizedString(@"Calendar is not avaible at this time.", @"Calendar is not avaible at this time.")
+                                                       delegate: self
+                                              cancelButtonTitle: NSLocalizedString(@"OK", @"OK")
+                                              otherButtonTitles: nil];
         [alert show];
     }
 }

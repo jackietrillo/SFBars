@@ -24,6 +24,7 @@
     [super didReceiveMemoryWarning];
 }
 
+
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
@@ -47,6 +48,8 @@
          }
          
          dispatch_async(dispatch_get_main_queue(), ^{
+             
+             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
              
              if (arrayData != nil) {
                  [self loadData: arrayData];

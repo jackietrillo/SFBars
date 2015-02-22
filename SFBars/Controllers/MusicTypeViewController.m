@@ -6,77 +6,84 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "MusicViewController.h"
+#import "MusicTypeViewController.h"
 
-@interface MusicViewController ()
+@interface MusicTypeViewController ()
 
 @property (readwrite, nonatomic, strong) NSMutableArray* data;
+
 @end
 
-@implementation MusicViewController
+@implementation MusicTypeViewController
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
-    [self loadData];
+    self.data = [self getMusicTypes];
 }
 
 -(void)initNavigation {
    
     UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
     
-    UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
+    UIFont* font = [UIFont fontWithName:glyphIconsFontName size:25.0];
+    
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
     [menuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
+    
     [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
     
     [menuButton setTarget:self];
+    
     [menuButton setAction:@selector(showMenu:)];
     
     self.navigationItem.leftBarButtonItem = menuButton;
-    self.navigationItem.title = @"MUSIC"; //TODO: Localize
+    
+    self.navigationItem.title = NSLocalizedString(@"MUSIC", @"MUSIC");
+    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
--(void)loadData {
+-(NSMutableArray*)getMusicTypes{
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"MusicTypes" ofType:@"json"];
-    NSData* data = [NSData dataWithContentsOfFile:path];
-    
-    [self parseData:data];
-    
-    data = nil; //TODO: does this free memory?
-}
-
--(void)parseData: (NSData*)jsonData {
-    
-    NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
-    
-    if (errorData != nil) {
-        //TODO: log error
-        //TODO: alert User
+    if (self.appDelegate.cachedMusicTypes) {
+        return self.appDelegate.cachedMusicTypes;
     }
     
-    self.data = [[NSMutableArray alloc] init];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"MusicTypes" ofType:@"json"];
+   
+    NSData* jsonData = [NSData dataWithContentsOfFile:path];
+    
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+    
+    jsonData = nil;
+    
+    NSMutableArray* musicTypes = [[NSMutableArray alloc] init];
     
     if (arrayData.count > 0) {
         
         for (int i = 0; i < arrayData.count; i++) {
             
             NSDictionary* dictTemp = arrayData[i];
+            
             MusicType* musicType = [MusicType initFromDictionary: dictTemp];
             
-            [self.data addObject:musicType];
-            
+            [musicTypes addObject:musicType];
         }
     }
+    
+    self.appDelegate.cachedMusicTypes = musicTypes;
+    
+    return musicTypes;
 }
 
+
 -(void)setCellStyle:(UICollectionViewCell*)cell {
+    
     cell.layer.borderWidth=1.0f;
+    
     cell.layer.borderColor=[UIColor whiteColor].CGColor;
 }
 
@@ -94,16 +101,14 @@
     switch (section) {
         case 0:
             return self.data.count;
-            
         default:
             return 0;
     }
 }
 
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     UIImageView* imageView = (UIImageView*)[cell viewWithTag:1];
     imageView.frame = cell.bounds;

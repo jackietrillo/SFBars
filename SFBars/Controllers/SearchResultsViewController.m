@@ -8,7 +8,6 @@
 
 #import "SearchResultsViewController.h"
 
-
 @implementation SearchResultsViewController
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

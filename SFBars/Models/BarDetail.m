@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BarDetailItem.h"
+#import "BarDetail.h"
 
-@interface  BarDetailItem()
+@interface  BarDetail()
 
 @end
 
-@implementation BarDetailItem
+@implementation BarDetail
 
 static const NSString* SECTION = @"section";
 
@@ -24,9 +24,9 @@ static const NSString* SECTION = @"section";
 
 +(id)initFromDictionary:(NSDictionary*)dict {
     
-    BarDetailItem* barDetailItem = [super initFromDictionary:dict forEntity:[[BarDetailItem alloc] init]];
-    barDetailItem.section = [dict[SECTION] longValue];
-    return barDetailItem;
+    BarDetail* barDetail = [super initFromDictionary:dict forEntity:[[BarDetail alloc] init]];
+    barDetail.section = [dict[SECTION] longValue];
+    return barDetail;
 }
 
 @end

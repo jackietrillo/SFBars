@@ -23,61 +23,66 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     [super viewDidLoad];
     
     [self initNavigation];
+   
     [self initMapView];
     
-    if (!self.appDelegate.cachedBars) {
-        [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
-    }
-    else {
-        [self loadData: self.appDelegate.cachedBars];
-    }
+    [self getBars];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    NSString* className = NSStringFromClass ([self class]);
-    NSLog(@"%@", className);
+   
+    NSLog(@"%@", NSStringFromClass ([self class]));
 }
 
 - (void)initNavigation {
     
-    self.navigationItem.title = @"NEAR ME"; //TODO: localize
+    self.navigationItem.title = NSLocalizedString(@"NEAR ME", @"NEAR ME");
+}
+
+-(void)getBars {
+
+    if (!self.appDelegate.cachedBars) {
+        
+        [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+    }
+    else {
+        
+        [self loadData:self.appDelegate.cachedBars];
+    }
 }
 
 -(NSMutableArray*)parseData: (NSData*)responseData {
     
-    NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
     
-    if (errorData != nil) {
-        //TODO: alert user
-    }
+    NSMutableArray* bars = [[NSMutableArray alloc] init];
     
-    NSMutableArray* data = [[NSMutableArray alloc] init];
     if (arrayData.count > 0)
     {
         for (int i = 0; i < arrayData.count; i++)
         {
             NSDictionary* dictTemp = arrayData[i];
             Bar* bar = [Bar initFromDictionary:dictTemp];
-            [data addObject:bar];
+            [bars addObject:bar];
         }
     }
     
-    return data;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    self.appDelegate.cachedBars = bars;
+    
+    return bars;
+
 }
 
 -(void)loadData: (NSMutableArray*) data {
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-   
-    if (!self.appDelegate.cachedBars) {
-        self.appDelegate.cachedBars = data;
-    }
-    
-    for(int i=0; i < data.count; i++) {
-        GMSMarker* marker = [self createMarker:data[i]];
-        marker.map = self.mapView;
+    if (data) {
+        for(int i=0; i < data.count; i++) {
+            GMSMarker* marker = [self createMarker:data[i]];
+            marker.map = self.mapView;
+        }
     }
 }
 

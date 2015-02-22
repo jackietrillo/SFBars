@@ -15,8 +15,10 @@
 
 @property (readwrite, nonatomic, strong) NSMutableArray* cachedBars;
 @property (readwrite, nonatomic, strong) NSMutableArray* cachedBarTypes;
-@property (readwrite, nonatomic, strong) NSMutableArray* cachedNeighborhoods;
+@property (readwrite, nonatomic, strong) NSMutableArray* cachedDistricts;
 @property (readwrite, nonatomic, strong) NSMutableArray* cachedMusicTypes;
+@property (readwrite, nonatomic, strong) NSMutableArray* cachedBarDetails;
+@property (readwrite, nonatomic, strong) NSMutableArray* cachedMenuItems;
 
 @end
 

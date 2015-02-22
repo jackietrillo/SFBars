@@ -268,10 +268,10 @@
             </objects>
             <point key="canvasLocation" x="-11203" y="258"/>
         </scene>
-        <!--MusicViewController-->
+        <!--MusicTypeViewController-->
         <scene sceneID="lo9-Uz-fTi">
             <objects>
-                <viewController storyboardIdentifier="MusicViewController" id="roo-pF-WOc" userLabel="MusicViewController" customClass="MusicViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MusicTypeViewController" id="roo-pF-WOc" userLabel="MusicTypeViewController" customClass="MusicTypeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tmo-w0-R46"/>
                         <viewControllerLayoutGuide type="bottom" id="eKS-jS-JfX"/>
@@ -296,11 +296,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBc-aP-MeU">
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBc-aP-MeU">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Music" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB4-8F-BUi">
-                                                    <rect key="frame" x="44" y="117" width="64" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB4-8F-BUi">
+                                                    <rect key="frame" x="44" y="97" width="63" height="51"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -308,6 +308,13 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="JB4-8F-BUi" firstAttribute="top" secondItem="h94-mf-VyI" secondAttribute="topMargin" constant="89" id="OlH-r0-sTt"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="JB4-8F-BUi" secondAttribute="bottom" constant="-6" id="XlR-Lq-CjU"/>
+                                            <constraint firstItem="JB4-8F-BUi" firstAttribute="leading" secondItem="h94-mf-VyI" secondAttribute="leadingMargin" constant="36" id="gqZ-TO-6Q9"/>
+                                            <constraint firstItem="JB4-8F-BUi" firstAttribute="centerX" secondItem="NBc-aP-MeU" secondAttribute="centerX" id="iOO-EF-ziC"/>
+                                            <constraint firstItem="JB4-8F-BUi" firstAttribute="centerX" secondItem="h94-mf-VyI" secondAttribute="centerX" id="tYf-Eg-f84"/>
+                                        </constraints>
                                         <connections>
                                             <segue destination="mQ5-sf-Jxx" kind="show" id="vRb-xE-xTu"/>
                                         </connections>
@@ -333,7 +340,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuv-ER-uWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10512" y="-477"/>
+            <point key="canvasLocation" x="-10512" y="-462"/>
         </scene>
         <!--BrowseViewController-->
         <scene sceneID="y7q-6v-cY7">
@@ -697,7 +704,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uxe-9O-q1p"/>
+        <segue reference="vRb-xE-xTu"/>
         <segue reference="qff-De-rOf"/>
     </inferredMetricsTieBreakers>
 </document>

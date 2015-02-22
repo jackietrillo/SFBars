@@ -9,7 +9,7 @@
 #import "NeighborhoodViewController.h"
 
 
-@interface NeighborhoodViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface NeighborhoodViewController () 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readwrite, nonatomic, strong) NSMutableArray* data;
@@ -26,18 +26,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     
     [self initNavigation];
     
-    if (!self.appDelegate.cachedNeighborhoods) {
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"Districts" ofType:@"json"];
-        NSData* data = [NSData dataWithContentsOfFile:path];
-        
-        NSMutableArray* districts  = [self parseData:data];
-        [self loadData:districts];
-        
-        data = nil; //TODO: Does this free memory?
-    }
-    else {
-        [self loadData:self.appDelegate.cachedNeighborhoods];
-    }
+    [self loadTableViewData: [self getDistricts]];
 }
 
 -(void)initNavigation {
@@ -46,42 +35,38 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] init];
     
-    UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
+    UIFont* font = [UIFont fontWithName: glyphIconsFontName size:25.0];
+    
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
     [menuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
+    
     [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
     
     [menuButton setTarget:self];
+    
     [menuButton setAction:@selector(showMenu:)];
     
     self.navigationItem.leftBarButtonItem = menuButton;
+    
     self.navigationItem.title = NSLocalizedString(@"NEIGHBORHOODS", @"NEIGHBORHOODS");
+    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
--(void)loadData:(NSMutableArray*) data {
+-(NSMutableArray*)getDistricts {
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
-    if (!data) {
-        return;
+    if (self.appDelegate.cachedDistricts) {
+        return self.appDelegate.cachedDistricts;
     }
     
-    if (!self.appDelegate.cachedNeighborhoods) {
-        self.appDelegate.cachedNeighborhoods = data;
-    }
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"Districts" ofType:@"json"];
     
-    self.tableView.hidden = NO;
-    self.tableView.delegate = self;
-    self.data = data;
-    [self.tableView reloadData];
+    NSData* jsonData = [NSData dataWithContentsOfFile:path];
     
-}
-
--(NSMutableArray*)parseData: (NSData*)jsonData {
-    NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+    
+    jsonData = nil;
     
     NSMutableArray* districts = [[NSMutableArray alloc] init];
     if (arrayData.count > 0) {
@@ -92,7 +77,19 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
         }
     }
     
+    self.appDelegate.cachedDistricts = districts;
+    
     return districts;
+}
+
+-(void)loadTableViewData:(NSMutableArray*) data {
+    
+    if (data) {
+        self.tableView.hidden = NO;
+        self.tableView.delegate = self;
+        self.data = data;
+        [self.tableView reloadData];
+    }
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

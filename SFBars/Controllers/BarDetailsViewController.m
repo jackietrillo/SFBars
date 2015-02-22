@@ -30,12 +30,12 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     
     [self initTableViewFooter];
     
-    [self loadData];
+    NSMutableArray* barDetails = [self getBarDetails];
+    [self loadTableViewData: barDetails];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
     NSLog(@"%@", NSStringFromClass ([self class]));
 }
           
@@ -68,18 +68,37 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     self.tableView.tableHeaderView = tableFooterView;
 }
 
--(void)loadData {
+-(NSMutableArray*)getBarDetails{
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"BarDetailItems" ofType:@"json"];
+    if (self.appDelegate.cachedBarDetails) {
+        return self.appDelegate.cachedBarDetails;
+    }
     
-    NSData* data = [NSData dataWithContentsOfFile:path];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"BarDetail" ofType:@"json"];
     
-    [self parseData:data];
-}
-
--(void)parseData: (NSData*)jsonData {
+    NSData* jsonData = [NSData dataWithContentsOfFile:path];
     
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+    
+    NSMutableArray* barDetails = [[NSMutableArray alloc] init];
+    
+    if (arrayData.count > 0) {
+        for (int i = 0; i < arrayData.count; i++) {
+            
+            NSDictionary* dictTemp = arrayData[i];
+            
+            BarDetail* item = [BarDetail initFromDictionary: dictTemp];
+            
+            [barDetails addObject:item];
+        }
+    }
+    
+    self.appDelegate.cachedBarDetails = barDetails;
+    
+    return barDetails;
+}
+
+-(void)loadTableViewData: (NSMutableArray*)barDetails {
     
     self.dataDetail = [[NSMutableArray alloc] init];
     
@@ -87,31 +106,27 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     
     self.dataShare = [[NSMutableArray alloc] init];
     
-    if (arrayData.count > 0) {
-        for (int i = 0; i < arrayData.count; i++) {
-            
-            NSDictionary* dictTemp = arrayData[i];
-            
-            BarDetailItem* item = [BarDetailItem initFromDictionary: dictTemp];
-            
-            if (item.section == 0 && item.statusFlag == 1) {
-                [self.dataDetail addObject:item];
-            }
-            else if (item.section == 1 && item.statusFlag == 1) {
-                [self.dataFavorite addObject:item];
-            }
-            else if (item.section == 2 && item.statusFlag == 1) {
-                [self.dataShare addObject:item];
-            }
+    for (int i = 0; i < barDetails.count; i++) {
+        
+        BarDetail* item = barDetails[i];
+        
+        if (item.section == 0 && item.statusFlag == 1) {
+            [self.dataDetail addObject:item];
+        }
+        else if (item.section == 1 && item.statusFlag == 1) {
+            [self.dataFavorite addObject:item];
+        }
+        else if (item.section == 2 && item.statusFlag == 1) {
+            [self.dataShare addObject:item];
         }
     }
 }
 
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UIView* view = [[UIView alloc] init];
+    UIView* sectionHeaderView = [[UIView alloc] init];
     
-    view.backgroundColor = [UIColor blackColor];
+    sectionHeaderView.backgroundColor = [UIColor blackColor];
     
     UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, -30, tableView.bounds.size.width-10, 100)];
     
@@ -125,7 +140,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
   
     titleLabel.textColor = [UIColor grayColor];
     
-    [view addSubview:titleLabel];
+    [sectionHeaderView addSubview:titleLabel];
     
     switch(section) {
         case 0:
@@ -140,16 +155,17 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
         default:
             break;;
     }
-    return view;
+    
+    return sectionHeaderView;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
    
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 50.0)];
+    UIView* sectionFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 50.0)];
     
-    view.backgroundColor = [UIColor blackColor];
+    sectionFooterView.backgroundColor = [UIColor blackColor];
     
-    return view;
+    return sectionFooterView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -198,7 +214,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     }
 }
 
--(NSString*)getPropertyValue:(NSString*)propertyName forSelectedBar:(Bar*)bar {
+-(NSString*)getPropertyValueFromPropertyName:(NSString*)propertyName forSelectedBar:(Bar*)bar {
     
     if([propertyName isEqualToString: NSLocalizedString(@"Address", @"Address")]) {
         return bar.address;
@@ -214,37 +230,37 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 -(void)setCellStyle:(UITableViewCell *)cell {
     
     [cell.textLabel setTextColor:[UIColor whiteColor]];
+    
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
     
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
-    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSInteger rowIndex = indexPath.row;
     
-    BarDetailItem* barDetailItem;
+    BarDetail* barDetail;
     
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
 
     switch(indexPath.section) {
         case 0:
-            barDetailItem = (BarDetailItem*)self.dataDetail[rowIndex];
+            barDetail = self.dataDetail[rowIndex];
             break;
         case 1:
-            barDetailItem = (BarDetailItem*)self.dataFavorite[rowIndex];
+            barDetail = self.dataFavorite[rowIndex];
             break;
         case 2:
-            barDetailItem = (BarDetailItem*)self.dataShare[rowIndex];
+            barDetail = self.dataShare[rowIndex];
             break;
         default:
             break;
     }
     
-    cell.textLabel.text =  [self getPropertyValue: barDetailItem.name forSelectedBar:self.selectedBar];
+    cell.textLabel.text =  [self getPropertyValueFromPropertyName: barDetail.name forSelectedBar:self.selectedBar];
     
-    cell.imageView.image = [UIImage imageNamed:barDetailItem.imageUrl];
+    cell.imageView.image = [UIImage imageNamed: barDetail.imageUrl];
     
     if (cell.imageView.image == nil)
     {
@@ -260,20 +276,20 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     
     NSInteger rowIndex = indexPath.row;
     
-    BarDetailItem* barDetailItem;
+    BarDetail* barDetail;
     
     UIStoryboard* storyboard;
     
     switch(indexPath.section) {
         case 0:
             
-            barDetailItem = (BarDetailItem*)self.dataDetail[rowIndex];
+            barDetail = self.dataDetail[rowIndex];
             
-            if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Address", @"Address")]) {
+            if ([barDetail.name isEqualToString: NSLocalizedString(@"Address", @"Address")]) {
                 
                 [self openMapsActionSheet: self];
             }
-            else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Phone", @"Phone")]) {
+            else if ([barDetail.name isEqualToString: NSLocalizedString(@"Phone", @"Phone")]) {
                 
                NSString* phoneNumber = [self.selectedBar.phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
                 
@@ -284,16 +300,21 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
                NSURL* tel = [NSURL URLWithString:[NSString stringWithFormat:@"tel:1-%@", phoneNumber]];
                 
                 if ([[UIApplication sharedApplication] canOpenURL: tel]) {
+                    
                     [[UIApplication sharedApplication] openURL: tel];
                 }
                 else {
                     
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Unable to dial phone number" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info",@"Info")
+                                                                        message: NSLocalizedString(@"Unable to dial phone number", @"Unable to dial phone number")
+                                                                       delegate:nil
+                                                              cancelButtonTitle: NSLocalizedString(@"OK",@"OK")
+                                                              otherButtonTitles:nil];
                     
                     [alertView show];
                 }
             }
-            else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Yelp", @"Yelp")]) {
+            else if ([barDetail.name isEqualToString: NSLocalizedString(@"Website", @"Website")]) {
                 
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 
@@ -303,7 +324,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
                 
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Yelp", @"Yelp")]) {
+            else if ([barDetail.name isEqualToString: NSLocalizedString(@"Events", @"Events")]) {
                 
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 
@@ -313,7 +334,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
                 
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Facebook Page", @"Facebook Page")]) {
+            else if ([barDetail.name isEqualToString: NSLocalizedString(@"Facebook Page", @"Facebook Page")]) {
                 
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 
@@ -323,7 +344,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
                 
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            else if ([barDetailItem.name isEqualToString:NSLocalizedString(@"Reviews", @"Reviews")]) {
+            else if ([barDetail.name isEqualToString:NSLocalizedString(@"Yelp Reviews", @"Yelp Reviews")]) {
                 
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 
@@ -336,10 +357,10 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
             break;
             
         case 1:
-             barDetailItem = (BarDetailItem*)self.dataFavorite[rowIndex];
+             barDetail = self.dataFavorite[rowIndex];
             
             //TODO: refactor
-            if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Save", @"Save")]) {
+            if ([barDetail.name isEqualToString: NSLocalizedString(@"Save", @"Save")]) {
               
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                
@@ -376,12 +397,12 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
             
             case 2:
             
-                barDetailItem = (BarDetailItem*)self.dataShare[rowIndex];
+                barDetail = self.dataShare[rowIndex];
             
-                if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Message", @"Message")]) {
+                if ([barDetail.name isEqualToString: NSLocalizedString(@"Message", @"Message")]) {
                     [self tappedSendSMS];
                 }
-                else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Email", @"Email")]) {
+                else if ([barDetail.name isEqualToString: NSLocalizedString(@"Email", @"Email")]) {
                     [self tappedSendMail];
                 }
     

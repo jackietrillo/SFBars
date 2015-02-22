@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
+
 #import "BaseViewController.h"
 #import "BarViewController.h"
 #import "District.h"
+#import "Constants.h"
 
-@interface NeighborhoodViewController : BaseViewController
+@interface NeighborhoodViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 
 @end

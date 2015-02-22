@@ -24,26 +24,21 @@ static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bar
     [super viewDidLoad];
     
     self.canDisplayBannerAds = YES;
+    
     self.tableView.hidden = YES;
 
     [self initNavigation];
-   
-    if (!self.appDelegate.cachedBarTypes) {
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"BarTypes" ofType:@"json"];
-        NSData* data = [NSData dataWithContentsOfFile:path];
         
-        NSMutableArray* barTypesData  = [self parseData:data];
-        [self loadData:barTypesData];
-        data = nil;
-    }
-    else {
-        [self loadData:self.appDelegate.cachedBarTypes];
-    }
+    NSMutableArray* barTypes  = [self getBarTypes];
+        
+    [self loadTableViewData:barTypes];
+  
 }
 
 -(void)initNavigation {
     
-    UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
+    UIFont* font = [UIFont fontWithName: glyphIconsFontName size:25.0];
+    
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
     UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
@@ -65,37 +60,24 @@ static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bar
     [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
--(void)loadData:(NSMutableArray*) data {
+-(NSMutableArray*)getBarTypes {
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
-    if (!data) {
-        return;
+    if (self.appDelegate.cachedBarTypes) {
+        return self.appDelegate.cachedBarTypes;
     }
-    
-    if (!self.appDelegate.cachedBarTypes) {
-        self.appDelegate.cachedBarTypes = data;
-    }
-
-    self.data = data;
-    
-    self.tableView.hidden = NO;
-    
-    self.tableView.delegate = self;
+        
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"BarTypes" ofType:@"json"];
    
-    [self.tableView reloadData];
-    
-}
-
--(NSMutableArray*)parseData:(NSData*)responseData {
-    
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
+    NSData* data = [NSData dataWithContentsOfFile:path];
+  
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     
     @try {
-       
+        
         NSMutableArray* dataByType = [[NSMutableArray alloc] init];
         
         if (arrayData.count > 0) {
+            
             for (int i = 0; i < arrayData.count; i++) {
                 
                 NSDictionary* dictTemp = arrayData[i];
@@ -106,11 +88,13 @@ static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bar
             }
         }
         
+        self.appDelegate.cachedBarTypes = dataByType;
+        
         return dataByType;
-
+        
     }
     @catch (NSException *exception) {
-       
+        
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Infromation", @"Infromation")
                                                             message: NSLocalizedString(@"Unable to retrieve data from server.", @"Unable to retrieve data from server.")
                                                            delegate: nil
@@ -120,6 +104,23 @@ static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bar
         [alertView show];
         
         return nil;
+    }
+    @finally {
+    
+        data = nil;
+    }
+}
+
+-(void)loadTableViewData:(NSMutableArray*) data {
+    
+    if (data) {
+        self.data = data;
+    
+        self.tableView.hidden = NO;
+    
+        self.tableView.delegate = self;
+    
+        [self.tableView reloadData];
     }
 }
 

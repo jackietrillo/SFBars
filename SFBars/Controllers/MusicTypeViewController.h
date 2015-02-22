@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "BaseViewController.h"
 #import "BarViewController.h"
 #import "MusicType.h"
+#import "Constants.h"
 
-@interface MusicViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface MusicTypeViewController : BaseViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, retain) IBOutlet UICollectionView* collectionView;
 @end

@@ -23,15 +23,11 @@
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
  
-    
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-   // viewController.navigationItem.backBarButtonItem.title = @" ";
-    
-    [self.navigationItem.leftBarButtonItem setBackButtonTitlePositionAdjustment:UIOffsetMake(-1000, -1000)
-                                                         forBarMetrics:UIBarMetricsDefault];
+
 }
 
 /*

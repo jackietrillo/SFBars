@@ -17,4 +17,6 @@
 
 #define reuseIdentifier @"Cell"
 
+#define glyphIconsFontName @"GLYPHICONSHalflings-Regular"
+
 #endif

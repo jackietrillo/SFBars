@@ -14,12 +14,15 @@
 
 #import "BarWebViewController.h"
 #import "NearMeViewController.h"
-#import "BarDetailItem.h"
 #import "BarDetailHeaderViewCell.h"
-#import "Bar.h"
+#import "AppDelegate.h"
+#import "BarDetail.h"
 #import "Constants.h"
+#import "Bar.h"
 
-@interface BarDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
+
+@interface BarDetailsViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate,
+                                                        MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
 
 @property (readwrite, nonatomic, strong) Bar* selectedBar;
 

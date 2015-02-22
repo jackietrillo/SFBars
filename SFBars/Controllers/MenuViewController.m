@@ -28,13 +28,14 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     
     [self initTableView];
     
-    [self loadData];
+    NSMutableArray* menuItems = [self getMenuItems];
+    
+    [self loadTableViewData:menuItems];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    NSString* className = NSStringFromClass ([self class]);
-    NSLog(@"%@", className);
+    NSLog(@"%@", NSStringFromClass ([self class]));
 }
 
 -(void)initTableView {
@@ -52,44 +53,65 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
--(void)loadData {
+-(NSMutableArray*)getMenuItems {
+    
+    if (self.appDelegate.cachedMenuItems) {
+        return self.appDelegate.cachedMenuItems;
+    }
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"MenuItems" ofType:@"json"];
-    NSData* data = [NSData dataWithContentsOfFile:path];
     
-    [self parseMenuData:data];
-    data = nil;
-}
-
--(void)parseMenuData: (NSData*)jsonData {
+    NSData* jsonData = [NSData dataWithContentsOfFile:path];
     
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error: nil];
+    
+    jsonData = nil;
+    
+    NSMutableArray* menuItems = [[NSMutableArray alloc] init];
+    
+    MenuItem* menuItem;
+    
+    for (int i = 0; i < arrayData.count; i++) {
+        
+        NSDictionary* dictTemp = arrayData[i];
+        
+        menuItem = [MenuItem initFromDictionary: dictTemp];
+        
+        [menuItems addObject:menuItem];
+    }
+    
+    self.appDelegate.cachedMenuItems = menuItems;
+    
+    return menuItems;
+    
+}
+
+-(void)loadTableViewData: (NSMutableArray*)menuItems {
     
     self.menuDataTop = [[NSMutableArray alloc] init];
     self.menuDataMiddle = [[NSMutableArray alloc] init];
     self.menuDataBottom = [[NSMutableArray alloc] init];
     
-    if (arrayData.count > 0) {
+    MenuItem* menuItem;
+    
+    for (int i = 0; i < menuItems.count; i++) {
         
-        for (int i = 0; i < arrayData.count; i++) {
-            
-            NSDictionary* dictTemp = arrayData[i];
-            MenuItem* menuItem = [MenuItem initFromDictionary: dictTemp];
-            
-            if (menuItem.section == 0 && menuItem.statusFlag == 1)
-            {
-                [self.menuDataTop addObject:menuItem];
-            }
-            else if (menuItem.section == 1 && menuItem.statusFlag == 1)
-            {
-                [self.menuDataMiddle addObject:menuItem];
-            }
-            else if (menuItem.section == 2 && menuItem.statusFlag == 1)
-            {
-                [self.menuDataBottom addObject:menuItem];
-            }
+        menuItem = menuItems[i];
+        
+        if (menuItem.section == 0 && menuItem.statusFlag == 1)
+        {
+            [self.menuDataTop addObject:menuItem];
+        }
+        else if (menuItem.section == 1 && menuItem.statusFlag == 1)
+        {
+            [self.menuDataMiddle addObject:menuItem];
+        }
+        else if (menuItem.section == 2 && menuItem.statusFlag == 1)
+        {
+            [self.menuDataBottom addObject:menuItem];
         }
     }
+    
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -260,7 +282,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
             }
             else if ([menuItem.name isEqualToString: NSLocalizedString(@"Music", @"Music")]){
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                MusicViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MusicViewController"];
+                MusicTypeViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MusicTypeViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
 
