@@ -46,6 +46,7 @@
 		82A9149A1A9985BA0019D30A /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A914991A9985B90019D30A /* LoadingView.xib */; };
 		82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149C1A9985FF0019D30A /* LoadingView.m */; };
 		82A914A01A9990A40019D30A /* NeighborhoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149F1A9990A40019D30A /* NeighborhoodViewController.m */; };
+		82A914A31A99D1B80019D30A /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A914A21A99D1B80019D30A /* SearchResultsViewController.m */; };
 		82B828F61A85FE5700F90A33 /* glyphicons-halflings-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820ABF151A847AF20022192F /* glyphicons-halflings-regular.ttf */; };
 		82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C131A70830100E71F40 /* ImageDownloader.m */; };
 		82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C161A70838500E71F40 /* BaseEntity.m */; };
@@ -142,6 +143,8 @@
 		82A9149C1A9985FF0019D30A /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Controls/LoadingView.m; sourceTree = "<group>"; };
 		82A9149E1A9990A40019D30A /* NeighborhoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NeighborhoodViewController.h; path = SFBars/Controllers/NeighborhoodViewController.h; sourceTree = "<group>"; };
 		82A9149F1A9990A40019D30A /* NeighborhoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NeighborhoodViewController.m; path = SFBars/Controllers/NeighborhoodViewController.m; sourceTree = "<group>"; };
+		82A914A11A99D1B80019D30A /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultsViewController.h; path = SFBars/Controllers/SearchResultsViewController.h; sourceTree = "<group>"; };
+		82A914A21A99D1B80019D30A /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultsViewController.m; path = SFBars/Controllers/SearchResultsViewController.m; sourceTree = "<group>"; };
 		82BA4C121A70830100E71F40 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Common/ImageDownloader.h; sourceTree = "<group>"; };
 		82BA4C131A70830100E71F40 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Common/ImageDownloader.m; sourceTree = "<group>"; };
 		82BA4C151A70838500E71F40 /* BaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseEntity.h; path = SFBars/Models/BaseEntity.h; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 		82A5C7A61A631F0B00D55A54 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				82A914A11A99D1B80019D30A /* SearchResultsViewController.h */,
+				82A914A21A99D1B80019D30A /* SearchResultsViewController.m */,
 				82BF8A191A74392800237060 /* BarDetailsViewController.h */,
 				828FE61D1A761B7200D2466D /* BarDetailsViewController.m */,
 				828FE6141A761A8B00D2466D /* BrowseViewController.h */,
@@ -553,6 +558,7 @@
 				82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */,
 				826D03551A881CBC0051189B /* SearchViewController.m in Sources */,
 				828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */,
+				82A914A31A99D1B80019D30A /* SearchResultsViewController.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
 				82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */,
 				82D43C401A95687300B4196C /* MusicType.m in Sources */,

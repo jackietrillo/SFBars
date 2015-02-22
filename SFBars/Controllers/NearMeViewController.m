@@ -88,13 +88,12 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
         cameraLocation =   CLLocationCoordinate2DMake(self.mapView.myLocation.coordinate.latitude, self.mapView.myLocation.coordinate.longitude);
     }
     else {
-        cameraLocation =   CLLocationCoordinate2DMake(37.761622, -122.435285); //TODO: remove hardcoded constants
+        cameraLocation =   CLLocationCoordinate2DMake(37.761622, -122.435285); //TODO: remove these hardcoded values
     }
     
     GMSCameraPosition* camera = [GMSCameraPosition cameraWithLatitude:cameraLocation.latitude longitude:cameraLocation.longitude zoom:0 bearing:0 viewingAngle:0];
     
     self.mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
-    
     self.mapView.mapType = kGMSTypeNormal;
     self.mapView.buildingsEnabled = true;
     self.mapView.myLocationEnabled = YES;

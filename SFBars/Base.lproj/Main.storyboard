@@ -445,7 +445,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bee-Rh-FGB">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.035412720959999998" green="0.035412720959999998" blue="0.035412720959999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="6TZ-KC-uz3" detailTextLabel="UYP-A9-wRN" style="IBUITableViewCellStyleSubtitle" id="LZA-eY-Z48">
@@ -476,14 +476,27 @@
                                     <outlet property="delegate" destination="zUm-v8-4kA" id="5Js-jT-q4P"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rf1-dV-2Qz">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="searchDisplayController" destination="RaU-Wd-JXz" id="mdK-hh-el5"/>
                         <outlet property="tableView" destination="bee-Rh-FGB" id="cd8-5g-UcF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgN-jk-SsO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="RaU-Wd-JXz">
+                    <connections>
+                        <outlet property="delegate" destination="zUm-v8-4kA" id="Q2Z-uH-icL"/>
+                        <outlet property="searchContentsController" destination="zUm-v8-4kA" id="Nl6-1K-MTZ"/>
+                        <outlet property="searchResultsDataSource" destination="zUm-v8-4kA" id="dXC-4e-32n"/>
+                        <outlet property="searchResultsDelegate" destination="zUm-v8-4kA" id="eeF-IP-6Yx"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-9780" y="-482"/>
         </scene>
@@ -680,7 +693,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IEi-Vv-0dk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8099" y="-1281"/>
+            <point key="canvasLocation" x="-9071" y="-1188"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

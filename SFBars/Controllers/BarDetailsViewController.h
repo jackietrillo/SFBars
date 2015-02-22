@@ -11,11 +11,13 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MessageUI/MessageUI.h>
 #import <MapKit/MapKit.h>
+
 #import "BarWebViewController.h"
 #import "NearMeViewController.h"
 #import "BarDetailItem.h"
 #import "BarDetailHeaderViewCell.h"
 #import "Bar.h"
+#import "Constants.h"
 
 @interface BarDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
 

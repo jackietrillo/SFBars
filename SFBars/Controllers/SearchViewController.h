@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "BaseViewController.h"
 #import "AppDelegate.h"
 #import "BarDetailsViewController.h"
+#import "SearchResultsViewController.h"
 #import "Bar.h"
 #import "Constants.h"
 
-@interface SearchViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SearchViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 

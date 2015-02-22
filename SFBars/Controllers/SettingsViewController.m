@@ -20,12 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self initController];
-}
 
--(void)initController
-{
     [self initNavigation];
     [self loadData];
 }
@@ -44,7 +39,7 @@
     [doneButton setTitle:[NSString stringWithUTF8String:"\uf00c"]];
     
     self.navigationItem.rightBarButtonItem = doneButton;
-    self.navigationItem.title = @"SETTINGS";  //TODO: localize
+    self.navigationItem.title = NSLocalizedString(@"SETTINGS", @"SETTINGS");
     
     [self.navigationItem setHidesBackButton:YES animated:YES];
 }
@@ -59,13 +54,8 @@
 }
 
 -(void)parseData: (NSData*)jsonData {
-    NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
     
-    if (errorData != nil)
-    {
-        //TODO: Alert User
-    }
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
     
     self.menuDataTop = [[NSMutableArray alloc] init];
     self.menuDataBottom = [[NSMutableArray alloc] init];
@@ -79,11 +69,11 @@
             
             if (menuItem.section == 0 && menuItem.statusFlag == 1)
             {
-                [self.menuDataTop addObject:menuItem];  //TODO: localize
+                [self.menuDataTop addObject:menuItem];
             }
             else if (menuItem.section == 1 && menuItem.statusFlag == 1)
             {
-                [self.menuDataBottom addObject:menuItem];  //TODO: localize
+                [self.menuDataBottom addObject:menuItem];
             }
         }
     }
@@ -144,7 +134,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger rowIndex = indexPath.row;
     MenuItem* menuItem;
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     
     switch(indexPath.section) {
         case 0:
@@ -175,13 +165,13 @@
     {
         case 0:
             dataItem = (MenuItem*)self.menuDataTop[rowIndex];
-            if ([dataItem.name isEqualToString:@"Rate App"]) {  //TODO: check id not string
+            if ([dataItem.name isEqualToString: NSLocalizedString(@"Rate App", @"Rate App")]) {
                 [self tappedRateApp];
             }
-            else if ([dataItem.name isEqualToString:@"Feedback"]) {
+            else if ([dataItem.name isEqualToString: NSLocalizedString(@"Feedback",@"Feedback")]) {
                 [self tappedSendFeedback];
             }
-            else if ([dataItem.name isEqualToString:@"Report a Problem"]) {
+            else if ([dataItem.name isEqualToString: NSLocalizedString(@"Report a Problem",@"Report a Problem")]) {
                 [self tappedContactUs];
             }
             break;
@@ -189,7 +179,7 @@
         case 1:
             dataItem = (MenuItem*)self.menuDataBottom[rowIndex];
             
-            if ([dataItem.name isEqualToString:@"Upgrade"]) {
+            if ([dataItem.name isEqualToString: NSLocalizedString(@"Upgrade", @"Upgrade")]) {
                 [self tappedUpgrade];
             }
                       break;
@@ -201,7 +191,7 @@
 -(void)tappedSendFeedback {
     
     MFMailComposeViewController* mailComposeViewController = [[MFMailComposeViewController alloc] init];
-    [mailComposeViewController setSubject:@"Feedback"];  //TODO: localize
+    [mailComposeViewController setSubject: NSLocalizedString(@"Feedback",@"Feedback")];
     [mailComposeViewController setToRecipients:@[@"jackietrillo@hotmail.com"]];
     mailComposeViewController.mailComposeDelegate = self;
     
@@ -212,7 +202,7 @@
     
     MFMailComposeViewController* mailComposeViewController = [[MFMailComposeViewController alloc] init];
     mailComposeViewController.mailComposeDelegate = self;
-    [mailComposeViewController setSubject:@"Report a Problem"]; //TODO: localize
+    [mailComposeViewController setSubject: NSLocalizedString(@"Report a Problem",@"Report a Problem")];
     [mailComposeViewController setToRecipients:@[@"jackietrillo@hotmail.com"]];
 
     [self presentViewController:mailComposeViewController animated:YES completion:nil];

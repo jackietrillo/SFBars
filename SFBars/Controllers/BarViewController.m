@@ -13,6 +13,7 @@
 @property (readwrite, nonatomic, strong) NSMutableArray* data;
 @property (nonatomic, nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 @property (readwrite, nonatomic, strong) LoadingView* loadingView;
+
 @end
 
 @implementation BarViewController
@@ -31,8 +32,11 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     if (!self.appDelegate.cachedBars) {
         
         NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil];
+        
         self.loadingView = [xib lastObject];
+        
         self.loadingView.frame = self.view.bounds;
+        
         [self.view addSubview:self.loadingView];
         
         [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
@@ -50,9 +54,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     
     [super didReceiveMemoryWarning];
     [self terminateImageDownloads];
-    
-    NSString* className = NSStringFromClass ([self class]);
-    NSLog(@"%@", className);
 }
 
 -(void)initNavigation {
@@ -62,14 +63,9 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 }
 
 -(NSMutableArray*)parseData: (NSData*)responseData {
-    
-    NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
-    
-    if (errorData != nil) {
-       //TODO: alert user
-    }
-    
+
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
+
     NSMutableArray* bars = [[NSMutableArray alloc] init];
     
     if (arrayData.count > 0) {
@@ -112,6 +108,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 -(NSMutableArray*)filterData: (NSMutableArray*) data {
     
     NSMutableArray* filteredData = [[NSMutableArray alloc] init];
+    
     for (int i = 0; i < data.count; i++) {
         Bar* bar = (Bar*)data[i];
         

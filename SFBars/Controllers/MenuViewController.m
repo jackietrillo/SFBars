@@ -18,7 +18,7 @@
 
 @implementation MenuViewController
 
-static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
+static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 - (void)viewDidLoad {
     
@@ -46,7 +46,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
 
 -(void)initNavigation {
     
-    self.navigationItem.title = @"SF BARS"; //TODO localize
+    self.navigationItem.title = NSLocalizedString(@"MENU", @"MENU");
     [self.navigationItem setHidesBackButton:YES animated:YES];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
@@ -63,13 +63,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
 
 -(void)parseMenuData: (NSData*)jsonData {
     
-    NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
-    
-    if (errorData != nil) {
-       //TODO: log error
-       //TODO: alert User
-    }
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error: nil];
     
     self.menuDataTop = [[NSMutableArray alloc] init];
     self.menuDataMiddle = [[NSMutableArray alloc] init];
@@ -151,7 +145,6 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
             return @" ";
         case 2:
             return @" ";
-
         default:
             return 0;
     }
@@ -200,9 +193,10 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    
     NSInteger rowIndex = indexPath.row;
     MenuItem* menuItem;
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     switch(indexPath.section) {
             
@@ -234,43 +228,44 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
    
     NSInteger rowIndex = indexPath.row;
     MenuItem* menuItem;
+    UIStoryboard* storyboard;
     
     switch(indexPath.section) {
             
         case 0:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
             
-            if ([menuItem.name isEqualToString:@"Search"]) {
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            if ([menuItem.name isEqualToString: NSLocalizedString(@"Search", @"Search")]) {
+                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 SearchViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            if ([menuItem.name isEqualToString:@"Browse"]) {
+            if ([menuItem.name isEqualToString: NSLocalizedString(@"Browse", @"Browse")]) {
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
-            else if ([menuItem.name isEqualToString:@"Near Me"]) {
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            else if ([menuItem.name isEqualToString: NSLocalizedString(@"Near Me", @"Near Me")]) {
+                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 NearMeViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"NearMeViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            else if ([menuItem.name isEqualToString:@"Neighborhoods"]) {
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            else if ([menuItem.name isEqualToString: NSLocalizedString(@"Neighborhoods", @"Neighborhoods")]) {
+                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 NeighborhoodViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"NeighborhoodViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            else if ([menuItem.name isEqualToString:@"Top List"]){
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            else if ([menuItem.name isEqualToString: NSLocalizedString(@"Top List", @"Top List")]){
+                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 TopListViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"TopListViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            else if ([menuItem.name isEqualToString:@"Music"]){
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            else if ([menuItem.name isEqualToString: NSLocalizedString(@"Music", @"Music")]){
+                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 MusicViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MusicViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
 
-            else if ([menuItem.name isEqualToString:@"Parties"]){
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            else if ([menuItem.name isEqualToString: NSLocalizedString(@"Parties", @"Parties")]){
+                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 PartiesViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"PartiesViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
@@ -279,9 +274,9 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
         case 1:
             menuItem = (MenuItem*)self.menuDataMiddle[rowIndex];
             
-            if ([menuItem.name isEqualToString:@"Saved"]) {
+            if ([menuItem.name isEqualToString: NSLocalizedString(@"Saved", @"Saved")]) {
                
-                //load up saved bars from NSUserDefaults
+                //TODO: refactor
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSMutableDictionary* savedBarsDict = [defaults objectForKey:SAVEDBARSDICT];
              
@@ -295,14 +290,21 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
                         }
                     }
                     
-                    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    
                     BarViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarViewController"];
+                    
                     vc.bars = savedBars;
+                    
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                 else {
-                    //TODO: localize
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Info" message:@"You have no saved Bars." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                   
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info", @"Info")
+                                                                        message: NSLocalizedString(@"You have no saved Bars.", @"You have no saved Bars.")
+                                                                       delegate: nil
+                                                              cancelButtonTitle: NSLocalizedString(@"Cancel", @"Cancel")
+                                                              otherButtonTitles: nil];
                     [alertView show];
                 }
             }
@@ -311,9 +313,9 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
         case 2:
             menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
             
-            if ([menuItem.name isEqualToString:@"Settings"])
+            if ([menuItem.name isEqualToString: NSLocalizedString(@"Settings", @"Settings")])
             {
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 SettingsViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
@@ -339,7 +341,6 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict"; //TODO: centralize
 - (IBAction)unwindToMenu:(UIStoryboardSegue *)unwindSegue {
     
 }
- 
  */
 
 @end

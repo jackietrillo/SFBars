@@ -44,7 +44,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
    
     [self.navigationController setToolbarHidden:YES animated:YES];
     
-   
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] init];
     
     UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
@@ -57,7 +56,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     [menuButton setAction:@selector(showMenu:)];
     
     self.navigationItem.leftBarButtonItem = menuButton;
-    self.navigationItem.title = @"NEIGHBORHOODS"; //TODO: Localize
+    self.navigationItem.title = NSLocalizedString(@"NEIGHBORHOODS", @"NEIGHBORHOODS");
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
@@ -83,10 +82,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
 -(NSMutableArray*)parseData: (NSData*)jsonData {
     NSError* errorData;
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
-    
-    if (errorData != nil) {
-        //TODO: alert user
-    }
     
     NSMutableArray* districts = [[NSMutableArray alloc] init];
     if (arrayData.count > 0) {
@@ -142,12 +137,16 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
 
 -(void)setCellStyle:(UITableViewCell *)cell {
     [cell.textLabel setTextColor:[UIColor whiteColor]];
+    
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
+    
     cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
+    
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     switch(indexPath.section) {
@@ -155,6 +154,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
             if (indexPath.row < self.data.count)
             {
                 District* district = (District*)[self.data objectAtIndex:indexPath.row];
+                
                 cell.textLabel.text = district.name;
                 
                 [self setCellStyle:cell];
@@ -173,17 +173,22 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
+    
     BarViewController* barsViewController = segue.destinationViewController;
+    
     District* district = self.data[indexPath.row];
-    barsViewController.filterIds = @[[[NSNumber numberWithInteger:district.itemId] stringValue]];
+    
     barsViewController.filterType = FilterByDistricts;
+    
+    barsViewController.filterIds = @[[[NSNumber numberWithInteger:district.itemId] stringValue]];
+    
 }
 
-- (void)showSettings:(id)sender
-{
+- (void)showSettings:(id)sender {
+    
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
@@ -191,8 +196,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)showMenu:(id)sender
-{
+- (void)showMenu:(id)sender {
+    
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];

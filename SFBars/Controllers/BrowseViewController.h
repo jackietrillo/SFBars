@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "BaseViewController.h"
 #import "BarViewController.h"
 #import "MenuViewController.h"
@@ -15,6 +16,6 @@
 #import "Enums.h"
 #import "Constants.h"
 
-@interface BrowseViewController : BaseViewController
+@interface BrowseViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

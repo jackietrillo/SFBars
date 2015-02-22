@@ -17,37 +17,37 @@
   "bars": []
   },
   {
-  "itemId": 4,
+  "itemId": 7,
   "districtId": 7,
   "name": "Mission",
   "bars": []
   },
   {
-  "itemId": 5,
+  "itemId": 8,
   "districtId": 8,
   "name": "Pacific Heights",
   "bars": []
   },
   {
-  "itemId": 6,
+  "itemId": 9,
   "districtId": 9,
   "name": "Noe Valley",
   "bars": []
   },
   {
-  "itemId": 7,
+  "itemId": 11,
   "districtId": 11,
   "name": "Richmond",
   "bars": []
   },
   {
-  "itemId": 8,
+  "itemId": 12,
   "districtId": 12,
   "name": "SoMa",
   "bars": []
   },
   {
-  "itemId": 9,
+  "itemId": 15,
   "districtId": 15,
   "name": "Tenderloin",
   "bars": []

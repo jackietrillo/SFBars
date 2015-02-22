@@ -9,7 +9,7 @@
 #import "BrowseViewController.h"
 
 
-@interface BrowseViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface BrowseViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readwrite, nonatomic, strong) NSMutableArray* data;
@@ -18,7 +18,7 @@
 
 @implementation BrowseViewController
 
-static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
+static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,26 +41,25 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    NSString* className = NSStringFromClass ([self class]);
-    NSLog(@"%@", className);
-}
-
 -(void)initNavigation {
-    UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
     
     UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
+    UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
+    
     [menuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
+    
     [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
     
     [menuButton setTarget:self];
+    
     [menuButton setAction:@selector(showMenu:)];
     
     self.navigationItem.leftBarButtonItem = menuButton;
-    self.navigationItem.title = @"BROWSE"; //TODO: Localize
+    
+    self.navigationItem.title = NSLocalizedString(@"BROWSE", @"BROWSE");
+                                                  
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
     
     [self.navigationController setToolbarHidden:YES animated:YES];
@@ -78,43 +77,61 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
         self.appDelegate.cachedBarTypes = data;
     }
 
-    self.tableView.hidden = NO;
-    self.tableView.delegate = self;
     self.data = data;
+    
+    self.tableView.hidden = NO;
+    
+    self.tableView.delegate = self;
+   
     [self.tableView reloadData];
     
 }
 
 -(NSMutableArray*)parseData:(NSData*)responseData {
     
-    NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
     
     @try {
        
         NSMutableArray* dataByType = [[NSMutableArray alloc] init];
+        
         if (arrayData.count > 0) {
             for (int i = 0; i < arrayData.count; i++) {
+                
                 NSDictionary* dictTemp = arrayData[i];
+                
                 BarType* barType = [BarType initFromDictionary:dictTemp];
+                
                 [dataByType addObject:barType];
             }
         }
+        
         return dataByType;
 
     }
     @catch (NSException *exception) {
-        //TODO: localize
-        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Infromation"
-                                                            message:@"Unable to retrieve data at this time. Please try again later."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
+       
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Infromation", @"Infromation")
+                                                            message: NSLocalizedString(@"Unable to retrieve data from server.", @"Unable to retrieve data from server.")
+                                                           delegate: nil
+                                                  cancelButtonTitle: NSLocalizedString(@"OK", @"OK")
                                                   otherButtonTitles:nil];
         
         [alertView show];
         
         return nil;
     }
+}
+
+-(void)setCellStyle:(UITableViewCell *)cell {
+    
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    
+    cell.textLabel.highlightedTextColor = [UIColor blackColor];
+    
+    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -132,14 +149,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     }
 }
 
--(void)setCellStyle:(UITableViewCell *)cell {
-    
-    [cell.textLabel setTextColor:[UIColor whiteColor]];
-    cell.textLabel.highlightedTextColor = [UIColor blackColor];
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator; //default chevron indicator
-    cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
@@ -147,7 +156,9 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     switch(indexPath.section) {
         case 0:
         if (indexPath.row < self.data.count) {
+            
             BarType* barType = (BarType*)[self.data objectAtIndex:indexPath.row];
+            
             cell.textLabel.text = barType.name;
            
             [self setCellStyle:cell];
@@ -164,15 +175,22 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
+    
     BarViewController* barsViewController = segue.destinationViewController;
+    
     BarType* barType = self.data[indexPath.row];
+    
     barsViewController.titleText = barType.name;
+    
     barsViewController.filterIds = @[[[NSNumber numberWithInteger:barType.itemId] stringValue]];
+    
     barsViewController.filterType = FilterByBarTypes;
 }
 
 - (void)showMenu:(id)sender {
+    
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
     MenuViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
     
     [self.navigationController pushViewController:vc animated:YES];
