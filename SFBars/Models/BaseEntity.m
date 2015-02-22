@@ -28,9 +28,7 @@ static const NSString* STATUSFLAG = @"statusFlag";
 
 +(id)initFromDictionary:(NSDictionary*)dict forEntity:(BaseEntity*)baseEntity; {
     
-    if (dict[ITEMID]) {
-        baseEntity.itemId = [dict[ITEMID] longValue];
-    }
+    baseEntity.itemId = [dict[ITEMID] longValue];
     baseEntity.name = dict[NAME];
     baseEntity.imageUrl = dict[IMAGEURL];
     baseEntity.statusFlag = [dict[STATUSFLAG] longValue];

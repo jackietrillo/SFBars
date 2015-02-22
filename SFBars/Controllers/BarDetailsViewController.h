@@ -19,7 +19,6 @@
 
 @interface BarDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
 
-
 @property (readwrite, nonatomic, strong) Bar* selectedBar;
 
 @end

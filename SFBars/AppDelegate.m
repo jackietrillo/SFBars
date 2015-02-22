@@ -23,7 +23,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
-    
     [GMSServices provideAPIKey:@"AIzaSyBwemjLYLhOFeh7NRdaiMUesp_sawcnZh0"];
     
     return YES;

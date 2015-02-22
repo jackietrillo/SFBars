@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "BarDetailsViewController.h"
 #import "Bar.h"
+#import "Constants.h"
 
 @interface SearchViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 

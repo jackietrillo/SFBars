@@ -13,6 +13,7 @@
 #import "BarType.h"
 #import "AppDelegate.h"
 #import "Enums.h"
+#import "Constants.h"
 
 @interface BrowseViewController : BaseViewController
 

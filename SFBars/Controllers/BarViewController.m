@@ -17,7 +17,6 @@
 
 @implementation BarViewController
 
-static NSString* reuseIdentifier = @"Cell";
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 
 - (void)viewDidLoad {
@@ -40,7 +39,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 - (void)dealloc {
     [self terminateImageDownloads];
 }
-
 
 - (void)didReceiveMemoryWarning {
     
@@ -91,21 +89,53 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
         self.appDelegate.cachedBars = data;
     }
     
-    if (self.filterType != FilterByNotAssigned && self.filterId > 0) {
-        NSMutableArray* filteredData = [[NSMutableArray alloc] init];
-        for (int i = 0; i < data.count; i++) {
-            Bar* bar = (Bar*)data[i];
-            
-            [filteredData addObject:bar];
-        }
-        self.data = filteredData;
+    if (self.filterType != FilterByNotAssigned && self.filterIds != nil) {
+        self.data = [self filterData:data];
     }
-    else {
+    else
+    {
         self.data = data;
     }
     
     [self.tableView reloadData];
     self.tableView.hidden = NO;
+}
+
+-(NSMutableArray*)filterData: (NSMutableArray*) data {
+    
+    NSMutableArray* filteredData = [[NSMutableArray alloc] init];
+    for (int i = 0; i < data.count; i++) {
+        Bar* bar = (Bar*)data[i];
+        
+        switch (self.filterType) {
+            case FilterByBarTypes:
+                for (int i = 0; i < self.filterIds.count; i++) {
+                    if ([bar.barTypes containsObject: self.filterIds[i]] ) {
+                        [filteredData addObject:bar];
+                    }
+                }
+                break;
+            case FilterByDistricts:
+                if ([self.filterIds containsObject: [NSNumber numberWithInteger:bar.districtId]] ) {
+                    [filteredData addObject:bar];
+                }
+                break;
+            case FilterByMusicTypes:
+                if ([self.filterIds containsObject: [[NSNumber numberWithInteger:bar.musicTypeId] stringValue]] ) {
+                    [filteredData addObject:bar];
+                }
+                break;
+            case FilterByBarIds:
+                if ([self.filterIds containsObject: [NSNumber numberWithInteger:bar.barId]] ) {
+                    [filteredData addObject:bar];
+                }
+                break;
+            default:
+                break;
+        }
+        
+    }
+    return filteredData;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -116,7 +146,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     NSInteger rowIndex = indexPath.row;
     Bar* bar = self.data[rowIndex];
     
-    BarTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    BarTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     cell.nameLabel.text = bar.name;
     cell.descripLabel.text = bar.descrip;
     cell.addressLabel.text = bar.address;
@@ -132,51 +162,14 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
         // if a download is deferred or in progress, return a placeholder image
         cell.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     }
-    else
-    {
-       // UIImage* filteredImage = [self addFilterToImage: bar.icon];
+    else {
         cell.logo.image = bar.icon;
     }
 
     return cell;
 }
 
--(UIImage*)addFilterToImage: (UIImage*)image {
-    
-    CIContext *imgContext = [CIContext contextWithOptions:nil];
-    
-    CIImage *bgnImage = [[CIImage alloc] initWithImage:image];
-    
-    CIFilter *imgFilter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues: kCIInputImageKey, bgnImage, @"inputIntensity", [NSNumber numberWithFloat:0.5], nil];
-    CIImage *myOutputImage = [imgFilter outputImage];
-    
-    CGImageRef cgImgRef = [imgContext  createCGImage:myOutputImage fromRect:[myOutputImage extent]];
-    UIImage *newImgWithFilter = [UIImage imageWithCGImage:cgImgRef];
-    
-    CGImageRelease(cgImgRef);
-    return newImgWithFilter;
-    
-}
-
--(void)addFilterToImageView: (UIImageView*)imageView {
-    
-    CIContext *imgContext = [CIContext contextWithOptions:nil];
-    
-    CIImage *bgnImage = [[CIImage alloc] initWithImage:imageView.image];
-    
-    CIFilter *imgFilter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues: kCIInputImageKey, bgnImage, @"inputIntensity", [NSNumber numberWithFloat:0.8], nil];
-    CIImage *myOutputImage = [imgFilter outputImage];
-    
-    CGImageRef cgImgRef = [imgContext  createCGImage:myOutputImage fromRect:[myOutputImage extent]];
-    UIImage *newImgWithFilter = [UIImage imageWithCGImage:cgImgRef];
-    
-    [imageView setImage:newImgWithFilter];
-    
-    CGImageRelease(cgImgRef);
-}
-
-- (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell
-{
+- (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell {
     UIView *bgColorView = [[UIView alloc] init];
     bgColorView.backgroundColor = color;
     [cell setSelectedBackgroundView:bgColorView];
@@ -184,8 +177,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 #pragma mark - Table cell image download support
 
-- (void)terminateImageDownloads
-{
+- (void)terminateImageDownloads {
     NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
     [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
     
@@ -193,11 +185,10 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     [self.imageDownloadsInProgress removeAllObjects];
 }
 
-- (void)startImageDownload:(Bar*)bar forIndexPath:(NSIndexPath *)indexPath
-{
+- (void)startImageDownload:(Bar*)bar forIndexPath:(NSIndexPath *)indexPath {
+    
     ImageDownloader *imageDownloader = (self.imageDownloadsInProgress)[indexPath];
-    if (imageDownloader == nil)
-    {
+    if (imageDownloader == nil) {
         imageDownloader = [[ImageDownloader alloc] init];
         imageDownloader.Entity = bar;
     
@@ -205,12 +196,10 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
             
             BarTableViewCell* cell = (BarTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
         
-            if (bar.icon != nil)
-            {
+            if (bar.icon != nil) {
                 cell.logo.image = bar.icon;
             }
-            else
-            {
+            else {
                 cell.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
             }
             
@@ -223,13 +212,10 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     }
 }
 
-- (void)loadImagesForOnscreenRows
-{
-    if (self.data.count > 0)
-    {
+- (void)loadImagesForOnscreenRows {
+    if (self.data.count > 0) {
         NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
-        for (NSIndexPath *indexPath in visiblePaths)
-        {
+        for (NSIndexPath *indexPath in visiblePaths) {
             Bar* bar = (self.data)[indexPath.row];
             
             if (!bar.icon)  // Avoid the download if there is already an icon
@@ -242,25 +228,20 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (!decelerate)
-    {
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!decelerate) {
         [self loadImagesForOnscreenRows];
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self loadImagesForOnscreenRows];
 }
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.destinationViewController isKindOfClass: [BarDetailsViewController class]])
-    {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.destinationViewController isKindOfClass: [BarDetailsViewController class]]) {
         BarDetailsViewController* barDetailsViewController = segue.destinationViewController;
         NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
         barDetailsViewController.selectedBar = self.data[indexPath.row];

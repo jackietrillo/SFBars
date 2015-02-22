@@ -16,7 +16,6 @@
 
 @implementation SearchViewController
 
-static NSString* reuseIdentifier = @"Cell";
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 
 - (void)viewDidLoad {
@@ -25,15 +24,12 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
     [self initNavigation];
     
-    if (!self.appDelegate.cachedBars)
-    {
+    if (!self.appDelegate.cachedBars) {
         [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
     }
-    else
-    {
+    else {
         [self loadData: self.appDelegate.cachedBars];
     }
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,12 +38,10 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     NSLog(@"%@", className);
 }
 
-
 - (void)initNavigation {
     
     self.navigationItem.title = @"SEARCH"; //TODO: localize
 }
-
 
 -(void)loadData: (NSMutableArray*) data {
     
@@ -114,13 +108,11 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    switch(indexPath.section)
-    {
+    switch(indexPath.section) {
         case 0:
-            if (indexPath.row < self.data.count)
-            {
+            if (indexPath.row < self.data.count) {
                 Bar* bar = (Bar*)[self.data objectAtIndex:indexPath.row];
                 cell.textLabel.text = bar.name;
                 cell.detailTextLabel.text = bar.descrip;

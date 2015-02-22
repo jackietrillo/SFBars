@@ -10,7 +10,6 @@
 
 @interface  BarDetailItem()
 
-
 @end
 
 @implementation BarDetailItem

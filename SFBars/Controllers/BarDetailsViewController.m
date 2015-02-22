@@ -155,8 +155,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
-    switch(section)
-    {
+    switch(section) {
         case 0:
             return 0.0f;
         case 1:
@@ -170,8 +169,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    switch(section)
-    {
+    switch(section) {
         case 0:
             return [self.dataDetail count];
         case 1:
@@ -334,7 +332,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 -(void)openMapsActionSheet:(id)sender {
    
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Open in Maps" //TODO: localize
+    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"Open in Maps" //TODO: localize
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                          destructiveButtonTitle:nil
@@ -360,7 +358,8 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
          */
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?daddr=%f,%f",location.latitude,location.longitude]];
         if (![[UIApplication sharedApplication] canOpenURL:url]) {
-             //TODO: launch maps.google.com in safari instead of giving this alert.
+          
+            //TODO: launch maps.google.com in safari instead of giving this alert.
              UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Information"
                                                                 message:@"Google Maps is not installed on your device."
                                                                 delegate:self
@@ -396,10 +395,8 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 #pragma mark - MFMessageComposeViewControllerDelegate
 
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{
-    switch (result)
-    {
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    switch (result) {
         case MessageComposeResultCancelled:
             break;
         case MessageComposeResultSent:
@@ -439,13 +436,11 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 #pragma mark - Navigation
 
- - (IBAction)unwindToBarDetails:(UIStoryboardSegue *)unwindSegue
- {
+ - (IBAction)unwindToBarDetails:(UIStoryboardSegue *)unwindSegue {
    //
  }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
    //
 }
 

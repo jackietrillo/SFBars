@@ -23,7 +23,7 @@
 }
 
 -(void)initNavigation {
-    //menu button
+   
     UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
     
     UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
@@ -67,12 +67,24 @@
         for (int i = 0; i < arrayData.count; i++) {
             
             NSDictionary* dictTemp = arrayData[i];
-            MenuItem* menuItem = [MenuItem initFromDictionary: dictTemp];
+            MusicType* musicType = [MusicType initFromDictionary: dictTemp];
             
-            [self.data addObject:menuItem];
+            [self.data addObject:musicType];
             
         }
     }
+}
+
+-(void)setCellStyle:(UICollectionViewCell*)cell {
+    cell.layer.borderWidth=1.0f;
+    cell.layer.borderColor=[UIColor whiteColor].CGColor;
+}
+
+#pragma UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
+
 }
 
 #pragma UICollectionViewDataSource
@@ -88,12 +100,7 @@
     }
 }
 
--(void)setCellStyle:(UICollectionViewCell*)cell {
-    cell.layer.borderWidth=1.0f;
-    cell.layer.borderColor=[UIColor whiteColor].CGColor;
-}
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
@@ -104,8 +111,8 @@
     
     UILabel* textlabel = (UILabel*)[cell viewWithTag:2];
     
-    MenuItem* menuItem = (MenuItem*)self.data[indexPath.row];
-    textlabel.text = menuItem.name;
+    MusicType* musicType = (MusicType*)self.data[indexPath.row];
+    textlabel.text = musicType.name;
     
     [self setCellStyle:cell];
     
@@ -115,7 +122,13 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  
+    
+    NSIndexPath* indexPath =   [self.collectionView indexPathForCell:sender];
+    BarViewController* barsViewController = segue.destinationViewController;
+    MusicType* musicType = self.data[indexPath.row];
+    barsViewController.titleText = musicType.name;
+    barsViewController.filterIds = @[[[NSNumber numberWithInteger:musicType.itemId] stringValue]];
+    barsViewController.filterType = FilterByMusicTypes;
 }
 
 - (void)showMenu:(id)sender {

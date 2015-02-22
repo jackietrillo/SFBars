@@ -14,8 +14,6 @@
 
 @implementation BaseViewController
 
-static NSString* reuseIdentifier = @"Cell";
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -57,7 +55,6 @@ static NSString* reuseIdentifier = @"Cell";
                 //TODO: handle error
              }
          });
-         
      }];
 }
 

@@ -16,7 +16,6 @@
 
 @implementation TopListViewController
 
-static NSString* reuseIdentifier = @"Cell";
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 
 - (void)viewDidLoad {
@@ -38,7 +37,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 - (void)initNavigation {
     
     self.navigationItem.title = @"TOP LIST"; //TODO: localize
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:reuseIdentifier style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 - (void)didReceiveMemoryWarning {

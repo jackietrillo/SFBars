@@ -11,9 +11,10 @@
 
 typedef enum {
     FilterByNotAssigned = -1,
-    FilterByBarType = 0,
-    FilterByDistrict = 1,
-    FilterByMusicType = 2
+    FilterByBarTypes = 0,
+    FilterByDistricts = 1,
+    FilterByMusicTypes = 2,
+    FilterByBarIds = 3
 } FilterType;
 
 

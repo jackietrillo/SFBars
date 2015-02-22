@@ -56,7 +56,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
     self.imageConnection = nil;
 }
 
--(UIImage*)addFilterToImage: (UIImage*)image{
+//Not using this
+-(UIImage*)addFilterToImage: (UIImage*)image {
     
     CIContext *imgContext = [CIContext contextWithOptions:nil];
     
@@ -72,8 +73,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
     return newImgWithFilter;
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     UIImage *image = [[UIImage alloc] initWithData:self.activeDownload];
     
     if (image == nil)

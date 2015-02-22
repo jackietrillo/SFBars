@@ -18,7 +18,6 @@
 
 @implementation BrowseViewController
 
-static NSString* reuseIdentifier = @"Cell";
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
 
 - (void)viewDidLoad {
@@ -93,10 +92,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     @try {
        
         NSMutableArray* dataByType = [[NSMutableArray alloc] init];
-        if (arrayData.count > 0)
-        {
-            for (int i = 0; i < arrayData.count; i++)
-            {
+        if (arrayData.count > 0) {
+            for (int i = 0; i < arrayData.count; i++) {
                 NSDictionary* dictTemp = arrayData[i];
                 BarType* barType = [BarType initFromDictionary:dictTemp];
                 [dataByType addObject:barType];
@@ -126,8 +123,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    switch(section)
-    {
+    switch(section) {
         case 0:
             return [self.data count];
         default:
@@ -147,11 +143,9 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    switch(indexPath.section)
-    {
+    switch(indexPath.section) {
         case 0:
-        if (indexPath.row < self.data.count)
-        {
+        if (indexPath.row < self.data.count) {
             BarType* barType = (BarType*)[self.data objectAtIndex:indexPath.row];
             cell.textLabel.text = barType.name;
            
@@ -172,8 +166,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bart
     BarViewController* barsViewController = segue.destinationViewController;
     BarType* barType = self.data[indexPath.row];
     barsViewController.titleText = barType.name;
-    barsViewController.filterId = barType.itemId;
-    barsViewController.filterType = FilterByNotAssigned;
+    barsViewController.filterIds = @[[[NSNumber numberWithInteger:barType.itemId] stringValue]];
+    barsViewController.filterType = FilterByBarTypes;
 }
 
 - (void)showMenu:(id)sender {

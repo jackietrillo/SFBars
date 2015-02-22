@@ -13,4 +13,6 @@
 
 @property (readwrite, nonatomic) NSInteger section;
 
++(id)initFromDictionary:(NSDictionary*)dict;
+
 @end

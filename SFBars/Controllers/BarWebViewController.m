@@ -25,6 +25,7 @@
     NSString* className = NSStringFromClass ([self class]);
     NSLog(@"%@", className);
 }
+
 -(void)initWebView {
     
     self.canDisplayBannerAds = YES;
@@ -33,16 +34,14 @@
     backButtonText = [backButtonText stringByAppendingString: @" Back"];
     [self.backButton setTitle: backButtonText forState:UIControlStateNormal];
     
-    if (self.url != nil)
-    {
+    if (self.url != nil) {
         NSURL* launchURL = [NSURL URLWithString:self.url];
         NSURLRequest* request = [NSURLRequest requestWithURL:launchURL];
         [self.webView loadRequest:request];
         
          self.webView.scalesPageToFit = YES;
     }
-    else
-    {
+    else {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Information" message:@"Calendar is not avaible at this time." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }

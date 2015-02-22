@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MenuItem.h"
+#import "BarViewController.h"
+#import "MusicType.h"
 
 @interface MusicViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 

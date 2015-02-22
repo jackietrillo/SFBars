@@ -13,7 +13,7 @@
 
 @property (readonly, nonatomic) NSInteger barId;
 @property (readonly, nonatomic) NSInteger districtId;
-@property (readonly, nonatomic) NSInteger barTypeId;
+@property (readonly, nonatomic) NSInteger musicTypeId;
 @property (readonly, nonatomic, strong) NSString* descrip;
 @property (readonly, nonatomic, strong) NSString* address;
 @property (readonly, nonatomic, strong) NSString* phone;
@@ -25,6 +25,7 @@
 @property (readonly, nonatomic, strong) NSString* yelpUrl;
 @property (readonly, nonatomic) double latitude;
 @property (readonly, nonatomic) double longitude;
+@property (readonly, nonatomic, strong) NSArray* barTypes;
 
 +(id)initFromDictionary:(NSDictionary*)dict;
 
