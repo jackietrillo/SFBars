@@ -43,6 +43,8 @@
 		82A5C8031A632B9800D55A54 /* DroidSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C7FC1A632B9800D55A54 /* DroidSans.ttf */; };
 		82A5C8041A632B9800D55A54 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C7FD1A632B9800D55A54 /* FontAwesome.ttf */; };
 		82A5C8091A632BD900D55A54 /* LaunchImage-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C8081A632BD900D55A54 /* LaunchImage-568h@2x.png */; };
+		82A9149A1A9985BA0019D30A /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A914991A9985B90019D30A /* LoadingView.xib */; };
+		82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149C1A9985FF0019D30A /* LoadingView.m */; };
 		82B828F61A85FE5700F90A33 /* glyphicons-halflings-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820ABF151A847AF20022192F /* glyphicons-halflings-regular.ttf */; };
 		82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C131A70830100E71F40 /* ImageDownloader.m */; };
 		82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C161A70838500E71F40 /* BaseEntity.m */; };
@@ -134,6 +136,9 @@
 		82A5C7FD1A632B9800D55A54 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = SFBars/Resources/Fonts/FontAwesome.ttf; sourceTree = "<group>"; };
 		82A5C8081A632BD900D55A54 /* LaunchImage-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LaunchImage-568h@2x.png"; path = "SFBars/Resources/LaunchImage-568h@2x.png"; sourceTree = "<group>"; };
 		82A914941A99641F0019D30A /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Common/Constants.h; sourceTree = "<group>"; };
+		82A914991A9985B90019D30A /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingView.xib; path = Controls/LoadingView.xib; sourceTree = "<group>"; };
+		82A9149B1A9985FF0019D30A /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Controls/LoadingView.h; sourceTree = "<group>"; };
+		82A9149C1A9985FF0019D30A /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Controls/LoadingView.m; sourceTree = "<group>"; };
 		82BA4C121A70830100E71F40 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Common/ImageDownloader.h; sourceTree = "<group>"; };
 		82BA4C131A70830100E71F40 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Common/ImageDownloader.m; sourceTree = "<group>"; };
 		82BA4C151A70838500E71F40 /* BaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseEntity.h; path = SFBars/Models/BaseEntity.h; sourceTree = "<group>"; };
@@ -368,6 +373,9 @@
 				8285AE8D1A7C69D4004858FD /* BarDetailHeaderViewCell.h */,
 				8285AE8E1A7C69D4004858FD /* BarDetailHeaderViewCell.m */,
 				8285AE901A7C69FC004858FD /* BarDetailHeaderViewCell.xib */,
+				82A914991A9985B90019D30A /* LoadingView.xib */,
+				82A9149B1A9985FF0019D30A /* LoadingView.h */,
+				82A9149C1A9985FF0019D30A /* LoadingView.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -498,6 +506,7 @@
 				82D43C531A95739200B4196C /* Districts.json in Resources */,
 				82D43C551A958CAC00B4196C /* BarTypes.json in Resources */,
 				8291A6CA1A7DC0D00060D3FB /* Settings.json in Resources */,
+				82A9149A1A9985BA0019D30A /* LoadingView.xib in Resources */,
 				8285AE911A7C69FC004858FD /* BarDetailHeaderViewCell.xib in Resources */,
 				82A5C8031A632B9800D55A54 /* DroidSans.ttf in Resources */,
 				8291A6CD1A7DC4510060D3FB /* Main.storyboard in Resources */,
@@ -540,6 +549,7 @@
 				826D03551A881CBC0051189B /* SearchViewController.m in Sources */,
 				828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
+				82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */,
 				82D43C401A95687300B4196C /* MusicType.m in Sources */,
 				82BB5FF01A649E55002F5578 /* BarType.m in Sources */,
 				82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */,

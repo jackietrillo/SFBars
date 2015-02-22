@@ -12,7 +12,7 @@
 
 @property (readwrite, nonatomic, strong) NSMutableArray* data;
 @property (nonatomic, nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
-
+@property (readwrite, nonatomic, strong) LoadingView* loadingView;
 @end
 
 @implementation BarViewController
@@ -29,6 +29,12 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     [self initNavigation];
 
     if (!self.appDelegate.cachedBars) {
+        
+        NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil];
+        self.loadingView = [xib lastObject];
+        self.loadingView.frame = self.view.bounds;
+        [self.view addSubview:self.loadingView];
+        
         [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
     }
     else {
@@ -92,13 +98,15 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     if (self.filterType != FilterByNotAssigned && self.filterIds != nil) {
         self.data = [self filterData:data];
     }
-    else
-    {
+    else {
         self.data = data;
     }
     
     [self.tableView reloadData];
     self.tableView.hidden = NO;
+    if (self.loadingView) {
+        self.loadingView.hidden = YES;
+    }
 }
 
 -(NSMutableArray*)filterData: (NSMutableArray*) data {

@@ -12,8 +12,9 @@
 #import "BaseViewController.h"
 #import "BarWebViewController.h"
 #import "BarDetailsViewController.h"
-#import "Bar.h"
 #import "BarTableViewCell.h"
+#import "LoadingView.h"
+#import "Bar.h"
 #import "Enums.h"
 #import "Constants.h"
 
