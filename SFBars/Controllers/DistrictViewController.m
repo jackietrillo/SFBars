@@ -159,22 +159,5 @@
     
 }
 
-- (void)showSettings:(id)sender {
-    
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    UIViewController* settingsViewController = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
-    
-    [self.navigationController pushViewController:settingsViewController animated:YES];
-}
-
-- (void)showMenu:(id)sender {
-    
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    UIViewController* menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
-    
-    [self.navigationController pushViewController:menuViewController animated:YES];
-}
 
 @end

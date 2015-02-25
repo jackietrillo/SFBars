@@ -18,10 +18,9 @@ extern NSString* kServiceUrl;
 @property (nonatomic, strong) AppDelegate* appDelegate;
 
 -(void)addMenuButtonToNavigation;
+-(void)addDoneButtonToNavigation;
 
-- (void)addDoneButtonToNavigation;
-
-//TODO: move to BarsGateway
+// TODO move to gateway
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept;
 -(NSMutableArray*)parseData: (NSData*)responseData; //override in subclass
 -(void)loadData: (NSMutableArray*) data; //overriden in subclass

@@ -31,7 +31,6 @@
     [self initNavigation];
     [self initLoadingView];
     [self getBars];
-    
 }
 
 - (void)dealloc {
