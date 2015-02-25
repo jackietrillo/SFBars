@@ -10,7 +10,7 @@
 
 @class Bar;
 
-@interface SearchBaseTableViewController : UITableViewController
+@interface SearchBaseViewController : UITableViewController
 
 - (void)configureCell:(UITableViewCell *)cell forBar:(Bar *)bar;
 

@@ -73,9 +73,9 @@
 		82E8E1931A8DAC620042F2C4 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D668131A86E0E7004B19DB /* GoogleMaps.framework */; };
 		82E917371A79B4D7002D610E /* District.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E917361A79B4D7002D610E /* District.m */; };
 		82E93AB31A816D830034F9D6 /* Parties.json in Resources */ = {isa = PBXBuildFile; fileRef = 82E93AB21A816D830034F9D6 /* Parties.json */; };
-		82EEC95D1A9C5B1A00E211BC /* SearchBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EEC9581A9C5B1A00E211BC /* SearchBaseTableViewController.m */; };
-		82EEC95E1A9C5B1A00E211BC /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EEC95A1A9C5B1A00E211BC /* SearchTableViewController.m */; };
-		82EEC95F1A9C5B1A00E211BC /* SearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EEC95C1A9C5B1A00E211BC /* SearchResultsTableViewController.m */; };
+		82EEC95D1A9C5B1A00E211BC /* SearchBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EEC9581A9C5B1A00E211BC /* SearchBaseViewController.m */; };
+		82EEC95E1A9C5B1A00E211BC /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EEC95A1A9C5B1A00E211BC /* SearchViewController.m */; };
+		82EEC95F1A9C5B1A00E211BC /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EEC95C1A9C5B1A00E211BC /* SearchResultsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,12 +189,12 @@
 		82E917351A79B4D7002D610E /* District.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = District.h; path = SFBars/Models/District.h; sourceTree = "<group>"; };
 		82E917361A79B4D7002D610E /* District.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = District.m; path = SFBars/Models/District.m; sourceTree = "<group>"; };
 		82E93AB21A816D830034F9D6 /* Parties.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Parties.json; path = SFBars/Resources/Parties.json; sourceTree = "<group>"; };
-		82EEC9571A9C5B1A00E211BC /* SearchBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchBaseTableViewController.h; path = SFBars/Controllers/SearchBaseTableViewController.h; sourceTree = "<group>"; };
-		82EEC9581A9C5B1A00E211BC /* SearchBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchBaseTableViewController.m; path = SFBars/Controllers/SearchBaseTableViewController.m; sourceTree = "<group>"; };
-		82EEC9591A9C5B1A00E211BC /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewController.h; path = SFBars/Controllers/SearchTableViewController.h; sourceTree = "<group>"; };
-		82EEC95A1A9C5B1A00E211BC /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewController.m; path = SFBars/Controllers/SearchTableViewController.m; sourceTree = "<group>"; };
-		82EEC95B1A9C5B1A00E211BC /* SearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultsTableViewController.h; path = SFBars/Controllers/SearchResultsTableViewController.h; sourceTree = "<group>"; };
-		82EEC95C1A9C5B1A00E211BC /* SearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultsTableViewController.m; path = SFBars/Controllers/SearchResultsTableViewController.m; sourceTree = "<group>"; };
+		82EEC9571A9C5B1A00E211BC /* SearchBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchBaseViewController.h; path = SFBars/Controllers/SearchBaseViewController.h; sourceTree = "<group>"; };
+		82EEC9581A9C5B1A00E211BC /* SearchBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchBaseViewController.m; path = SFBars/Controllers/SearchBaseViewController.m; sourceTree = "<group>"; };
+		82EEC9591A9C5B1A00E211BC /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = SFBars/Controllers/SearchViewController.h; sourceTree = "<group>"; };
+		82EEC95A1A9C5B1A00E211BC /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = SFBars/Controllers/SearchViewController.m; sourceTree = "<group>"; };
+		82EEC95B1A9C5B1A00E211BC /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultsViewController.h; path = SFBars/Controllers/SearchResultsViewController.h; sourceTree = "<group>"; };
+		82EEC95C1A9C5B1A00E211BC /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultsViewController.m; path = SFBars/Controllers/SearchResultsViewController.m; sourceTree = "<group>"; };
 		82EEC9601A9C5B6900E211BC /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -300,12 +300,12 @@
 				828FE61D1A761B7200D2466D /* BarDetailsViewController.m */,
 				828FE6141A761A8B00D2466D /* BrowseViewController.h */,
 				828FE6151A761A8B00D2466D /* BrowseViewController.m */,
-				82EEC9571A9C5B1A00E211BC /* SearchBaseTableViewController.h */,
-				82EEC9581A9C5B1A00E211BC /* SearchBaseTableViewController.m */,
-				82EEC9591A9C5B1A00E211BC /* SearchTableViewController.h */,
-				82EEC95A1A9C5B1A00E211BC /* SearchTableViewController.m */,
-				82EEC95B1A9C5B1A00E211BC /* SearchResultsTableViewController.h */,
-				82EEC95C1A9C5B1A00E211BC /* SearchResultsTableViewController.m */,
+				82EEC9571A9C5B1A00E211BC /* SearchBaseViewController.h */,
+				82EEC9581A9C5B1A00E211BC /* SearchBaseViewController.m */,
+				82EEC9591A9C5B1A00E211BC /* SearchViewController.h */,
+				82EEC95A1A9C5B1A00E211BC /* SearchViewController.m */,
+				82EEC95B1A9C5B1A00E211BC /* SearchResultsViewController.h */,
+				82EEC95C1A9C5B1A00E211BC /* SearchResultsViewController.m */,
 				82BB60061A64D763002F5578 /* BarViewController.h */,
 				82BB60071A64D763002F5578 /* BarViewController.m */,
 				82A5C7D51A63263400D55A54 /* BarWebViewController.h */,
@@ -566,7 +566,7 @@
 				82B086621A9A8C6C005BD2BE /* BarsGateway.m in Sources */,
 				82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */,
 				82B086571A9A6A72005BD2BE /* BarDetail.m in Sources */,
-				82EEC95E1A9C5B1A00E211BC /* SearchTableViewController.m in Sources */,
+				82EEC95E1A9C5B1A00E211BC /* SearchViewController.m in Sources */,
 				82A5C7EB1A63266100D55A54 /* Bar.m in Sources */,
 				82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */,
 				82CF532E1A7C2E800087F0F5 /* TopListViewController.m in Sources */,
@@ -583,10 +583,10 @@
 				82D43C401A95687300B4196C /* MusicType.m in Sources */,
 				82B086651A9A8D36005BD2BE /* NearMeViewController.m in Sources */,
 				82B0865C1A9A8B8A005BD2BE /* GatewayBase.m in Sources */,
-				82EEC95D1A9C5B1A00E211BC /* SearchBaseTableViewController.m in Sources */,
+				82EEC95D1A9C5B1A00E211BC /* SearchBaseViewController.m in Sources */,
 				82BB5FF01A649E55002F5578 /* BarType.m in Sources */,
 				82AFFB7D1A9D07D3006F2E46 /* Cache.m in Sources */,
-				82EEC95F1A9C5B1A00E211BC /* SearchResultsTableViewController.m in Sources */,
+				82EEC95F1A9C5B1A00E211BC /* SearchResultsViewController.m in Sources */,
 				82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */,
 				82E917371A79B4D7002D610E /* District.m in Sources */,
 				82A914A01A9990A40019D30A /* DistrictViewController.m in Sources */,

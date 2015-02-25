@@ -7,10 +7,10 @@
 //
 
 
-#import "SearchResultsTableViewController.h"
+#import "SearchResultsViewController.h"
 #import "Bar.h"
 
-@implementation SearchResultsTableViewController
+@implementation SearchResultsViewController
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.filteredBars.count;

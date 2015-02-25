@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "SearchTableViewController.h"
+#import "SearchViewController.h"
 
 
-@interface SearchTableViewController () 
+@interface SearchViewController ()
 
 @property (nonatomic, strong) UISearchController *searchController;
 
-@property (nonatomic, strong) SearchResultsTableViewController* resultsTableViewController;
+@property (nonatomic, strong) SearchResultsViewController* searchResultsViewController;
 
 @property BOOL searchControllerWasActive;
 @property BOOL searchControllerSearchFieldWasFirstResponder;
@@ -22,25 +22,24 @@
 
 @end
 
-@implementation SearchTableViewController
+@implementation SearchViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
     
     self.bars = self.appDelegate.cachedBars;
     
-    _resultsTableViewController = [[SearchResultsTableViewController alloc] init];
-    _searchController = [[UISearchController alloc] initWithSearchResultsController:self.resultsTableViewController];
+    _searchResultsViewController = [[SearchResultsViewController alloc] init];
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsViewController];
     
     self.searchController.searchResultsUpdater = self;
     [self.searchController.searchBar sizeToFit];
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.tableView.frame = CGRectMake(0, 250, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
     
-    // we want to be the delegate for our filtered table so didSelectRowAtIndexPath is called for both tables
-    self.resultsTableViewController.tableView.delegate = self;
+    self.searchResultsViewController.tableView.delegate = self;
     self.searchController.delegate = self;
-    self.searchController.dimsBackgroundDuringPresentation = NO; // default is YES
+    self.searchController.dimsBackgroundDuringPresentation = YES; // default is YES
     self.searchController.searchBar.delegate = self; // so we can monitor text changes + others
     
     // Search is now just presenting a view controller. As such, normal view controller
@@ -48,6 +47,8 @@
     // hierarchy until it finds the root view controller or one that defines a presentation context.
     //
     self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
+    
+    self.navigationItem.title = NSLocalizedString(@"SEARCH", @"SEARCH");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -64,7 +65,6 @@
         }
     }
 }
-
 
 #pragma mark - UISearchBarDelegate
 
@@ -121,7 +121,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    Bar* selectedBar = (tableView == self.tableView) ? self.bars[indexPath.row] : self.resultsTableViewController.filteredBars[indexPath.row];
+    Bar* selectedBar = (tableView == self.tableView) ? self.bars[indexPath.row] : self.searchResultsViewController.filteredBars[indexPath.row];
     
     BarDetailsViewController* detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BarDetailsViewController"];
     detailViewController.selectedBar = selectedBar;
@@ -130,6 +130,9 @@
     
     // note: iOS 8.0 bug
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    // Hack to remove back button text on segued screen
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 
@@ -153,7 +156,7 @@
     }
     
     // hand over the filtered results to our search results table
-    SearchResultsTableViewController* searchResultsTableViewController = (SearchResultsTableViewController *)self.searchController.searchResultsController;
+    SearchResultsViewController* searchResultsTableViewController = (SearchResultsViewController *)self.searchController.searchResultsController;
     searchResultsTableViewController.filteredBars = searchResults;
     [searchResultsTableViewController.tableView reloadData];
 }

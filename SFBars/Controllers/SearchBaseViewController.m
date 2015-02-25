@@ -7,27 +7,25 @@
 //
 
 
-#import "SearchBaseTableViewController.h"
+#import "SearchBaseViewController.h"
 #import "Bar.h"
 #import "AppDelegate.h"
 
 NSString* const kTableCellNibName = @"SearchTableViewCell";
-static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 
-@interface SearchBaseTableViewController()
+@interface SearchBaseViewController()
 
 @property (nonatomic, strong) AppDelegate* appDelegate;
 
 @end
 
-@implementation SearchBaseTableViewController
+@implementation SearchBaseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
   
-    
     [self.tableView registerNib:[UINib nibWithNibName: kTableCellNibName bundle:nil] forCellReuseIdentifier:kCellIdentifier];
 }
 
@@ -36,9 +34,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     
     cell.detailTextLabel.text = bar.descrip;
 }
-
-
-
 
 
 @end

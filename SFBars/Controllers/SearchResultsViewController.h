@@ -7,9 +7,9 @@
 //
 
 
-#import "SearchBaseTableViewController.h"
+#import "SearchBaseViewController.h"
 
-@interface SearchResultsTableViewController : SearchBaseTableViewController
+@interface SearchResultsViewController : SearchBaseViewController
 
 @property (nonatomic, strong) NSArray *filteredBars;
 

@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-#import "SearchTableViewController.h"
+#import "SearchViewController.h"
 #import "BrowseViewController.h"
 #import "NearMeViewController.h"
 #import "TopListViewController.h"

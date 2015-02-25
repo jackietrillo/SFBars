@@ -248,7 +248,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
             //TODO: consider using factory pattern here?
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Search", @"Search")]) {
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                SearchTableViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
+                SearchViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Browse", @"Browse")]) {

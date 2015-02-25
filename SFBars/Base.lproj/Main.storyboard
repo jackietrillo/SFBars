@@ -147,10 +147,10 @@
             </objects>
             <point key="canvasLocation" x="-9780" y="-1172"/>
         </scene>
-        <!--SearchTableViewController-->
+        <!--SearchViewController-->
         <scene sceneID="FHe-EX-aCL">
             <objects>
-                <tableViewController storyboardIdentifier="SearchTableViewController" id="Uyr-jM-Jo2" userLabel="SearchTableViewController" customClass="SearchTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchViewController" id="Uyr-jM-Jo2" userLabel="SearchViewController" customClass="SearchViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="100" sectionFooterHeight="100" id="Cdu-GM-9Nr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
