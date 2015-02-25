@@ -19,7 +19,6 @@
 		820ABF0A1A8447F50022192F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF091A8447F50022192F /* QuartzCore.framework */; };
 		820ABF0C1A8448030022192F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF0B1A8448030022192F /* SystemConfiguration.framework */; };
 		823918E91A9C613600001EF5 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 823918E71A9C613600001EF5 /* SearchTableViewCell.xib */; };
-		826D03551A881CBC0051189B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 826D03541A881CBC0051189B /* SearchViewController.m */; };
 		8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61D1A761B7200D2466D /* BarDetailsViewController.m */; };
 		8285AE8F1A7C69D4004858FD /* BarDetailHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8285AE8E1A7C69D4004858FD /* BarDetailHeaderViewCell.m */; };
 		8285AE911A7C69FC004858FD /* BarDetailHeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8285AE901A7C69FC004858FD /* BarDetailHeaderViewCell.xib */; };
@@ -103,8 +102,6 @@
 		820ABF0B1A8448030022192F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		820ABF151A847AF20022192F /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "glyphicons-halflings-regular.ttf"; path = "SFBars/Resources/Fonts/glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
 		823918E81A9C613600001EF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchTableViewCell.xib; sourceTree = "<group>"; };
-		826D03531A881CBC0051189B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = SFBars/Controllers/SearchViewController.h; sourceTree = "<group>"; };
-		826D03541A881CBC0051189B /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = SFBars/Controllers/SearchViewController.m; sourceTree = "<group>"; };
 		8285AE8D1A7C69D4004858FD /* BarDetailHeaderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailHeaderViewCell.h; path = Controls/BarDetailHeaderViewCell.h; sourceTree = "<group>"; };
 		8285AE8E1A7C69D4004858FD /* BarDetailHeaderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailHeaderViewCell.m; path = Controls/BarDetailHeaderViewCell.m; sourceTree = "<group>"; };
 		8285AE901A7C69FC004858FD /* BarDetailHeaderViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BarDetailHeaderViewCell.xib; path = Controls/BarDetailHeaderViewCell.xib; sourceTree = "<group>"; };
@@ -313,8 +310,6 @@
 				82BB60071A64D763002F5578 /* BarViewController.m */,
 				82A5C7D51A63263400D55A54 /* BarWebViewController.h */,
 				82A5C7D61A63263400D55A54 /* BarWebViewController.m */,
-				826D03531A881CBC0051189B /* SearchViewController.h */,
-				826D03541A881CBC0051189B /* SearchViewController.m */,
 				82A5C7D91A63263400D55A54 /* NavigationViewController.h */,
 				82A5C7DA1A63263400D55A54 /* NavigationViewController.m */,
 				82A9149E1A9990A40019D30A /* DistrictViewController.h */,
@@ -582,7 +577,6 @@
 				82C705FB1A75BCAC0045F973 /* MenuViewController.m in Sources */,
 				82BB60081A64D763002F5578 /* BarViewController.m in Sources */,
 				82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */,
-				826D03551A881CBC0051189B /* SearchViewController.m in Sources */,
 				828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
 				82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */,

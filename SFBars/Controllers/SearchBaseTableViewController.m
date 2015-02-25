@@ -25,6 +25,9 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+  
+    
     [self.tableView registerNib:[UINib nibWithNibName: kTableCellNibName bundle:nil] forCellReuseIdentifier:kCellIdentifier];
 }
 
@@ -34,41 +37,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     cell.detailTextLabel.text = bar.descrip;
 }
 
--(void)getBars {
-    
-    if (!self.appDelegate.cachedBars) {
-        
-        [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
-    }
-    else {
-        
-        [self loadData:self.appDelegate.cachedBars];
-    }
-}
 
--(NSMutableArray*)parseData: (NSData*)responseData {
-    
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
-    
-    NSMutableArray* bars = [[NSMutableArray alloc] init];
-    
-    if (arrayData.count > 0) {
-        
-        for (int i = 0; i < arrayData.count; i++) {
-            
-            NSDictionary* dictTemp = arrayData[i];
-            
-            Bar* bar = [Bar initFromDictionary:dictTemp];
-            
-            [bars addObject:bar];
-        }
-    }
-    
-    self.appDelegate.cachedBars = bars;
-    
-    return bars;
-    
-}
+
 
 
 @end

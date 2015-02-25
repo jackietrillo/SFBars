@@ -35,9 +35,6 @@
 
     self.navigationItem.title = NSLocalizedString(@"BROWSE", @"BROWSE");
     [self.navigationController setToolbarHidden:YES animated:YES];
-    
-    // Hack to remove back button text on segued screen
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 // TODO refactor out
@@ -136,6 +133,9 @@
     barsViewController.titleText = barType.name;
     barsViewController.filterIds = @[[[NSNumber numberWithInteger:barType.itemId] stringValue]];
     barsViewController.filterType = FilterByBarTypes;
+    
+    // Hack to remove back button text on segued screen
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 @end

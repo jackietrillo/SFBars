@@ -10,12 +10,9 @@
 
 @class Bar;
 
-@interface SearchBaseTableViewController : BaseViewController
-
-@property (nonatomic, strong) IBOutlet UITableView* tableView;
+@interface SearchBaseTableViewController : UITableViewController
 
 - (void)configureCell:(UITableViewCell *)cell forBar:(Bar *)bar;
 
--(void)getBars;
 
 @end
