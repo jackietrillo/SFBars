@@ -7,7 +7,6 @@
 //
 
 #import "NearMeViewController.h"
-#import "ConnectionHelper.h"
 
 @interface NearMeViewController ()
 

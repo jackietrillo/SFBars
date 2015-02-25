@@ -30,7 +30,6 @@
 		82A5C7831A63125C00D55A54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7821A63125C00D55A54 /* main.m */; };
 		82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7851A63125C00D55A54 /* AppDelegate.m */; };
 		82A5C79D1A63125C00D55A54 /* SFBarsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C79C1A63125C00D55A54 /* SFBarsTests.m */; };
-		82A5C7C51A631FD500D55A54 /* ConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7C41A631FD500D55A54 /* ConnectionHelper.m */; };
 		82A5C7CE1A63250400D55A54 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C7CC1A63250400D55A54 /* LaunchScreen.xib */; };
 		82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7D01A63260B00D55A54 /* BarTableViewCell.m */; };
 		82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7D61A63263400D55A54 /* BarWebViewController.m */; };
@@ -124,8 +123,6 @@
 		82A5C7961A63125C00D55A54 /* SFBarsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SFBarsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A5C79B1A63125C00D55A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82A5C79C1A63125C00D55A54 /* SFBarsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFBarsTests.m; sourceTree = "<group>"; };
-		82A5C7C31A631FD500D55A54 /* ConnectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionHelper.h; path = Common/ConnectionHelper.h; sourceTree = "<group>"; };
-		82A5C7C41A631FD500D55A54 /* ConnectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConnectionHelper.m; path = Common/ConnectionHelper.m; sourceTree = "<group>"; };
 		82A5C7CD1A63250400D55A54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		82A5C7CF1A63260B00D55A54 /* BarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarTableViewCell.h; path = Controls/BarTableViewCell.h; sourceTree = "<group>"; };
 		82A5C7D01A63260B00D55A54 /* BarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarTableViewCell.m; path = Controls/BarTableViewCell.m; sourceTree = "<group>"; };
@@ -386,8 +383,6 @@
 		82A5C7A91A631F3B00D55A54 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				82A5C7C31A631FD500D55A54 /* ConnectionHelper.h */,
-				82A5C7C41A631FD500D55A54 /* ConnectionHelper.m */,
 				82BA4C121A70830100E71F40 /* ImageDownloader.h */,
 				82BA4C131A70830100E71F40 /* ImageDownloader.m */,
 				82E8E1921A8DAB1A0042F2C4 /* Enums.h */,
@@ -600,7 +595,6 @@
 				82EEC95F1A9C5B1A00E211BC /* SearchResultsTableViewController.m in Sources */,
 				82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */,
 				82E917371A79B4D7002D610E /* District.m in Sources */,
-				82A5C7C51A631FD500D55A54 /* ConnectionHelper.m in Sources */,
 				82A914A01A9990A40019D30A /* DistrictViewController.m in Sources */,
 				828FE61C1A761AB200D2466D /* SettingsViewController.m in Sources */,
 				82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */,
