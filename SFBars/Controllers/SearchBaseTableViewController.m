@@ -25,7 +25,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:kTableCellNibName bundle:nil] forCellReuseIdentifier:kCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName: kTableCellNibName bundle:nil] forCellReuseIdentifier:kCellIdentifier];
 }
 
 - (void)configureCell:(UITableViewCell *)cell forBar:(Bar *)bar {

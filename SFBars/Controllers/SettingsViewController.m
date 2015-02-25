@@ -28,20 +28,13 @@
 
 -(void)initNavigation {
 
-    UIFont* font = [UIFont fontWithName: kFontAwesomeFontName size:30.0];
-    NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
+    [super addDoneButtonToNavigation];
     
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] init];
-    [doneButton setTarget:self];
-    [doneButton setAction:@selector(backToBrowse:)];
-    [doneButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    [doneButton setTitle:[NSString stringWithUTF8String:"\uf00c"]];
-    
-    self.navigationItem.rightBarButtonItem = doneButton;
     self.navigationItem.title = NSLocalizedString(@"SETTINGS", @"SETTINGS");
     [self.navigationItem setHidesBackButton:YES animated:YES];
 }
 
+// TODO refactor out
 -(NSMutableArray*)getSettings {
     
     if (self.appDelegate.cachedSettings) {
@@ -88,26 +81,27 @@
     }
 }
 
--(void)setCellStyle:(UITableViewCell *)cell {
-    [cell.textLabel setTextColor:[UIColor whiteColor]];
-    cell.textLabel.highlightedTextColor = [UIColor blackColor];
+-(void)setTableViewCellStyle:(UITableViewCell *)tableViewCell {
+    [tableViewCell.textLabel setTextColor:[UIColor whiteColor]];
+    tableViewCell.textLabel.highlightedTextColor = [UIColor blackColor];
 }
 
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView* sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
     
     switch(section)
     {
         case 0:
-            [headerView setBackgroundColor:[UIColor blackColor]];
+            [sectionHeaderView setBackgroundColor:[UIColor blackColor]];
             break;
         case 1:
-            [headerView setBackgroundColor:[UIColor blackColor]];
+            [sectionHeaderView setBackgroundColor:[UIColor blackColor]];
             break;
         default:
             break;
     }
-    return headerView;
+    return sectionHeaderView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -142,28 +136,32 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  
     NSInteger rowIndex = indexPath.row;
     MenuItem* menuItem;
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+   
+    UITableViewCell* tableViewCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     switch(indexPath.section) {
         case 0:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
-            cell.textLabel.text = menuItem.name;
-            cell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
+            
+            tableViewCell.textLabel.text = menuItem.name;
+            tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
         case 1:
             menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
-            cell.textLabel.text = menuItem.name;
-            cell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
+            
+            tableViewCell.textLabel.text = menuItem.name;
+            tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
         default:
             break;
     }
     
-    [self setCellStyle:cell];
+    [self setTableViewCellStyle:tableViewCell];
     
-    return cell;
+    return tableViewCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -254,9 +252,6 @@
     
 }
 
-- (void)backToBrowse: (id)sender
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
+
 
 @end

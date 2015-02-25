@@ -25,17 +25,8 @@
 
 -(void)initNavigation {
    
-    UIFont* font = [UIFont fontWithName:kGlyphIconsFontName size:25.0];
-    NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
+    [self addMenuButtonToNavigation];
     
-    UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
-    
-    [menuButton setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
-    [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
-    [menuButton setTarget:self];
-    [menuButton setAction:@selector(showMenu:)];
-    
-    self.navigationItem.leftBarButtonItem = menuButton;
     self.navigationItem.title = NSLocalizedString(@"MUSIC", @"MUSIC");
     
     //Hack to remove text from back button
@@ -49,9 +40,7 @@
     }
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"MusicTypes" ofType:@"json"];
-   
     NSData* jsonData = [NSData dataWithContentsOfFile:path];
-    
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
     
     jsonData = nil;
@@ -76,11 +65,11 @@
 }
 
 
--(void)setCellStyle:(UICollectionViewCell*)cell {
+-(void)setTableViewCellStyle:(UICollectionViewCell*)collectionViewCell {
     
-    cell.layer.borderWidth=1.0f;
+    collectionViewCell.layer.borderWidth=1.0f;
     
-    cell.layer.borderColor=[UIColor whiteColor].CGColor;
+    collectionViewCell.layer.borderColor=[UIColor whiteColor].CGColor;
 }
 
 #pragma UICollectionViewDelegate
@@ -104,20 +93,21 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
+    UICollectionViewCell* collectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
     
-    UIImageView* imageView = (UIImageView*)[cell viewWithTag:1];
-    imageView.frame = cell.bounds;
+    UIImageView* imageView = (UIImageView*)[collectionViewCell viewWithTag:1];
+    imageView.frame = collectionViewCell.bounds;
     imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     
-    UILabel* textlabel = (UILabel*)[cell viewWithTag:2];
+    UILabel* textlabel = (UILabel*)[collectionViewCell viewWithTag:2];
     
     MusicType* musicType = (MusicType*)self.data[indexPath.row];
+    
     textlabel.text = musicType.name;
     
-    [self setCellStyle:cell];
+    [self setTableViewCellStyle:collectionViewCell];
     
-    return cell;
+    return collectionViewCell;
 }
 
 #pragma mark - Navigation
@@ -125,16 +115,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     NSIndexPath* indexPath =   [self.collectionView indexPathForCell:sender];
-    BarViewController* barsViewController = segue.destinationViewController;
+   
+    BarViewController* barViewController = segue.destinationViewController;
+    
     MusicType* musicType = self.data[indexPath.row];
-    barsViewController.titleText = musicType.name;
-    barsViewController.filterIds = @[[[NSNumber numberWithInteger:musicType.itemId] stringValue]];
-    barsViewController.filterType = FilterByMusicTypes;
+    
+    barViewController.titleText = musicType.name;
+    barViewController.filterIds = @[[[NSNumber numberWithInteger:musicType.itemId] stringValue]];
+    barViewController.filterType = FilterByMusicTypes;
 }
 
-- (void)showMenu:(id)sender {
- 
- [self.navigationController popToRootViewControllerAnimated:YES];
-}
 
 @end

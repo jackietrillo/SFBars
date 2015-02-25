@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 
-//TODO: move these out
 extern NSString* kCellIdentifier;
 extern NSString* kGlyphIconsFontName;
 extern NSString* kFontAwesomeFontName;
@@ -17,6 +16,10 @@ extern NSString* kServiceUrl;
 @interface BaseViewController : UIViewController
 
 @property (nonatomic, strong) AppDelegate* appDelegate;
+
+-(void)addMenuButtonToNavigation;
+
+- (void)addDoneButtonToNavigation;
 
 //TODO: move to BarsGateway
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept;

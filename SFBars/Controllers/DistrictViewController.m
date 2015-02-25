@@ -28,17 +28,8 @@
 
 -(void)initNavigation {
    
-    UIFont* font = [UIFont fontWithName: kGlyphIconsFontName size:25.0];
-    NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
+   [super addMenuButtonToNavigation];
     
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] init];
-    
-    [menuButton setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
-    [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
-    [menuButton setTarget:self];
-    [menuButton setAction:@selector(showMenu:)];
-    
-    self.navigationItem.leftBarButtonItem = menuButton;
     self.navigationItem.title = NSLocalizedString(@"NEIGHBORHOODS", @"NEIGHBORHOODS");
      [self.navigationController setToolbarHidden:YES animated:YES];
     

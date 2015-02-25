@@ -24,7 +24,6 @@
 @property (readwrite, nonatomic, strong) NSString* yelpUrl;
 @property (readwrite, nonatomic) double latitude;
 @property (readwrite, nonatomic) double longitude;
-@property (readwrite, nonatomic, strong) District* district;
 @property (readwrite, nonatomic, strong) NSArray* barTypes;
 
 @end
@@ -57,15 +56,15 @@ static const NSString* YELPURL = @"yelpUrl";
 +(id)initFromDictionary:(NSDictionary*)dict
 {
     Bar* bar = [[Bar alloc] init];
+    
     bar.barId = [dict[BARID] longValue];
+    
     if (dict[DISTRICTID]) {
         bar.districtId = [dict[DISTRICTID] longValue];
     }
-    if (dict[MUSICTYPEID] && ![dict[MUSICTYPEID] isKindOfClass:[NSNull class]]) { //TODO: fix this
-        
+    if (dict[MUSICTYPEID] && ![dict[MUSICTYPEID] isKindOfClass:[NSNull class]]) { // TODO fix api null
         bar.musicTypeId = [dict[MUSICTYPEID] longValue];
     }
-   
     if (dict[BARTYPES]) {
         bar.barTypes = [dict[BARTYPES] componentsSeparatedByString: @","];
     }
@@ -85,14 +84,6 @@ static const NSString* YELPURL = @"yelpUrl";
     return bar;
 }
 
-+(id)initFromDictionary:(NSDictionary*)dict withDistrict: (District*) district
-{
-    Bar* bar = [Bar initFromDictionary: dict];
-  
-    bar.district = district;
-
-    return bar;
-}
-
-
 @end
+
+

@@ -22,6 +22,7 @@ NSString* kServiceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //TODO refactor out to not use appDelegate in this class
     self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
@@ -29,20 +30,37 @@ NSString* kServiceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
     [super didReceiveMemoryWarning];
 }
 
-- (UIBarButtonItem*)addMenuButtonToNavigation {
+- (void)addMenuButtonToNavigation {
 
     UIFont* font = [UIFont fontWithName: kGlyphIconsFontName size:25.0];
     NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
     
-    UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
-    [menuButton setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
-    [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
-    [menuButton setTarget:self];
+    UIBarButtonItem* barButtonItem = [[UIBarButtonItem alloc] init];
+    [barButtonItem setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
+    [barButtonItem setTitle:[NSString stringWithUTF8String:"\ue012"]];
+   
+    [barButtonItem setTarget:self];
+    [barButtonItem setAction:@selector(presentMenuViewController:)];
     
-    return menuButton;
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}  
+
+- (void)addDoneButtonToNavigation {
+
+    UIFont* font = [UIFont fontWithName: kFontAwesomeFontName size:30.0];
+    NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
+    
+    UIBarButtonItem* barButtonItem = [[UIBarButtonItem alloc] init];
+    
+    [barButtonItem setTarget:self];
+    [barButtonItem setAction:@selector(presentBrowseViewController:)];
+    [barButtonItem setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
+    [barButtonItem setTitle:[NSString stringWithUTF8String:"\uf00c"]];
+    
+    self.navigationItem.rightBarButtonItem = barButtonItem;
 }
 
-//TODO: move into BarsGateWay
+// TODO move to gateway
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
@@ -62,7 +80,7 @@ NSString* kServiceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
              arrayData = [self parseData:data];
          }
          else {
-             //TODO: handle error
+             // TODO handle error
          }
          
          dispatch_async(dispatch_get_main_queue(), ^{
@@ -73,19 +91,33 @@ NSString* kServiceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
                  [self loadData: arrayData];
              }
              else {
-                //TODO: handle error
+                // TODO handle error
              }
          });
      }];
 }
 
-//TODO: move into BarsGateWay
+// TODO move to gateway
 -(NSMutableArray*)parseData: (NSData*)responseData {
     return nil;
 }
 
-//TODO: move into BarsGateWay
+// TODO move to gateway
 -(void)loadData: (NSMutableArray*) data {
    
 }
+
+- (void)presentMenuViewController:(id)sender {
+    
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    BaseViewController* viewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)presentBrowseViewController: (id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 @end

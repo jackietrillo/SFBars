@@ -172,11 +172,11 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     }
 }
 
--(void)setCellStyle:(UITableViewCell *)cell {
+-(void)setTableViewCellStyle:(UITableViewCell *)tableViewCell {
    
-    [cell.textLabel setTextColor:[UIColor whiteColor]];
-    cell.textLabel.highlightedTextColor = [UIColor grayColor];
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
+    [tableViewCell.textLabel setTextColor:[UIColor whiteColor]];
+    tableViewCell.textLabel.highlightedTextColor = [UIColor grayColor];
+    tableViewCell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
@@ -186,11 +186,12 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     cell.selectedBackgroundView = [[UIView alloc] init];
     cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
     
-    //Hack because seperator disappear when cell is selected
+    //Hack because seperator disappears when cell is selected
     UIView* separatorLineTop = [[UIView alloc] initWithFrame:CGRectMake(42, 0, cell.bounds.size.width, 0.5)];
     separatorLineTop.backgroundColor = [UIColor yellowColor];
     [cell.selectedBackgroundView addSubview:separatorLineTop];
     
+    //Hack because seperator disappears when cell is selected
     UIView* separatorLineBotton = [[UIView alloc] initWithFrame:CGRectMake(42, cell.bounds.size.height - 1, cell.bounds.size.width , 0.5)];
     separatorLineBotton.backgroundColor = [UIColor yellowColor];
     [cell.selectedBackgroundView addSubview:separatorLineBotton];
@@ -200,7 +201,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    UITableViewCell* tableViewCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     NSInteger rowIndex = indexPath.row;
     MenuItem* menuItem;
@@ -209,26 +210,28 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
             
         case 0:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
-            cell.textLabel.text = menuItem.name;
-            cell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
+            tableViewCell.textLabel.text = menuItem.name;
+            tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
         case 1:
             menuItem = (MenuItem*)self.menuDataMiddle[rowIndex];
-            cell.textLabel.text = menuItem.name;
-            cell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
+            
+            tableViewCell.textLabel.text = menuItem.name;
+            tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
         case 2:
              menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
-             cell.textLabel.text = menuItem.name;
-             cell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
+            
+            tableViewCell.textLabel.text = menuItem.name;
+            tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
         default:
             break;
     }
     
-    [self setCellStyle:cell];
+    [self setTableViewCellStyle:tableViewCell];
     
-    return cell;
+    return tableViewCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -278,7 +281,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
             }
             break;
             
-        case 1:
+        case 1: // TODO refactor
             menuItem = (MenuItem*)self.menuDataMiddle[rowIndex];
             
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Saved", @"Saved")]) {

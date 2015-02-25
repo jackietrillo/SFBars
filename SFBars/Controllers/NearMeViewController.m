@@ -15,7 +15,6 @@
 
 @end
 
-static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 
 @implementation NearMeViewController
 
@@ -40,11 +39,12 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     self.navigationItem.title = NSLocalizedString(@"NEAR ME", @"NEAR ME");
 }
 
+// TODO move to gateway
 -(void)getBars {
 
     if (!self.appDelegate.cachedBars) {
         
-        [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+        [self sendAsyncRequest: kServiceUrl method:@"GET" accept:@"application/json"];
     }
     else {
         
@@ -52,6 +52,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     }
 }
 
+// TODO move to gateway
 -(NSMutableArray*)parseData: (NSData*)responseData {
     
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];

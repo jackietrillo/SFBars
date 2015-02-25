@@ -7,7 +7,6 @@
 //
 
 #import "BaseEntity.h"
-#import "District.h"
 
 @interface Bar: BaseEntity
 

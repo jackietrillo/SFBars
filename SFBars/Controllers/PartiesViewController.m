@@ -21,27 +21,20 @@
     
     [self initNavigation];
     
-     [self getParties];
+    [self getParties];
 }
 
 -(void)initNavigation {
     
-    UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
+    [self addMenuButtonToNavigation];
     
-    UIFont* font = [UIFont fontWithName:kGlyphIconsFontName size:25.0];
-    NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
-    
-    [menuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
-    
-    [menuButton setTarget:self];
-    [menuButton setAction:@selector(showMenu:)];
-    
-    self.navigationItem.leftBarButtonItem = menuButton;
     self.navigationItem.title = NSLocalizedString(@"PARTIES", @"PARTIES");
+    
+    // note Hack to remove text in back button on segued view controller
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
+// TODO refactor out
 -(void)getParties {
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"Parties" ofType:@"json"];
@@ -59,7 +52,6 @@
             MenuItem* menuItem = [MenuItem initFromDictionary: dictTemp];
             
             [self.data addObject:menuItem];
-            
         }
     }
 }
@@ -77,40 +69,29 @@
     }
 }
 
--(void)setCellStyle:(UICollectionViewCell*)cell {
-    cell.layer.borderWidth=1.0f;
-    cell.layer.borderColor=[UIColor whiteColor].CGColor;
+-(void)setTableViewCellStyle:(UICollectionViewCell*)tableViewCell {
+    tableViewCell.layer.borderWidth= 1.0f;
+    tableViewCell.layer.borderColor= [UIColor whiteColor].CGColor;
 }
-
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
+    UICollectionViewCell* tableViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
     
-    UIImageView* imageView = (UIImageView*)[cell viewWithTag:1];
-    imageView.frame = cell.bounds;
+    UIImageView* imageView = (UIImageView*)[tableViewCell viewWithTag:1];
+    imageView.frame = tableViewCell.bounds;
     imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     
-    UILabel* textlabel = (UILabel*)[cell viewWithTag:2];
+    UILabel* textlabel = (UILabel*)[tableViewCell viewWithTag:2];
     
     MenuItem* menuItem = (MenuItem*)self.data[indexPath.row];
    
     textlabel.text = menuItem.name;
     
-    [self setCellStyle:cell];
+    [self setTableViewCellStyle:tableViewCell];
     
-    return cell;
+    return tableViewCell;
 }
 
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-}
-
-- (void)showMenu:(id)sender {
-    
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
 
 @end

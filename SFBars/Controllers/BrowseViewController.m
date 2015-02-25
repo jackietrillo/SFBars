@@ -28,19 +28,10 @@
     [self loadTableViewData:[self getBarTypes]];
 }
 
+
 -(void)initNavigation {
     
-    UIFont* font = [UIFont fontWithName: kGlyphIconsFontName size:25.0];
-    NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
-    
-    UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
-
-    [menuButton setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
-    [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
-    [menuButton setTarget:self];
-    [menuButton setAction:@selector(showMenu:)];
-    
-    self.navigationItem.leftBarButtonItem = menuButton;
+    [super addMenuButtonToNavigation];
 
     self.navigationItem.title = NSLocalizedString(@"BROWSE", @"BROWSE");
     [self.navigationController setToolbarHidden:YES animated:YES];
@@ -49,6 +40,7 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
+// TODO refactor out
 -(NSMutableArray*)getBarTypes {
     
     if (self.appDelegate.cachedBarTypes) {
@@ -58,40 +50,22 @@
     NSString* path = [[NSBundle mainBundle] pathForResource:@"BarTypes" ofType:@"json"];
     NSData* jsonData = [NSData dataWithContentsOfFile:path];
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+    jsonData = nil;
+  
+        
+    NSMutableArray* dataByType = [[NSMutableArray alloc] init];
     
-    @try {
-        
-        NSMutableArray* dataByType = [[NSMutableArray alloc] init];
-        
-        if (arrayData.count > 0) {
-            for (int i = 0; i < arrayData.count; i++) {
-                NSDictionary* dictTemp = arrayData[i];
-                BarType* barType = [BarType initFromDictionary:dictTemp];
-                [dataByType addObject:barType];
-            }
+    if (arrayData.count > 0) {
+        for (int i = 0; i < arrayData.count; i++) {
+            NSDictionary* dictTemp = arrayData[i];
+            BarType* barType = [BarType initFromDictionary:dictTemp];
+            [dataByType addObject:barType];
         }
-        
-        self.appDelegate.cachedBarTypes = dataByType;
-        
-        return dataByType;
-        
     }
-    @catch (NSException *exception) {
-        
-        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Infromation", @"Infromation")
-                                                            message: NSLocalizedString(@"Unable to retrieve data from server.", @"Unable to retrieve data from server.")
-                                                           delegate: nil
-                                                  cancelButtonTitle: NSLocalizedString(@"OK", @"OK")
-                                                  otherButtonTitles:nil];
-        
-        [alertView show];
-        
-        return nil;
-    }
-    @finally {
     
-        jsonData = nil;
-    }
+    self.appDelegate.cachedBarTypes = dataByType;
+    
+    return dataByType;
 }
 
 -(void)loadTableViewData:(NSMutableArray*) data {
@@ -105,13 +79,13 @@
     }
 }
 
--(void)setCellStyle:(UITableViewCell *)cell {
+-(void)setTableViewCellStyle:(UITableViewCell *)tableViewCell {
     
-    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    [tableViewCell.textLabel setTextColor:[UIColor whiteColor]];
     
-    cell.textLabel.highlightedTextColor = [UIColor blackColor];
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
-    cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
+    tableViewCell.textLabel.highlightedTextColor = [UIColor blackColor];
+    tableViewCell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
+    tableViewCell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -131,20 +105,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
+    UITableViewCell* tableViewCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     
     switch(indexPath.section) {
         case 0:
             
         if (indexPath.row < self.data.count) {
             BarType* barType = (BarType*)[self.data objectAtIndex:indexPath.row];
-            cell.textLabel.text = barType.name;
-            [self setCellStyle:cell];
+            tableViewCell.textLabel.text = barType.name;
+            
+            [self setTableViewCellStyle:tableViewCell];
         }
         break;
     }
     
-    return cell;
+    return tableViewCell;
 }
 
 
@@ -161,15 +136,6 @@
     barsViewController.titleText = barType.name;
     barsViewController.filterIds = @[[[NSNumber numberWithInteger:barType.itemId] stringValue]];
     barsViewController.filterType = FilterByBarTypes;
-}
-
-- (void)showMenu:(id)sender {
-    
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    MenuViewController* viewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
-    
-    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 @end

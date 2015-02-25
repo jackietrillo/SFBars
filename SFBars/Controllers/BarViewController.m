@@ -18,7 +18,6 @@
 
 @implementation BarViewController
 
-static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,12 +60,12 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     [self.view addSubview:self.loadingView];
 }
 
-//TODO move to gateway
+// TODO move to gateway
 -(void)getBars {
     
     if (!self.appDelegate.cachedBars) {
         
-        [self sendAsyncRequest:serviceUrl method:@"GET" accept:@"application/json"];
+        [self sendAsyncRequest:kServiceUrl method:@"GET" accept:@"application/json"];
     }
     else {
         
@@ -74,25 +73,46 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     }
 }
 
+// TODO move to gateway
 -(NSMutableArray*)parseData: (NSData*)responseData {
     
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
-    
-    NSMutableArray* bars = [[NSMutableArray alloc] init];
-    
-    if (arrayData.count > 0) {
+    @try {
+   
+        NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
         
-        for (int i = 0; i < arrayData.count; i++) {
-            NSDictionary* dictTemp = arrayData[i];
-            Bar* bar = [Bar initFromDictionary:dictTemp];
-            [bars addObject:bar];
+        NSMutableArray* bars = [[NSMutableArray alloc] init];
+        
+        if (arrayData.count > 0) {
+            
+            for (int i = 0; i < arrayData.count; i++) {
+                NSDictionary* dictTemp = arrayData[i];
+                Bar* bar = [Bar initFromDictionary:dictTemp];
+                [bars addObject:bar];
+            }
         }
+        
+        self.appDelegate.cachedBars = bars;
+        
+        return bars;
+    
     }
-    
-    self.appDelegate.cachedBars = bars;
-    
-    return bars;
-    
+    @catch (NSException *exception) {
+        
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Infromation", @"Infromation")
+                                                            message: NSLocalizedString(@"Unable to retrieve data from server.", @"Unable to retrieve data from server.")
+                                                           delegate: nil
+                                                  cancelButtonTitle: NSLocalizedString(@"OK", @"OK")
+                                                  otherButtonTitles:nil];
+        
+        [alertView show];
+        
+        return nil;
+    }
+    @finally {
+        
+        responseData = nil;
+    }
+
 }
 
 -(void)loadData: (NSMutableArray*) data {
@@ -161,26 +181,22 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     NSInteger rowIndex = indexPath.row;
     Bar* bar = self.data[rowIndex];
     
-    BarTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: kCellIdentifier];
-    cell.nameLabel.text = bar.name;
-    cell.descripLabel.text = bar.descrip;
-    cell.addressLabel.text = bar.address;
-    cell.hoursLabel.text = bar.hours;
-    cell.websiteButton.tag = indexPath.row;
-    cell.mapButton.tag = indexPath.row;
+    BarTableViewCell* barTableViewCell = [tableView dequeueReusableCellWithIdentifier: kCellIdentifier];
     
+    barTableViewCell.nameLabel.text = bar.name;
+
     if (!bar.icon) {
         if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
             [self startImageDownload:bar forIndexPath:indexPath];
         }
         // note if a download is deferred or in progress, return a placeholder image
-        cell.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
+        barTableViewCell.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     }
     else {
-        cell.logo.image = bar.icon;
+        barTableViewCell.logo.image = bar.icon;
     }
 
-    return cell;
+    return barTableViewCell;
 }
 
 - (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell {

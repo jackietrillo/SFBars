@@ -92,20 +92,20 @@ typedef enum {
     self.dataFavorite = [[NSMutableArray alloc] init];
     self.dataShare = [[NSMutableArray alloc] init];
     
-    BarDetail* item;
+    BarDetail* barDetail;
     
     for (int i = 0; i < barDetails.count; i++) {
         
-        item = barDetails[i];
+        barDetail = barDetails[i];
         
-        if (item.section == DetailTableViewSection && item.statusFlag) {
-            [self.dataDetail addObject:item];
+        if (barDetail.section == DetailTableViewSection && barDetail.statusFlag) {
+            [self.dataDetail addObject:barDetail];
         }
-        else if (item.section == FavoriteTableViewSection && item.statusFlag) {
-            [self.dataFavorite addObject:item];
+        else if (barDetail.section == FavoriteTableViewSection && barDetail.statusFlag) {
+            [self.dataFavorite addObject:barDetail];
         }
-        else if (item.section == ShareTableViewSection && item.statusFlag) {
-            [self.dataShare addObject:item];
+        else if (barDetail.section == ShareTableViewSection && barDetail.statusFlag) {
+            [self.dataShare addObject:barDetail];
         }
     }
 }
@@ -208,10 +208,10 @@ typedef enum {
     }
 }
 
--(void)setTableViewCellStyle:(UITableViewCell *)cell {
-    [cell.textLabel setTextColor:[UIColor whiteColor]];
-    cell.textLabel.highlightedTextColor = [UIColor blackColor];
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
+-(void)setTableViewCellStyle:(UITableViewCell *)tableViewCell {
+    [tableViewCell.textLabel setTextColor:[UIColor whiteColor]];
+    tableViewCell.textLabel.highlightedTextColor = [UIColor blackColor];
+    tableViewCell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -220,7 +220,7 @@ typedef enum {
     
     BarDetail* barDetail;
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    UITableViewCell* tableViewCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
 
     switch(indexPath.section) {
         case DetailTableViewSection:
@@ -236,17 +236,17 @@ typedef enum {
             break;
     }
     
-    cell.textLabel.text =  [self getBarPropertyValueFromBarPropertyName: barDetail.name forSelectedBar:self.selectedBar];
+    tableViewCell.textLabel.text =  [self getBarPropertyValueFromBarPropertyName: barDetail.name forSelectedBar:self.selectedBar];
     
-    cell.imageView.image = [UIImage imageNamed: barDetail.imageUrl];
+    tableViewCell.imageView.image = [UIImage imageNamed: barDetail.imageUrl];
     
-    if (cell.imageView.image == nil) {
-        cell.imageView.image = [UIImage imageNamed:@"Icon-Search"];
+    if (tableViewCell.imageView.image == nil) {
+        tableViewCell.imageView.image = [UIImage imageNamed:@"Icon-Search"];
     }
     
-    [self setTableViewCellStyle:cell];
+    [self setTableViewCellStyle:tableViewCell];
     
-    return cell;
+    return tableViewCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -255,7 +255,7 @@ typedef enum {
     BarDetail* barDetail;
     UIStoryboard* storyboard;
     
-    //TODO: consider using factory pattern here
+    // TODO: consider using factory pattern here?
     switch(indexPath.section) {
         case DetailTableViewSection:
             
