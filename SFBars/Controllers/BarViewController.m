@@ -31,7 +31,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     
     [self initNavigation];
     [self initLoadingView];
-    
     [self getBars];
     
 }
@@ -57,13 +56,12 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil];
     
     self.loadingView = [xib lastObject];
-    
     self.loadingView.frame = self.view.bounds;
     
     [self.view addSubview:self.loadingView];
 }
 
-
+//TODO move to gateway
 -(void)getBars {
     
     if (!self.appDelegate.cachedBars) {
@@ -85,11 +83,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     if (arrayData.count > 0) {
         
         for (int i = 0; i < arrayData.count; i++) {
-            
             NSDictionary* dictTemp = arrayData[i];
-            
             Bar* bar = [Bar initFromDictionary:dictTemp];
-            
             [bars addObject:bar];
         }
     }
@@ -112,9 +107,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
         }
         
         [self.tableView reloadData];
-        
         self.tableView.hidden = NO;
-    
     }
     
     if (self.loadingView) {
@@ -168,7 +161,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     NSInteger rowIndex = indexPath.row;
     Bar* bar = self.data[rowIndex];
     
-    BarTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    BarTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: kCellIdentifier];
     cell.nameLabel.text = bar.name;
     cell.descripLabel.text = bar.descrip;
     cell.addressLabel.text = bar.address;
@@ -177,11 +170,10 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     cell.mapButton.tag = indexPath.row;
     
     if (!bar.icon) {
-        if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
-        {
+        if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
             [self startImageDownload:bar forIndexPath:indexPath];
         }
-        // if a download is deferred or in progress, return a placeholder image
+        // note if a download is deferred or in progress, return a placeholder image
         cell.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     }
     else {

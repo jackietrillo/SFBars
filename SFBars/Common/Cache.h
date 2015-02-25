@@ -1,21 +1,13 @@
 //
-//  AppDelegate.h
+//  Cache.h
 //  SFBars
 //
-//  Created by JACKIE TRILLO on 1/11/15.
+//  Created by JACKIE TRILLO on 2/24/15.
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import <GoogleMaps/GoogleMaps.h>
+@interface Cache : NSObject
 
-#import "BarType.h"
-#import "Bar.h"
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-// note: This is moving into Cache Object
 @property (readwrite, nonatomic, strong) NSMutableArray* cachedBars;
 @property (readwrite, nonatomic, strong) NSMutableArray* cachedBarTypes;
 @property (readwrite, nonatomic, strong) NSMutableArray* cachedDistricts;
@@ -27,4 +19,3 @@
 @property (readwrite, nonatomic, strong) NSMutableArray* cachedSettings;
 
 @end
-

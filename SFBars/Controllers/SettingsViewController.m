@@ -22,62 +22,72 @@
     [super viewDidLoad];
 
     [self initNavigation];
-    [self loadData];
+    
+    [self loadTableViewData:[self getSettings]];
 }
 
--(void)initNavigation
-{
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] init];
-    
-    [doneButton setTarget:self];
-    [doneButton setAction:@selector(backToBrowse:)];
-    
-    UIFont* font = [UIFont fontWithName:@"fontawesome" size:30.0];
+-(void)initNavigation {
+
+    UIFont* font = [UIFont fontWithName: kFontAwesomeFontName size:30.0];
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] init];
+    [doneButton setTarget:self];
+    [doneButton setAction:@selector(backToBrowse:)];
     [doneButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
     [doneButton setTitle:[NSString stringWithUTF8String:"\uf00c"]];
     
     self.navigationItem.rightBarButtonItem = doneButton;
     self.navigationItem.title = NSLocalizedString(@"SETTINGS", @"SETTINGS");
-    
     [self.navigationItem setHidesBackButton:YES animated:YES];
 }
 
--(void)loadData
-{
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"json"];
-    NSData* data = [NSData dataWithContentsOfFile:path];
+-(NSMutableArray*)getSettings {
     
-    [self parseData:data];
-    data = nil;
+    if (self.appDelegate.cachedSettings) {
+        return self.appDelegate.cachedSettings;
+    }
+    
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"json"];
+    NSData* jsonData = [NSData dataWithContentsOfFile:path];
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error: nil];
+    
+    jsonData = nil;
+    
+    NSMutableArray* menuItems = [[NSMutableArray alloc] init];
+    MenuItem* menuItem;
+    
+    for (int i = 0; i < arrayData.count; i++) {
+        NSDictionary* dictTemp = arrayData[i];
+        menuItem = [MenuItem initFromDictionary: dictTemp];
+        [menuItems addObject:menuItem];
+    }
+    
+    self.appDelegate.cachedSettings = menuItems;
+    
+    return menuItems;
+    
 }
 
--(void)parseData: (NSData*)jsonData {
-    
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+-(void)loadTableViewData:(NSMutableArray*)menuItems {
     
     self.menuDataTop = [[NSMutableArray alloc] init];
     self.menuDataBottom = [[NSMutableArray alloc] init];
     
-    if (arrayData.count > 0)
-    {
-        for (int i = 0; i < arrayData.count; i++)
-        {
-            NSDictionary* dictTemp = arrayData[i];
-            MenuItem* menuItem = [MenuItem initFromDictionary: dictTemp];
-            
-            if (menuItem.section == 0 && menuItem.statusFlag == 1)
-            {
-                [self.menuDataTop addObject:menuItem];
-            }
-            else if (menuItem.section == 1 && menuItem.statusFlag == 1)
-            {
-                [self.menuDataBottom addObject:menuItem];
-            }
+    MenuItem* menuItem;
+    
+    for (int i = 0; i < menuItems.count; i++) {
+        menuItem = menuItems[i];
+       
+        if (menuItem.section == 0 && menuItem.statusFlag == 1) {
+            [self.menuDataTop addObject:menuItem];
+        }
+        else if (menuItem.section == 1 && menuItem.statusFlag == 1) {
+            [self.menuDataBottom addObject:menuItem];
         }
     }
 }
+
 -(void)setCellStyle:(UITableViewCell *)cell {
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
@@ -134,7 +144,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger rowIndex = indexPath.row;
     MenuItem* menuItem;
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     switch(indexPath.section) {
         case 0:

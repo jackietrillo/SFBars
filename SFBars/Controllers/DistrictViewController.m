@@ -6,54 +6,46 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "NeighborhoodViewController.h"
+#import "DistrictViewController.h"
 
 
-@interface NeighborhoodViewController () 
+@interface DistrictViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readwrite, nonatomic, strong) NSMutableArray* data;
 
 @end
 
-@implementation NeighborhoodViewController
-
-static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/district/";
+@implementation DistrictViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.canDisplayBannerAds = YES;
     
     [self initNavigation];
-    
     [self loadTableViewData: [self getDistricts]];
 }
 
 -(void)initNavigation {
    
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    UIFont* font = [UIFont fontWithName: kGlyphIconsFontName size:25.0];
+    NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] init];
     
-    UIFont* font = [UIFont fontWithName: glyphIconsFontName size:25.0];
-    
-    NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
-    
-    [menuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    
+    [menuButton setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
     [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
-    
     [menuButton setTarget:self];
-    
     [menuButton setAction:@selector(showMenu:)];
     
     self.navigationItem.leftBarButtonItem = menuButton;
-    
     self.navigationItem.title = NSLocalizedString(@"NEIGHBORHOODS", @"NEIGHBORHOODS");
+     [self.navigationController setToolbarHidden:YES animated:YES];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
+//TODO move to gateway
 -(NSMutableArray*)getDistricts {
     
     if (self.appDelegate.cachedDistricts) {
@@ -61,11 +53,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     }
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"Districts" ofType:@"json"];
-    
     NSData* jsonData = [NSData dataWithContentsOfFile:path];
-    
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-    
     jsonData = nil;
     
     NSMutableArray* districts = [[NSMutableArray alloc] init];
@@ -132,29 +121,24 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     return 1;
 }
 
--(void)setCellStyle:(UITableViewCell *)cell {
-    [cell.textLabel setTextColor:[UIColor whiteColor]];
+-(void)setTableViewCellStyle:(UITableViewCell *)tableViewCell {
     
-    cell.textLabel.highlightedTextColor = [UIColor blackColor];
-    
-    cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
-    
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
+    [tableViewCell.textLabel setTextColor:[UIColor whiteColor]];
+    tableViewCell.textLabel.highlightedTextColor = [UIColor blackColor];
+    tableViewCell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
+    tableViewCell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     
     switch(indexPath.section) {
         case 0:
-            if (indexPath.row < self.data.count)
-            {
+            if (indexPath.row < self.data.count) {
                 District* district = (District*)[self.data objectAtIndex:indexPath.row];
-                
                 cell.textLabel.text = district.name;
-                
-                [self setCellStyle:cell];
+                [self setTableViewCellStyle:cell];
                 
             }
             break;
@@ -188,18 +172,18 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/dist
     
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+    UIViewController* settingsViewController = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
     
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:settingsViewController animated:YES];
 }
 
 - (void)showMenu:(id)sender {
     
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
+    UIViewController* menuViewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
     
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:menuViewController animated:YES];
 }
 
 @end

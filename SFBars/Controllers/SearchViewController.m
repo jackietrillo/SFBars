@@ -14,9 +14,6 @@
 @property (readwrite, nonatomic, strong) NSMutableArray* searchResults;
 @property (nonatomic, strong) UISearchController *searchController;
 
-// search results table view
-@property (nonatomic, strong) SearchResultsViewController* searchResultsViewController;
-
 @end
 
 @implementation SearchViewController
@@ -62,59 +59,46 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
     
 }
 
--(void)configureSearch {
-
-    self.searchResults = [NSMutableArray arrayWithCapacity:[self.data count]];
+-(NSMutableArray*)parseData: (NSData*)jsonData {
     
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    
-    self.searchController.searchResultsUpdater = self;
-    
-    self.searchController.dimsBackgroundDuringPresentation = NO;
-    
-    self.searchController.hidesNavigationBarDuringPresentation = NO;
-    
-    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y,
-                                                       self.searchController.searchBar.frame.size.width, 44.0);
-    
-    self.tableView.tableHeaderView = self.searchController.searchBar;
-
-    self.definesPresentationContext = YES;
-}
-
--(NSMutableArray*)parseData: (NSData*)responseData {
-    
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
     
     NSMutableArray* data = [[NSMutableArray alloc] init];
     
     if (arrayData.count > 0) {
-        
         for (int i = 0; i < arrayData.count; i++) {
-            
             NSDictionary* dictTemp = arrayData[i];
-            
             Bar* bar = [Bar initFromDictionary:dictTemp];
-            
             [data addObject:bar];
         }
     }
     return data;
 }
 
--(void)setCellStyle:(UITableViewCell *)cell {
+-(void)configureSearch {
+
+    self.searchResults = [NSMutableArray arrayWithCapacity:[self.data count]];
     
-    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
+    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
     
-    cell.textLabel.highlightedTextColor = [UIColor blackColor];
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+
+    self.definesPresentationContext = YES;
+}
+
+-(void)setTableViewCellStyle:(UITableViewCell *)tableViewCell {
     
-    [cell.detailTextLabel setTextColor:[UIColor whiteColor]];
+    [tableViewCell.textLabel setTextColor:[UIColor whiteColor]];
+    tableViewCell.textLabel.highlightedTextColor = [UIColor blackColor];
     
-    cell.detailTextLabel.numberOfLines = 0;
-    
-    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    
-    [cell.detailTextLabel sizeToFit];
+    [tableViewCell.detailTextLabel setTextColor:[UIColor whiteColor]];
+    tableViewCell.detailTextLabel.numberOfLines = 0;
+    tableViewCell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [tableViewCell.detailTextLabel sizeToFit];
 }
 
 #pragma mark - Table view data source
@@ -135,32 +119,30 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    UITableViewCell* tableViewCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     
     switch(indexPath.section) {
         case 0:
-            if (indexPath.row < self.data.count) {
-                
-                Bar* bar;
-                
-                if (self.searchController.active) {
-                    bar = [self.searchResults objectAtIndex:indexPath.row];
-                } else {
-                    bar = [self.data objectAtIndex:indexPath.row];
-                }
-                
-                cell.textLabel.text = bar.name;
-                
-                cell.detailTextLabel.text = bar.descrip;
-                
-                [self setCellStyle:cell];
+        if (indexPath.row < self.data.count) {
+            
+            Bar* bar;
+            
+            if (self.searchController.active) {
+                bar = [self.searchResults objectAtIndex:indexPath.row];
+            } else {
+                bar = [self.data objectAtIndex:indexPath.row];
             }
-            break;
+            
+            tableViewCell.textLabel.text = bar.name;
+            tableViewCell.detailTextLabel.text = bar.descrip;
+            
+            [self setTableViewCellStyle:tableViewCell];
+        }
+        break;
     }
     
-    return cell;
+    return tableViewCell;
 }
-
 
 #pragma mark - UISearchResultsUpdating
 

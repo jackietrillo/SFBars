@@ -6,12 +6,9 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <MessageUI/MessageUI.h>
-
+#import "BaseViewController.h"
 #import "MenuItem.h"
-#import "Constants.h"
 
-@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface SettingsViewController : BaseViewController <MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end

@@ -25,17 +25,20 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     [super viewDidLoad];
     
     [self initNavigation];
-    
     [self initTableView];
-    
-    NSMutableArray* menuItems = [self getMenuItems];
-    
-    [self loadTableViewData:menuItems];
+    [self loadTableViewData:[self getMenuItems]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     NSLog(@"%@", NSStringFromClass ([self class]));
+}
+
+-(void)initNavigation {
+    
+    self.navigationItem.title = NSLocalizedString(@"MENU", @"MENU");
+    [self.navigationItem setHidesBackButton:YES animated:YES];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 -(void)initTableView {
@@ -45,14 +48,6 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MenuBackground"]];
 }
 
--(void)initNavigation {
-    
-    self.navigationItem.title = NSLocalizedString(@"MENU", @"MENU");
-    [self.navigationItem setHidesBackButton:YES animated:YES];
-    
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
-}
-
 -(NSMutableArray*)getMenuItems {
     
     if (self.appDelegate.cachedMenuItems) {
@@ -60,23 +55,16 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     }
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"MenuItems" ofType:@"json"];
-    
     NSData* jsonData = [NSData dataWithContentsOfFile:path];
-    
     NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error: nil];
-    
     jsonData = nil;
     
     NSMutableArray* menuItems = [[NSMutableArray alloc] init];
-    
     MenuItem* menuItem;
     
     for (int i = 0; i < arrayData.count; i++) {
-        
         NSDictionary* dictTemp = arrayData[i];
-        
         menuItem = [MenuItem initFromDictionary: dictTemp];
-        
         [menuItems addObject:menuItem];
     }
     
@@ -98,16 +86,13 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
         
         menuItem = menuItems[i];
         
-        if (menuItem.section == 0 && menuItem.statusFlag == 1)
-        {
+        if (menuItem.section == 0 && menuItem.statusFlag == 1) {
             [self.menuDataTop addObject:menuItem];
         }
-        else if (menuItem.section == 1 && menuItem.statusFlag == 1)
-        {
+        else if (menuItem.section == 1 && menuItem.statusFlag == 1) {
             [self.menuDataMiddle addObject:menuItem];
         }
-        else if (menuItem.section == 2 && menuItem.statusFlag == 1)
-        {
+        else if (menuItem.section == 2 && menuItem.statusFlag == 1) {
             [self.menuDataBottom addObject:menuItem];
         }
     }
@@ -215,7 +200,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     NSInteger rowIndex = indexPath.row;
     MenuItem* menuItem;
@@ -257,9 +242,10 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
         case 0:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
             
+            //TODO: consider using factory pattern here?
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Search", @"Search")]) {
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                SearchViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
+                SearchTableViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Browse", @"Browse")]) {
@@ -272,7 +258,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
             }
             else if ([menuItem.name isEqualToString: NSLocalizedString(@"Neighborhoods", @"Neighborhoods")]) {
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                NeighborhoodViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"NeighborhoodViewController"];
+                DistrictViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"DistrictViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
             else if ([menuItem.name isEqualToString: NSLocalizedString(@"Top List", @"Top List")]){
@@ -285,7 +271,6 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
                 MusicTypeViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MusicTypeViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
-
             else if ([menuItem.name isEqualToString: NSLocalizedString(@"Parties", @"Parties")]){
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 PartiesViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"PartiesViewController"];
@@ -298,7 +283,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
             
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Saved", @"Saved")]) {
                
-                //TODO: refactor
+                //TODO: refactor this
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSMutableDictionary* savedBarsDict = [defaults objectForKey:SAVEDBARSDICT];
              
@@ -313,15 +298,13 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
                     }
                     
                     storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    
                     BarViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarViewController"];
-                    
                     vc.bars = savedBars;
                     
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                 else {
-                   
+                    // note this is temporary
                     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info", @"Info")
                                                                         message: NSLocalizedString(@"You have no saved Bars.", @"You have no saved Bars.")
                                                                        delegate: nil
@@ -335,8 +318,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
         case 2:
             menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
             
-            if ([menuItem.name isEqualToString: NSLocalizedString(@"Settings", @"Settings")])
-            {
+            if ([menuItem.name isEqualToString: NSLocalizedString(@"Settings", @"Settings")]) {
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 SettingsViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                 [self.navigationController pushViewController:vc animated:YES];

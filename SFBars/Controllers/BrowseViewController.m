@@ -18,46 +18,35 @@
 
 @implementation BrowseViewController
 
-static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bartype/";
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.canDisplayBannerAds = YES;
-    
     self.tableView.hidden = YES;
 
     [self initNavigation];
-        
-    NSMutableArray* barTypes  = [self getBarTypes];
-        
-    [self loadTableViewData:barTypes];
-  
+    [self loadTableViewData:[self getBarTypes]];
 }
 
 -(void)initNavigation {
     
-    UIFont* font = [UIFont fontWithName: glyphIconsFontName size:25.0];
-    
-    NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
+    UIFont* font = [UIFont fontWithName: kGlyphIconsFontName size:25.0];
+    NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
     
     UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
-    
-    [menuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    
+
+    [menuButton setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
     [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
-    
     [menuButton setTarget:self];
-    
     [menuButton setAction:@selector(showMenu:)];
     
     self.navigationItem.leftBarButtonItem = menuButton;
-    
+
     self.navigationItem.title = NSLocalizedString(@"BROWSE", @"BROWSE");
-                                                  
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
-    
     [self.navigationController setToolbarHidden:YES animated:YES];
+    
+    // Hack to remove back button text on segued screen
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 -(NSMutableArray*)getBarTypes {
@@ -67,23 +56,17 @@ static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bar
     }
         
     NSString* path = [[NSBundle mainBundle] pathForResource:@"BarTypes" ofType:@"json"];
-   
-    NSData* data = [NSData dataWithContentsOfFile:path];
-  
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    NSData* jsonData = [NSData dataWithContentsOfFile:path];
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
     
     @try {
         
         NSMutableArray* dataByType = [[NSMutableArray alloc] init];
         
         if (arrayData.count > 0) {
-            
             for (int i = 0; i < arrayData.count; i++) {
-                
                 NSDictionary* dictTemp = arrayData[i];
-                
                 BarType* barType = [BarType initFromDictionary:dictTemp];
-                
                 [dataByType addObject:barType];
             }
         }
@@ -107,7 +90,7 @@ static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bar
     }
     @finally {
     
-        data = nil;
+        jsonData = nil;
     }
 }
 
@@ -117,9 +100,7 @@ static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bar
         self.data = data;
     
         self.tableView.hidden = NO;
-    
         self.tableView.delegate = self;
-    
         [self.tableView reloadData];
     }
 }
@@ -129,9 +110,7 @@ static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bar
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
-    
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
-    
     cell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
 }
 
@@ -152,16 +131,14 @@ static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bar
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     
     switch(indexPath.section) {
         case 0:
+            
         if (indexPath.row < self.data.count) {
-            
             BarType* barType = (BarType*)[self.data objectAtIndex:indexPath.row];
-            
             cell.textLabel.text = barType.name;
-           
             [self setCellStyle:cell];
         }
         break;
@@ -182,9 +159,7 @@ static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bar
     BarType* barType = self.data[indexPath.row];
     
     barsViewController.titleText = barType.name;
-    
     barsViewController.filterIds = @[[[NSNumber numberWithInteger:barType.itemId] stringValue]];
-    
     barsViewController.filterType = FilterByBarTypes;
 }
 
@@ -192,9 +167,9 @@ static const NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bar
     
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    MenuViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
+    MenuViewController* viewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
     
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 @end

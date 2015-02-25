@@ -12,6 +12,11 @@
 
 @end
 
+NSString* kCellIdentifier = @"Cell";
+NSString* kGlyphIconsFontName  = @"GLYPHICONSHalflings-Regular";
+NSString* kFontAwesomeFontName  = @"FontAwesome";
+NSString* kServiceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
+
 @implementation BaseViewController
 
 - (void)viewDidLoad {
@@ -24,7 +29,20 @@
     [super didReceiveMemoryWarning];
 }
 
+- (UIBarButtonItem*)addMenuButtonToNavigation {
 
+    UIFont* font = [UIFont fontWithName: kGlyphIconsFontName size:25.0];
+    NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
+    
+    UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
+    [menuButton setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
+    [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
+    [menuButton setTarget:self];
+    
+    return menuButton;
+}
+
+//TODO: move into BarsGateWay
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
@@ -61,12 +79,12 @@
      }];
 }
 
-//TODO: put in a protocol
+//TODO: move into BarsGateWay
 -(NSMutableArray*)parseData: (NSData*)responseData {
     return nil;
 }
 
-//TODO: put in a protocol
+//TODO: move into BarsGateWay
 -(void)loadData: (NSMutableArray*) data {
    
 }

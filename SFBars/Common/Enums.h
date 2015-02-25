@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#ifndef SFBars_Enums_h
-#define SFBars_Enums_h
-
 typedef enum {
     FilterByNotAssigned = -1,
     FilterByBarTypes = 0,
@@ -18,4 +15,7 @@ typedef enum {
 } FilterType;
 
 
-#endif
+typedef enum {
+    AppleMaps = 0,
+    GoogleMaps = 1,
+} VendorMaps;

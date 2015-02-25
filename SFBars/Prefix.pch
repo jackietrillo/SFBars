@@ -1,0 +1,22 @@
+
+
+
+
+@import Foundation;
+@import UIKit;
+@import MessageUI;
+@import iAd;
+@import CoreLocation;
+@import MapKit;
+
+
+
+/*
+ This is the old way
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <iAd/iAd.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+*/

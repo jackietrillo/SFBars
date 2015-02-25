@@ -19,15 +19,16 @@
     
     [super viewDidLoad];
     
-    [self loadData];
     [self initNavigation];
+    
+     [self getParties];
 }
 
 -(void)initNavigation {
-    //menu button
+    
     UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
     
-    UIFont* font = [UIFont fontWithName:@"GLYPHICONSHalflings-Regular" size:25.0];
+    UIFont* font = [UIFont fontWithName:kGlyphIconsFontName size:25.0];
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
     [menuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
@@ -37,27 +38,16 @@
     [menuButton setAction:@selector(showMenu:)];
     
     self.navigationItem.leftBarButtonItem = menuButton;
-    self.navigationItem.title = @"PARTIES"; //TODO: Localize
+    self.navigationItem.title = NSLocalizedString(@"PARTIES", @"PARTIES");
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
--(void)loadData {
+-(void)getParties {
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"Parties" ofType:@"json"];
-    NSData* data = [NSData dataWithContentsOfFile:path];
+    NSData* jsonData = [NSData dataWithContentsOfFile:path];
     
-    [self parseData:data];
-}
-
--(void)parseData: (NSData*)jsonData {
-    
-    NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&errorData];
-    
-    if (errorData != nil) {
-        //TODO: log error
-        //TODO: alert User
-    }
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
     
     self.data = [[NSMutableArray alloc] init];
     
@@ -95,7 +85,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
     
     UIImageView* imageView = (UIImageView*)[cell viewWithTag:1];
     imageView.frame = cell.bounds;
@@ -104,6 +94,7 @@
     UILabel* textlabel = (UILabel*)[cell viewWithTag:2];
     
     MenuItem* menuItem = (MenuItem*)self.data[indexPath.row];
+   
     textlabel.text = menuItem.name;
     
     [self setCellStyle:cell];

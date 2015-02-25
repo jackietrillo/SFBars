@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
 @interface NavigationViewController : UINavigationController
 

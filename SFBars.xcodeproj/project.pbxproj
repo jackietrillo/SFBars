@@ -18,6 +18,7 @@
 		820ABF081A8447E60022192F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF071A8447E60022192F /* OpenGLES.framework */; };
 		820ABF0A1A8447F50022192F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF091A8447F50022192F /* QuartzCore.framework */; };
 		820ABF0C1A8448030022192F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF0B1A8448030022192F /* SystemConfiguration.framework */; };
+		823918E91A9C613600001EF5 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 823918E71A9C613600001EF5 /* SearchTableViewCell.xib */; };
 		826D03551A881CBC0051189B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 826D03541A881CBC0051189B /* SearchViewController.m */; };
 		8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61D1A761B7200D2466D /* BarDetailsViewController.m */; };
 		8285AE8F1A7C69D4004858FD /* BarDetailHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8285AE8E1A7C69D4004858FD /* BarDetailHeaderViewCell.m */; };
@@ -44,8 +45,8 @@
 		82A5C8091A632BD900D55A54 /* LaunchImage-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C8081A632BD900D55A54 /* LaunchImage-568h@2x.png */; };
 		82A9149A1A9985BA0019D30A /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A914991A9985B90019D30A /* LoadingView.xib */; };
 		82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149C1A9985FF0019D30A /* LoadingView.m */; };
-		82A914A01A9990A40019D30A /* NeighborhoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149F1A9990A40019D30A /* NeighborhoodViewController.m */; };
-		82A914A31A99D1B80019D30A /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A914A21A99D1B80019D30A /* SearchResultsViewController.m */; };
+		82A914A01A9990A40019D30A /* DistrictViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149F1A9990A40019D30A /* DistrictViewController.m */; };
+		82AFFB7D1A9D07D3006F2E46 /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFFB7C1A9D07D3006F2E46 /* Cache.m */; };
 		82B086541A9A6960005BD2BE /* MusicTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B086531A9A6960005BD2BE /* MusicTypeViewController.m */; };
 		82B086571A9A6A72005BD2BE /* BarDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B086561A9A6A72005BD2BE /* BarDetail.m */; };
 		82B086591A9A6AC2005BD2BE /* BarDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 82B086581A9A6AC2005BD2BE /* BarDetail.json */; };
@@ -74,6 +75,9 @@
 		82E8E1931A8DAC620042F2C4 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D668131A86E0E7004B19DB /* GoogleMaps.framework */; };
 		82E917371A79B4D7002D610E /* District.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E917361A79B4D7002D610E /* District.m */; };
 		82E93AB31A816D830034F9D6 /* Parties.json in Resources */ = {isa = PBXBuildFile; fileRef = 82E93AB21A816D830034F9D6 /* Parties.json */; };
+		82EEC95D1A9C5B1A00E211BC /* SearchBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EEC9581A9C5B1A00E211BC /* SearchBaseTableViewController.m */; };
+		82EEC95E1A9C5B1A00E211BC /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EEC95A1A9C5B1A00E211BC /* SearchTableViewController.m */; };
+		82EEC95F1A9C5B1A00E211BC /* SearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EEC95C1A9C5B1A00E211BC /* SearchResultsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +103,7 @@
 		820ABF091A8447F50022192F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		820ABF0B1A8448030022192F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		820ABF151A847AF20022192F /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "glyphicons-halflings-regular.ttf"; path = "SFBars/Resources/Fonts/glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
+		823918E81A9C613600001EF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchTableViewCell.xib; sourceTree = "<group>"; };
 		826D03531A881CBC0051189B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = SFBars/Controllers/SearchViewController.h; sourceTree = "<group>"; };
 		826D03541A881CBC0051189B /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = SFBars/Controllers/SearchViewController.m; sourceTree = "<group>"; };
 		8285AE8D1A7C69D4004858FD /* BarDetailHeaderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailHeaderViewCell.h; path = Controls/BarDetailHeaderViewCell.h; sourceTree = "<group>"; };
@@ -137,14 +142,14 @@
 		82A5C7FC1A632B9800D55A54 /* DroidSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DroidSans.ttf; path = SFBars/Resources/Fonts/DroidSans.ttf; sourceTree = "<group>"; };
 		82A5C7FD1A632B9800D55A54 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = SFBars/Resources/Fonts/FontAwesome.ttf; sourceTree = "<group>"; };
 		82A5C8081A632BD900D55A54 /* LaunchImage-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LaunchImage-568h@2x.png"; path = "SFBars/Resources/LaunchImage-568h@2x.png"; sourceTree = "<group>"; };
-		82A914941A99641F0019D30A /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Common/Constants.h; sourceTree = "<group>"; };
+		82A914941A99641F0019D30A /* Configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = Common/Configuration.h; sourceTree = "<group>"; };
 		82A914991A9985B90019D30A /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingView.xib; path = Controls/LoadingView.xib; sourceTree = "<group>"; };
 		82A9149B1A9985FF0019D30A /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Controls/LoadingView.h; sourceTree = "<group>"; };
 		82A9149C1A9985FF0019D30A /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Controls/LoadingView.m; sourceTree = "<group>"; };
-		82A9149E1A9990A40019D30A /* NeighborhoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NeighborhoodViewController.h; path = SFBars/Controllers/NeighborhoodViewController.h; sourceTree = "<group>"; };
-		82A9149F1A9990A40019D30A /* NeighborhoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NeighborhoodViewController.m; path = SFBars/Controllers/NeighborhoodViewController.m; sourceTree = "<group>"; };
-		82A914A11A99D1B80019D30A /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultsViewController.h; path = SFBars/Controllers/SearchResultsViewController.h; sourceTree = "<group>"; };
-		82A914A21A99D1B80019D30A /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultsViewController.m; path = SFBars/Controllers/SearchResultsViewController.m; sourceTree = "<group>"; };
+		82A9149E1A9990A40019D30A /* DistrictViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DistrictViewController.h; path = SFBars/Controllers/DistrictViewController.h; sourceTree = "<group>"; };
+		82A9149F1A9990A40019D30A /* DistrictViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistrictViewController.m; path = SFBars/Controllers/DistrictViewController.m; sourceTree = "<group>"; };
+		82AFFB7B1A9D07D3006F2E46 /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cache.h; path = Common/Cache.h; sourceTree = "<group>"; };
+		82AFFB7C1A9D07D3006F2E46 /* Cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cache.m; path = Common/Cache.m; sourceTree = "<group>"; };
 		82B086521A9A6960005BD2BE /* MusicTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MusicTypeViewController.h; path = SFBars/Controllers/MusicTypeViewController.h; sourceTree = "<group>"; };
 		82B086531A9A6960005BD2BE /* MusicTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MusicTypeViewController.m; path = SFBars/Controllers/MusicTypeViewController.m; sourceTree = "<group>"; };
 		82B086551A9A6A72005BD2BE /* BarDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetail.h; path = SFBars/Models/BarDetail.h; sourceTree = "<group>"; };
@@ -160,7 +165,6 @@
 		82BA4C131A70830100E71F40 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Common/ImageDownloader.m; sourceTree = "<group>"; };
 		82BA4C151A70838500E71F40 /* BaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseEntity.h; path = SFBars/Models/BaseEntity.h; sourceTree = "<group>"; };
 		82BA4C161A70838500E71F40 /* BaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseEntity.m; path = SFBars/Models/BaseEntity.m; sourceTree = "<group>"; };
-		82BA4C181A7085B500E71F40 /* SFBars_prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFBars_prefix.pch; sourceTree = "<group>"; };
 		82BA4C191A70CD8E00E71F40 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SFBars/Images.xcassets; sourceTree = "<group>"; };
 		82BB5FEE1A649E55002F5578 /* BarType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarType.h; path = SFBars/Models/BarType.h; sourceTree = "<group>"; };
 		82BB5FEF1A649E55002F5578 /* BarType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarType.m; path = SFBars/Models/BarType.m; sourceTree = "<group>"; };
@@ -191,6 +195,13 @@
 		82E917351A79B4D7002D610E /* District.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = District.h; path = SFBars/Models/District.h; sourceTree = "<group>"; };
 		82E917361A79B4D7002D610E /* District.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = District.m; path = SFBars/Models/District.m; sourceTree = "<group>"; };
 		82E93AB21A816D830034F9D6 /* Parties.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Parties.json; path = SFBars/Resources/Parties.json; sourceTree = "<group>"; };
+		82EEC9571A9C5B1A00E211BC /* SearchBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchBaseTableViewController.h; path = SFBars/Controllers/SearchBaseTableViewController.h; sourceTree = "<group>"; };
+		82EEC9581A9C5B1A00E211BC /* SearchBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchBaseTableViewController.m; path = SFBars/Controllers/SearchBaseTableViewController.m; sourceTree = "<group>"; };
+		82EEC9591A9C5B1A00E211BC /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewController.h; path = SFBars/Controllers/SearchTableViewController.h; sourceTree = "<group>"; };
+		82EEC95A1A9C5B1A00E211BC /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewController.m; path = SFBars/Controllers/SearchTableViewController.m; sourceTree = "<group>"; };
+		82EEC95B1A9C5B1A00E211BC /* SearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultsTableViewController.h; path = SFBars/Controllers/SearchResultsTableViewController.h; sourceTree = "<group>"; };
+		82EEC95C1A9C5B1A00E211BC /* SearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultsTableViewController.m; path = SFBars/Controllers/SearchResultsTableViewController.m; sourceTree = "<group>"; };
+		82EEC9601A9C5B6900E211BC /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,8 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				82A5C7811A63125C00D55A54 /* Info.plist */,
+				82EEC9601A9C5B6900E211BC /* Prefix.pch */,
 				82A5C7821A63125C00D55A54 /* main.m */,
-				82BA4C181A7085B500E71F40 /* SFBars_prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -291,12 +302,16 @@
 		82A5C7A61A631F0B00D55A54 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				82A914A11A99D1B80019D30A /* SearchResultsViewController.h */,
-				82A914A21A99D1B80019D30A /* SearchResultsViewController.m */,
 				82BF8A191A74392800237060 /* BarDetailsViewController.h */,
 				828FE61D1A761B7200D2466D /* BarDetailsViewController.m */,
 				828FE6141A761A8B00D2466D /* BrowseViewController.h */,
 				828FE6151A761A8B00D2466D /* BrowseViewController.m */,
+				82EEC9571A9C5B1A00E211BC /* SearchBaseTableViewController.h */,
+				82EEC9581A9C5B1A00E211BC /* SearchBaseTableViewController.m */,
+				82EEC9591A9C5B1A00E211BC /* SearchTableViewController.h */,
+				82EEC95A1A9C5B1A00E211BC /* SearchTableViewController.m */,
+				82EEC95B1A9C5B1A00E211BC /* SearchResultsTableViewController.h */,
+				82EEC95C1A9C5B1A00E211BC /* SearchResultsTableViewController.m */,
 				82BB60061A64D763002F5578 /* BarViewController.h */,
 				82BB60071A64D763002F5578 /* BarViewController.m */,
 				82A5C7D51A63263400D55A54 /* BarWebViewController.h */,
@@ -305,8 +320,8 @@
 				826D03541A881CBC0051189B /* SearchViewController.m */,
 				82A5C7D91A63263400D55A54 /* NavigationViewController.h */,
 				82A5C7DA1A63263400D55A54 /* NavigationViewController.m */,
-				82A9149E1A9990A40019D30A /* NeighborhoodViewController.h */,
-				82A9149F1A9990A40019D30A /* NeighborhoodViewController.m */,
+				82A9149E1A9990A40019D30A /* DistrictViewController.h */,
+				82A9149F1A9990A40019D30A /* DistrictViewController.m */,
 				82C705F91A75BCAC0045F973 /* MenuViewController.h */,
 				82C705FA1A75BCAC0045F973 /* MenuViewController.m */,
 				828FE61A1A761AB200D2466D /* SettingsViewController.h */,
@@ -376,11 +391,13 @@
 				82BA4C121A70830100E71F40 /* ImageDownloader.h */,
 				82BA4C131A70830100E71F40 /* ImageDownloader.m */,
 				82E8E1921A8DAB1A0042F2C4 /* Enums.h */,
-				82A914941A99641F0019D30A /* Constants.h */,
+				82A914941A99641F0019D30A /* Configuration.h */,
 				82B0865A1A9A8B8A005BD2BE /* GatewayBase.h */,
 				82B0865B1A9A8B8A005BD2BE /* GatewayBase.m */,
 				82B086601A9A8C6C005BD2BE /* BarsGateway.h */,
 				82B086611A9A8C6C005BD2BE /* BarsGateway.m */,
+				82AFFB7B1A9D07D3006F2E46 /* Cache.h */,
+				82AFFB7C1A9D07D3006F2E46 /* Cache.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -388,6 +405,7 @@
 		82A5C7AA1A631F9F00D55A54 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				823918E71A9C613600001EF5 /* SearchTableViewCell.xib */,
 				82A5C7CF1A63260B00D55A54 /* BarTableViewCell.h */,
 				82A5C7D01A63260B00D55A54 /* BarTableViewCell.m */,
 				8285AE8D1A7C69D4004858FD /* BarDetailHeaderViewCell.h */,
@@ -526,6 +544,7 @@
 				82D43C531A95739200B4196C /* Districts.json in Resources */,
 				82D43C551A958CAC00B4196C /* BarTypes.json in Resources */,
 				8291A6CA1A7DC0D00060D3FB /* Settings.json in Resources */,
+				823918E91A9C613600001EF5 /* SearchTableViewCell.xib in Resources */,
 				82A9149A1A9985BA0019D30A /* LoadingView.xib in Resources */,
 				8285AE911A7C69FC004858FD /* BarDetailHeaderViewCell.xib in Resources */,
 				82A5C8031A632B9800D55A54 /* DroidSans.ttf in Resources */,
@@ -557,6 +576,7 @@
 				82B086621A9A8C6C005BD2BE /* BarsGateway.m in Sources */,
 				82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */,
 				82B086571A9A6A72005BD2BE /* BarDetail.m in Sources */,
+				82EEC95E1A9C5B1A00E211BC /* SearchTableViewController.m in Sources */,
 				82A5C7EB1A63266100D55A54 /* Bar.m in Sources */,
 				82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */,
 				82CF532E1A7C2E800087F0F5 /* TopListViewController.m in Sources */,
@@ -569,17 +589,19 @@
 				82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */,
 				826D03551A881CBC0051189B /* SearchViewController.m in Sources */,
 				828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */,
-				82A914A31A99D1B80019D30A /* SearchResultsViewController.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
 				82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */,
 				82D43C401A95687300B4196C /* MusicType.m in Sources */,
 				82B086651A9A8D36005BD2BE /* NearMeViewController.m in Sources */,
 				82B0865C1A9A8B8A005BD2BE /* GatewayBase.m in Sources */,
+				82EEC95D1A9C5B1A00E211BC /* SearchBaseTableViewController.m in Sources */,
 				82BB5FF01A649E55002F5578 /* BarType.m in Sources */,
+				82AFFB7D1A9D07D3006F2E46 /* Cache.m in Sources */,
+				82EEC95F1A9C5B1A00E211BC /* SearchResultsTableViewController.m in Sources */,
 				82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */,
 				82E917371A79B4D7002D610E /* District.m in Sources */,
 				82A5C7C51A631FD500D55A54 /* ConnectionHelper.m in Sources */,
-				82A914A01A9990A40019D30A /* NeighborhoodViewController.m in Sources */,
+				82A914A01A9990A40019D30A /* DistrictViewController.m in Sources */,
 				828FE61C1A761AB200D2466D /* SettingsViewController.m in Sources */,
 				82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */,
 				82A5C7831A63125C00D55A54 /* main.m in Sources */,
@@ -606,6 +628,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		823918E71A9C613600001EF5 /* SearchTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				823918E81A9C613600001EF5 /* Base */,
+			);
+			name = SearchTableViewCell.xib;
+			sourceTree = "<group>";
+		};
 		8291A6CB1A7DC4510060D3FB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -710,15 +740,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/GoogleMaps-iOS-1.9.1",
 					"$(PROJECT_DIR)/SFBars",
-					"$(PROJECT_DIR)/SFBars/Frameworks",
-					"/Users/jackietrillo/code/Common/Frameworks/GoogleMaps-iOS-1.9.1",
 					"$(PROJECT_DIR)/Frameworks",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SFBars/Prefix.pch;
 				INFOPLIST_FILE = SFBars/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -728,15 +759,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/GoogleMaps-iOS-1.9.1",
 					"$(PROJECT_DIR)/SFBars",
-					"$(PROJECT_DIR)/SFBars/Frameworks",
-					"/Users/jackietrillo/code/Common/Frameworks/GoogleMaps-iOS-1.9.1",
 					"$(PROJECT_DIR)/Frameworks",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SFBars/Prefix.pch;
 				INFOPLIST_FILE = SFBars/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

@@ -22,8 +22,7 @@
 
 static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
 
-- (void)startDownload
-{
+- (void)startDownload {
     self.activeDownload = [NSMutableData data];
     
     NSString* imageDownloadUrl = [serviceUrl stringByAppendingString:self.entity.imageUrl];
@@ -31,13 +30,12 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
     
     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageDownloadUrl]];
     
-    NSURLConnection* conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSURLConnection* connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    self.imageConnection = conn;
+    self.imageConnection = connection;
 }
 
-- (void)cancelDownload
-{
+- (void)cancelDownload {
     [self.imageConnection cancel];
     self.imageConnection = nil;
     self.activeDownload = nil;
@@ -45,32 +43,13 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
 
 #pragma mark - NSURLConnectionDelegate
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [self.activeDownload appendData:data];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     self.activeDownload = nil;
     self.imageConnection = nil;
-}
-
-//Not using this
--(UIImage*)addFilterToImage: (UIImage*)image {
-    
-    CIContext *imgContext = [CIContext contextWithOptions:nil];
-    
-    CIImage *bgnImage = [[CIImage alloc] initWithImage:image];
-    
-    CIFilter *imgFilter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues: kCIInputImageKey, bgnImage, @"inputIntensity", [NSNumber numberWithFloat:0.5], nil];
-    CIImage *myOutputImage = [imgFilter outputImage];
-    
-    CGImageRef cgImgRef = [imgContext  createCGImage:myOutputImage fromRect:[myOutputImage extent]];
-    UIImage *newImgWithFilter = [UIImage imageWithCGImage:cgImgRef];
-    
-    CGImageRelease(cgImgRef);
-    return newImgWithFilter;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -92,7 +71,6 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
     }
     else
     {
-       // UIImage* imageWithFilter = [self addFilterToImage: image];
         self.entity.icon = image;
     }
     

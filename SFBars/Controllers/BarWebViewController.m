@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.canDisplayBannerAds = YES;
+
     [self initWebView];
 }
 
@@ -27,15 +29,10 @@
 
 -(void)initWebView {
     
-    self.canDisplayBannerAds = YES;
-   
-    NSString* backButtonText = [NSString stringWithUTF8String:"\uf053"]; //chevron
-    backButtonText = [backButtonText stringByAppendingString: @" Back"];
-    [self.backButton setTitle: backButtonText forState:UIControlStateNormal];
-    
     if (self.url != nil) {
-        NSURL* launchURL = [NSURL URLWithString:self.url];
-        NSURLRequest* request = [NSURLRequest requestWithURL:launchURL];
+      
+        NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
+        
         [self.webView loadRequest:request];
         
          self.webView.scalesPageToFit = YES;
@@ -43,7 +40,7 @@
     else {
         
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info", @"Info")
-                                                        message: NSLocalizedString(@"Calendar is not avaible at this time.", @"Calendar is not avaible at this time.")
+                                                        message: NSLocalizedString(@"Requested page is not avaible at this time.", @"Requested page is not avaible at this time.")
                                                        delegate: self
                                               cancelButtonTitle: NSLocalizedString(@"OK", @"OK")
                                               otherButtonTitles: nil];

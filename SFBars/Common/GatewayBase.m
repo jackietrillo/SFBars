@@ -10,4 +10,39 @@
 
 @implementation GatewayBase
 
+-(NSMutableArray*)getBars {
+    return nil;
+}
+
+-(NSMutableArray*)getBarTypes {
+    return nil;
+}
+
+-(NSMutableArray*)getDistricts {
+    return nil;
+}
+
+-(NSMutableArray*)getParties {
+    return nil;
+}
+
+-(NSMutableArray*)getEvents {
+    return nil;
+}
+
+-(NSMutableArray*)getMusicTypes {
+    return nil;
+}
+
+-(NSMutableArray*)getBarDetails{
+    return nil;
+}
+
+-(NSMutableArray*)getMenuItems {
+    return nil;
+}
+
+-(NSMutableArray*)getSettings {
+    return nil;
+}
 @end

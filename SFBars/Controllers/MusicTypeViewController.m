@@ -25,24 +25,20 @@
 
 -(void)initNavigation {
    
+    UIFont* font = [UIFont fontWithName:kGlyphIconsFontName size:25.0];
+    NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
+    
     UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] init];
     
-    UIFont* font = [UIFont fontWithName:glyphIconsFontName size:25.0];
-    
-    NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
-    
-    [menuButton setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    
+    [menuButton setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
     [menuButton setTitle:[NSString stringWithUTF8String:"\ue012"]];
-    
     [menuButton setTarget:self];
-    
     [menuButton setAction:@selector(showMenu:)];
     
     self.navigationItem.leftBarButtonItem = menuButton;
-    
     self.navigationItem.title = NSLocalizedString(@"MUSIC", @"MUSIC");
     
+    //Hack to remove text from back button
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
@@ -108,7 +104,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
     
     UIImageView* imageView = (UIImageView*)[cell viewWithTag:1];
     imageView.frame = cell.bounds;

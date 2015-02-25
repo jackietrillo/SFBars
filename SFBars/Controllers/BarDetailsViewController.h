@@ -6,20 +6,14 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-
-#import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
-#import <MessageUI/MessageUI.h>
-#import <MapKit/MapKit.h>
-
+#import "BaseViewController.h"
 #import "BarWebViewController.h"
 #import "NearMeViewController.h"
 #import "BarDetailHeaderViewCell.h"
 #import "AppDelegate.h"
 #import "BarDetail.h"
-#import "Constants.h"
 #import "Bar.h"
-
+#import "Enums.h"
 
 @interface BarDetailsViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate,
                                                         MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>

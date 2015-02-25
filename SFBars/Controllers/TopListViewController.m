@@ -36,8 +36,8 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 - (void)initNavigation {
     
-    self.navigationItem.title = @"TOP LIST"; //TODO: localize
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:reuseIdentifier style:UIBarButtonItemStyleDone target:nil action:nil];
+    self.navigationItem.title = NSLocalizedString(@"TOP LIST", @"TOP LIST");
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kCellIdentifier style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,12 +60,7 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 -(NSMutableArray*)parseData: (NSData*)responseData {
     
-    NSError* errorData;
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
-    
-    if (errorData != nil) {
-        //TODO: alert user
-    }
+    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
     
     NSMutableArray* data = [[NSMutableArray alloc] init];
     if (arrayData.count > 0)
@@ -112,10 +107,9 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     
-    switch(indexPath.section)
-    {
+    switch(indexPath.section) {
         case 0:
             if (indexPath.row < self.data.count)
             {

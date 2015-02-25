@@ -6,15 +6,11 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
-
 #import "BaseViewController.h"
 #import "BarViewController.h"
 #import "District.h"
-#import "Constants.h"
 
-@interface NeighborhoodViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface DistrictViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 
 @end

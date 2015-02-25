@@ -1,13 +1,7 @@
 //
-//  ConnectionHelper.h
-//  SFBars
+// THIS CLASS IS NOT BEING USED
 //
-//  Created by JACKIE TRILLO on 11/13/14.
-//  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
-
-#import <Foundation/Foundation.h>
-
 
 typedef void (^completionHandler) (id result);
 

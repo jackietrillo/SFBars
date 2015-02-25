@@ -10,13 +10,10 @@
 #define SFBars_Constants_h
 
 #ifdef DEBUG
-#define kBaseURL @"http://www.sanfranciscostreets.net/"
+    #define kBaseURL @"http://www.sanfranciscostreets.net/"
 #else
-#define kBaseURL @"http://www.sanfranciscostreets.net/"
+    #define kBaseURL @"http://www.sanfranciscostreets.net/"
 #endif
 
-#define reuseIdentifier @"Cell"
-
-#define glyphIconsFontName @"GLYPHICONSHalflings-Regular"
 
 #endif

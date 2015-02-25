@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "BarType.h"
-#import "Bar.h"
 
 @interface AppDelegate ()
 
@@ -17,9 +15,6 @@
 
 @implementation AppDelegate
 
-static NSString* reuseIdentifier = @"Cell";
-
-static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    

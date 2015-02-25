@@ -6,8 +6,18 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 
 @interface BarsGateway : NSObject
+
+-(NSMutableArray*)getBars;
+-(NSMutableArray*)getBarTypes;
+-(NSMutableArray*)getDistricts;
+-(NSMutableArray*)getParties;
+-(NSMutableArray*)getEvents;
+-(NSMutableArray*)getMusicTypes;
+-(NSMutableArray*)getBarDetails;
+-(NSMutableArray*)getMenuItems;
+-(NSMutableArray*)getSettings;
 
 @end

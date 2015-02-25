@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
 #import "ImageDownloader.h"
 #import "BaseViewController.h"
 #import "BarWebViewController.h"
@@ -16,7 +14,7 @@
 #import "LoadingView.h"
 #import "Bar.h"
 #import "Enums.h"
-#import "Constants.h"
+
 
 @interface BarViewController : BaseViewController <UIScrollViewDelegate>
 
