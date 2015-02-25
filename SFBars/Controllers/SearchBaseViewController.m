@@ -33,7 +33,17 @@ NSString* const kTableCellNibName = @"SearchTableViewCell";
     cell.textLabel.text = bar.name;
     
     cell.detailTextLabel.text = bar.descrip;
+    
+    [self setTableViewCellStyle:cell];
 }
 
+-(void)setTableViewCellStyle:(UITableViewCell *)cell {
+    
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    [cell.detailTextLabel setTextColor:[UIColor grayColor]];
+    
+    cell.textLabel.highlightedTextColor = [UIColor blackColor];
+    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
+}
 
 @end

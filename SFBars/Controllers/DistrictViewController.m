@@ -31,9 +31,7 @@
    [super addMenuButtonToNavigation];
     
     self.navigationItem.title = NSLocalizedString(@"NEIGHBORHOODS", @"NEIGHBORHOODS");
-     [self.navigationController setToolbarHidden:YES animated:YES];
-    
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 //TODO move to gateway
@@ -154,9 +152,10 @@
     District* district = self.data[indexPath.row];
     
     barsViewController.filterType = FilterByDistricts;
-    
     barsViewController.filterIds = @[[[NSNumber numberWithInteger:district.itemId] stringValue]];
     
+    // Hack to remove back button text on segued screen
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 

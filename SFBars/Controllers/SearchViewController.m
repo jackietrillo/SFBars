@@ -34,18 +34,19 @@
     
     self.searchController.searchResultsUpdater = self;
     [self.searchController.searchBar sizeToFit];
+    self.searchController.searchBar.backgroundColor = [UIColor blackColor];
+    
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.tableView.frame = CGRectMake(0, 250, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
     
     self.searchResultsViewController.tableView.delegate = self;
-    self.searchController.delegate = self;
-    self.searchController.dimsBackgroundDuringPresentation = YES; // default is YES
-    self.searchController.searchBar.delegate = self; // so we can monitor text changes + others
+    self.searchResultsViewController.tableView.backgroundColor = [UIColor blackColor];
+    self.searchResultsViewController.tableView.separatorColor = [UIColor yellowColor];
     
-    // Search is now just presenting a view controller. As such, normal view controller
-    // presentation semantics apply. Namely that presentation will walk up the view controller
-    // hierarchy until it finds the root view controller or one that defines a presentation context.
-    //
+    self.searchController.delegate = self;
+    self.searchController.dimsBackgroundDuringPresentation = YES;
+    self.searchController.searchBar.delegate = self;
+    
     self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
     
     self.navigationItem.title = NSLocalizedString(@"SEARCH", @"SEARCH");
