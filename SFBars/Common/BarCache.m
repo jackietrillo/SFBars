@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "Cache.h"
+#import "BarCache.h"
 
-@implementation Cache
+@implementation BarCache
 
 @end
