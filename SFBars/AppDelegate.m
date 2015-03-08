@@ -22,6 +22,7 @@
     [GMSServices provideAPIKey:@"AIzaSyBwemjLYLhOFeh7NRdaiMUesp_sawcnZh0"];
     
     self.barsGateway = [[BarsGateway alloc] init];
+    
     return YES;
 }
 

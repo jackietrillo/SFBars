@@ -11,6 +11,7 @@
 @interface MenuViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (readwrite, nonatomic, strong) NSMutableArray* menuItems;
 @property (readwrite, nonatomic, strong) NSMutableArray* menuDataTop;
 @property (readwrite, nonatomic, strong) NSMutableArray* menuDataMiddle;
 @property (readwrite, nonatomic, strong) NSMutableArray* menuDataBottom;
@@ -31,7 +32,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    NSLog(@"%@", NSStringFromClass ([self class]));
+   // NSLog(@"%@", NSStringFromClass ([self class]));
 }
 
 -(void)initNavigation {
@@ -50,28 +51,24 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
 -(NSMutableArray*)getMenuItems {
     
-    if (self.appDelegate.cachedMenuItems) {
-        return self.appDelegate.cachedMenuItems;
+    if (!self.menuItems) {
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"MenuItems" ofType:@"json"];
+        NSData* jsonData = [NSData dataWithContentsOfFile:path];
+        NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error: nil];
+        jsonData = nil;
+        
+        NSMutableArray* menuItems = [[NSMutableArray alloc] init];
+        MenuItem* menuItem;
+        
+        for (int i = 0; i < arrayData.count; i++) {
+            NSDictionary* dictTemp = arrayData[i];
+            menuItem = [MenuItem initFromDictionary: dictTemp];
+            [menuItems addObject:menuItem];
+        }
+        
+        self.menuItems = menuItems;
     }
-    
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"MenuItems" ofType:@"json"];
-    NSData* jsonData = [NSData dataWithContentsOfFile:path];
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error: nil];
-    jsonData = nil;
-    
-    NSMutableArray* menuItems = [[NSMutableArray alloc] init];
-    MenuItem* menuItem;
-    
-    for (int i = 0; i < arrayData.count; i++) {
-        NSDictionary* dictTemp = arrayData[i];
-        menuItem = [MenuItem initFromDictionary: dictTemp];
-        [menuItems addObject:menuItem];
-    }
-    
-    self.appDelegate.cachedMenuItems = menuItems;
-    
-    return menuItems;
-    
+    return self.menuItems;
 }
 
 -(void)loadTableViewData: (NSMutableArray*)menuItems {

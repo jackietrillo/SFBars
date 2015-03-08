@@ -17,14 +17,13 @@
 NSString* kCellIdentifier = @"Cell";
 NSString* kGlyphIconsFontName  = @"GLYPHICONSHalflings-Regular";
 NSString* kFontAwesomeFontName  = @"FontAwesome";
-NSString* kServiceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 
 @implementation BaseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate] ;
     
     self.barsGateway = self.appDelegate.barsGateway;
 }
@@ -83,59 +82,10 @@ NSString* kServiceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
-// TODO move to gateway
--(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
-    NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    
-    [urlRequest setHTTPMethod:method];
-    [urlRequest setValue:accept forHTTPHeaderField:@"Accept"];
-    
-    NSOperationQueue* queue = [[NSOperationQueue alloc] init];
-    
-    [NSURLConnection sendAsynchronousRequest:urlRequest
-                                       queue: queue
-                           completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError)
-     {
-         NSMutableArray* arrayData;
-         if (connectionError == nil && data != nil) {
-             arrayData = [self parseData:data];
-         }
-         else {
-             // TODO handle error
-         }
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-             
-             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-             
-             if (arrayData != nil) {
-                 [self loadData: arrayData];
-             }
-             else {
-                // TODO handle error
-             }
-         });
-     }];
-}
-
-// TODO move to gateway
--(NSMutableArray*)parseData: (NSData*)responseData {
-    return nil;
-}
-
-// TODO move to gateway
--(void)loadData: (NSMutableArray*) data {
-   
-}
-
 - (void)presentMenuViewController:(id)sender {
     
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
     BaseViewController* viewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
-    
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

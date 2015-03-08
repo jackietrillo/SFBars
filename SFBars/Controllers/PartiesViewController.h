@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-#import "MenuItem.h"
+#import "Party.h"
 
 @interface PartiesViewController : BaseViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 

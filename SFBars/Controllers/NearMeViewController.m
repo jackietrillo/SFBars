@@ -24,13 +24,24 @@
    
     [self initMapView];
     
-    [self getBars];
+    [self showLoadingIndicator];
+    
+    [self.barsGateway getBars: ^(NSArray* data) {
+        if (data) {
+            for(int i=0; i < data.count; i++) {
+                GMSMarker* marker = [self createMarker:data[i]];
+                marker.map = self.mapView;
+            }
+        }
+        [self hideLoadingIndicator];
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    
-    NSLog(@"%@", NSStringFromClass ([self class]));
+    //NSLog(@"%@", NSStringFromClass ([self class]));
 }
 
 - (void)initNavigation {
@@ -38,45 +49,7 @@
     self.navigationItem.title = NSLocalizedString(@"NEAR ME", @"NEAR ME");
 }
 
-// TODO move to gateway
--(void)getBars {
-
-    if (!self.appDelegate.cachedBars) {
-        
-        [self sendAsyncRequest: kServiceUrl method:@"GET" accept:@"application/json"];
-    }
-    else {
-        
-        [self loadData:self.appDelegate.cachedBars];
-    }
-}
-
-// TODO move to gateway
--(NSMutableArray*)parseData: (NSData*)responseData {
-    
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
-    
-    NSMutableArray* bars = [[NSMutableArray alloc] init];
-    
-    if (arrayData.count > 0)
-    {
-        for (int i = 0; i < arrayData.count; i++)
-        {
-            NSDictionary* dictTemp = arrayData[i];
-            Bar* bar = [Bar initFromDictionary:dictTemp];
-            [bars addObject:bar];
-        }
-    }
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
-    self.appDelegate.cachedBars = bars;
-    
-    return bars;
-
-}
-
--(void)loadData: (NSMutableArray*) data {
+-(void)loadData:(NSArray*) data {
     
     if (data) {
         for(int i=0; i < data.count; i++) {

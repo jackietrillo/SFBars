@@ -27,11 +27,10 @@ static const NSString* BARTYPEID = @"barTypeId";
 +(id)initFromDictionary:(NSDictionary*)dict {
    
     BarType* barType = [super initFromDictionary:dict forEntity:[[BarType alloc] init]];
-
+   
     barType.itemId = [dict[BARTYPEID] integerValue];
     
     return barType;
-    
 }
 
 @end

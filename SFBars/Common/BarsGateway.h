@@ -11,6 +11,8 @@
 #import "Bar.h"
 #import "District.h"
 #import "MusicType.h"
+#import "Party.h"
+#import "Event.h"
 
 @interface BarsGateway : BarsGatewayBase
 

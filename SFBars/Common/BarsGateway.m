@@ -226,9 +226,9 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
 
 -(void)getParties:(BarsGatewayCompletionHandler) completionHandler {
     
-    if (!self.musicTypes) {
+    if (!self.parties) {
         
-        NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kMusicTypeServiceUrl]];
+        NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kPartyServiceUrl]];
         
         [urlRequest setHTTPMethod:kGET];
         [urlRequest setValue:kJSON forHTTPHeaderField:kAccept];
@@ -236,44 +236,43 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
         NSOperationQueue* queue = [[NSOperationQueue alloc] init];
         
         [NSURLConnection sendAsynchronousRequest:urlRequest queue: queue
-                               completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError) {
-                                   
-                                   if (!connectionError && data) {
-                                       
-                                       NSArray* musicTypesArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                                       NSMutableArray* musicTypes = [[NSMutableArray alloc] init];
-                                       
-                                       if (musicTypesArray.count > 0) {
-                                           for (int i = 0; i < musicTypesArray.count; i++) {
-                                               NSDictionary* dictTemp = musicTypesArray[i];
-                                               MusicType* musicType = [MusicType initFromDictionary:dictTemp];
-                                               [musicTypes addObject:musicType];
-                                           }
-                                       }
-                                       
-                                       self.musicTypes  = [musicTypes copy];
-                                   }
-                                   
-                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                       
-                                       if (completionHandler) {
-                                           completionHandler(self.musicTypes);
-                                       }
-                                   });
-                               }];
+            completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError) {
+               
+                if (!connectionError && data) {
+                   
+                    NSArray* partiesArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                    NSMutableArray* parties = [[NSMutableArray alloc] init];
+
+                    if (partiesArray.count > 0) {
+                       for (int i = 0; i < partiesArray.count; i++) {
+                           NSDictionary* dictTemp = partiesArray[i];
+                           Party* musicType = [Party initFromDictionary:dictTemp];
+                           [parties addObject:musicType];
+                       }
+                    }
+
+                    self.parties  = [parties copy];
+                }
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   
+                   if (completionHandler) {
+                       completionHandler(self.parties);
+                   }
+                });
+            }];
     } else {
         if (completionHandler) {
-            completionHandler(self.musicTypes);
+            completionHandler(self.parties);
         }
     }
 }
-
 
 -(void)getEvents:(BarsGatewayCompletionHandler) completionHandler {
     
-    if (!self.musicTypes) {
+    if (!self.events) {
         
-        NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kMusicTypeServiceUrl]];
+        NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kEventServiceUrl]];
         
         [urlRequest setHTTPMethod:kGET];
         [urlRequest setValue:kJSON forHTTPHeaderField:kAccept];
@@ -281,38 +280,36 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
         NSOperationQueue* queue = [[NSOperationQueue alloc] init];
         
         [NSURLConnection sendAsynchronousRequest:urlRequest queue: queue
-                               completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError) {
-                                   
-                                   if (!connectionError && data) {
-                                       
-                                       NSArray* musicTypesArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                                       NSMutableArray* musicTypes = [[NSMutableArray alloc] init];
-                                       
-                                       if (musicTypesArray.count > 0) {
-                                           for (int i = 0; i < musicTypesArray.count; i++) {
-                                               NSDictionary* dictTemp = musicTypesArray[i];
-                                               MusicType* musicType = [MusicType initFromDictionary:dictTemp];
-                                               [musicTypes addObject:musicType];
-                                           }
-                                       }
-                                       
-                                       self.musicTypes  = [musicTypes copy];
-                                   }
-                                   
-                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                       
-                                       if (completionHandler) {
-                                           completionHandler(self.musicTypes);
-                                       }
-                                   });
-                               }];
+            completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError) {
+
+                if (!connectionError && data) {
+                   
+                   NSArray* eventsArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                   NSMutableArray* events = [[NSMutableArray alloc] init];
+                   
+                   if (eventsArray.count > 0) {
+                       for (int i = 0; i < eventsArray.count; i++) {
+                           NSDictionary* dictTemp = eventsArray[i];
+                           Event* event = [Event initFromDictionary:dictTemp];
+                           [events addObject:event];
+                       }
+                   }
+                   
+                   self.events  = [events copy];
+                }
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   
+                   if (completionHandler) {
+                       completionHandler(self.events);
+                   }
+                });
+            }];
     } else {
         if (completionHandler) {
-            completionHandler(self.musicTypes);
+            completionHandler(self.events);
         }
     }
 }
-
-
 
 @end

@@ -27,29 +27,32 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
     
-    self.bars = self.appDelegate.cachedBars;
+    [self.appDelegate.barsGateway getBars: ^(NSArray* data) {
+        self.bars = data;
     
-    _searchResultsViewController = [[SearchResultsViewController alloc] init];
-    _searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsViewController];
-    
-    self.searchController.searchResultsUpdater = self;
-    [self.searchController.searchBar sizeToFit];
-    self.searchController.searchBar.backgroundColor = [UIColor blackColor];
-    
-    self.tableView.tableHeaderView = self.searchController.searchBar;
-    self.tableView.frame = CGRectMake(0, 250, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
-    
-    self.searchResultsViewController.tableView.delegate = self;
-    self.searchResultsViewController.tableView.backgroundColor = [UIColor blackColor];
-    self.searchResultsViewController.tableView.separatorColor = [UIColor yellowColor];
-    
-    self.searchController.delegate = self;
-    self.searchController.dimsBackgroundDuringPresentation = YES;
-    self.searchController.searchBar.delegate = self;
-    
-    self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
-    
-    self.navigationItem.title = NSLocalizedString(@"SEARCH", @"SEARCH");
+        _searchResultsViewController = [[SearchResultsViewController alloc] init];
+        _searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsViewController];
+        
+        self.searchController.searchResultsUpdater = self;
+        [self.searchController.searchBar sizeToFit];
+        self.searchController.searchBar.backgroundColor = [UIColor blackColor];
+        
+        self.tableView.tableHeaderView = self.searchController.searchBar;
+        self.tableView.frame = CGRectMake(0, 250, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+        
+        self.searchResultsViewController.tableView.delegate = self;
+        self.searchResultsViewController.tableView.backgroundColor = [UIColor blackColor];
+        self.searchResultsViewController.tableView.separatorColor = [UIColor yellowColor];
+        
+        self.searchController.delegate = self;
+        self.searchController.dimsBackgroundDuringPresentation = YES;
+        self.searchController.searchBar.delegate = self;
+        
+        self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
+        
+        self.navigationItem.title = NSLocalizedString(@"SEARCH", @"SEARCH");
+    }];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {

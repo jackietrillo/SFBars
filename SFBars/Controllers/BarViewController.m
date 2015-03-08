@@ -10,7 +10,7 @@
 
 @interface BarViewController () 
 
-@property (readwrite, nonatomic, strong) NSMutableArray* data;
+@property (readwrite, nonatomic, strong) NSArray* barsData;
 @property (nonatomic, nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 
 @end
@@ -23,15 +23,30 @@
     
     self.canDisplayBannerAds = YES;
     
-    self.tableView.hidden = YES;
-    
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     
     [self initNavigation];
     
     [self showLoadingIndicator];
     
-    [self getBars];
+    self.tableView.hidden = YES;
+    self.tableView.delegate = self;
+    
+    [self.barsGateway getBars: ^(NSArray* data) {
+        if (data) {
+            
+            if (self.filterType != FilterByNotAssigned && self.filterIds) {
+                self.barsData = [self filterBars:data];
+            }
+            else {
+                self.barsData = data;
+            }
+            
+            [self.tableView reloadData];
+        }
+        self.tableView.hidden = NO;
+        [self hideLoadingIndicator];
+    }];
 }
 
 - (void)dealloc {
@@ -50,80 +65,7 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
-// TODO move to gateway
--(void)getBars {
-    
-    if (!self.appDelegate.cachedBars) {
-        
-        [self sendAsyncRequest:kServiceUrl method:@"GET" accept:@"application/json"];
-    }
-    else {
-        
-        [self loadData:self.appDelegate.cachedBars];
-    }
-}
-
-// TODO move to gateway
--(NSMutableArray*)parseData: (NSData*)responseData {
-    
-    @try {
-   
-        NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
-        
-        NSMutableArray* bars = [[NSMutableArray alloc] init];
-        
-        if (arrayData.count > 0) {
-            
-            for (int i = 0; i < arrayData.count; i++) {
-                NSDictionary* dictTemp = arrayData[i];
-                Bar* bar = [Bar initFromDictionary:dictTemp];
-                [bars addObject:bar];
-            }
-        }
-        
-        self.appDelegate.cachedBars = bars;
-        
-        return bars;
-    
-    }
-    @catch (NSException *exception) {
-        
-        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Infromation", @"Infromation")
-                                                            message: NSLocalizedString(@"Unable to retrieve data from server.", @"Unable to retrieve data from server.")
-                                                           delegate: nil
-                                                  cancelButtonTitle: NSLocalizedString(@"OK", @"OK")
-                                                  otherButtonTitles:nil];
-        
-        [alertView show];
-        
-        return nil;
-    }
-    @finally {
-        
-        responseData = nil;
-    }
-
-}
-
--(void)loadData: (NSMutableArray*) data {
-    
-    if (data) {
-
-        if (self.filterType != FilterByNotAssigned && self.filterIds != nil) {
-            self.data = [self filterBars:data];
-        }
-        else {
-            self.data = data;
-        }
-        
-        [self.tableView reloadData];
-        self.tableView.hidden = NO;
-    }
-    
-    [self hideLoadingIndicator];
-}
-
--(NSMutableArray*)filterBars: (NSMutableArray*) data {
+-(NSArray*)filterBars: (NSArray*) data {
     
     NSMutableArray* filteredData = [[NSMutableArray alloc] init];
     
@@ -161,13 +103,21 @@
     return filteredData;
 }
 
+- (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell {
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = color;
+    [cell setSelectedBackgroundView:bgColorView];
+}
+
+#pragma mark - UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.data.count;
+    return self.barsData.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger rowIndex = indexPath.row;
-    Bar* bar = self.data[rowIndex];
+    Bar* bar = self.barsData[rowIndex];
     
     BarTableViewCell* barTableViewCell = [tableView dequeueReusableCellWithIdentifier: kCellIdentifier];
     
@@ -177,7 +127,7 @@
         if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
             [self startImageDownload:bar forIndexPath:indexPath];
         }
-        // note if a download is deferred or in progress, return a placeholder image
+        // if a download is deferred or in progress, return a placeholder image
         barTableViewCell.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
     }
     else {
@@ -187,11 +137,6 @@
     return barTableViewCell;
 }
 
-- (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell {
-    UIView *bgColorView = [[UIView alloc] init];
-    bgColorView.backgroundColor = color;
-    [cell setSelectedBackgroundView:bgColorView];
-}
 
 #pragma mark - Table cell image download support
 
@@ -231,10 +176,10 @@
 }
 
 - (void)loadImagesForOnscreenRows {
-    if (self.data.count > 0) {
+    if (self.barsData.count > 0) {
         NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths) {
-            Bar* bar = (self.data)[indexPath.row];
+            Bar* bar = (self.barsData)[indexPath.row];
             
             if (!bar.icon)  // Avoid the download if there is already an icon
             {
@@ -262,7 +207,7 @@
     if ([segue.destinationViewController isKindOfClass: [BarDetailsViewController class]]) {
         BarDetailsViewController* barDetailsViewController = segue.destinationViewController;
         NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
-        barDetailsViewController.selectedBar = self.data[indexPath.row];
+        barDetailsViewController.selectedBar = self.barsData[indexPath.row];
     }
 }
 

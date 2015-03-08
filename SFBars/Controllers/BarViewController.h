@@ -16,7 +16,7 @@
 #import "Enums.h"
 
 
-@interface BarViewController : BaseViewController <UIScrollViewDelegate>
+@interface BarViewController : BaseViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (readwrite, nonatomic, strong) NSString* titleText;
 @property (nonatomic, strong) IBOutlet UITableView* tableView;

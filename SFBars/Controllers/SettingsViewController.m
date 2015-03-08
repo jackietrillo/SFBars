@@ -11,6 +11,7 @@
 @interface SettingsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (readwrite, nonatomic, strong) NSMutableArray* settingsData;
 @property (readwrite, nonatomic, strong) NSMutableArray* menuDataTop;
 @property (readwrite, nonatomic, strong) NSMutableArray* menuDataBottom;
 
@@ -34,32 +35,28 @@
     [self.navigationItem setHidesBackButton:YES animated:YES];
 }
 
-// TODO refactor out
 -(NSMutableArray*)getSettings {
     
-    if (self.appDelegate.cachedSettings) {
-        return self.appDelegate.cachedSettings;
+    if (!self.settingsData) {
+        
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"json"];
+        NSData* jsonData = [NSData dataWithContentsOfFile:path];
+        NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error: nil];
+        
+        jsonData = nil;
+        
+        NSMutableArray* menuItems = [[NSMutableArray alloc] init];
+        MenuItem* menuItem;
+        
+        for (int i = 0; i < arrayData.count; i++) {
+            NSDictionary* dictTemp = arrayData[i];
+            menuItem = [MenuItem initFromDictionary: dictTemp];
+            [menuItems addObject:menuItem];
+        }
+        
+        self.settingsData = menuItems;
     }
-    
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"json"];
-    NSData* jsonData = [NSData dataWithContentsOfFile:path];
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error: nil];
-    
-    jsonData = nil;
-    
-    NSMutableArray* menuItems = [[NSMutableArray alloc] init];
-    MenuItem* menuItem;
-    
-    for (int i = 0; i < arrayData.count; i++) {
-        NSDictionary* dictTemp = arrayData[i];
-        menuItem = [MenuItem initFromDictionary: dictTemp];
-        [menuItems addObject:menuItem];
-    }
-    
-    self.appDelegate.cachedSettings = menuItems;
-    
-    return menuItems;
-    
+    return self.settingsData;
 }
 
 -(void)loadTableViewData:(NSMutableArray*)menuItems {

@@ -29,8 +29,8 @@ extern NSString* kServiceUrl;
 -(void)hideLoadingIndicator;
 
 // TODO move to gateway
--(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept;
--(NSMutableArray*)parseData: (NSData*)responseData; //override in subclass
--(void)loadData: (NSMutableArray*) data; //overriden in subclass
+//-(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept;
+//-(NSMutableArray*)parseData: (NSData*)responseData; //override in subclass
+//-(void)loadData: (NSMutableArray*) data; //overriden in subclass
 
 @end

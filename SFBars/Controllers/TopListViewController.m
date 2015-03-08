@@ -10,7 +10,7 @@
 
 @interface TopListViewController ()
 
-@property (readwrite, nonatomic, strong) NSMutableArray* dataTopList;
+@property (readwrite, nonatomic, strong) NSArray* dataTopList;
 
 @end
 
@@ -21,7 +21,21 @@
 
     [self initNavigation];
     
-    [self getBars];
+    self.tableView.hidden = YES;
+    self.tableView.delegate = self;
+    
+    [self.barsGateway getBars: ^(NSArray* data) {
+    
+        if (data) {
+            self.tableView.hidden = NO;
+            self.tableView.delegate = self;
+            self.dataTopList = data;
+            [self.tableView reloadData];
+        }
+        
+        self.tableView.hidden = NO;
+        [self hideLoadingIndicator];
+    }];
 }
 
 - (void)initNavigation {
@@ -34,49 +48,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-
-//TODO move to gateway
--(void)getBars {
-    
-    if (!self.appDelegate.cachedBars) {
-        [self sendAsyncRequest:kServiceUrl method:@"GET" accept:@"application/json"];
-    }
-    else {
-        
-        [self loadData:self.appDelegate.cachedBars];
-    }
-}
-
-//TODO move to gateway
--(NSMutableArray*)parseData: (NSData*)responseData {
-    
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];
-    
-    NSMutableArray* bars = [[NSMutableArray alloc] init];
-    
-    if (arrayData.count > 0) {
-        
-        for (int i = 0; i < arrayData.count; i++) {
-            NSDictionary* dictTemp = arrayData[i];
-            Bar* bar = [Bar initFromDictionary:dictTemp];
-            [bars addObject:bar];
-        }
-    }
-    
-    self.appDelegate.cachedBars = bars;
-    
-    return bars;
-}
-
--(void)loadData: (NSMutableArray*) data {
-    
-    if (data) {
-        self.tableView.hidden = NO;
-        self.tableView.delegate = self;
-        self.dataTopList = data;
-        [self.tableView reloadData];
-    }
 }
 
 #pragma mark - Table view data source

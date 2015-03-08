@@ -19,6 +19,8 @@
 		820ABF0A1A8447F50022192F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF091A8447F50022192F /* QuartzCore.framework */; };
 		820ABF0C1A8448030022192F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820ABF0B1A8448030022192F /* SystemConfiguration.framework */; };
 		823918E91A9C613600001EF5 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 823918E71A9C613600001EF5 /* SearchTableViewCell.xib */; };
+		827C029B1AAD02B4008EC2FA /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 827C029A1AAD02B4008EC2FA /* Party.m */; };
+		827C029E1AAD02C2008EC2FA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 827C029D1AAD02C2008EC2FA /* Event.m */; };
 		8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61D1A761B7200D2466D /* BarDetailsViewController.m */; };
 		8285AE8F1A7C69D4004858FD /* BarDetailHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8285AE8E1A7C69D4004858FD /* BarDetailHeaderViewCell.m */; };
 		8285AE911A7C69FC004858FD /* BarDetailHeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8285AE901A7C69FC004858FD /* BarDetailHeaderViewCell.xib */; };
@@ -101,6 +103,10 @@
 		820ABF0B1A8448030022192F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		820ABF151A847AF20022192F /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "glyphicons-halflings-regular.ttf"; path = "SFBars/Resources/Fonts/glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
 		823918E81A9C613600001EF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchTableViewCell.xib; sourceTree = "<group>"; };
+		827C02991AAD02B4008EC2FA /* Party.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Party.h; path = SFBars/Models/Party.h; sourceTree = "<group>"; };
+		827C029A1AAD02B4008EC2FA /* Party.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Party.m; path = SFBars/Models/Party.m; sourceTree = "<group>"; };
+		827C029C1AAD02C2008EC2FA /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = SFBars/Models/Event.h; sourceTree = "<group>"; };
+		827C029D1AAD02C2008EC2FA /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = SFBars/Models/Event.m; sourceTree = "<group>"; };
 		8285AE8D1A7C69D4004858FD /* BarDetailHeaderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailHeaderViewCell.h; path = Controls/BarDetailHeaderViewCell.h; sourceTree = "<group>"; };
 		8285AE8E1A7C69D4004858FD /* BarDetailHeaderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailHeaderViewCell.m; path = Controls/BarDetailHeaderViewCell.m; sourceTree = "<group>"; };
 		8285AE901A7C69FC004858FD /* BarDetailHeaderViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BarDetailHeaderViewCell.xib; path = Controls/BarDetailHeaderViewCell.xib; sourceTree = "<group>"; };
@@ -335,6 +341,10 @@
 			children = (
 				82A5C7E71A63266100D55A54 /* Bar.h */,
 				82A5C7E81A63266100D55A54 /* Bar.m */,
+				827C02991AAD02B4008EC2FA /* Party.h */,
+				827C029A1AAD02B4008EC2FA /* Party.m */,
+				827C029C1AAD02C2008EC2FA /* Event.h */,
+				827C029D1AAD02C2008EC2FA /* Event.m */,
 				82E917351A79B4D7002D610E /* District.h */,
 				82E917361A79B4D7002D610E /* District.m */,
 				82B086551A9A6A72005BD2BE /* BarDetail.h */,
@@ -557,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				827C029E1AAD02C2008EC2FA /* Event.m in Sources */,
 				8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */,
 				82B086621A9A8C6C005BD2BE /* BarsGateway.m in Sources */,
 				82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */,
@@ -575,6 +586,7 @@
 				828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
 				82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */,
+				827C029B1AAD02B4008EC2FA /* Party.m in Sources */,
 				82D43C401A95687300B4196C /* MusicType.m in Sources */,
 				82B086651A9A8D36005BD2BE /* NearMeViewController.m in Sources */,
 				82B0865C1A9A8B8A005BD2BE /* BarsGatewayBase.m in Sources */,

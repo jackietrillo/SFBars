@@ -34,7 +34,6 @@
         self.collectionView.hidden = NO;
         [self hideLoadingIndicator];
     }];
-
 }
 
 -(void)initNavigation {
@@ -44,52 +43,10 @@
     self.navigationItem.title = NSLocalizedString(@"MUSIC", @"MUSIC");
 }
 
-/*
--(NSMutableArray*)getMusicTypes{
-    
-    if (self.appDelegate.cachedMusicTypes) {
-        return self.appDelegate.cachedMusicTypes;
-    }
-    
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"MusicTypes" ofType:@"json"];
-    NSData* jsonData = [NSData dataWithContentsOfFile:path];
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-    
-    jsonData = nil;
-    
-    NSMutableArray* musicTypes = [[NSMutableArray alloc] init];
-    
-    if (arrayData.count > 0) {
-        
-        for (int i = 0; i < arrayData.count; i++) {
-            
-            NSDictionary* dictTemp = arrayData[i];
-            
-            MusicType* musicType = [MusicType initFromDictionary: dictTemp];
-            
-            [musicTypes addObject:musicType];
-        }
-    }
-    
-    self.appDelegate.cachedMusicTypes = musicTypes;
-    
-    return musicTypes;
-}
-
-*/
-
 -(void)setTableViewCellStyle:(UICollectionViewCell*)collectionViewCell {
     
-    collectionViewCell.layer.borderWidth=1.0f;
-    
+    collectionViewCell.layer.borderWidth= 1.0f;
     collectionViewCell.layer.borderColor=[UIColor whiteColor].CGColor;
-}
-
-#pragma UICollectionViewDelegate
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
-
 }
 
 #pragma UICollectionViewDataSource

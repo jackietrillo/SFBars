@@ -11,6 +11,7 @@
 @interface BarDetailsViewController () 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (readwrite, nonatomic, strong) NSMutableArray* barDetailsData;
 @property (readwrite, nonatomic, strong) NSMutableArray* dataDetail;
 @property (readwrite, nonatomic, strong) NSMutableArray* dataFavorite;
 @property (readwrite, nonatomic, strong) NSMutableArray* dataShare;
@@ -38,7 +39,7 @@ typedef enum {
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    NSLog(@"%@", NSStringFromClass ([self class]));
+    //NSLog(@"%@", NSStringFromClass ([self class]));
 }
           
 - (void)initNavigation {
@@ -60,30 +61,27 @@ typedef enum {
     self.tableView.tableFooterView = tableFooterView;
 }
 
-//TODO: refactor this out
 -(NSMutableArray*)getBarDetails{
     
-    if (self.appDelegate.cachedBarDetails) {
-        return self.appDelegate.cachedBarDetails;
-    }
-    
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"BarDetail" ofType:@"json"];
-    NSData* jsonData = [NSData dataWithContentsOfFile:path];
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-    
-    NSMutableArray* barDetails = [[NSMutableArray alloc] init];
-    
-    if (arrayData.count > 0) {
-        for (int i = 0; i < arrayData.count; i++) {
-            NSDictionary* dictTemp = arrayData[i];
-            BarDetail* item = [BarDetail initFromDictionary: dictTemp];
-            [barDetails addObject:item];
+    if (!self.barDetailsData) {
+       
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"BarDetail" ofType:@"json"];
+        NSData* jsonData = [NSData dataWithContentsOfFile:path];
+        NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+        
+        NSMutableArray* barDetails = [[NSMutableArray alloc] init];
+        
+        if (arrayData.count > 0) {
+            for (int i = 0; i < arrayData.count; i++) {
+                NSDictionary* dictTemp = arrayData[i];
+                BarDetail* item = [BarDetail initFromDictionary: dictTemp];
+                [barDetails addObject:item];
+            }
         }
+
+        self.barDetailsData = barDetails;
     }
-    
-    self.appDelegate.cachedBarDetails = barDetails;
-    
-    return barDetails;
+    return self.barDetailsData;
 }
 
 -(void)loadTableViewData: (NSMutableArray*)barDetails {
