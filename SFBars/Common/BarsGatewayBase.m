@@ -6,59 +6,41 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BarGatewayBase.h"
+#import "BarsGatewayBase.h"
 
-@implementation BarGatewayBase
+@implementation BarsGatewayBase
 
--(NSArray*)getBars {
+-(void)getBars:(BarsGatewayCompletionHandler) completionHandler {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"Override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
 }
 
--(NSMutableArray*)getBarTypes {
+-(void)getBarTypes:(BarsGatewayCompletionHandler) completionHandler {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"Override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
 }
 
--(NSMutableArray*)getDistricts {
+-(void)getDistricts:(BarsGatewayCompletionHandler) completionHandler {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"Override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
 }
 
--(NSMutableArray*)getParties {
+-(void)getParties:(BarsGatewayCompletionHandler) completionHandler {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"Override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
 }
 
--(NSMutableArray*)getEvents {
+-(void)getEvents:(BarsGatewayCompletionHandler) completionHandler {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"Override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
 }
 
--(NSMutableArray*)getMusicTypes {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"Override %@ in a subclass", NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
-}
-
--(NSMutableArray*)getBarDetails{
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"Override %@ in a subclass", NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
-}
-
--(NSMutableArray*)getMenuItems {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"Override %@ in a subclass", NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
-}
-
--(NSMutableArray*)getSettings {
+-(void)getMusicTypes:(BarsGatewayCompletionHandler) completionHandler {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"Override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];

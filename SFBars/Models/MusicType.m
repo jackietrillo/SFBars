@@ -14,7 +14,7 @@
 
 @implementation MusicType
 
-static const NSString* SECTION = @"section";
+static const NSString* MUSICTYPEID = @"musicTypeId";
 
 -(id)init {
     self = [super init];
@@ -25,7 +25,8 @@ static const NSString* SECTION = @"section";
 +(id)initFromDictionary:(NSDictionary*)dict {
     
     MusicType* musicType = [super initFromDictionary:dict forEntity:[[MusicType alloc] init]];
-    musicType.section = [dict[SECTION] longValue];
+    musicType.musicTypeId = [dict[MUSICTYPEID] longValue];
+    
     return musicType;
 }
 

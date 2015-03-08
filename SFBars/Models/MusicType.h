@@ -11,7 +11,7 @@
 
 @interface MusicType : BaseEntity
 
-@property (readwrite, nonatomic) NSInteger section;
+@property (readwrite, nonatomic) NSInteger musicTypeId;
 
 +(id)initFromDictionary:(NSDictionary*)dict;
 

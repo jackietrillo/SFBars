@@ -10,6 +10,7 @@
 
 @interface AppDelegate ()
 
+@property (readwrite, nonatomic, strong) BarsGateway* barsGateway;
 
 @end
 
@@ -20,6 +21,7 @@
    
     [GMSServices provideAPIKey:@"AIzaSyBwemjLYLhOFeh7NRdaiMUesp_sawcnZh0"];
     
+    self.barsGateway = [[BarsGateway alloc] init];
     return YES;
 }
 
@@ -42,6 +44,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    self.barsGateway = nil;
+    
 }
 @end

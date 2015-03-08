@@ -10,7 +10,7 @@
 
 @interface MusicTypeViewController ()
 
-@property (readwrite, nonatomic, strong) NSMutableArray* data;
+@property (readwrite, nonatomic, strong) NSArray* musicTypesData;
 
 @end
 
@@ -20,7 +20,21 @@
     
     [super viewDidLoad];
     
-    self.data = [self getMusicTypes];
+    [self showLoadingIndicator];
+    
+    self.collectionView.hidden = YES;
+    self.collectionView.delegate = self;
+    
+    [self.barsGateway getMusicTypes: ^(NSArray* data) {
+        if (data) {
+            self.musicTypesData = data;
+            
+            [self.collectionView reloadData];
+        }
+        self.collectionView.hidden = NO;
+        [self hideLoadingIndicator];
+    }];
+
 }
 
 -(void)initNavigation {
@@ -28,11 +42,9 @@
     [self addMenuButtonToNavigation];
     
     self.navigationItem.title = NSLocalizedString(@"MUSIC", @"MUSIC");
-    
-    //Hack to remove text from back button
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
+/*
 -(NSMutableArray*)getMusicTypes{
     
     if (self.appDelegate.cachedMusicTypes) {
@@ -64,6 +76,7 @@
     return musicTypes;
 }
 
+*/
 
 -(void)setTableViewCellStyle:(UICollectionViewCell*)collectionViewCell {
     
@@ -83,12 +96,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    switch (section) {
-        case 0:
-            return self.data.count;
-        default:
-            return 0;
-    }
+    return self.musicTypesData.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -101,7 +109,7 @@
     
     UILabel* textlabel = (UILabel*)[collectionViewCell viewWithTag:2];
     
-    MusicType* musicType = (MusicType*)self.data[indexPath.row];
+    MusicType* musicType = (MusicType*)self.musicTypesData[indexPath.row];
     
     textlabel.text = musicType.name;
     
@@ -118,11 +126,14 @@
    
     BarViewController* barViewController = segue.destinationViewController;
     
-    MusicType* musicType = self.data[indexPath.row];
+    MusicType* musicType = self.musicTypesData[indexPath.row];
     
     barViewController.titleText = musicType.name;
     barViewController.filterIds = @[[[NSNumber numberWithInteger:musicType.itemId] stringValue]];
     barViewController.filterType = FilterByMusicTypes;
+    
+    //Hack to remove text from back button
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 

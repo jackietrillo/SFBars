@@ -12,8 +12,6 @@
 
 @interface BarType : BaseEntity
 
-@property (readonly, nonatomic, strong) NSMutableArray* bars;
-
 +(id)initFromDictionary:(NSDictionary*)dict;
 
 @end

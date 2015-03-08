@@ -12,7 +12,7 @@
 @interface BrowseViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (readwrite, nonatomic, strong) NSMutableArray* data;
+@property (readwrite, nonatomic, strong) NSArray* barTypesData;
 
 @end
 
@@ -22,58 +22,31 @@
     [super viewDidLoad];
     
     self.canDisplayBannerAds = YES;
-    self.tableView.hidden = YES;
-
+   
     [self initNavigation];
-    [self loadTableViewData:[self getBarTypes]];
+   
+    [self showLoadingIndicator];
+   
+    self.tableView.hidden = YES;
+    self.tableView.delegate = self;
+    
+    [self.barsGateway getBarTypes: ^(NSArray* data) {
+        if (data) {
+            self.barTypesData = data;
+            
+            [self.tableView reloadData];
+        }
+        self.tableView.hidden = NO;
+        [self hideLoadingIndicator];
+    }];
 }
-
 
 -(void)initNavigation {
     
-    [super addMenuButtonToNavigation];
+    [self addMenuButtonToNavigation];
 
     self.navigationItem.title = NSLocalizedString(@"BROWSE", @"BROWSE");
     [self.navigationController setToolbarHidden:YES animated:YES];
-}
-
-// TODO refactor out
--(NSMutableArray*)getBarTypes {
-    
-    if (self.appDelegate.cachedBarTypes) {
-        return self.appDelegate.cachedBarTypes;
-    }
-        
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"BarTypes" ofType:@"json"];
-    NSData* jsonData = [NSData dataWithContentsOfFile:path];
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-    jsonData = nil;
-  
-        
-    NSMutableArray* dataByType = [[NSMutableArray alloc] init];
-    
-    if (arrayData.count > 0) {
-        for (int i = 0; i < arrayData.count; i++) {
-            NSDictionary* dictTemp = arrayData[i];
-            BarType* barType = [BarType initFromDictionary:dictTemp];
-            [dataByType addObject:barType];
-        }
-    }
-    
-    self.appDelegate.cachedBarTypes = dataByType;
-    
-    return dataByType;
-}
-
--(void)loadTableViewData:(NSMutableArray*) data {
-    
-    if (data) {
-        self.data = data;
-    
-        self.tableView.hidden = NO;
-        self.tableView.delegate = self;
-        [self.tableView reloadData];
-    }
 }
 
 -(void)setTableViewCellStyle:(UITableViewCell *)tableViewCell {
@@ -94,7 +67,7 @@
     
     switch(section) {
         case 0:
-            return [self.data count];
+            return [self.barTypesData count];
         default:
             return 0;
     }
@@ -107,8 +80,8 @@
     switch(indexPath.section) {
         case 0:
             
-        if (indexPath.row < self.data.count) {
-            BarType* barType = (BarType*)[self.data objectAtIndex:indexPath.row];
+        if (indexPath.row < self.barTypesData.count) {
+            BarType* barType = (BarType*)[self.barTypesData objectAtIndex:indexPath.row];
             tableViewCell.textLabel.text = barType.name;
             
             [self setTableViewCellStyle:tableViewCell];
@@ -128,7 +101,7 @@
     
     BarViewController* barsViewController = segue.destinationViewController;
     
-    BarType* barType = self.data[indexPath.row];
+    BarType* barType = self.barTypesData[indexPath.row];
     
     barsViewController.titleText = barType.name;
     barsViewController.filterIds = @[[[NSNumber numberWithInteger:barType.itemId] stringValue]];

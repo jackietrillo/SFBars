@@ -12,7 +12,6 @@
 
 @property (readwrite, nonatomic, strong) NSMutableArray* data;
 @property (nonatomic, nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
-@property (readwrite, nonatomic, strong) LoadingView* loadingView;
 
 @end
 
@@ -29,7 +28,9 @@
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     
     [self initNavigation];
-    [self initLoadingView];
+    
+    [self showLoadingIndicator];
+    
     [self getBars];
 }
 
@@ -47,16 +48,6 @@
     
     self.navigationItem.title = [self.titleText uppercaseString];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
-}
-
--(void)initLoadingView {
-    
-    NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil];
-    
-    self.loadingView = [xib lastObject];
-    self.loadingView.frame = self.view.bounds;
-    
-    [self.view addSubview:self.loadingView];
 }
 
 // TODO move to gateway
@@ -129,9 +120,7 @@
         self.tableView.hidden = NO;
     }
     
-    if (self.loadingView) {
-        self.loadingView.hidden = YES;
-    }
+    [self hideLoadingIndicator];
 }
 
 -(NSMutableArray*)filterBars: (NSMutableArray*) data {

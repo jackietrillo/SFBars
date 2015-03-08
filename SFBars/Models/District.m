@@ -14,8 +14,9 @@
 
 @implementation District
 
--(id)init
-{
+static const NSString* DISTRICTID = @"districtId";
+
+-(id)init {
     self = [super init];
     
     return self;
@@ -24,7 +25,7 @@
 +(id)initFromDictionary:(NSDictionary*)dict
 {
     District* district = [super initFromDictionary:dict forEntity:[[District alloc] init]];
-    
+    district.itemId = [dict[DISTRICTID] integerValue];
     return district;
 }
 

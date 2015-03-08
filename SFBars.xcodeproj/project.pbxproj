@@ -44,12 +44,11 @@
 		82A9149A1A9985BA0019D30A /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A914991A9985B90019D30A /* LoadingView.xib */; };
 		82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149C1A9985FF0019D30A /* LoadingView.m */; };
 		82A914A01A9990A40019D30A /* DistrictViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149F1A9990A40019D30A /* DistrictViewController.m */; };
-		82AFFB7D1A9D07D3006F2E46 /* BarCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFFB7C1A9D07D3006F2E46 /* BarCache.m */; };
 		82B086541A9A6960005BD2BE /* MusicTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B086531A9A6960005BD2BE /* MusicTypeViewController.m */; };
 		82B086571A9A6A72005BD2BE /* BarDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B086561A9A6A72005BD2BE /* BarDetail.m */; };
 		82B086591A9A6AC2005BD2BE /* BarDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 82B086581A9A6AC2005BD2BE /* BarDetail.json */; };
-		82B0865C1A9A8B8A005BD2BE /* BarGatewayBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B0865B1A9A8B8A005BD2BE /* BarGatewayBase.m */; };
-		82B086621A9A8C6C005BD2BE /* BarGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B086611A9A8C6C005BD2BE /* BarGateway.m */; };
+		82B0865C1A9A8B8A005BD2BE /* BarsGatewayBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B0865B1A9A8B8A005BD2BE /* BarsGatewayBase.m */; };
+		82B086621A9A8C6C005BD2BE /* BarsGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B086611A9A8C6C005BD2BE /* BarsGateway.m */; };
 		82B086651A9A8D36005BD2BE /* NearMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B086641A9A8D36005BD2BE /* NearMeViewController.m */; };
 		82B828F61A85FE5700F90A33 /* glyphicons-halflings-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820ABF151A847AF20022192F /* glyphicons-halflings-regular.ttf */; };
 		82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C131A70830100E71F40 /* ImageDownloader.m */; };
@@ -142,17 +141,15 @@
 		82A9149C1A9985FF0019D30A /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Controls/LoadingView.m; sourceTree = "<group>"; };
 		82A9149E1A9990A40019D30A /* DistrictViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DistrictViewController.h; path = SFBars/Controllers/DistrictViewController.h; sourceTree = "<group>"; };
 		82A9149F1A9990A40019D30A /* DistrictViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistrictViewController.m; path = SFBars/Controllers/DistrictViewController.m; sourceTree = "<group>"; };
-		82AFFB7B1A9D07D3006F2E46 /* BarCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarCache.h; path = Common/BarCache.h; sourceTree = "<group>"; };
-		82AFFB7C1A9D07D3006F2E46 /* BarCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarCache.m; path = Common/BarCache.m; sourceTree = "<group>"; };
 		82B086521A9A6960005BD2BE /* MusicTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MusicTypeViewController.h; path = SFBars/Controllers/MusicTypeViewController.h; sourceTree = "<group>"; };
 		82B086531A9A6960005BD2BE /* MusicTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MusicTypeViewController.m; path = SFBars/Controllers/MusicTypeViewController.m; sourceTree = "<group>"; };
 		82B086551A9A6A72005BD2BE /* BarDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetail.h; path = SFBars/Models/BarDetail.h; sourceTree = "<group>"; };
 		82B086561A9A6A72005BD2BE /* BarDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetail.m; path = SFBars/Models/BarDetail.m; sourceTree = "<group>"; };
 		82B086581A9A6AC2005BD2BE /* BarDetail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BarDetail.json; path = SFBars/Resources/BarDetail.json; sourceTree = "<group>"; };
-		82B0865A1A9A8B8A005BD2BE /* BarGatewayBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarGatewayBase.h; path = Common/BarGatewayBase.h; sourceTree = "<group>"; };
-		82B0865B1A9A8B8A005BD2BE /* BarGatewayBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarGatewayBase.m; path = Common/BarGatewayBase.m; sourceTree = "<group>"; };
-		82B086601A9A8C6C005BD2BE /* BarGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarGateway.h; path = Common/BarGateway.h; sourceTree = "<group>"; };
-		82B086611A9A8C6C005BD2BE /* BarGateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarGateway.m; path = Common/BarGateway.m; sourceTree = "<group>"; };
+		82B0865A1A9A8B8A005BD2BE /* BarsGatewayBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarsGatewayBase.h; path = Common/BarsGatewayBase.h; sourceTree = "<group>"; };
+		82B0865B1A9A8B8A005BD2BE /* BarsGatewayBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarsGatewayBase.m; path = Common/BarsGatewayBase.m; sourceTree = "<group>"; };
+		82B086601A9A8C6C005BD2BE /* BarsGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarsGateway.h; path = Common/BarsGateway.h; sourceTree = "<group>"; };
+		82B086611A9A8C6C005BD2BE /* BarsGateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarsGateway.m; path = Common/BarsGateway.m; sourceTree = "<group>"; };
 		82B086631A9A8D04005BD2BE /* NearMeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NearMeViewController.h; path = SFBars/Controllers/NearMeViewController.h; sourceTree = "<group>"; };
 		82B086641A9A8D36005BD2BE /* NearMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearMeViewController.m; path = SFBars/Controllers/NearMeViewController.m; sourceTree = "<group>"; };
 		82BA4C121A70830100E71F40 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Common/ImageDownloader.h; sourceTree = "<group>"; };
@@ -339,9 +336,9 @@
 				82A5C7E71A63266100D55A54 /* Bar.h */,
 				82A5C7E81A63266100D55A54 /* Bar.m */,
 				82E917351A79B4D7002D610E /* District.h */,
+				82E917361A79B4D7002D610E /* District.m */,
 				82B086551A9A6A72005BD2BE /* BarDetail.h */,
 				82B086561A9A6A72005BD2BE /* BarDetail.m */,
-				82E917361A79B4D7002D610E /* District.m */,
 				82BB5FEE1A649E55002F5578 /* BarType.h */,
 				82BB5FEF1A649E55002F5578 /* BarType.m */,
 				82D43C4A1A95718700B4196C /* MenuItem.h */,
@@ -382,12 +379,10 @@
 				82BA4C131A70830100E71F40 /* ImageDownloader.m */,
 				82E8E1921A8DAB1A0042F2C4 /* Enums.h */,
 				82A914941A99641F0019D30A /* Configuration.h */,
-				82B0865A1A9A8B8A005BD2BE /* BarGatewayBase.h */,
-				82B0865B1A9A8B8A005BD2BE /* BarGatewayBase.m */,
-				82B086601A9A8C6C005BD2BE /* BarGateway.h */,
-				82B086611A9A8C6C005BD2BE /* BarGateway.m */,
-				82AFFB7B1A9D07D3006F2E46 /* BarCache.h */,
-				82AFFB7C1A9D07D3006F2E46 /* BarCache.m */,
+				82B0865A1A9A8B8A005BD2BE /* BarsGatewayBase.h */,
+				82B0865B1A9A8B8A005BD2BE /* BarsGatewayBase.m */,
+				82B086601A9A8C6C005BD2BE /* BarsGateway.h */,
+				82B086611A9A8C6C005BD2BE /* BarsGateway.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -563,7 +558,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */,
-				82B086621A9A8C6C005BD2BE /* BarGateway.m in Sources */,
+				82B086621A9A8C6C005BD2BE /* BarsGateway.m in Sources */,
 				82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */,
 				82B086571A9A6A72005BD2BE /* BarDetail.m in Sources */,
 				82EEC95E1A9C5B1A00E211BC /* SearchViewController.m in Sources */,
@@ -582,10 +577,9 @@
 				82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */,
 				82D43C401A95687300B4196C /* MusicType.m in Sources */,
 				82B086651A9A8D36005BD2BE /* NearMeViewController.m in Sources */,
-				82B0865C1A9A8B8A005BD2BE /* BarGatewayBase.m in Sources */,
+				82B0865C1A9A8B8A005BD2BE /* BarsGatewayBase.m in Sources */,
 				82EEC95D1A9C5B1A00E211BC /* SearchBaseViewController.m in Sources */,
 				82BB5FF01A649E55002F5578 /* BarType.m in Sources */,
-				82AFFB7D1A9D07D3006F2E46 /* BarCache.m in Sources */,
 				82EEC95F1A9C5B1A00E211BC /* SearchResultsViewController.m in Sources */,
 				82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */,
 				82E917371A79B4D7002D610E /* District.m in Sources */,

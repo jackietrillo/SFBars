@@ -16,7 +16,7 @@
 
 @implementation BarType
 
-static const NSString* BARS = @"bars";
+static const NSString* BARTYPEID = @"barTypeId";
 
 -(id)init {
     self = [super init];
@@ -28,21 +28,10 @@ static const NSString* BARS = @"bars";
    
     BarType* barType = [super initFromDictionary:dict forEntity:[[BarType alloc] init]];
 
-    NSArray* bars = dict[BARS];
+    barType.itemId = [dict[BARTYPEID] integerValue];
     
-    if (bars) {
-        barType.bars = [[NSMutableArray alloc] init];
-        
-        //load bars
-        for (int i = 0; i < bars.count ; i++)
-        {
-            NSDictionary* dictTemp = bars[i];
-            Bar* bar = [Bar initFromDictionary:dictTemp ];
-            [barType.bars addObject:bar];
-        }
-    }
     return barType;
+    
 }
-
 
 @end

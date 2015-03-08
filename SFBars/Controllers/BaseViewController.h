@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LoadingView.h"
 
 extern NSString* kCellIdentifier;
 extern NSString* kGlyphIconsFontName;
@@ -17,8 +18,15 @@ extern NSString* kServiceUrl;
 
 @property (nonatomic, strong) AppDelegate* appDelegate;
 
+@property (readonly, nonatomic, strong) BarsGateway* barsGateway;
+
+@property (readwrite, nonatomic, strong) LoadingView* loadingView;
+
 -(void)addMenuButtonToNavigation;
 -(void)addDoneButtonToNavigation;
+
+-(void)showLoadingIndicator;
+-(void)hideLoadingIndicator;
 
 // TODO move to gateway
 -(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept;

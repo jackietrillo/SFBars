@@ -10,6 +10,8 @@
 
 @interface BaseViewController ()
 
+@property (readwrite, nonatomic, strong) BarsGateway* barsGateway;
+
 @end
 
 NSString* kCellIdentifier = @"Cell";
@@ -22,8 +24,9 @@ NSString* kServiceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //TODO refactor out to not use appDelegate in this class
     self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    self.barsGateway = self.appDelegate.barsGateway;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +61,26 @@ NSString* kServiceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
     [barButtonItem setTitle:[NSString stringWithUTF8String:"\uf00c"]];
     
     self.navigationItem.rightBarButtonItem = barButtonItem;
+}
+
+-(void)showLoadingIndicator {
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil];
+    
+    self.loadingView = [xib lastObject];
+    self.loadingView.frame = self.view.bounds;
+    
+    [self.view addSubview:self.loadingView];
+}
+
+-(void)hideLoadingIndicator {
+
+    if (self.loadingView) {
+        self.loadingView.hidden = YES;
+    }
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 // TODO move to gateway

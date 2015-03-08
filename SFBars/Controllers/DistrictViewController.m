@@ -12,7 +12,7 @@
 @interface DistrictViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (readwrite, nonatomic, strong) NSMutableArray* data;
+@property (readwrite, nonatomic, strong) NSArray* districtsData;
 
 @end
 
@@ -23,7 +23,21 @@
     self.canDisplayBannerAds = YES;
     
     [self initNavigation];
-    [self loadTableViewData: [self getDistricts]];
+    
+    [self showLoadingIndicator];
+    
+    self.tableView.hidden = YES;
+    self.tableView.delegate = self;
+    
+    [self.barsGateway getDistricts: ^(NSArray* data) {
+        if (data) {
+            self.districtsData = data;
+            
+            [self.tableView reloadData];
+        }
+        self.tableView.hidden = NO;
+        [self hideLoadingIndicator];
+    }];
 }
 
 -(void)initNavigation {
@@ -32,42 +46,6 @@
     
     self.navigationItem.title = NSLocalizedString(@"NEIGHBORHOODS", @"NEIGHBORHOODS");
     [self.navigationController setToolbarHidden:YES animated:YES];
-}
-
-//TODO move to gateway
--(NSMutableArray*)getDistricts {
-    
-    if (self.appDelegate.cachedDistricts) {
-        return self.appDelegate.cachedDistricts;
-    }
-    
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"Districts" ofType:@"json"];
-    NSData* jsonData = [NSData dataWithContentsOfFile:path];
-    NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-    jsonData = nil;
-    
-    NSMutableArray* districts = [[NSMutableArray alloc] init];
-    if (arrayData.count > 0) {
-        for (int i = 0; i < arrayData.count; i++) {
-            NSDictionary* dictTemp = arrayData[i];
-            District* district = [District initFromDictionary:dictTemp];
-            [districts addObject:district];
-        }
-    }
-    
-    self.appDelegate.cachedDistricts = districts;
-    
-    return districts;
-}
-
--(void)loadTableViewData:(NSMutableArray*) data {
-    
-    if (data) {
-        self.tableView.hidden = NO;
-        self.tableView.delegate = self;
-        self.data = data;
-        [self.tableView reloadData];
-    }
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -124,8 +102,8 @@
     
     switch(indexPath.section) {
         case 0:
-            if (indexPath.row < self.data.count) {
-                District* district = (District*)[self.data objectAtIndex:indexPath.row];
+            if (indexPath.row < self.districtsData.count) {
+                District* district = (District*)[self.districtsData objectAtIndex:indexPath.row];
                 cell.textLabel.text = district.name;
                 [self setTableViewCellStyle:cell];
                 
@@ -137,9 +115,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.data.count;
+    return self.districtsData.count;
 }
-
 
 #pragma mark - Navigation
 
@@ -149,7 +126,7 @@
     
     BarViewController* barsViewController = segue.destinationViewController;
     
-    District* district = self.data[indexPath.row];
+    District* district = self.districtsData[indexPath.row];
     
     barsViewController.filterType = FilterByDistricts;
     barsViewController.filterIds = @[[[NSNumber numberWithInteger:district.itemId] stringValue]];
