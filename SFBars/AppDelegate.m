@@ -11,7 +11,7 @@
 @interface AppDelegate ()
 
 @property (readwrite, nonatomic, strong) BarsGateway* barsGateway;
-
+@property (readwrite, nonatomic, strong) BarsManager* barsManager;
 @end
 
 @implementation AppDelegate
@@ -22,6 +22,7 @@
     [GMSServices provideAPIKey:@"AIzaSyBwemjLYLhOFeh7NRdaiMUesp_sawcnZh0"];
     
     self.barsGateway = [[BarsGateway alloc] init];
+    self.barsManager = [[BarsManager alloc] init];
     
     return YES;
 }

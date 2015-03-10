@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-#import "MenuItem.h"
+#import "SettingsItem.h"
 
 @interface SettingsViewController : BaseViewController <MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 

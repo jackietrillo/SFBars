@@ -6,13 +6,14 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "MenuItem.h"
+#import "BarDetailItem.h"
 
-@interface  MenuItem()
+@interface  BarDetailItem()
 
 @end
 
-@implementation MenuItem
+@implementation BarDetailItem
+
 
 -(id)init {
     self = [super init];
@@ -22,9 +23,8 @@
 
 +(id)initFromDictionary:(NSDictionary*)dict {
     
-    MenuItem* menuItem = [super initFromDictionary:dict forItem:[[MenuItem alloc] init]];
-
-    return menuItem;
+    BarDetailItem* barDetailItem = [super initFromDictionary:dict forItem:[[BarDetailItem alloc] init]];
+    return barDetailItem;
 }
 
 @end

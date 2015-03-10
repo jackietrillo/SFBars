@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
 @interface BaseEntity : NSObject
 
 @property (readwrite, nonatomic) NSInteger itemId;

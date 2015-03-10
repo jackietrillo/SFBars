@@ -29,7 +29,8 @@
     
     [self.appDelegate.barsGateway getBars: ^(NSArray* data) {
         self.bars = data;
-    
+        [self.tableView reloadData];
+        
         _searchResultsViewController = [[SearchResultsViewController alloc] init];
         _searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsViewController];
         

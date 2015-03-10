@@ -12,10 +12,15 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readwrite, nonatomic, strong) NSMutableArray* settingsData;
-@property (readwrite, nonatomic, strong) NSMutableArray* menuDataTop;
-@property (readwrite, nonatomic, strong) NSMutableArray* menuDataBottom;
+@property (readwrite, nonatomic, strong) NSMutableArray* settingsDataTop;
+@property (readwrite, nonatomic, strong) NSMutableArray* settingsDataBottom;
 
 @end
+
+typedef enum {
+    SettingsTableViewSectionTop = 0,
+    SettingsTableViewSectionBottom = 1,
+} SettingsTableViewSection;
 
 @implementation SettingsViewController
 
@@ -24,7 +29,7 @@
 
     [self initNavigation];
     
-    [self loadTableViewData:[self getSettings]];
+    [self loadTableViewData:[self.barsManager getSettingsItems]];
 }
 
 -(void)initNavigation {
@@ -35,45 +40,21 @@
     [self.navigationItem setHidesBackButton:YES animated:YES];
 }
 
--(NSMutableArray*)getSettings {
+-(void)loadTableViewData:(NSArray*)settingsItems {
     
-    if (!self.settingsData) {
-        
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"json"];
-        NSData* jsonData = [NSData dataWithContentsOfFile:path];
-        NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error: nil];
-        
-        jsonData = nil;
-        
-        NSMutableArray* menuItems = [[NSMutableArray alloc] init];
-        MenuItem* menuItem;
-        
-        for (int i = 0; i < arrayData.count; i++) {
-            NSDictionary* dictTemp = arrayData[i];
-            menuItem = [MenuItem initFromDictionary: dictTemp];
-            [menuItems addObject:menuItem];
-        }
-        
-        self.settingsData = menuItems;
-    }
-    return self.settingsData;
-}
-
--(void)loadTableViewData:(NSMutableArray*)menuItems {
+    self.settingsDataTop = [[NSMutableArray alloc] init];
+    self.settingsDataBottom = [[NSMutableArray alloc] init];
     
-    self.menuDataTop = [[NSMutableArray alloc] init];
-    self.menuDataBottom = [[NSMutableArray alloc] init];
+    SettingsItem* settingsItem;
     
-    MenuItem* menuItem;
-    
-    for (int i = 0; i < menuItems.count; i++) {
-        menuItem = menuItems[i];
+    for (int i = 0; i < settingsItems.count; i++) {
+        settingsItem = settingsItems[i];
        
-        if (menuItem.section == 0 && menuItem.statusFlag == 1) {
-            [self.menuDataTop addObject:menuItem];
+        if (settingsItem.section == SettingsTableViewSectionTop && settingsItem.statusFlag == 1) {
+            [self.settingsDataTop addObject:settingsItem];
         }
-        else if (menuItem.section == 1 && menuItem.statusFlag == 1) {
-            [self.menuDataBottom addObject:menuItem];
+        else if (settingsItem.section == SettingsTableViewSectionBottom && settingsItem.statusFlag == 1) {
+            [self.settingsDataBottom addObject:settingsItem];
         }
     }
 }
@@ -87,12 +68,11 @@
     
     UIView* sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
     
-    switch(section)
-    {
-        case 0:
+    switch(section) {
+        case SettingsTableViewSectionTop:
             [sectionHeaderView setBackgroundColor:[UIColor blackColor]];
             break;
-        case 1:
+        case SettingsTableViewSectionBottom:
             [sectionHeaderView setBackgroundColor:[UIColor blackColor]];
             break;
         default:
@@ -111,9 +91,9 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch(section) {
-        case 0:
+        case SettingsTableViewSectionTop:
             return @" ";
-        case 1:
+        case SettingsTableViewSectionBottom:
             return @" ";
         default:
             return 0;
@@ -123,10 +103,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     switch(section) {
-        case 0:
-            return [self.menuDataTop count];
-        case 1:
-            return [self.menuDataBottom count];
+        case SettingsTableViewSectionTop:
+            return [self.settingsDataTop count];
+        case SettingsTableViewSectionBottom:
+            return [self.settingsDataBottom count];
         default:
             return 0;
     }
@@ -135,22 +115,22 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
     NSInteger rowIndex = indexPath.row;
-    MenuItem* menuItem;
+    SettingsItem* settingsItem;
    
     UITableViewCell* tableViewCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     switch(indexPath.section) {
-        case 0:
-            menuItem = (MenuItem*)self.menuDataTop[rowIndex];
+        case SettingsTableViewSectionTop:
+            settingsItem = self.settingsDataTop[rowIndex];
             
-            tableViewCell.textLabel.text = menuItem.name;
-            tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
+            tableViewCell.textLabel.text = settingsItem.name;
+            tableViewCell.imageView.image = [UIImage imageNamed:settingsItem.imageUrl];
             break;
-        case 1:
-            menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
+        case SettingsTableViewSectionBottom:
+            settingsItem = self.settingsDataBottom[rowIndex];
             
-            tableViewCell.textLabel.text = menuItem.name;
-            tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
+            tableViewCell.textLabel.text = settingsItem.name;
+            tableViewCell.imageView.image = [UIImage imageNamed:settingsItem.imageUrl];
             break;
         default:
             break;
@@ -164,27 +144,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSInteger rowIndex = indexPath.row;
-    MenuItem* dataItem;
+    SettingsItem* settingsItem;
     
     switch(indexPath.section)
     {
-        case 0:
-            dataItem = (MenuItem*)self.menuDataTop[rowIndex];
-            if ([dataItem.name isEqualToString: NSLocalizedString(@"Rate App", @"Rate App")]) {
+        case SettingsTableViewSectionTop:
+            settingsItem = self.settingsDataTop[rowIndex];
+            if ([settingsItem.name isEqualToString: NSLocalizedString(@"Rate App", @"Rate App")]) {
                 [self tappedRateApp];
             }
-            else if ([dataItem.name isEqualToString: NSLocalizedString(@"Feedback",@"Feedback")]) {
+            else if ([settingsItem.name isEqualToString: NSLocalizedString(@"Feedback",@"Feedback")]) {
                 [self tappedSendFeedback];
             }
-            else if ([dataItem.name isEqualToString: NSLocalizedString(@"Report a Problem",@"Report a Problem")]) {
+            else if ([settingsItem.name isEqualToString: NSLocalizedString(@"Report a Problem",@"Report a Problem")]) {
                 [self tappedContactUs];
             }
             break;
             
-        case 1:
-            dataItem = (MenuItem*)self.menuDataBottom[rowIndex];
+        case SettingsTableViewSectionBottom:
+            settingsItem = self.settingsDataBottom[rowIndex];
             
-            if ([dataItem.name isEqualToString: NSLocalizedString(@"Upgrade", @"Upgrade")]) {
+            if ([settingsItem.name isEqualToString: NSLocalizedString(@"Upgrade", @"Upgrade")]) {
                 [self tappedUpgrade];
             }
                       break;
@@ -225,8 +205,7 @@
 
 #pragma mark - MFMailComposeViewControllerDelegate
 
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
-{
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     switch (result) {
         case MFMailComposeResultCancelled:
             break;
@@ -248,7 +227,5 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
 }
-
-
 
 @end

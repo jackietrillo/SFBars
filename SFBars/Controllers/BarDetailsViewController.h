@@ -11,7 +11,7 @@
 #import "NearMeViewController.h"
 #import "BarDetailHeaderViewCell.h"
 #import "AppDelegate.h"
-#import "BarDetail.h"
+#import "BarDetailItem.h"
 #import "Bar.h"
 #import "Enums.h"
 

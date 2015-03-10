@@ -28,13 +28,13 @@ typedef enum {
     ShareTableViewSection = 2,
 } BarDetailTableViewSections;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
    
     [self initNavigation];
     [self initTableView];
-    [self loadTableViewData: [self getBarDetails]];
+    
+    [self loadTableViewData:[self.barsManager getBarDetailItems]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,68 +48,42 @@ typedef enum {
 }
 
 -(void)initTableView {
-    
     NSArray* barDetailHeaderViewCellXib = [[NSBundle mainBundle] loadNibNamed:@"BarDetailHeaderViewCell" owner:nil options:nil];
     
     BarDetailHeaderViewCell* tableHeaderView = [barDetailHeaderViewCellXib lastObject];
-    tableHeaderView.frame = CGRectMake(0, 0, 150, 150);
+    tableHeaderView.frame = CGRectMake(0, 0, 150, 0);
     tableHeaderView.logo.image = self.selectedBar.icon ? self.selectedBar.icon : [UIImage imageNamed:@"DefaultImage-Bar"];
-    
     self.tableView.tableHeaderView = tableHeaderView;
+    self.tableView.tableHeaderView.hidden = YES;
     
     UIView* tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 10.0)];
     self.tableView.tableFooterView = tableFooterView;
 }
 
--(NSMutableArray*)getBarDetails{
-    
-    if (!self.barDetailsData) {
-       
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"BarDetail" ofType:@"json"];
-        NSData* jsonData = [NSData dataWithContentsOfFile:path];
-        NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-        
-        NSMutableArray* barDetails = [[NSMutableArray alloc] init];
-        
-        if (arrayData.count > 0) {
-            for (int i = 0; i < arrayData.count; i++) {
-                NSDictionary* dictTemp = arrayData[i];
-                BarDetail* item = [BarDetail initFromDictionary: dictTemp];
-                [barDetails addObject:item];
-            }
-        }
-
-        self.barDetailsData = barDetails;
-    }
-    return self.barDetailsData;
-}
-
--(void)loadTableViewData: (NSMutableArray*)barDetails {
-    
+-(void)loadTableViewData: (NSArray*)barDetailItems {
     self.dataDetail = [[NSMutableArray alloc] init];
     self.dataFavorite = [[NSMutableArray alloc] init];
     self.dataShare = [[NSMutableArray alloc] init];
     
-    BarDetail* barDetail;
+    BarDetailItem* barDetailItem;
     
-    for (int i = 0; i < barDetails.count; i++) {
+    for (int i = 0; i < barDetailItems.count; i++) {
         
-        barDetail = barDetails[i];
+        barDetailItem = barDetailItems[i];
         
-        if (barDetail.section == DetailTableViewSection && barDetail.statusFlag) {
-            [self.dataDetail addObject:barDetail];
+        if (barDetailItem.section == DetailTableViewSection && barDetailItem.statusFlag) {
+            [self.dataDetail addObject:barDetailItem];
         }
-        else if (barDetail.section == FavoriteTableViewSection && barDetail.statusFlag) {
-            [self.dataFavorite addObject:barDetail];
+        else if (barDetailItem.section == FavoriteTableViewSection && barDetailItem.statusFlag) {
+            [self.dataFavorite addObject:barDetailItem];
         }
-        else if (barDetail.section == ShareTableViewSection && barDetail.statusFlag) {
-            [self.dataShare addObject:barDetail];
+        else if (barDetailItem.section == ShareTableViewSection && barDetailItem.statusFlag) {
+            [self.dataShare addObject:barDetailItem];
         }
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
     UIView* sectionHeaderView = [[UIView alloc] init];
     sectionHeaderView.backgroundColor = [UIColor blackColor];
     
@@ -180,7 +154,6 @@ typedef enum {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     switch(section) {
         case DetailTableViewSection:
             return [self.dataDetail count];
@@ -216,27 +189,27 @@ typedef enum {
     
     NSInteger rowIndex = indexPath.row;
     
-    BarDetail* barDetail;
+    BarDetailItem* barDetailItem;
     
     UITableViewCell* tableViewCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
 
     switch(indexPath.section) {
         case DetailTableViewSection:
-            barDetail = self.dataDetail[rowIndex];
+            barDetailItem = self.dataDetail[rowIndex];
             break;
         case FavoriteTableViewSection:
-            barDetail = self.dataFavorite[rowIndex];
+            barDetailItem = self.dataFavorite[rowIndex];
             break;
         case ShareTableViewSection:
-            barDetail = self.dataShare[rowIndex];
+            barDetailItem = self.dataShare[rowIndex];
             break;
         default:
             break;
     }
     
-    tableViewCell.textLabel.text =  [self getBarPropertyValueFromBarPropertyName: barDetail.name forSelectedBar:self.selectedBar];
+    tableViewCell.textLabel.text =  [self getBarPropertyValueFromBarPropertyName: barDetailItem.name forSelectedBar:self.selectedBar];
     
-    tableViewCell.imageView.image = [UIImage imageNamed: barDetail.imageUrl];
+    tableViewCell.imageView.image = [UIImage imageNamed: barDetailItem.imageUrl];
     
     if (tableViewCell.imageView.image == nil) {
         tableViewCell.imageView.image = [UIImage imageNamed:@"Icon-Search"];
@@ -250,19 +223,19 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSInteger rowIndex = indexPath.row;
-    BarDetail* barDetail;
+    BarDetailItem* barDetailItem;
     UIStoryboard* storyboard;
     
     // TODO: consider using factory pattern here?
     switch(indexPath.section) {
         case DetailTableViewSection:
             
-            barDetail = self.dataDetail[rowIndex];
+            barDetailItem = self.dataDetail[rowIndex];
             
-            if ([barDetail.name isEqualToString: NSLocalizedString(@"Address", @"Address")]) {
+            if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Address", @"Address")]) {
                 [self openMapsActionSheet: self];
             }
-            else if ([barDetail.name isEqualToString: NSLocalizedString(@"Phone", @"Phone")]) {
+            else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Phone", @"Phone")]) {
                
                NSString* phoneNumber = [self.selectedBar.phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
                phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
@@ -285,7 +258,7 @@ typedef enum {
                     [alertView show];
                 }
             }
-            else if ([barDetail.name isEqualToString: NSLocalizedString(@"Website", @"Website")]) {
+            else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Website", @"Website")]) {
                 
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 
@@ -295,7 +268,7 @@ typedef enum {
                 
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            else if ([barDetail.name isEqualToString: NSLocalizedString(@"Events", @"Events")]) {
+            else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Events", @"Events")]) {
                 
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 
@@ -305,7 +278,7 @@ typedef enum {
                 
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            else if ([barDetail.name isEqualToString: NSLocalizedString(@"Facebook Page", @"Facebook Page")]) {
+            else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Facebook Page", @"Facebook Page")]) {
                 
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 
@@ -315,7 +288,7 @@ typedef enum {
                 
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            else if ([barDetail.name isEqualToString:NSLocalizedString(@"Yelp Reviews", @"Yelp Reviews")]) {
+            else if ([barDetailItem.name isEqualToString:NSLocalizedString(@"Yelp Reviews", @"Yelp Reviews")]) {
                 
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 
@@ -328,10 +301,10 @@ typedef enum {
             break;
             
         case FavoriteTableViewSection:
-             barDetail = self.dataFavorite[rowIndex];
+             barDetailItem = self.dataFavorite[rowIndex];
             
             //TODO: this needs to be refactored 
-            if ([barDetail.name isEqualToString: NSLocalizedString(@"Save", @"Save")]) {
+            if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Save", @"Save")]) {
               
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                
@@ -368,12 +341,12 @@ typedef enum {
             
             case ShareTableViewSection:
             
-                barDetail = self.dataShare[rowIndex];
+                barDetailItem = self.dataShare[rowIndex];
             
-                if ([barDetail.name isEqualToString: NSLocalizedString(@"Message", @"Message")]) {
+                if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Message", @"Message")]) {
                     [self tappedSendSMS];
                 }
-                else if ([barDetail.name isEqualToString: NSLocalizedString(@"Email", @"Email")]) {
+                else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Email", @"Email")]) {
                     [self tappedSendMail];
                 }
     

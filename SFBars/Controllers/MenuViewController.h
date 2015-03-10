@@ -15,6 +15,7 @@
 #import "PartiesViewController.h"
 #import "SettingsViewController.h"
 #import "DistrictViewController.h"
+#import "BarsManager.h"
 #import "MenuItem.h"
 
 @interface MenuViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>

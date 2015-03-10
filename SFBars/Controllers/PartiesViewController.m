@@ -20,15 +20,14 @@
     [super viewDidLoad];
     
     [self initNavigation];
-    
-    
+
     [self.barsGateway getParties: ^(NSArray* data) {
         if (data) {
             self.partiesData = data;
-            
             [self.collectionView reloadData];
         }
         self.collectionView.hidden = NO;
+        
         [self hideLoadingIndicator];
     }];
 

@@ -6,13 +6,10 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-#import "BaseEntity.h"
+#import "BaseItem.h"
 
-@interface BarDetail : BaseEntity
-
-@property (readwrite, nonatomic) NSInteger section;
+@interface BarDetailItem : BaseItem
 
 +(id)initFromDictionary:(NSDictionary*)dict;
 

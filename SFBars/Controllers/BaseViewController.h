@@ -16,10 +16,8 @@ extern NSString* kServiceUrl;
 
 @interface BaseViewController : UIViewController
 
-@property (nonatomic, strong) AppDelegate* appDelegate;
-
 @property (readonly, nonatomic, strong) BarsGateway* barsGateway;
-
+@property (readonly, nonatomic, strong) BarsManager* barsManager;
 @property (readwrite, nonatomic, strong) LoadingView* loadingView;
 
 -(void)addMenuButtonToNavigation;
@@ -28,9 +26,5 @@ extern NSString* kServiceUrl;
 -(void)showLoadingIndicator;
 -(void)hideLoadingIndicator;
 
-// TODO move to gateway
-//-(void)sendAsyncRequest: (NSString*)url method:(NSString*)method accept: (NSString*)accept;
-//-(NSMutableArray*)parseData: (NSData*)responseData; //override in subclass
-//-(void)loadData: (NSMutableArray*) data; //overriden in subclass
 
 @end

@@ -21,13 +21,20 @@
 
 static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
+typedef enum {
+    MenuTableViewSectionTop = 0,
+    MenuTableViewSectionMiddle = 1,
+    MenuTableViewSectionBottom = 2,
+} MenuTableViewSection;
+
+
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     [self initNavigation];
     [self initTableView];
-    [self loadTableViewData:[self getMenuItems]];
+    
+    [self loadTableViewData:[self.barsManager getMenuItems]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,29 +56,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MenuBackground"]];
 }
 
--(NSMutableArray*)getMenuItems {
-    
-    if (!self.menuItems) {
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"MenuItems" ofType:@"json"];
-        NSData* jsonData = [NSData dataWithContentsOfFile:path];
-        NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error: nil];
-        jsonData = nil;
-        
-        NSMutableArray* menuItems = [[NSMutableArray alloc] init];
-        MenuItem* menuItem;
-        
-        for (int i = 0; i < arrayData.count; i++) {
-            NSDictionary* dictTemp = arrayData[i];
-            menuItem = [MenuItem initFromDictionary: dictTemp];
-            [menuItems addObject:menuItem];
-        }
-        
-        self.menuItems = menuItems;
-    }
-    return self.menuItems;
-}
-
--(void)loadTableViewData: (NSMutableArray*)menuItems {
+-(void)loadTableViewData: (NSArray*)menuItems {
     
     self.menuDataTop = [[NSMutableArray alloc] init];
     self.menuDataMiddle = [[NSMutableArray alloc] init];
@@ -83,17 +68,16 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
         
         menuItem = menuItems[i];
         
-        if (menuItem.section == 0 && menuItem.statusFlag == 1) {
+        if (menuItem.section == MenuTableViewSectionTop && menuItem.statusFlag == 1) {
             [self.menuDataTop addObject:menuItem];
         }
-        else if (menuItem.section == 1 && menuItem.statusFlag == 1) {
+        else if (menuItem.section == MenuTableViewSectionMiddle && menuItem.statusFlag == 1) {
             [self.menuDataMiddle addObject:menuItem];
         }
-        else if (menuItem.section == 2 && menuItem.statusFlag == 1) {
+        else if (menuItem.section == MenuTableViewSectionBottom && menuItem.statusFlag == 1) {
             [self.menuDataBottom addObject:menuItem];
         }
     }
-    
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -101,13 +85,13 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
   
     switch(section) {
-        case 0:
+        case MenuTableViewSectionTop:
              [headerView setBackgroundColor:[UIColor clearColor]];
             break;
-        case 1:
+        case MenuTableViewSectionMiddle:
             [headerView setBackgroundColor:[UIColor clearColor]];
             break;
-        case 2:
+        case MenuTableViewSectionBottom:
             [headerView setBackgroundColor:[UIColor clearColor]];
             break;
         default:
@@ -119,11 +103,11 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     switch(section) {
-        case 0:
+        case MenuTableViewSectionTop:
             return 50;
-        case 1:
+        case MenuTableViewSectionMiddle:
             return 20;
-        case 2:
+        case MenuTableViewSectionBottom:
             return 20;
         default:
             return 0;
@@ -143,11 +127,11 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
     switch(section) {
-        case 0:
+        case MenuTableViewSectionTop:
             return @" ";
-        case 1:
+        case MenuTableViewSectionMiddle:
             return @" ";
-        case 2:
+        case MenuTableViewSectionBottom:
             return @" ";
         default:
             return 0;
@@ -157,13 +141,12 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     switch(section) {
-        case 0:
+        case MenuTableViewSectionTop:
             return [self.menuDataTop count];
-        case 1:
+        case MenuTableViewSectionMiddle:
             return [self.menuDataMiddle count];
-        case 2:
+        case MenuTableViewSectionBottom:
             return [self.menuDataBottom count];
-
         default:
             return 0;
     }
@@ -205,18 +188,18 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     
     switch(indexPath.section) {
             
-        case 0:
+        case MenuTableViewSectionTop:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
             tableViewCell.textLabel.text = menuItem.name;
             tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
-        case 1:
+        case MenuTableViewSectionMiddle:
             menuItem = (MenuItem*)self.menuDataMiddle[rowIndex];
             
             tableViewCell.textLabel.text = menuItem.name;
             tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
-        case 2:
+        case MenuTableViewSectionBottom:
              menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
             
             tableViewCell.textLabel.text = menuItem.name;
@@ -239,7 +222,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     
     switch(indexPath.section) {
             
-        case 0:
+        case MenuTableViewSectionTop:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
             
             //TODO: consider using factory pattern here?
@@ -278,7 +261,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
             }
             break;
             
-        case 1: // TODO refactor
+        case MenuTableViewSectionMiddle: // TODO refactor
             menuItem = (MenuItem*)self.menuDataMiddle[rowIndex];
             
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Saved", @"Saved")]) {
@@ -315,7 +298,7 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
             }
             
             break;
-        case 2:
+        case MenuTableViewSectionBottom:
             menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
             
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Settings", @"Settings")]) {
@@ -331,20 +314,5 @@ static NSString* SAVEDBARSDICT = @"savedBarsDict";
     }
 }
 
- #pragma mark - Navigation
-
-/*
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-}
-
-- (void)backToBrowse: (id)sender {
-    [self performSegueWithIdentifier:@"unwindToBrowse" sender:self];
-}
-
-- (IBAction)unwindToMenu:(UIStoryboardSegue *)unwindSegue {
-    
-}
- */
 
 @end

@@ -11,7 +11,7 @@
 @interface BaseViewController ()
 
 @property (readwrite, nonatomic, strong) BarsGateway* barsGateway;
-
+@property (readwrite, nonatomic, strong) BarsManager* barsManager;
 @end
 
 NSString* kCellIdentifier = @"Cell";
@@ -23,9 +23,10 @@ NSString* kFontAwesomeFontName  = @"FontAwesome";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate] ;
+    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate] ;
     
-    self.barsGateway = self.appDelegate.barsGateway;
+    self.barsGateway = appDelegate.barsGateway;
+    self.barsManager = appDelegate.barsManager;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,7 +34,6 @@ NSString* kFontAwesomeFontName  = @"FontAwesome";
 }
 
 - (void)addMenuButtonToNavigation {
-
     UIFont* font = [UIFont fontWithName: kGlyphIconsFontName size:25.0];
     NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
     
@@ -48,7 +48,6 @@ NSString* kFontAwesomeFontName  = @"FontAwesome";
 }  
 
 - (void)addDoneButtonToNavigation {
-
     UIFont* font = [UIFont fontWithName: kFontAwesomeFontName size:30.0];
     NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
     
@@ -63,27 +62,25 @@ NSString* kFontAwesomeFontName  = @"FontAwesome";
 }
 
 -(void)showLoadingIndicator {
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
     NSArray* xib = [[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil];
     
     self.loadingView = [xib lastObject];
     self.loadingView.frame = self.view.bounds;
     
     [self.view addSubview:self.loadingView];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 -(void)hideLoadingIndicator {
-
     if (self.loadingView) {
         self.loadingView.hidden = YES;
     }
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (void)presentMenuViewController:(id)sender {
-    
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     BaseViewController* viewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
     [self.navigationController pushViewController:viewController animated:YES];
