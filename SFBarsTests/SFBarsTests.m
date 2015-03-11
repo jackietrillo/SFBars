@@ -2,7 +2,7 @@
 //  SFBarsTests.m
 //  SFBarsTests
 //
-//  Created by JACKIE TRILLO on 1/11/15.
+//  Created by JACKIE TRILLO on 3/11/15.
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
