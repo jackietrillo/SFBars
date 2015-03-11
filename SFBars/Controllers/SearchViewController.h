@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BarDetailsViewController.h"
+#import "BarDetailViewController.h"
 #import "SearchBaseViewController.h"
 #import "SearchResultsViewController.h"
 #import "Bar.h"

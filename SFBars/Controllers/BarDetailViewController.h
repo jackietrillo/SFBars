@@ -15,7 +15,7 @@
 #import "Bar.h"
 #import "Enums.h"
 
-@interface BarDetailsViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate,
+@interface BarDetailViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate,
                                                         MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
 
 @property (readwrite, nonatomic, strong) Bar* selectedBar;

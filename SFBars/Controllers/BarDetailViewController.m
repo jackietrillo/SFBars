@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BarDetailsViewController.h"
+#import "BarDetailViewController.h"
 
-@interface BarDetailsViewController () 
+@interface BarDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (readwrite, nonatomic, strong) NSMutableArray* barDetailsData;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation BarDetailsViewController
+@implementation BarDetailViewController
 
 static NSString* SAVEDBARSDICT = @"savedBarsDict";
 
@@ -226,7 +226,7 @@ typedef enum {
     BarDetailItem* barDetailItem;
     UIStoryboard* storyboard;
     
-    // TODO: consider using factory pattern here?
+    // TODO: consider using factory pattern here
     switch(indexPath.section) {
         case DetailTableViewSection:
             

@@ -9,7 +9,7 @@
 #import "ImageDownloader.h"
 #import "BaseViewController.h"
 #import "BarWebViewController.h"
-#import "BarDetailsViewController.h"
+#import "BarDetailViewController.h"
 #import "BarTableViewCell.h"
 #import "LoadingView.h"
 #import "Bar.h"

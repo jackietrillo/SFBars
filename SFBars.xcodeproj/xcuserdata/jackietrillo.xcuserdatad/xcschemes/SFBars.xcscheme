@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "82A5C77C1A63125C00D55A54"
-               BuildableName = "SFBars.app"
+               BuildableName = "SF Bars.app"
                BlueprintName = "SFBars"
                ReferencedContainer = "container:SFBars.xcodeproj">
             </BuildableReference>
@@ -51,13 +51,18 @@
                BlueprintName = "SFBarsTests"
                ReferencedContainer = "container:SFBars.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "SFBarsTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "82A5C77C1A63125C00D55A54"
-            BuildableName = "SFBars.app"
+            BuildableName = "SF Bars.app"
             BlueprintName = "SFBars"
             ReferencedContainer = "container:SFBars.xcodeproj">
          </BuildableReference>
@@ -76,7 +81,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "82A5C77C1A63125C00D55A54"
-            BuildableName = "SFBars.app"
+            BuildableName = "SF Bars.app"
             BlueprintName = "SFBars"
             ReferencedContainer = "container:SFBars.xcodeproj">
          </BuildableReference>
@@ -94,7 +99,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "82A5C77C1A63125C00D55A54"
-            BuildableName = "SFBars.app"
+            BuildableName = "SF Bars.app"
             BlueprintName = "SFBars"
             ReferencedContainer = "container:SFBars.xcodeproj">
          </BuildableReference>

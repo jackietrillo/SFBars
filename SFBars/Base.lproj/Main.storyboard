@@ -588,10 +588,10 @@
             </objects>
             <point key="canvasLocation" x="-9780" y="-1861"/>
         </scene>
-        <!--BarDetailsViewController-->
+        <!--BarDetailViewController-->
         <scene sceneID="pDj-IH-KWZ">
             <objects>
-                <viewController storyboardIdentifier="BarDetailsViewController" id="4BU-OX-92k" userLabel="BarDetailsViewController" customClass="BarDetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BarDetailViewController" id="4BU-OX-92k" userLabel="BarDetailViewController" customClass="BarDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x1m-UP-nw7"/>
                         <viewControllerLayoutGuide type="bottom" id="Pqu-W7-S87"/>

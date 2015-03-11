@@ -23,13 +23,12 @@
     
     self.canDisplayBannerAds = YES;
     
-    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
-    
     [self initNavigation];
     
     [self showLoadingIndicator];
     
     self.tableView.hidden = YES;
+    
     self.tableView.delegate = self;
     
     [self.barsGateway getBars: ^(NSArray* data) {
@@ -47,6 +46,8 @@
         self.tableView.hidden = NO;
         [self hideLoadingIndicator];
     }];
+    
+    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
 }
 
 - (void)dealloc {
@@ -204,10 +205,10 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.destinationViewController isKindOfClass: [BarDetailsViewController class]]) {
-        BarDetailsViewController* barDetailsViewController = segue.destinationViewController;
+    if ([segue.destinationViewController isKindOfClass: [BarDetailViewController class]]) {
+        BarDetailViewController* barDetailViewController = segue.destinationViewController;
         NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
-        barDetailsViewController.selectedBar = self.barsData[indexPath.row];
+        barDetailViewController.selectedBar = self.barsData[indexPath.row];
     }
 }
 

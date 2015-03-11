@@ -1,7 +1,4 @@
 
-
-
-
 @import Foundation;
 @import UIKit;
 @import MessageUI;
@@ -12,7 +9,9 @@
 
 
 /*
+
  This is the old way
+ 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>

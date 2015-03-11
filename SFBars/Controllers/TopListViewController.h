@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 #import "AppDelegate.h"
-#import "BarDetailsViewController.h"
+#import "BarDetailViewController.h"
 #import "Bar.h"
 
 @interface TopListViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>

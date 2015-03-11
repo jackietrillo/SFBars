@@ -27,16 +27,18 @@
 		823A59C11AAE819C00134A4B /* BarsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 823A59C01AAE819C00134A4B /* BarsManager.m */; };
 		827C029B1AAD02B4008EC2FA /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 827C029A1AAD02B4008EC2FA /* Party.m */; };
 		827C029E1AAD02C2008EC2FA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 827C029D1AAD02C2008EC2FA /* Event.m */; };
-		8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61D1A761B7200D2466D /* BarDetailsViewController.m */; };
+		8285AE851A7C4B97004858FD /* BarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61D1A761B7200D2466D /* BarDetailViewController.m */; };
 		8285AE8F1A7C69D4004858FD /* BarDetailHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8285AE8E1A7C69D4004858FD /* BarDetailHeaderViewCell.m */; };
 		8285AE911A7C69FC004858FD /* BarDetailHeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8285AE901A7C69FC004858FD /* BarDetailHeaderViewCell.xib */; };
 		828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE6151A761A8B00D2466D /* BrowseViewController.m */; };
 		828FE61C1A761AB200D2466D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61B1A761AB200D2466D /* SettingsViewController.m */; };
 		8291A6CA1A7DC0D00060D3FB /* SettingsItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 8291A6C91A7DC0D00060D3FB /* SettingsItems.json */; };
 		8291A6CD1A7DC4510060D3FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8291A6CB1A7DC4510060D3FB /* Main.storyboard */; };
+		829671031AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 829671021AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.m */; };
+		8296718A1AAFFE0B0001CB9D /* SFBarsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 829671891AAFFE0B0001CB9D /* SFBarsTests.m */; };
+		829671901AAFFEDC0001CB9D /* BarDetailActionViewControllerFactory_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C79C1A63125C00D55A54 /* BarDetailActionViewControllerFactory_Tests.m */; };
 		82A5C7831A63125C00D55A54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7821A63125C00D55A54 /* main.m */; };
 		82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7851A63125C00D55A54 /* AppDelegate.m */; };
-		82A5C79D1A63125C00D55A54 /* SFBarsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C79C1A63125C00D55A54 /* SFBarsTests.m */; };
 		82A5C7CE1A63250400D55A54 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C7CC1A63250400D55A54 /* LaunchScreen.xib */; };
 		82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7D01A63260B00D55A54 /* BarTableViewCell.m */; };
 		82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7D61A63263400D55A54 /* BarWebViewController.m */; };
@@ -80,7 +82,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		82A5C7971A63125C00D55A54 /* PBXContainerItemProxy */ = {
+		8296718B1AAFFE0B0001CB9D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 82A5C7751A63125C00D55A54 /* Project object */;
 			proxyType = 1;
@@ -126,17 +128,22 @@
 		828FE6151A761A8B00D2466D /* BrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrowseViewController.m; path = SFBars/Controllers/BrowseViewController.m; sourceTree = "<group>"; };
 		828FE61A1A761AB200D2466D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = SFBars/Controllers/SettingsViewController.h; sourceTree = "<group>"; };
 		828FE61B1A761AB200D2466D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = SFBars/Controllers/SettingsViewController.m; sourceTree = "<group>"; };
-		828FE61D1A761B7200D2466D /* BarDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailsViewController.m; path = SFBars/Controllers/BarDetailsViewController.m; sourceTree = "<group>"; };
+		828FE61D1A761B7200D2466D /* BarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailViewController.m; path = SFBars/Controllers/BarDetailViewController.m; sourceTree = "<group>"; };
 		8291A6C91A7DC0D00060D3FB /* SettingsItems.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SettingsItems.json; path = SFBars/Resources/SettingsItems.json; sourceTree = "<group>"; };
 		8291A6CC1A7DC4510060D3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SFBars/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		82A5C77D1A63125C00D55A54 /* SFBars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFBars.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		829671011AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailActionViewControllerFactory.h; path = Classes/BarDetailActionViewControllerFactory.h; sourceTree = "<group>"; };
+		829671021AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailActionViewControllerFactory.m; path = Classes/BarDetailActionViewControllerFactory.m; sourceTree = "<group>"; };
+		829671041AAFFBE30001CB9D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		829671541AAFFC300001CB9D /* SFBars copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SFBars copy-Info.plist"; path = "/Users/jackietrillo/code/SFBars/SFBars copy-Info.plist"; sourceTree = "<absolute>"; };
+		829671851AAFFE0B0001CB9D /* SFBarsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SFBarsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		829671881AAFFE0B0001CB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		829671891AAFFE0B0001CB9D /* SFBarsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFBarsTests.m; sourceTree = "<group>"; };
+		82A5C77D1A63125C00D55A54 /* SF Bars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SF Bars.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A5C7811A63125C00D55A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82A5C7821A63125C00D55A54 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		82A5C7841A63125C00D55A54 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		82A5C7851A63125C00D55A54 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		82A5C7961A63125C00D55A54 /* SFBarsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SFBarsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		82A5C79B1A63125C00D55A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		82A5C79C1A63125C00D55A54 /* SFBarsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFBarsTests.m; sourceTree = "<group>"; };
+		82A5C79C1A63125C00D55A54 /* BarDetailActionViewControllerFactory_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarDetailActionViewControllerFactory_Tests.m; sourceTree = "<group>"; };
 		82A5C7CD1A63250400D55A54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		82A5C7CF1A63260B00D55A54 /* BarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarTableViewCell.h; path = Controls/BarTableViewCell.h; sourceTree = "<group>"; };
 		82A5C7D01A63260B00D55A54 /* BarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarTableViewCell.m; path = Controls/BarTableViewCell.m; sourceTree = "<group>"; };
@@ -175,7 +182,7 @@
 		82BB5FEF1A649E55002F5578 /* BarType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarType.m; path = SFBars/Models/BarType.m; sourceTree = "<group>"; };
 		82BB60061A64D763002F5578 /* BarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarViewController.h; path = SFBars/Controllers/BarViewController.h; sourceTree = "<group>"; };
 		82BB60071A64D763002F5578 /* BarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarViewController.m; path = SFBars/Controllers/BarViewController.m; sourceTree = "<group>"; };
-		82BF8A191A74392800237060 /* BarDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailsViewController.h; path = SFBars/Controllers/BarDetailsViewController.h; sourceTree = "<group>"; };
+		82BF8A191A74392800237060 /* BarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailViewController.h; path = SFBars/Controllers/BarDetailViewController.h; sourceTree = "<group>"; };
 		82BF8A1C1A7481BE00237060 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		82BF8A201A74978C00237060 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		82C705F91A75BCAC0045F973 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = SFBars/Controllers/MenuViewController.h; sourceTree = "<group>"; };
@@ -206,6 +213,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		829671821AAFFE0B0001CB9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82A5C77A1A63125C00D55A54 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,13 +243,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		82A5C7931A63125C00D55A54 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -250,25 +257,46 @@
 				823A59BD1AAE817900134A4B /* BarsManagerBase.m */,
 				823A59BF1AAE819C00134A4B /* BarsManager.h */,
 				823A59C01AAE819C00134A4B /* BarsManager.m */,
+				829671011AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.h */,
+				829671021AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		829671861AAFFE0B0001CB9D /* SFBarsTests */ = {
+			isa = PBXGroup;
+			children = (
+				82A5C79C1A63125C00D55A54 /* BarDetailActionViewControllerFactory_Tests.m */,
+				829671891AAFFE0B0001CB9D /* SFBarsTests.m */,
+				829671871AAFFE0B0001CB9D /* Supporting Files */,
+			);
+			path = SFBarsTests;
+			sourceTree = "<group>";
+		};
+		829671871AAFFE0B0001CB9D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				829671881AAFFE0B0001CB9D /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		82A5C7741A63125C00D55A54 = {
 			isa = PBXGroup;
 			children = (
 				82A5C77F1A63125C00D55A54 /* SFBars */,
-				82A5C7991A63125C00D55A54 /* SFBarsTests */,
+				829671861AAFFE0B0001CB9D /* SFBarsTests */,
 				82A5C80A1A632C1800D55A54 /* Frameworks */,
 				82A5C77E1A63125C00D55A54 /* Products */,
+				829671541AAFFC300001CB9D /* SFBars copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
 		82A5C77E1A63125C00D55A54 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				82A5C77D1A63125C00D55A54 /* SFBars.app */,
-				82A5C7961A63125C00D55A54 /* SFBarsTests.xctest */,
+				82A5C77D1A63125C00D55A54 /* SF Bars.app */,
+				829671851AAFFE0B0001CB9D /* SFBarsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -299,28 +327,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		82A5C7991A63125C00D55A54 /* SFBarsTests */ = {
-			isa = PBXGroup;
-			children = (
-				82A5C79C1A63125C00D55A54 /* SFBarsTests.m */,
-				82A5C79A1A63125C00D55A54 /* Supporting Files */,
-			);
-			path = SFBarsTests;
-			sourceTree = "<group>";
-		};
-		82A5C79A1A63125C00D55A54 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				82A5C79B1A63125C00D55A54 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		82A5C7A61A631F0B00D55A54 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				82BF8A191A74392800237060 /* BarDetailsViewController.h */,
-				828FE61D1A761B7200D2466D /* BarDetailsViewController.m */,
+				82BF8A191A74392800237060 /* BarDetailViewController.h */,
+				828FE61D1A761B7200D2466D /* BarDetailViewController.m */,
 				828FE6141A761A8B00D2466D /* BrowseViewController.h */,
 				828FE6151A761A8B00D2466D /* BrowseViewController.m */,
 				82EEC9571A9C5B1A00E211BC /* SearchBaseViewController.h */,
@@ -359,8 +370,6 @@
 		82A5C7A71A631F1300D55A54 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				82BA4C151A70838500E71F40 /* BaseEntity.h */,
-				82BA4C161A70838500E71F40 /* BaseEntity.m */,
 				82A5C7E71A63266100D55A54 /* Bar.h */,
 				82A5C7E81A63266100D55A54 /* Bar.m */,
 				827C02991AAD02B4008EC2FA /* Party.h */,
@@ -373,6 +382,8 @@
 				82BB5FEF1A649E55002F5578 /* BarType.m */,
 				82D43C3E1A95687300B4196C /* MusicType.h */,
 				82D43C3F1A95687300B4196C /* MusicType.m */,
+				82BA4C151A70838500E71F40 /* BaseEntity.h */,
+				82BA4C161A70838500E71F40 /* BaseEntity.m */,
 				82B086551A9A6A72005BD2BE /* BarDetailItem.h */,
 				82B086561A9A6A72005BD2BE /* BarDetailItem.m */,
 				823A59B21AAE7E5500134A4B /* SettingsItem.h */,
@@ -444,6 +455,7 @@
 		82A5C80A1A632C1800D55A54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				829671041AAFFBE30001CB9D /* UIKit.framework */,
 				82D668151A86E133004B19DB /* GoogleMaps.bundle */,
 				82D668131A86E0E7004B19DB /* GoogleMaps.framework */,
 				820ABF0B1A8448030022192F /* SystemConfiguration.framework */,
@@ -469,6 +481,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		829671841AAFFE0B0001CB9D /* SFBarsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8296718D1AAFFE0B0001CB9D /* Build configuration list for PBXNativeTarget "SFBarsTests" */;
+			buildPhases = (
+				829671811AAFFE0B0001CB9D /* Sources */,
+				829671821AAFFE0B0001CB9D /* Frameworks */,
+				829671831AAFFE0B0001CB9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8296718C1AAFFE0B0001CB9D /* PBXTargetDependency */,
+			);
+			name = SFBarsTests;
+			productName = SFBarsTests;
+			productReference = 829671851AAFFE0B0001CB9D /* SFBarsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		82A5C77C1A63125C00D55A54 /* SFBars */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 82A5C7A01A63125C00D55A54 /* Build configuration list for PBXNativeTarget "SFBars" */;
@@ -483,26 +513,8 @@
 			);
 			name = SFBars;
 			productName = SFBars;
-			productReference = 82A5C77D1A63125C00D55A54 /* SFBars.app */;
+			productReference = 82A5C77D1A63125C00D55A54 /* SF Bars.app */;
 			productType = "com.apple.product-type.application";
-		};
-		82A5C7951A63125C00D55A54 /* SFBarsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 82A5C7A31A63125C00D55A54 /* Build configuration list for PBXNativeTarget "SFBarsTests" */;
-			buildPhases = (
-				82A5C7921A63125C00D55A54 /* Sources */,
-				82A5C7931A63125C00D55A54 /* Frameworks */,
-				82A5C7941A63125C00D55A54 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				82A5C7981A63125C00D55A54 /* PBXTargetDependency */,
-			);
-			name = SFBarsTests;
-			productName = SFBarsTests;
-			productReference = 82A5C7961A63125C00D55A54 /* SFBarsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -513,12 +525,12 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "JACKIE TRILLO";
 				TargetAttributes = {
-					82A5C77C1A63125C00D55A54 = {
-						CreatedOnToolsVersion = 6.1.1;
-					};
-					82A5C7951A63125C00D55A54 = {
+					829671841AAFFE0B0001CB9D = {
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 82A5C77C1A63125C00D55A54;
+					};
+					82A5C77C1A63125C00D55A54 = {
+						CreatedOnToolsVersion = 6.1.1;
 					};
 				};
 			};
@@ -536,12 +548,19 @@
 			projectRoot = "";
 			targets = (
 				82A5C77C1A63125C00D55A54 /* SFBars */,
-				82A5C7951A63125C00D55A54 /* SFBarsTests */,
+				829671841AAFFE0B0001CB9D /* SFBarsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		829671831AAFFE0B0001CB9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82A5C77B1A63125C00D55A54 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -565,23 +584,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		82A5C7941A63125C00D55A54 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		829671811AAFFE0B0001CB9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				829671901AAFFEDC0001CB9D /* BarDetailActionViewControllerFactory_Tests.m in Sources */,
+				8296718A1AAFFE0B0001CB9D /* SFBarsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82A5C7791A63125C00D55A54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				827C029E1AAD02C2008EC2FA /* Event.m in Sources */,
 				823A59BB1AAE7FBC00134A4B /* BarsGatewayBase.m in Sources */,
-				8285AE851A7C4B97004858FD /* BarDetailsViewController.m in Sources */,
+				8285AE851A7C4B97004858FD /* BarDetailViewController.m in Sources */,
 				82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */,
 				82B086571A9A6A72005BD2BE /* BarDetailItem.m in Sources */,
 				82EEC95E1A9C5B1A00E211BC /* SearchViewController.m in Sources */,
@@ -613,27 +634,20 @@
 				823A59B41AAE7E5500134A4B /* SettingsItem.m in Sources */,
 				82A914A01A9990A40019D30A /* DistrictViewController.m in Sources */,
 				828FE61C1A761AB200D2466D /* SettingsViewController.m in Sources */,
+				829671031AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.m in Sources */,
 				82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */,
 				82A5C7831A63125C00D55A54 /* main.m in Sources */,
 				82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		82A5C7921A63125C00D55A54 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				82A5C79D1A63125C00D55A54 /* SFBarsTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		82A5C7981A63125C00D55A54 /* PBXTargetDependency */ = {
+		8296718C1AAFFE0B0001CB9D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 82A5C77C1A63125C00D55A54 /* SFBars */;
-			targetProxy = 82A5C7971A63125C00D55A54 /* PBXContainerItemProxy */;
+			targetProxy = 8296718B1AAFFE0B0001CB9D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -666,6 +680,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8296718E1AAFFE0B0001CB9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SFBarsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SF Bars.app/SF Bars";
+			};
+			name = Debug;
+		};
+		8296718F1AAFFE0B0001CB9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SFBarsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SF Bars.app/SF Bars";
+			};
+			name = Release;
+		};
 		82A5C79E1A63125C00D55A54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -758,7 +806,7 @@
 				INFOPLIST_FILE = SFBars/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "SF Bars";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -777,48 +825,22 @@
 				INFOPLIST_FILE = SFBars/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "SF Bars";
 				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = Release;
-		};
-		82A5C7A41A63125C00D55A54 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SFBarsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SFBars.app/SFBars";
-			};
-			name = Debug;
-		};
-		82A5C7A51A63125C00D55A54 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SFBarsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SFBars.app/SFBars";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8296718D1AAFFE0B0001CB9D /* Build configuration list for PBXNativeTarget "SFBarsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8296718E1AAFFE0B0001CB9D /* Debug */,
+				8296718F1AAFFE0B0001CB9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		82A5C7781A63125C00D55A54 /* Build configuration list for PBXProject "SFBars" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -833,15 +855,6 @@
 			buildConfigurations = (
 				82A5C7A11A63125C00D55A54 /* Debug */,
 				82A5C7A21A63125C00D55A54 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		82A5C7A31A63125C00D55A54 /* Build configuration list for PBXNativeTarget "SFBarsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				82A5C7A41A63125C00D55A54 /* Debug */,
-				82A5C7A51A63125C00D55A54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

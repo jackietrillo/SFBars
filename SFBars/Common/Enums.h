@@ -19,3 +19,12 @@ typedef enum {
     AppleMaps = 0,
     GoogleMaps = 1,
 } VendorMaps;
+
+
+typedef enum {
+    BarDetailActionTypePhone = 0,
+    BarDetailActionTypeWebsite = 1,
+    BarDetailActionTypeEvents = 2,
+    BarDetailActionTypeFacebookPage = 3,
+    BarDetailActionTypeYelpReviews = 4
+} BarDetailActionType;

@@ -129,10 +129,10 @@
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      
-     if ([segue.destinationViewController isKindOfClass: [BarDetailsViewController class]]) {
-         BarDetailsViewController* barDetailsViewController = segue.destinationViewController;
+     if ([segue.destinationViewController isKindOfClass: [BarDetailViewController class]]) {
+         BarDetailViewController* barDetailViewController = segue.destinationViewController;
          NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
-         barDetailsViewController.selectedBar = self.dataTopList[indexPath.row];
+         barDetailViewController.selectedBar = self.dataTopList[indexPath.row];
      }
  }
 
