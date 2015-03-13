@@ -7,24 +7,8 @@
 //
 
 typedef enum {
-    FilterByNotAssigned = -1,
-    FilterByBarTypes = 0,
-    FilterByDistricts = 1,
-    FilterByMusicTypes = 2,
-    FilterByBarIds = 3
-} FilterType;
-
-
-typedef enum {
     AppleMaps = 0,
     GoogleMaps = 1,
 } VendorMaps;
 
 
-typedef enum {
-    BarDetailActionTypePhone = 0,
-    BarDetailActionTypeWebsite = 1,
-    BarDetailActionTypeEvents = 2,
-    BarDetailActionTypeFacebookPage = 3,
-    BarDetailActionTypeYelpReviews = 4
-} BarDetailActionType;

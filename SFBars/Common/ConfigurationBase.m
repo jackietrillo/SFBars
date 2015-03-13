@@ -1,5 +1,5 @@
 //
-//  Configuration.h
+//  ConfigurationBase.m
 //  SFBars
 //
 //  Created by JACKIE TRILLO on 3/12/15.
@@ -8,6 +8,6 @@
 
 #import "ConfigurationBase.h"
 
-@interface Configuration : ConfigurationBase
+@implementation ConfigurationBase
 
 @end

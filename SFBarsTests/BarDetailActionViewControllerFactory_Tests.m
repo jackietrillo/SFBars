@@ -12,7 +12,7 @@
 
 @interface BarDetailActionViewControllerFactory_Tests : XCTestCase
 
-@property (readwrite, nonatomic, strong) BarsDetailActionViewControllerFactory* barsDetailActionViewControllerFactory;
+@property (readwrite, nonatomic, strong) BarDetailActionViewControllerFactory* barDetailActionViewControllerFactory;
 @end
 
 @implementation BarDetailActionViewControllerFactory_Tests
@@ -20,18 +20,18 @@
 - (void)setUp {
     [super setUp];
   
-    self.barsDetailActionViewControllerFactory = [[BarsDetailActionViewControllerFactory alloc] init];
+    self.barDetailActionViewControllerFactory = [[BarDetailActionViewControllerFactory alloc] init];
     
 }
 
 - (void)tearDown {
-    self.barsDetailActionViewControllerFactory = nil;
+    self.barDetailActionViewControllerFactory = nil;
     [super tearDown];
 }
 
 - (void)testControllerForAction_WhenBarIsNull_throwsArgumentNullExecption {
    
-    XCTAssertThrows([self.barsDetailActionViewControllerFactory controllerForAction:BarDetailActionTypeWebsite withBar:nil], @"Exception thrown");
+    XCTAssertThrows([self.barDetailActionViewControllerFactory viewControllerForAction:BarDetailActionTypeWebsite withBar:nil], @"Exception thrown");
 }
 
 /*

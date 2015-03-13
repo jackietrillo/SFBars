@@ -9,11 +9,14 @@
 #import "BaseViewController.h"
 #import "BarWebViewController.h"
 #import "NearMeViewController.h"
+#import "BarDetailActionViewControllerFactory.h"
 #import "BarDetailHeaderViewCell.h"
-#import "AppDelegate.h"
 #import "BarDetailItem.h"
-#import "Bar.h"
+#import "BarsEnumParser.h"
+#import "BarsEnums.h"
 #import "Enums.h"
+#import "Bar.h"
+#import "AppDelegate.h"
 
 @interface BarDetailViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate,
                                                         MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>

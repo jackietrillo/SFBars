@@ -6,12 +6,15 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
+@import UIKit;
+@import MessageUI;
+
 #import "BarWebViewController.h"
 #import "Bar.h"
-#import "Enums.h"
+#import "BarsEnums.h"
 
-@interface BarsDetailActionViewControllerFactory : NSObject
+@interface BarDetailActionViewControllerFactory : NSObject
 
--(UIViewController*) controllerForAction: (BarDetailActionType)action withBar: (Bar*) bar;
+-(UIViewController*) viewControllerForAction: (BarDetailActionType)action withBar: (Bar*) bar;
 
 @end

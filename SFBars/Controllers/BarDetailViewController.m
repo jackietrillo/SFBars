@@ -20,8 +20,6 @@
 
 @implementation BarDetailViewController
 
-static NSString* SAVEDBARSDICT = @"savedBarsDict";
-
 typedef enum {
     DetailTableViewSection = 0,
     FavoriteTableViewSection = 1,
@@ -223,13 +221,15 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSInteger rowIndex = indexPath.row;
-    BarDetailItem* barDetailItem;
-    UIStoryboard* storyboard;
     
-    // TODO: consider using factory pattern here
+    BarDetailItem* barDetailItem;
+    
+    UIViewController* viewController;
+    
+    BarDetailActionViewControllerFactory* barDetailActionViewControllerFactory = [[BarDetailActionViewControllerFactory alloc] init];
+    
     switch(indexPath.section) {
         case DetailTableViewSection:
-            
             barDetailItem = self.dataDetail[rowIndex];
             
             if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Address", @"Address")]) {
@@ -244,7 +244,6 @@ typedef enum {
                NSURL* telephoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:1-%@", phoneNumber]];
                 
                 if ([[UIApplication sharedApplication] canOpenURL: telephoneURL]) {
-                    
                     [[UIApplication sharedApplication] openURL: telephoneURL];
                 }
                 else {
@@ -256,100 +255,46 @@ typedef enum {
                                                               otherButtonTitles:nil];
                     
                     [alertView show];
+                   }
                 }
+            else {
+                
+                BarDetailActionType barDetailActionType = [BarsEnumParser enumFromString: barDetailItem.name];
+                viewController = [barDetailActionViewControllerFactory viewControllerForAction: barDetailActionType withBar: self.selectedBar];
+                
+                [self.navigationController pushViewController:viewController animated:YES];
             }
-            else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Website", @"Website")]) {
-                
-                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                
-                BarWebViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarWebViewController"];
-
-                vc.url = self.selectedBar.websiteUrl;
-                
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-            else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Events", @"Events")]) {
-                
-                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                
-                BarWebViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarWebViewController"];
-
-                vc.url = self.selectedBar.calendarUrl;
-                
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-            else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Facebook Page", @"Facebook Page")]) {
-                
-                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                
-                BarWebViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarWebViewController"];
-                
-                vc.url = self.selectedBar.facebookUrl;
-                
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-            else if ([barDetailItem.name isEqualToString:NSLocalizedString(@"Yelp Reviews", @"Yelp Reviews")]) {
-                
-                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                
-                BarWebViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarWebViewController"];
-                
-                vc.url = self.selectedBar.yelpUrl;
-                
-                [self.navigationController pushViewController:vc animated:YES];
-            }
+            
             break;
             
         case FavoriteTableViewSection:
              barDetailItem = self.dataFavorite[rowIndex];
+          
+            /*
+            UIAlertView* alertView;
             
-            //TODO: this needs to be refactored 
-            if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Save", @"Save")]) {
-              
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-               
-                NSMutableDictionary* savedBarsDict = [[defaults dictionaryForKey:SAVEDBARSDICT] mutableCopy];
-                
-                if (savedBarsDict == nil) {
-                    savedBarsDict = [[NSMutableDictionary alloc] init];
-                }
-                
-                NSString* barIdAsString =  [NSString stringWithFormat:@"%d", (int)self.selectedBar.barId];
-                
-                NSObject* barId =  [savedBarsDict objectForKey:barIdAsString];
-                
-                if (barId == nil) {
-                    [savedBarsDict setValue:barIdAsString forKey:barIdAsString];
-               
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message: NSLocalizedString(@"Save", @"Save") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
-                    
-                    [alertView show];
-                    
-                } else {
-                    
-                    [savedBarsDict removeObjectForKey:barIdAsString];
-                    
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Unsaved", @"Unsaved") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
-                    
-                    [alertView show];
-                }
-                
-                [defaults setObject:savedBarsDict forKey:SAVEDBARSDICT];
-
-            }
+            alertView = [[UIAlertView alloc] initWithTitle:@"" message: NSLocalizedString(@"Saved", @"Saved") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
+            
+            alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Removed", @"Removed") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
+            
+            [alertView show];
+            */
             break;
             
-            case ShareTableViewSection:
-            
-                barDetailItem = self.dataShare[rowIndex];
-            
-                if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Message", @"Message")]) {
-                    [self tappedSendSMS];
-                }
-                else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Email", @"Email")]) {
-                    [self tappedSendMail];
-                }
-    
+        case ShareTableViewSection:
+            barDetailItem = self.dataShare[rowIndex];
+        
+            BarDetailActionType barDetailActionType = [BarsEnumParser enumFromString: barDetailItem.name];
+            viewController = [barDetailActionViewControllerFactory viewControllerForAction: barDetailActionType withBar: self.selectedBar];
+        
+            if ([viewController isKindOfClass: [MFMailComposeViewController class]]) {
+                ((MFMailComposeViewController*)viewController).mailComposeDelegate = self;
+                 [self presentViewController:viewController animated:YES completion:nil];
+            }
+            if ([viewController isKindOfClass: [MFMessageComposeViewController class]]) {
+                ((MFMessageComposeViewController*)viewController).messageComposeDelegate = self;
+                 [self presentViewController:viewController animated:YES completion:nil];
+            }
             break;
         default:
             break;
@@ -357,7 +302,6 @@ typedef enum {
 }
 
 -(void)openMapsActionSheet:(id)sender {
-   
     UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle: NSLocalizedString(@"Open in Maps", @"Open in Maps")
                                                        delegate:self
                                               cancelButtonTitle: NSLocalizedString(@"Cancel", @"Cancel")
@@ -437,40 +381,6 @@ typedef enum {
     }
     
     [controller dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Events
-
--(void)tappedSendMail {
-    
-    MFMailComposeViewController* mailComposeViewController = [[MFMailComposeViewController alloc] init];
-    
-   [mailComposeViewController setSubject:self.selectedBar.name];
-   [mailComposeViewController setMessageBody:self.selectedBar.address isHTML:YES];
-    mailComposeViewController.mailComposeDelegate = self;
-    
-   [self presentViewController:mailComposeViewController animated:YES completion:nil];
-}
-
--(void)tappedSendSMS {
-    
-    MFMessageComposeViewController* messageComposeViewController = [[MFMessageComposeViewController alloc] init];
-    
-    [messageComposeViewController setSubject:self.selectedBar.name];
-    [messageComposeViewController setBody:[NSString stringWithFormat:@"%@ - %@", self.selectedBar.name, self.selectedBar.address]];
-    messageComposeViewController.messageComposeDelegate = self;
-    
-    [self presentViewController:messageComposeViewController animated:YES completion:nil];
-}
-
-#pragma mark - Navigation
-
- - (IBAction)unwindToBarDetails:(UIStoryboardSegue *)unwindSegue {
-   //
- }
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-   //
 }
 
 @end

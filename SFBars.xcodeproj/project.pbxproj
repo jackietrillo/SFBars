@@ -27,6 +27,11 @@
 		823A59C11AAE819C00134A4B /* BarsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 823A59C01AAE819C00134A4B /* BarsManager.m */; };
 		827C029B1AAD02B4008EC2FA /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 827C029A1AAD02B4008EC2FA /* Party.m */; };
 		827C029E1AAD02C2008EC2FA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 827C029D1AAD02C2008EC2FA /* Event.m */; };
+		82814BC81AB27DDB00194ACB /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 82814BC31AB27DDB00194ACB /* Configuration.m */; };
+		82814BC91AB27DDB00194ACB /* ConfigurationBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 82814BC51AB27DDB00194ACB /* ConfigurationBase.m */; };
+		82814BCA1AB27DDB00194ACB /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82814BC71AB27DDB00194ACB /* ImageDownloader.m */; };
+		82814BD21AB2886E00194ACB /* BarsEnumParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 82814BD01AB2886E00194ACB /* BarsEnumParser.m */; };
+		82814BD51AB2A29D00194ACB /* BarsFavoriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82814BD41AB2A29D00194ACB /* BarsFavoriteManager.m */; };
 		8285AE851A7C4B97004858FD /* BarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61D1A761B7200D2466D /* BarDetailViewController.m */; };
 		8285AE8F1A7C69D4004858FD /* BarDetailHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8285AE8E1A7C69D4004858FD /* BarDetailHeaderViewCell.m */; };
 		8285AE911A7C69FC004858FD /* BarDetailHeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8285AE901A7C69FC004858FD /* BarDetailHeaderViewCell.xib */; };
@@ -59,7 +64,6 @@
 		82B086591A9A6AC2005BD2BE /* BarDetailItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 82B086581A9A6AC2005BD2BE /* BarDetailItems.json */; };
 		82B086651A9A8D36005BD2BE /* NearMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B086641A9A8D36005BD2BE /* NearMeViewController.m */; };
 		82B828F61A85FE5700F90A33 /* glyphicons-halflings-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820ABF151A847AF20022192F /* glyphicons-halflings-regular.ttf */; };
-		82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C131A70830100E71F40 /* ImageDownloader.m */; };
 		82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BA4C161A70838500E71F40 /* BaseEntity.m */; };
 		82BA4C1A1A70CD8E00E71F40 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82BA4C191A70CD8E00E71F40 /* Images.xcassets */; };
 		82BB5FF01A649E55002F5578 /* BarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BB5FEF1A649E55002F5578 /* BarType.m */; };
@@ -121,6 +125,17 @@
 		827C029A1AAD02B4008EC2FA /* Party.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Party.m; path = SFBars/Models/Party.m; sourceTree = "<group>"; };
 		827C029C1AAD02C2008EC2FA /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = SFBars/Models/Event.h; sourceTree = "<group>"; };
 		827C029D1AAD02C2008EC2FA /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = SFBars/Models/Event.m; sourceTree = "<group>"; };
+		82814BC21AB27DDB00194ACB /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = Common/Configuration.h; sourceTree = "<group>"; };
+		82814BC31AB27DDB00194ACB /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Configuration.m; path = Common/Configuration.m; sourceTree = "<group>"; };
+		82814BC41AB27DDB00194ACB /* ConfigurationBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigurationBase.h; path = Common/ConfigurationBase.h; sourceTree = "<group>"; };
+		82814BC51AB27DDB00194ACB /* ConfigurationBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationBase.m; path = Common/ConfigurationBase.m; sourceTree = "<group>"; };
+		82814BC61AB27DDB00194ACB /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Common/ImageDownloader.h; sourceTree = "<group>"; };
+		82814BC71AB27DDB00194ACB /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Common/ImageDownloader.m; sourceTree = "<group>"; };
+		82814BCF1AB2886E00194ACB /* BarsEnumParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarsEnumParser.h; path = Enums/BarsEnumParser.h; sourceTree = "<group>"; };
+		82814BD01AB2886E00194ACB /* BarsEnumParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarsEnumParser.m; path = Enums/BarsEnumParser.m; sourceTree = "<group>"; };
+		82814BD11AB2886E00194ACB /* BarsEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarsEnums.h; path = Enums/BarsEnums.h; sourceTree = "<group>"; };
+		82814BD31AB2A29D00194ACB /* BarsFavoriteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarsFavoriteManager.h; path = Classes/BarsFavoriteManager.h; sourceTree = "<group>"; };
+		82814BD41AB2A29D00194ACB /* BarsFavoriteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarsFavoriteManager.m; path = Classes/BarsFavoriteManager.m; sourceTree = "<group>"; };
 		8285AE8D1A7C69D4004858FD /* BarDetailHeaderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailHeaderViewCell.h; path = Controls/BarDetailHeaderViewCell.h; sourceTree = "<group>"; };
 		8285AE8E1A7C69D4004858FD /* BarDetailHeaderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailHeaderViewCell.m; path = Controls/BarDetailHeaderViewCell.m; sourceTree = "<group>"; };
 		8285AE901A7C69FC004858FD /* BarDetailHeaderViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BarDetailHeaderViewCell.xib; path = Controls/BarDetailHeaderViewCell.xib; sourceTree = "<group>"; };
@@ -134,7 +149,6 @@
 		829671011AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailActionViewControllerFactory.h; path = Classes/BarDetailActionViewControllerFactory.h; sourceTree = "<group>"; };
 		829671021AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailActionViewControllerFactory.m; path = Classes/BarDetailActionViewControllerFactory.m; sourceTree = "<group>"; };
 		829671041AAFFBE30001CB9D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		829671541AAFFC300001CB9D /* SFBars copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SFBars copy-Info.plist"; path = "/Users/jackietrillo/code/SFBars/SFBars copy-Info.plist"; sourceTree = "<absolute>"; };
 		829671851AAFFE0B0001CB9D /* SFBarsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SFBarsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		829671881AAFFE0B0001CB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		829671891AAFFE0B0001CB9D /* SFBarsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFBarsTests.m; sourceTree = "<group>"; };
@@ -160,7 +174,6 @@
 		82A5C7FC1A632B9800D55A54 /* DroidSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DroidSans.ttf; path = SFBars/Resources/Fonts/DroidSans.ttf; sourceTree = "<group>"; };
 		82A5C7FD1A632B9800D55A54 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = SFBars/Resources/Fonts/FontAwesome.ttf; sourceTree = "<group>"; };
 		82A5C8081A632BD900D55A54 /* LaunchImage-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LaunchImage-568h@2x.png"; path = "SFBars/Resources/LaunchImage-568h@2x.png"; sourceTree = "<group>"; };
-		82A914941A99641F0019D30A /* Configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = Common/Configuration.h; sourceTree = "<group>"; };
 		82A914991A9985B90019D30A /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingView.xib; path = Controls/LoadingView.xib; sourceTree = "<group>"; };
 		82A9149B1A9985FF0019D30A /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Controls/LoadingView.h; sourceTree = "<group>"; };
 		82A9149C1A9985FF0019D30A /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Controls/LoadingView.m; sourceTree = "<group>"; };
@@ -173,8 +186,6 @@
 		82B086581A9A6AC2005BD2BE /* BarDetailItems.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BarDetailItems.json; path = SFBars/Resources/BarDetailItems.json; sourceTree = "<group>"; };
 		82B086631A9A8D04005BD2BE /* NearMeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NearMeViewController.h; path = SFBars/Controllers/NearMeViewController.h; sourceTree = "<group>"; };
 		82B086641A9A8D36005BD2BE /* NearMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearMeViewController.m; path = SFBars/Controllers/NearMeViewController.m; sourceTree = "<group>"; };
-		82BA4C121A70830100E71F40 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Common/ImageDownloader.h; sourceTree = "<group>"; };
-		82BA4C131A70830100E71F40 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Common/ImageDownloader.m; sourceTree = "<group>"; };
 		82BA4C151A70838500E71F40 /* BaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseEntity.h; path = SFBars/Models/BaseEntity.h; sourceTree = "<group>"; };
 		82BA4C161A70838500E71F40 /* BaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseEntity.m; path = SFBars/Models/BaseEntity.m; sourceTree = "<group>"; };
 		82BA4C191A70CD8E00E71F40 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SFBars/Images.xcassets; sourceTree = "<group>"; };
@@ -259,8 +270,20 @@
 				823A59C01AAE819C00134A4B /* BarsManager.m */,
 				829671011AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.h */,
 				829671021AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.m */,
+				82814BD31AB2A29D00194ACB /* BarsFavoriteManager.h */,
+				82814BD41AB2A29D00194ACB /* BarsFavoriteManager.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		82814BCE1AB281EE00194ACB /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				82814BD11AB2886E00194ACB /* BarsEnums.h */,
+				82814BCF1AB2886E00194ACB /* BarsEnumParser.h */,
+				82814BD01AB2886E00194ACB /* BarsEnumParser.m */,
+			);
+			name = Enums;
 			sourceTree = "<group>";
 		};
 		829671861AAFFE0B0001CB9D /* SFBarsTests */ = {
@@ -288,7 +311,6 @@
 				829671861AAFFE0B0001CB9D /* SFBarsTests */,
 				82A5C80A1A632C1800D55A54 /* Frameworks */,
 				82A5C77E1A63125C00D55A54 /* Products */,
-				829671541AAFFC300001CB9D /* SFBars copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -304,6 +326,7 @@
 		82A5C77F1A63125C00D55A54 /* SFBars */ = {
 			isa = PBXGroup;
 			children = (
+				82814BCE1AB281EE00194ACB /* Enums */,
 				82A5C7A91A631F3B00D55A54 /* Common */,
 				823A59B51AAE7F4900134A4B /* Classes */,
 				82A5C7A61A631F0B00D55A54 /* Controllers */,
@@ -416,10 +439,13 @@
 		82A5C7A91A631F3B00D55A54 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				82BA4C121A70830100E71F40 /* ImageDownloader.h */,
-				82BA4C131A70830100E71F40 /* ImageDownloader.m */,
+				82814BC41AB27DDB00194ACB /* ConfigurationBase.h */,
+				82814BC51AB27DDB00194ACB /* ConfigurationBase.m */,
+				82814BC21AB27DDB00194ACB /* Configuration.h */,
+				82814BC31AB27DDB00194ACB /* Configuration.m */,
+				82814BC61AB27DDB00194ACB /* ImageDownloader.h */,
+				82814BC71AB27DDB00194ACB /* ImageDownloader.m */,
 				82E8E1921A8DAB1A0042F2C4 /* Enums.h */,
-				82A914941A99641F0019D30A /* Configuration.h */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -605,11 +631,13 @@
 				8285AE851A7C4B97004858FD /* BarDetailViewController.m in Sources */,
 				82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */,
 				82B086571A9A6A72005BD2BE /* BarDetailItem.m in Sources */,
+				82814BC91AB27DDB00194ACB /* ConfigurationBase.m in Sources */,
 				82EEC95E1A9C5B1A00E211BC /* SearchViewController.m in Sources */,
 				82A5C7EB1A63266100D55A54 /* Bar.m in Sources */,
 				82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */,
 				82CF532E1A7C2E800087F0F5 /* TopListViewController.m in Sources */,
 				823A59BA1AAE7FBC00134A4B /* BarsGateway.m in Sources */,
+				82814BD51AB2A29D00194ACB /* BarsFavoriteManager.m in Sources */,
 				823A59BE1AAE817900134A4B /* BarsManagerBase.m in Sources */,
 				82D43C4C1A95718700B4196C /* MenuItem.m in Sources */,
 				8285AE8F1A7C69D4004858FD /* BarDetailHeaderViewCell.m in Sources */,
@@ -621,7 +649,9 @@
 				82BA4C171A70838500E71F40 /* BaseEntity.m in Sources */,
 				828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
+				82814BCA1AB27DDB00194ACB /* ImageDownloader.m in Sources */,
 				82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */,
+				82814BC81AB27DDB00194ACB /* Configuration.m in Sources */,
 				827C029B1AAD02B4008EC2FA /* Party.m in Sources */,
 				82D43C401A95687300B4196C /* MusicType.m in Sources */,
 				82B086651A9A8D36005BD2BE /* NearMeViewController.m in Sources */,
@@ -637,7 +667,7 @@
 				829671031AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.m in Sources */,
 				82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */,
 				82A5C7831A63125C00D55A54 /* main.m in Sources */,
-				82BA4C141A70830100E71F40 /* ImageDownloader.m in Sources */,
+				82814BD21AB2886E00194ACB /* BarsEnumParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,6 +870,7 @@
 				8296718F1AAFFE0B0001CB9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		82A5C7781A63125C00D55A54 /* Build configuration list for PBXProject "SFBars" */ = {
 			isa = XCConfigurationList;
