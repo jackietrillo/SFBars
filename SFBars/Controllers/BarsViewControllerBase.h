@@ -14,10 +14,10 @@ extern NSString* kGlyphIconsFontName;
 extern NSString* kFontAwesomeFontName;
 extern NSString* kServiceUrl;
 
-@interface BaseViewController : UIViewController
+@interface BarsViewControllerBase : UIViewController
 
-@property (readonly, nonatomic, strong) BarsGateway* barsGateway;
-@property (readonly, nonatomic, strong) BarsManager* barsManager;
+//@property (readonly, nonatomic, strong) BarsGateway* barsGateway;
+@property (readonly, nonatomic, strong) BarsFacade* barsFacade;
 @property (readwrite, nonatomic, strong) LoadingView* loadingView;
 
 -(void)addMenuButtonToNavigation;

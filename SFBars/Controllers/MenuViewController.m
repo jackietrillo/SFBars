@@ -19,14 +19,11 @@
 
 @implementation MenuViewController
 
-static NSString* SAVEDBARSDICT = @"savedBarsDict";
-
 typedef enum {
     MenuTableViewSectionTop = 0,
     MenuTableViewSectionMiddle = 1,
     MenuTableViewSectionBottom = 2,
 } MenuTableViewSection;
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,7 +31,7 @@ typedef enum {
     [self initNavigation];
     [self initTableView];
     
-    [self loadTableViewData:[self.barsManager getMenuItems]];
+    [self loadTableViewData:[self.barsFacade getMenuItems]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,21 +40,20 @@ typedef enum {
 }
 
 -(void)initNavigation {
-    
     self.navigationItem.title = NSLocalizedString(@"MENU", @"MENU");
     [self.navigationItem setHidesBackButton:YES animated:YES];
+    
+    //TODO: find a better way to remove the "Back" text from segued controller's back bar button
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 -(void)initTableView {
-    
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.opaque = NO;
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MenuBackground"]];
 }
 
 -(void)loadTableViewData: (NSArray*)menuItems {
-    
     self.menuDataTop = [[NSMutableArray alloc] init];
     self.menuDataMiddle = [[NSMutableArray alloc] init];
     self.menuDataBottom = [[NSMutableArray alloc] init];
@@ -81,7 +77,6 @@ typedef enum {
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
   
     switch(section) {
@@ -101,7 +96,6 @@ typedef enum {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     switch(section) {
         case MenuTableViewSectionTop:
             return 50;
@@ -115,17 +109,14 @@ typedef enum {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
     return 0.0f;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
     switch(section) {
         case MenuTableViewSectionTop:
             return @" ";
@@ -139,7 +130,6 @@ typedef enum {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     switch(section) {
         case MenuTableViewSectionTop:
             return [self.menuDataTop count];
@@ -153,15 +143,13 @@ typedef enum {
 }
 
 -(void)setTableViewCellStyle:(UITableViewCell *)tableViewCell {
-   
     [tableViewCell.textLabel setTextColor:[UIColor whiteColor]];
     tableViewCell.textLabel.highlightedTextColor = [UIColor grayColor];
     tableViewCell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
 }
 
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell* cell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
 
     cell.selectedBackgroundView = [[UIView alloc] init];
     cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -180,10 +168,10 @@ typedef enum {
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSInteger rowIndex = indexPath.row;
+
     UITableViewCell* tableViewCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
-    NSInteger rowIndex = indexPath.row;
     MenuItem* menuItem;
     
     switch(indexPath.section) {
@@ -215,9 +203,10 @@ typedef enum {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   
     NSInteger rowIndex = indexPath.row;
+    
     MenuItem* menuItem;
+    
     UIStoryboard* storyboard;
     
     switch(indexPath.section) {
@@ -261,35 +250,21 @@ typedef enum {
             }
             break;
             
-        case MenuTableViewSectionMiddle: // TODO refactor
+        case MenuTableViewSectionMiddle:
             menuItem = (MenuItem*)self.menuDataMiddle[rowIndex];
-            
-            if ([menuItem.name isEqualToString: NSLocalizedString(@"Saved", @"Saved")]) {
+            if ([menuItem.name isEqualToString: NSLocalizedString(@"Favorites", @"Favorites")]) {
                
-                //TODO: refactor this
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                NSMutableDictionary* savedBarsDict = [defaults objectForKey:SAVEDBARSDICT];
-             
-                if (savedBarsDict != nil && savedBarsDict.count == 110) {
-                    NSMutableArray* savedBars = [[NSMutableArray alloc] init];
-               
-                    for (id key in savedBarsDict) {
-                        NSObject* barId = [savedBarsDict objectForKey:key];
-                        if (barId != 0) {
-                            [savedBars addObject:barId];
-                        }
-                    }
-                    
+                NSArray* favoriteBars = [self.barsFacade getFavorites];
+                if (favoriteBars) {
                     storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    BarViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarViewController"];
-                    vc.bars = savedBars;
-                    
-                    [self.navigationController pushViewController:vc animated:YES];
+                    BarViewController* barViewController = [storyboard instantiateViewControllerWithIdentifier:@"BarViewController"];
+                    barViewController.filterType = FilterByBarIds;
+                    barViewController.filterIds = favoriteBars;
+                    [self.navigationController pushViewController:barViewController animated:YES];
                 }
                 else {
-                    // note this is temporary
                     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info", @"Info")
-                                                                        message: NSLocalizedString(@"You have no saved Bars.", @"You have no saved Bars.")
+                                                                        message: NSLocalizedString(@"You have no favorites.", @"You have no favorites.")
                                                                        delegate: nil
                                                               cancelButtonTitle: NSLocalizedString(@"Cancel", @"Cancel")
                                                               otherButtonTitles: nil];
@@ -313,6 +288,5 @@ typedef enum {
             break;
     }
 }
-
 
 @end

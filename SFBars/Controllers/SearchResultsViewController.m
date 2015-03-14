@@ -18,7 +18,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* tableViewCell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    UITableViewCell* tableViewCell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     Bar* bar = self.filteredBars[indexPath.row];
     

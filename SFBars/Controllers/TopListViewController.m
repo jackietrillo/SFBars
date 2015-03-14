@@ -24,7 +24,7 @@
     self.tableView.hidden = YES;
     self.tableView.delegate = self;
     
-    [self.barsGateway getBars: ^(NSArray* data) {
+    [self.barsFacade getBars: ^(NSArray* data) {
     
         if (data) {
             self.tableView.hidden = NO;

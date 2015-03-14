@@ -8,10 +8,10 @@
 
 #import <GoogleMaps/GoogleMaps.h>
 
-#import "BaseViewController.h"
+#import "BarsViewControllerBase.h"
 #import "AppDelegate.h"
 #import "Bar.h"
 
-@interface NearMeViewController : BaseViewController;
+@interface NearMeViewController : BarsViewControllerBase;
 
 @end

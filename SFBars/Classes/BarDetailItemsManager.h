@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BarDetailItem.h"
 
 @interface BarDetailItemsManager : NSObject
+
+-(NSArray*)getBarDetailItems;
 
 @end

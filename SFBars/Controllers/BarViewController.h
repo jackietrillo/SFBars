@@ -7,7 +7,7 @@
 //
 
 #import "ImageDownloader.h"
-#import "BaseViewController.h"
+#import "BarsViewControllerBase.h"
 #import "BarWebViewController.h"
 #import "BarDetailViewController.h"
 #import "BarTableViewCell.h"
@@ -16,13 +16,12 @@
 #import "Enums.h"
 
 
-@interface BarViewController : BaseViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface BarViewController : BarsViewControllerBase <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (readwrite, nonatomic, strong) NSString* titleText;
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 @property (readwrite, nonatomic) FilterType filterType;
-@property (readwrite, nonatomic) NSArray* filterIds;
+@property (readwrite, nonatomic) NSArray* filterIds; // note filterIds depend on the filterType
 
-@property (readwrite, nonatomic, strong) NSMutableArray* bars;
 
 @end

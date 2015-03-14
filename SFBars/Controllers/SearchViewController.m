@@ -27,13 +27,12 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
     
-    [self.appDelegate.barsGateway getBars: ^(NSArray* data) {
+    [self.appDelegate.barsFacade getBars: ^(NSArray* data) {
         self.bars = data;
         [self.tableView reloadData];
     }];
     
     [self initSearchViewController];
-
 }
 
 -(void)initSearchViewController {

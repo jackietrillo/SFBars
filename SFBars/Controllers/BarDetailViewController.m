@@ -11,11 +11,11 @@
 @interface BarDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (readwrite, nonatomic, strong) NSMutableArray* barDetailsData;
-@property (readwrite, nonatomic, strong) NSMutableArray* dataDetail;
-@property (readwrite, nonatomic, strong) NSMutableArray* dataFavorite;
-@property (readwrite, nonatomic, strong) NSMutableArray* dataShare;
+@property (readwrite, nonatomic, strong) NSMutableArray* dataDetailSection;
+@property (readwrite, nonatomic, strong) NSMutableArray* dataFavoriteSection;
+@property (readwrite, nonatomic, strong) NSMutableArray* dataShareSection;
 
+@property (readwrite, nonatomic, strong) BarDetailActionViewControllerFactory* barDetailActionViewControllerFactory;
 @end
 
 @implementation BarDetailViewController
@@ -29,10 +29,12 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    self.barDetailActionViewControllerFactory = [[BarDetailActionViewControllerFactory alloc] init];
+    
     [self initNavigation];
     [self initTableView];
-    
-    [self loadTableViewData:[self.barsManager getBarDetailItems]];
+   
+    [self loadTableViewData:[self.barsFacade getBarDetailItems]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,9 +61,9 @@ typedef enum {
 }
 
 -(void)loadTableViewData: (NSArray*)barDetailItems {
-    self.dataDetail = [[NSMutableArray alloc] init];
-    self.dataFavorite = [[NSMutableArray alloc] init];
-    self.dataShare = [[NSMutableArray alloc] init];
+    self.dataDetailSection = [[NSMutableArray alloc] init];
+    self.dataFavoriteSection = [[NSMutableArray alloc] init];
+    self.dataShareSection = [[NSMutableArray alloc] init];
     
     BarDetailItem* barDetailItem;
     
@@ -70,13 +72,13 @@ typedef enum {
         barDetailItem = barDetailItems[i];
         
         if (barDetailItem.section == DetailTableViewSection && barDetailItem.statusFlag) {
-            [self.dataDetail addObject:barDetailItem];
+            [self.dataDetailSection addObject:barDetailItem];
         }
         else if (barDetailItem.section == FavoriteTableViewSection && barDetailItem.statusFlag) {
-            [self.dataFavorite addObject:barDetailItem];
+            [self.dataFavoriteSection addObject:barDetailItem];
         }
         else if (barDetailItem.section == ShareTableViewSection && barDetailItem.statusFlag) {
-            [self.dataShare addObject:barDetailItem];
+            [self.dataShareSection addObject:barDetailItem];
         }
     }
 }
@@ -113,14 +115,12 @@ typedef enum {
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    
     UIView* sectionFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 50.0)];
     sectionFooterView.backgroundColor = [UIColor blackColor];
     return sectionFooterView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     switch(section) {
         case DetailTableViewSection:
             return 30;
@@ -138,7 +138,6 @@ typedef enum {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
     switch(section) {
         case DetailTableViewSection:
             return 0.0f;
@@ -154,26 +153,13 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch(section) {
         case DetailTableViewSection:
-            return [self.dataDetail count];
+            return [self.dataDetailSection count];
         case FavoriteTableViewSection:
-            return [self.dataFavorite count];
+            return [self.dataFavoriteSection count];
         case ShareTableViewSection:
-            return [self.dataShare count];
+            return [self.dataShareSection count];
         default:
             return 0;
-    }
-}
-
--(NSString*)getBarPropertyValueFromBarPropertyName:(NSString*)propertyName forSelectedBar:(Bar*)bar {
-    
-    if([propertyName isEqualToString: NSLocalizedString(@"Address", @"Address")]) {
-        return bar.address;
-    }
-    else if ([propertyName isEqualToString: NSLocalizedString(@"Phone", @"Phone")]){
-         return bar.phone;
-    }
-    else {
-        return propertyName;
     }
 }
 
@@ -184,7 +170,6 @@ typedef enum {
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     NSInteger rowIndex = indexPath.row;
     
     BarDetailItem* barDetailItem;
@@ -193,22 +178,21 @@ typedef enum {
 
     switch(indexPath.section) {
         case DetailTableViewSection:
-            barDetailItem = self.dataDetail[rowIndex];
+            barDetailItem = self.dataDetailSection[rowIndex];
             break;
         case FavoriteTableViewSection:
-            barDetailItem = self.dataFavorite[rowIndex];
+            barDetailItem = self.dataFavoriteSection[rowIndex];
             break;
         case ShareTableViewSection:
-            barDetailItem = self.dataShare[rowIndex];
+            barDetailItem = self.dataShareSection[rowIndex];
             break;
         default:
             break;
     }
     
-    tableViewCell.textLabel.text =  [self getBarPropertyValueFromBarPropertyName: barDetailItem.name forSelectedBar:self.selectedBar];
+    tableViewCell.textLabel.text = [Bar getPropertyValueFromPropertyName: barDetailItem.name forBar:self.selectedBar];
     
     tableViewCell.imageView.image = [UIImage imageNamed: barDetailItem.imageUrl];
-    
     if (tableViewCell.imageView.image == nil) {
         tableViewCell.imageView.image = [UIImage imageNamed:@"Icon-Search"];
     }
@@ -219,73 +203,62 @@ typedef enum {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     NSInteger rowIndex = indexPath.row;
     
     BarDetailItem* barDetailItem;
     
     UIViewController* viewController;
-    
-    BarDetailActionViewControllerFactory* barDetailActionViewControllerFactory = [[BarDetailActionViewControllerFactory alloc] init];
-    
+    UIAlertView* alertView;
+
     switch(indexPath.section) {
+            
         case DetailTableViewSection:
-            barDetailItem = self.dataDetail[rowIndex];
+            barDetailItem = self.dataDetailSection[rowIndex];
             
             if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Address", @"Address")]) {
                 [self openMapsActionSheet: self];
             }
             else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Phone", @"Phone")]) {
-               
-               NSString* phoneNumber = [self.selectedBar.phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
-               phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
-               phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@"-"];
-                
-               NSURL* telephoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:1-%@", phoneNumber]];
-                
+                NSURL* telephoneURL = [TelephoneHelper telephoneUrl:self.selectedBar.phone];
                 if ([[UIApplication sharedApplication] canOpenURL: telephoneURL]) {
                     [[UIApplication sharedApplication] openURL: telephoneURL];
                 }
                 else {
-                    
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info",@"Info")
-                                                                        message: NSLocalizedString(@"Unable to dial phone number", @"Unable to dial phone number")
-                                                                       delegate:nil
-                                                              cancelButtonTitle: NSLocalizedString(@"OK",@"OK")
-                                                              otherButtonTitles:nil];
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info",@"Info") message: NSLocalizedString(@"Unable to dial phone number", @"Unable to dial phone number") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK",@"OK") otherButtonTitles:nil];
                     
                     [alertView show];
                    }
                 }
             else {
-                
-                BarDetailActionType barDetailActionType = [BarsEnumParser enumFromString: barDetailItem.name];
-                viewController = [barDetailActionViewControllerFactory viewControllerForAction: barDetailActionType withBar: self.selectedBar];
+                BarDetailActionType barDetailActionType = [BarsEnumParser barDetailActionTypeEnumFromString: barDetailItem.name];
+                viewController = [self.barDetailActionViewControllerFactory viewControllerForAction: barDetailActionType withBar: self.selectedBar];
                 
                 [self.navigationController pushViewController:viewController animated:YES];
             }
-            
             break;
             
         case FavoriteTableViewSection:
-             barDetailItem = self.dataFavorite[rowIndex];
-          
-            /*
-            UIAlertView* alertView;
+             barDetailItem = self.dataFavoriteSection[rowIndex];
             
-            alertView = [[UIAlertView alloc] initWithTitle:@"" message: NSLocalizedString(@"Saved", @"Saved") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
+             if (![self.barsFacade favoriteExits: self.selectedBar.barId]) {
+                [self.barsFacade saveFavorite:self.selectedBar.barId];
+                 
+                 alertView = [[UIAlertView alloc] initWithTitle:@"" message: NSLocalizedString(@"Saved", @"Saved") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
+             } else {
+             
+                 [self.barsFacade removeFavorite:self.selectedBar.barId];
+                 alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Removed", @"Removed") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
+             }
             
-            alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Removed", @"Removed") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
-            
-            [alertView show];
-            */
-            break;
+             [alertView show];
+             break;
             
         case ShareTableViewSection:
-            barDetailItem = self.dataShare[rowIndex];
+            barDetailItem = self.dataShareSection[rowIndex];
         
-            BarDetailActionType barDetailActionType = [BarsEnumParser enumFromString: barDetailItem.name];
-            viewController = [barDetailActionViewControllerFactory viewControllerForAction: barDetailActionType withBar: self.selectedBar];
+            BarDetailActionType barDetailActionType = [BarsEnumParser barDetailActionTypeEnumFromString: barDetailItem.name];
+           
+            viewController = [self.barDetailActionViewControllerFactory viewControllerForAction: barDetailActionType withBar: self.selectedBar];
         
             if ([viewController isKindOfClass: [MFMailComposeViewController class]]) {
                 ((MFMailComposeViewController*)viewController).mailComposeDelegate = self;
@@ -296,43 +269,45 @@ typedef enum {
                  [self presentViewController:viewController animated:YES completion:nil];
             }
             break;
+            
         default:
             break;
     }
 }
 
 -(void)openMapsActionSheet:(id)sender {
-    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle: NSLocalizedString(@"Open in Maps", @"Open in Maps")
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle: NSLocalizedString(@"Open in Maps", @"Open in Maps")
                                                        delegate:self
                                               cancelButtonTitle: NSLocalizedString(@"Cancel", @"Cancel")
                                          destructiveButtonTitle:nil
                                               otherButtonTitles:NSLocalizedString(@"Apple Maps", @"Apple Maps"), NSLocalizedString(@"Google Maps", @"Google Maps"), nil];
     
-    [sheet showInView:self.view];
+    [actionSheet showInView:self.view];
 }
 
+#pragma mark - UIActionSheetDelegate
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake(self.selectedBar.latitude,self.selectedBar.longitude);
-    
     if (buttonIndex == AppleMaps) {
-       
         MKPlacemark* placemark = [[MKPlacemark alloc] initWithCoordinate:location addressDictionary:nil];
-    
         MKMapItem* mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
         mapItem.name = self.selectedBar.name;
         [mapItem openInMapsWithLaunchOptions:nil];
         
     } else if (buttonIndex == GoogleMaps) {
-        /*TODO: use s call back scheme instead
+        /* TODO: use a call back scheme here so user can come back to this app
          comgooglemaps-x-callback://?center=40.765819,-73.975866&zoom=14
          &x-success=sourceapp://?resume=true
          &x-source=SourceApp
          */
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?daddr=%f,%f",location.latitude,location.longitude]];
-        if (![[UIApplication sharedApplication] canOpenURL:url]) {
-          
-            //TODO: launch maps.google.com in safari instead of giving this alert.
+        
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+        } else {
+            
+            //TODO: if google maps is not installed launch maps.google.com in safari instead of giving this alert.
              UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info", @"Info")
                                                                 message: NSLocalizedString(@"Google Maps is not installed on your device.", @"Google Maps is not installed on your device.")
                                                                 delegate:self
@@ -340,8 +315,6 @@ typedef enum {
                                                        otherButtonTitles:nil];
             
             [alertView show];
-        } else {
-            [[UIApplication sharedApplication] openURL:url]; //launch Google Maps App
         }
     }
 }

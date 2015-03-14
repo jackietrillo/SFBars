@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BarsViewControllerBase.h"
 #import "BarViewController.h"
 #import "MenuViewController.h"
 #import "BarType.h"
 #import "AppDelegate.h"
 #import "Enums.h"
 
-@interface BrowseViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BrowseViewController : BarsViewControllerBase <UITableViewDataSource, UITableViewDelegate>
 
 @end

@@ -47,8 +47,7 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
     self.musicTypes = nil;
 }
 
--(void)getBars:(BarsGatewayCompletionHandler) completionHandler {
-    
+-(void)getBars:(BarsGatewayCompletionHandler)completionHandler {
     if (!self.bars) {
         
         NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kBarServiceUrl]];
@@ -82,7 +81,6 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
                    if (completionHandler) {
                        completionHandler(self.bars);
                    }
-                   
                });
             }];
     } else {
@@ -92,8 +90,7 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
     }
 }
 
--(void)getBarTypes:(BarsGatewayCompletionHandler) completionHandler {
-    
+-(void)getBarTypes:(BarsGatewayCompletionHandler)completionHandler {
     if (!self.barTypes) {
         NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kBarTypeServiceUrl]];
 
@@ -135,8 +132,7 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
     }
 }
 
--(void)getDistricts:(BarsGatewayCompletionHandler) completionHandler {
-    
+-(void)getDistricts:(BarsGatewayCompletionHandler)completionHandler {
     if (!self.districts) {
         NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kDistrictServiceUrl]];
         
@@ -179,8 +175,7 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
     }
 }
 
--(void)getMusicTypes:(BarsGatewayCompletionHandler) completionHandler {
-    
+-(void)getMusicTypes:(BarsGatewayCompletionHandler)completionHandler {
     if (!self.musicTypes) {
         
         NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kMusicTypeServiceUrl]];
@@ -224,8 +219,7 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
     }
 }
 
--(void)getParties:(BarsGatewayCompletionHandler) completionHandler {
-    
+-(void)getParties:(BarsGatewayCompletionHandler)completionHandler {
     if (!self.parties) {
         
         NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kPartyServiceUrl]];
@@ -268,8 +262,7 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
     }
 }
 
--(void)getEvents:(BarsGatewayCompletionHandler) completionHandler {
-    
+-(void)getEvents:(BarsGatewayCompletionHandler)completionHandler {
     if (!self.events) {
         
         NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kEventServiceUrl]];

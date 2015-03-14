@@ -10,4 +10,14 @@
 
 @implementation TelephoneHelper
 
++(NSURL*)telephoneUrl:(NSString*)telephoneNumber {
+    
+    NSString* phoneNumber = [telephoneNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+    phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+    
+    return [NSURL URLWithString:[NSString stringWithFormat:@"tel:1-%@", phoneNumber]];
+
+}
+
 @end

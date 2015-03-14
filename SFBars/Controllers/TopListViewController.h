@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BarsViewControllerBase.h"
 #import "AppDelegate.h"
 #import "BarDetailViewController.h"
 #import "Bar.h"
 
-@interface TopListViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface TopListViewController : BarsViewControllerBase <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 

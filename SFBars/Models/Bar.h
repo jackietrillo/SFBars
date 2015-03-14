@@ -28,4 +28,6 @@
 
 +(id)initFromDictionary:(NSDictionary*)dict;
 
++(NSString*)getPropertyValueFromPropertyName:(NSString*)propertyName forBar:(Bar*)bar;
+
 @end

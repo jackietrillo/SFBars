@@ -10,6 +10,6 @@
 
 @interface BarsEnumParser : NSObject
 
-+(BarDetailActionType)enumFromString:(NSString*)action;
++(BarDetailActionType)barDetailActionTypeEnumFromString:(NSString*)action;
 
 @end

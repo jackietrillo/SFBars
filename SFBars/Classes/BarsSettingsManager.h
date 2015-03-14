@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SettingsItem.h"
 
-@interface BarsSettingsManger : NSObject
+@interface BarsSettingsManager : NSObject
+
+-(NSArray*)getSettings;
 
 @end

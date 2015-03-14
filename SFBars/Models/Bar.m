@@ -84,6 +84,19 @@ static const NSString* YELPURL = @"yelpUrl";
     return bar;
 }
 
++(NSString*)getPropertyValueFromPropertyName:(NSString*)propertyName forBar:(Bar*)bar {
+    
+    if([propertyName isEqualToString: NSLocalizedString(@"Address", @"Address")]) {
+        return bar.address;
+    }
+    else if ([propertyName isEqualToString: NSLocalizedString(@"Phone", @"Phone")]){
+        return bar.phone;
+    }
+    else {
+        return propertyName;
+    }
+}
+
 @end
 
 

@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BarsViewControllerBase.h"
 #import "BarViewController.h"
 #import "District.h"
 
-@interface DistrictViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface DistrictViewController : BarsViewControllerBase <UITableViewDataSource, UITableViewDelegate>
 
 
 @end

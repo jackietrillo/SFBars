@@ -29,7 +29,7 @@
     self.tableView.hidden = YES;
     self.tableView.delegate = self;
     
-    [self.barsGateway getDistricts: ^(NSArray* data) {
+    [self.barsFacade getDistricts: ^(NSArray* data) {
         if (data) {
             self.districtsData = data;
             

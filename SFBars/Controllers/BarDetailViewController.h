@@ -6,20 +6,19 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BarsViewControllerBase.h"
 #import "BarWebViewController.h"
 #import "NearMeViewController.h"
-#import "BarDetailActionViewControllerFactory.h"
 #import "BarDetailHeaderViewCell.h"
+#import "BarDetailActionViewControllerFactory.h"
+#import "TelephoneHelper.h"
 #import "BarDetailItem.h"
 #import "BarsEnumParser.h"
 #import "BarsEnums.h"
 #import "Enums.h"
 #import "Bar.h"
-#import "AppDelegate.h"
 
-@interface BarDetailViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate,
-                                                        MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
+@interface BarDetailViewController : BarsViewControllerBase <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
 
 @property (readwrite, nonatomic, strong) Bar* selectedBar;
 

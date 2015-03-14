@@ -21,7 +21,7 @@
     
     [self initNavigation];
 
-    [self.barsGateway getParties: ^(NSArray* data) {
+    [self.barsFacade getParties: ^(NSArray* data) {
         if (data) {
             self.partiesData = data;
             [self.collectionView reloadData];

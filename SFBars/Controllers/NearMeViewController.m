@@ -26,7 +26,7 @@
     
     [self showLoadingIndicator];
     
-    [self.barsGateway getBars: ^(NSArray* data) {
+    [self.barsFacade getBars: ^(NSArray* data) {
         if (data) {
             for(int i=0; i < data.count; i++) {
                 GMSMarker* marker = [self createMarker:data[i]];

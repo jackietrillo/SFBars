@@ -6,27 +6,26 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BarsViewControllerBase.h"
 
-@interface BaseViewController ()
+@interface BarsViewControllerBase ()
 
-@property (readwrite, nonatomic, strong) BarsGateway* barsGateway;
-@property (readwrite, nonatomic, strong) BarsManager* barsManager;
+@property (readwrite, nonatomic, strong) BarsFacade* barsFacade;
+
 @end
 
 NSString* kCellIdentifier = @"Cell";
 NSString* kGlyphIconsFontName  = @"GLYPHICONSHalflings-Regular";
 NSString* kFontAwesomeFontName  = @"FontAwesome";
 
-@implementation BaseViewController
+@implementation BarsViewControllerBase
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate] ;
     
-    self.barsGateway = appDelegate.barsGateway;
-    self.barsManager = appDelegate.barsManager;
+    self.barsFacade = appDelegate.barsFacade;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,7 +81,7 @@ NSString* kFontAwesomeFontName  = @"FontAwesome";
 
 - (void)presentMenuViewController:(id)sender {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    BaseViewController* viewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
+    BarsViewControllerBase* viewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

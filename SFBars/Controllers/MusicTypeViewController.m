@@ -25,7 +25,7 @@
     self.collectionView.hidden = YES;
     self.collectionView.delegate = self;
     
-    [self.barsGateway getMusicTypes: ^(NSArray* data) {
+    [self.barsFacade getMusicTypes: ^(NSArray* data) {
         if (data) {
             self.musicTypesData = data;
             

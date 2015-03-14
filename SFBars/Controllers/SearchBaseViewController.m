@@ -11,7 +11,7 @@
 #import "Bar.h"
 #import "AppDelegate.h"
 
-NSString* const kTableCellNibName = @"SearchTableViewCell";
+
 
 @interface SearchBaseViewController()
 
@@ -21,12 +21,15 @@ NSString* const kTableCellNibName = @"SearchTableViewCell";
 
 @implementation SearchBaseViewController
 
+NSString* const kTableCellNibName = @"SearchTableViewCell";
+NSString* const kCellIdentifier2 = @"Cell";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
   
-    [self.tableView registerNib:[UINib nibWithNibName: kTableCellNibName bundle:nil] forCellReuseIdentifier:kCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName: kTableCellNibName bundle:nil] forCellReuseIdentifier:kCellIdentifier2];
 }
 
 - (void)configureCell:(UITableViewCell *)cell forBar:(Bar *)bar {

@@ -10,8 +10,9 @@
 
 @interface BarsFavoriteManager : NSObject
 
--(NSArray*)getFavoriteBars;
--(bool)favoriteExits:(Bar*)bar;
--(void)saveFavorite:(Bar*)bar;
--(void)removeFavorite:(Bar*)bar;
+-(NSArray*)getFavorites;
+-(bool)favoriteExits:(NSInteger)barId;
+-(void)saveFavorite:(NSInteger)barId;
+-(void)removeFavorite:(NSInteger)barId;
+
 @end

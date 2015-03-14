@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BarsViewControllerBase.h"
 #import "BarViewController.h"
 #import "MusicType.h"
 
-@interface MusicTypeViewController : BaseViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface MusicTypeViewController : BarsViewControllerBase <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, retain) IBOutlet UICollectionView* collectionView;
 @end

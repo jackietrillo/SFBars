@@ -8,14 +8,13 @@
 
 #import <GoogleMaps/GoogleMaps.h>
 #import "BarsGateway.h"
-#import "BarsManager.h"
+#import "BarsFacade.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (readonly, nonatomic, strong) BarsGateway* barsGateway;
-@property (readonly, nonatomic, strong) BarsManager* barsManager;
+@property (readonly, nonatomic, strong) BarsFacade* barsFacade;
 
 @end
 

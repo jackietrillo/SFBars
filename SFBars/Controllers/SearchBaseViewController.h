@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BaseViewController.h"
-
 @class Bar;
 
 @interface SearchBaseViewController : UITableViewController

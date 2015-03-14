@@ -29,11 +29,10 @@ typedef enum {
 
     [self initNavigation];
     
-    [self loadTableViewData:[self.barsManager getSettingsItems]];
+    [self loadTableViewData:[self.barsFacade getSettingsItems]];
 }
 
 -(void)initNavigation {
-
     [super addDoneButtonToNavigation];
     
     self.navigationItem.title = NSLocalizedString(@"SETTINGS", @"SETTINGS");
@@ -101,7 +100,6 @@ typedef enum {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     switch(section) {
         case SettingsTableViewSectionTop:
             return [self.settingsDataTop count];
@@ -113,7 +111,6 @@ typedef enum {
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
     NSInteger rowIndex = indexPath.row;
     SettingsItem* settingsItem;
    
@@ -142,7 +139,6 @@ typedef enum {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     NSInteger rowIndex = indexPath.row;
     SettingsItem* settingsItem;
     
@@ -174,7 +170,6 @@ typedef enum {
 }
 
 -(void)tappedSendFeedback {
-    
     MFMailComposeViewController* mailComposeViewController = [[MFMailComposeViewController alloc] init];
     [mailComposeViewController setSubject: NSLocalizedString(@"Feedback",@"Feedback")];
     [mailComposeViewController setToRecipients:@[@"jackietrillo@hotmail.com"]];
@@ -184,7 +179,6 @@ typedef enum {
 }
 
 -(void)tappedContactUs {
-    
     MFMailComposeViewController* mailComposeViewController = [[MFMailComposeViewController alloc] init];
     mailComposeViewController.mailComposeDelegate = self;
     [mailComposeViewController setSubject: NSLocalizedString(@"Report a Problem",@"Report a Problem")];

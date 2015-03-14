@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BarsViewControllerBase.h"
 #import "Party.h"
 
-@interface PartiesViewController : BaseViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface PartiesViewController : BarsViewControllerBase <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
 @end

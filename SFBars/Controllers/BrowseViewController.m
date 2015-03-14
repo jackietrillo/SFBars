@@ -30,7 +30,7 @@
     self.tableView.hidden = YES;
     self.tableView.delegate = self;
     
-    [self.barsGateway getBarTypes: ^(NSArray* data) {
+    [self.barsFacade getBarTypes: ^(NSArray* data) {
         if (data) {
             self.barTypesData = data;
             

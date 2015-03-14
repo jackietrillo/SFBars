@@ -24,14 +24,11 @@
     self.canDisplayBannerAds = YES;
     
     [self initNavigation];
-    
+    [self initTableView];
     [self showLoadingIndicator];
+
     
-    self.tableView.hidden = YES;
-    
-    self.tableView.delegate = self;
-    
-    [self.barsGateway getBars: ^(NSArray* data) {
+    [self.barsFacade getBars: ^(NSArray* data) {
         if (data) {
             
             if (self.filterType != FilterByNotAssigned && self.filterIds) {
@@ -64,6 +61,12 @@
     
     self.navigationItem.title = [self.titleText uppercaseString];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+}
+
+-(void)initTableView {
+    self.tableView.hidden = YES;
+    
+    self.tableView.delegate = self;
 }
 
 -(NSArray*)filterBars: (NSArray*) data {

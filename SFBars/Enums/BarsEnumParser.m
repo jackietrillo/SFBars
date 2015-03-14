@@ -10,7 +10,7 @@
 
 @implementation BarsEnumParser
 
-+(BarDetailActionType)enumFromString:(NSString*)action {
++(BarDetailActionType)barDetailActionTypeEnumFromString:(NSString*)action {
     
     if ([action isEqualToString: NSLocalizedString(@"Website", @"Website")]) {
         return BarDetailActionTypeWebsite;

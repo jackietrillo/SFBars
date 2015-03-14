@@ -16,11 +16,11 @@
 
 @interface BarsGateway : BarsGatewayBase
 
--(void)getBars:(BarsGatewayCompletionHandler) completionHandler;
--(void)getBarTypes: (BarsGatewayCompletionHandler) completionHandler;
--(void)getDistricts: (BarsGatewayCompletionHandler) completionHandler;
--(void)getMusicTypes: (BarsGatewayCompletionHandler) completionHandler;
--(void)getParties: (BarsGatewayCompletionHandler) completionHandler;
--(void)getEvents: (BarsGatewayCompletionHandler) completionHandler;
+-(void)getBars:(BarsGatewayCompletionHandler)completionHandler;
+-(void)getBarTypes:(BarsGatewayCompletionHandler)completionHandler;
+-(void)getDistricts:(BarsGatewayCompletionHandler)completionHandler;
+-(void)getMusicTypes:(BarsGatewayCompletionHandler)completionHandler;
+-(void)getParties:(BarsGatewayCompletionHandler)completionHandler;
+-(void)getEvents:(BarsGatewayCompletionHandler)completionHandler;
 
 @end

@@ -10,4 +10,5 @@
 
 @interface TelephoneHelper : NSObject
 
++(NSURL*)telephoneUrl:(NSString*)telephoneNumber;
 @end
