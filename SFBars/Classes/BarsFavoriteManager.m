@@ -42,7 +42,7 @@ static NSString* BARFAVORITESKEY = @"barFavoritesKey";
 }
 
 -(void)saveFavorite:(NSInteger)barId {
-     NSString* barIdAsString =  [NSString stringWithFormat:@"%ld ", (long)barId];
+     NSString* barIdAsString =  [NSString stringWithFormat:@"%ld", (long)barId];
     
      if (![self favoriteExits:barId]) {
          [self.barFavorites setValue:barIdAsString forKey:barIdAsString];
@@ -52,7 +52,7 @@ static NSString* BARFAVORITESKEY = @"barFavoritesKey";
 }
 
 -(bool)favoriteExits:(NSInteger)barId {
-    NSString* barIdAsString =  [NSString stringWithFormat:@"%ld ", (long)barId];
+    NSString* barIdAsString =  [NSString stringWithFormat:@"%ld", (long)barId];
     NSObject* barIdAsObject =  [self.barFavorites objectForKey:barIdAsString];
     
     if (barIdAsObject) {
@@ -63,7 +63,7 @@ static NSString* BARFAVORITESKEY = @"barFavoritesKey";
 }
 
 -(void)removeFavorite:(NSInteger)barId {
-    NSString* barIdAsString =  [NSString stringWithFormat:@"%ld ", (long)barId];
+    NSString* barIdAsString =  [NSString stringWithFormat:@"%ld", (long)barId];
     if ([self favoriteExits:barId]) {
         [self.barFavorites removeObjectForKey:barIdAsString];
     }
