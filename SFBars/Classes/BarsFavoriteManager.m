@@ -11,7 +11,7 @@
 @interface BarsFavoriteManager()
 
 @property (readwrite, nonatomic, strong) NSUserDefaults* defaults;
-@property (readwrite, nonatomic, strong) NSMutableDictionary* barFavorites;
+@property (readwrite, nonatomic, strong) NSMutableDictionary* favorites;
 
 @end
 
@@ -24,28 +24,28 @@ static NSString* BARFAVORITESKEY = @"barFavoritesKey";
     
     self.defaults = [NSUserDefaults standardUserDefaults];
     
-    self.barFavorites = [[self.defaults dictionaryForKey:BARFAVORITESKEY] mutableCopy];
+    self.favorites = [[self.defaults dictionaryForKey:BARFAVORITESKEY] mutableCopy];
     
-    if (!self.barFavorites) {
-        self.barFavorites = [[NSMutableDictionary alloc] init];
+    if (!self.favorites) {
+        self.favorites = [[NSMutableDictionary alloc] init];
     }
     
     return self;
 }
 
 -(void)saveFavoritesToDefaults {
-    [self.defaults setObject:self.barFavorites forKey:BARFAVORITESKEY];
+    [self.defaults setObject:self.favorites forKey:BARFAVORITESKEY];
 }
 
 -(NSArray*)getFavorites{
-    return [self.barFavorites allValues];
+    return [self.favorites allValues];
 }
 
 -(void)saveFavorite:(NSInteger)barId {
      NSString* barIdAsString =  [NSString stringWithFormat:@"%ld", (long)barId];
     
      if (![self favoriteExits:barId]) {
-         [self.barFavorites setValue:barIdAsString forKey:barIdAsString];
+         [self.favorites setValue:barIdAsString forKey:barIdAsString];
      }
      
     [self saveFavoritesToDefaults];
@@ -53,7 +53,7 @@ static NSString* BARFAVORITESKEY = @"barFavoritesKey";
 
 -(bool)favoriteExits:(NSInteger)barId {
     NSString* barIdAsString =  [NSString stringWithFormat:@"%ld", (long)barId];
-    NSObject* barIdAsObject =  [self.barFavorites objectForKey:barIdAsString];
+    NSObject* barIdAsObject =  [self.favorites objectForKey:barIdAsString];
     
     if (barIdAsObject) {
         return YES;
@@ -65,7 +65,7 @@ static NSString* BARFAVORITESKEY = @"barFavoritesKey";
 -(void)removeFavorite:(NSInteger)barId {
     NSString* barIdAsString =  [NSString stringWithFormat:@"%ld", (long)barId];
     if ([self favoriteExits:barId]) {
-        [self.barFavorites removeObjectForKey:barIdAsString];
+        [self.favorites removeObjectForKey:barIdAsString];
     }
     [self saveFavoritesToDefaults];
 }
