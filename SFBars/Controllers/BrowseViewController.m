@@ -24,12 +24,9 @@
     self.canDisplayBannerAds = YES;
    
     [self initNavigation];
-   
+    [self initTableView];
     [self showLoadingIndicator];
-   
-    self.tableView.hidden = YES;
-    self.tableView.delegate = self;
-    
+
     [self.barsFacade getBarTypes: ^(NSArray* data) {
         if (data) {
             self.barTypesData = data;
@@ -42,29 +39,29 @@
 }
 
 -(void)initNavigation {
-    
     [self addMenuButtonToNavigation];
 
     self.navigationItem.title = NSLocalizedString(@"BROWSE", @"BROWSE");
     [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
+-(void)initTableView {
+    self.tableView.hidden = YES;
+    self.tableView.delegate = self;
+}
+
 -(void)setTableViewCellStyle:(UITableViewCell *)tableViewCell {
-    
     [tableViewCell.textLabel setTextColor:[UIColor whiteColor]];
-    
     tableViewCell.textLabel.highlightedTextColor = [UIColor blackColor];
     tableViewCell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
     tableViewCell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     switch(section) {
         case 0:
             return [self.barTypesData count];
@@ -74,7 +71,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UITableViewCell* tableViewCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     
     switch(indexPath.section) {
@@ -91,7 +87,6 @@
     
     return tableViewCell;
 }
-
 
 #pragma mark - Navigation
 

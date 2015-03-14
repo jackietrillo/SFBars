@@ -8,9 +8,7 @@
 
 #import "BarDetailActionViewControllerFactory.h"
 
-
 @implementation BarDetailActionViewControllerFactory
-
 
 -(UIViewController*) viewControllerForAction: (BarDetailActionType)action withBar: (Bar*) bar {
     

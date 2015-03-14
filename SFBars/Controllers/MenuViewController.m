@@ -76,7 +76,7 @@ typedef enum {
     }
 }
 
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
   
     switch(section) {
@@ -214,7 +214,7 @@ typedef enum {
         case MenuTableViewSectionTop:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
             
-            //TODO: consider using factory pattern here?
+            //TODO: use factory here?
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Search", @"Search")]) {
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 SearchViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
@@ -271,8 +271,8 @@ typedef enum {
                     [alertView show];
                 }
             }
-            
             break;
+            
         case MenuTableViewSectionBottom:
             menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
             
@@ -281,9 +281,8 @@ typedef enum {
                 SettingsViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            
             break;
-            
+        
         default:
             break;
     }

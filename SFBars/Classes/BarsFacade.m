@@ -28,6 +28,7 @@
     self.barDetailItemsManager = [[BarDetailItemsManager  alloc] init];
     self.barsFavoriteManager = [[BarsFavoriteManager  alloc] init];
     self.barsGateway = [[BarsGateway  alloc] init];
+    
     return self;
 }
 

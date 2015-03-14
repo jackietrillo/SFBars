@@ -27,7 +27,6 @@
     [self initTableView];
     [self showLoadingIndicator];
 
-    
     [self.barsFacade getBars: ^(NSArray* data) {
         if (data) {
             
@@ -70,7 +69,6 @@
 }
 
 -(NSArray*)filterBars: (NSArray*) data {
-    
     NSMutableArray* filteredData = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < data.count; i++) {
