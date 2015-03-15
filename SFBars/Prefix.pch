@@ -1,21 +1,23 @@
 
-@import Foundation;
-@import UIKit;
-@import MessageUI;
-@import iAd;
-@import CoreLocation;
-@import MapKit;
-
+#ifdef __OBJC__
+    @import Foundation;
+    @import UIKit;
+    @import MessageUI;
+    @import iAd;
+    @import CoreLocation;
+    @import MapKit;
+#endif
 
 
 /*
 
- This is the old way
+ #ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+    #import <MessageUI/MessageUI.h>
+    #import <iAd/iAd.h>
+    #import <CoreLocation/CoreLocation.h>
+    #import <MapKit/MapKit.h>
+ #endif
  
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <MessageUI/MessageUI.h>
-#import <iAd/iAd.h>
-#import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
 */
