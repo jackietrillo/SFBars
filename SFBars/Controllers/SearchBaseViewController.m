@@ -11,8 +11,6 @@
 #import "Bar.h"
 #import "AppDelegate.h"
 
-
-
 @interface SearchBaseViewController()
 
 @property (nonatomic, strong) AppDelegate* appDelegate;
@@ -48,5 +46,6 @@ NSString* const kCellIdentifier2 = @"Cell";
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
 }
+
 
 @end
