@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 JACKIE TRILLO. All rights reserved.
 //
 
-#import "BarTableViewCell.h" 
+#import "BarViewTableViewCell.h"
 
-@implementation BarTableViewCell
+@implementation BarViewTableViewCell
 
 - (void)awakeFromNib {
   

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BarTableViewCell : UITableViewCell
+@interface BarViewTableViewCell : UITableViewCell
 
 @property (readwrite, nonatomic, weak) IBOutlet UILabel* nameLabel;
 @property (readwrite, nonatomic, weak) IBOutlet UILabel* descripLabel;
