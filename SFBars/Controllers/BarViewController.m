@@ -121,7 +121,7 @@
     NSInteger rowIndex = indexPath.row;
     Bar* bar = self.barsData[rowIndex];
     
-    BarTableViewCell* barTableViewCell = [tableView dequeueReusableCellWithIdentifier: kCellIdentifier];
+    BarViewTableViewCell* barTableViewCell = [tableView dequeueReusableCellWithIdentifier: kCellIdentifier];
     
     barTableViewCell.nameLabel.text = bar.name;
 
@@ -159,7 +159,7 @@
     
         [imageDownloader setCompletionHandler:^{
             
-            BarTableViewCell* cell = (BarTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+            BarViewTableViewCell* cell = (BarViewTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
         
             if (bar.icon != nil) {
                 cell.logo.image = bar.icon;

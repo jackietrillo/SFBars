@@ -17,14 +17,12 @@
 @implementation MusicTypeViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
+    [self initNavigation];
+    [self initMusicTypeCollectionView];
     [self showLoadingIndicator];
-    
-    self.collectionView.hidden = YES;
-    self.collectionView.delegate = self;
-    
+
     [self.barsFacade getMusicTypes: ^(NSArray* data) {
         if (data) {
             self.musicTypesData = data;
@@ -37,13 +35,16 @@
 }
 
 -(void)initNavigation {
-   
     [self addMenuButtonToNavigation];
-    
     self.navigationItem.title = NSLocalizedString(@"MUSIC", @"MUSIC");
 }
 
--(void)setTableViewCellStyle:(UICollectionViewCell*)collectionViewCell {
+-(void)initMusicTypeCollectionView {
+    self.collectionView.hidden = YES;
+    self.collectionView.delegate = self;
+}
+
+-(void)setMusicTypeCollectionViewCellStyle:(UICollectionViewCell*)collectionViewCell {
     
     collectionViewCell.layer.borderWidth= 1.0f;
     collectionViewCell.layer.borderColor=[UIColor whiteColor].CGColor;
@@ -70,7 +71,7 @@
     
     textlabel.text = musicType.name;
     
-    [self setTableViewCellStyle:collectionViewCell];
+    [self setMusicTypeCollectionViewCellStyle:collectionViewCell];
     
     return collectionViewCell;
 }
