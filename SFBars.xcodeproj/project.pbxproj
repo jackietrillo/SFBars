@@ -48,7 +48,7 @@
 		82A5C7831A63125C00D55A54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7821A63125C00D55A54 /* main.m */; };
 		82A5C7861A63125C00D55A54 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7851A63125C00D55A54 /* AppDelegate.m */; };
 		82A5C7CE1A63250400D55A54 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C7CC1A63250400D55A54 /* LaunchScreen.xib */; };
-		82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7D01A63260B00D55A54 /* BarTableViewCell.m */; };
+		82A5C7D31A63260B00D55A54 /* BarViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7D01A63260B00D55A54 /* BarViewTableViewCell.m */; };
 		82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7D61A63263400D55A54 /* BarWebViewController.m */; };
 		82A5C7EB1A63266100D55A54 /* Bar.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C7E81A63266100D55A54 /* Bar.m */; };
 		82A5C7F51A632A1100D55A54 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A5C7F41A632A1100D55A54 /* MapKit.framework */; };
@@ -168,8 +168,8 @@
 		82A5C7851A63125C00D55A54 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		82A5C79C1A63125C00D55A54 /* BarDetailActionViewControllerFactory_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarDetailActionViewControllerFactory_Tests.m; sourceTree = "<group>"; };
 		82A5C7CD1A63250400D55A54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		82A5C7CF1A63260B00D55A54 /* BarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarTableViewCell.h; path = Controls/BarTableViewCell.h; sourceTree = "<group>"; };
-		82A5C7D01A63260B00D55A54 /* BarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarTableViewCell.m; path = Controls/BarTableViewCell.m; sourceTree = "<group>"; };
+		82A5C7CF1A63260B00D55A54 /* BarViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarViewTableViewCell.h; path = Controls/BarViewTableViewCell.h; sourceTree = "<group>"; };
+		82A5C7D01A63260B00D55A54 /* BarViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarViewTableViewCell.m; path = Controls/BarViewTableViewCell.m; sourceTree = "<group>"; };
 		82A5C7D51A63263400D55A54 /* BarWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarWebViewController.h; path = SFBars/Controllers/BarWebViewController.h; sourceTree = "<group>"; };
 		82A5C7D61A63263400D55A54 /* BarWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarWebViewController.m; path = SFBars/Controllers/BarWebViewController.m; sourceTree = "<group>"; };
 		82A5C7D91A63263400D55A54 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationViewController.h; path = SFBars/Controllers/NavigationViewController.h; sourceTree = "<group>"; };
@@ -357,8 +357,8 @@
 			isa = PBXGroup;
 			children = (
 				82A5C7811A63125C00D55A54 /* Info.plist */,
-				82EEC9601A9C5B6900E211BC /* Prefix.pch */,
 				82A5C7821A63125C00D55A54 /* main.m */,
+				82EEC9601A9C5B6900E211BC /* Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -469,8 +469,8 @@
 			isa = PBXGroup;
 			children = (
 				823918E71A9C613600001EF5 /* SearchTableViewCell.xib */,
-				82A5C7CF1A63260B00D55A54 /* BarTableViewCell.h */,
-				82A5C7D01A63260B00D55A54 /* BarTableViewCell.m */,
+				82A5C7CF1A63260B00D55A54 /* BarViewTableViewCell.h */,
+				82A5C7D01A63260B00D55A54 /* BarViewTableViewCell.m */,
 				8285AE8D1A7C69D4004858FD /* BarDetailHeaderViewCell.h */,
 				8285AE8E1A7C69D4004858FD /* BarDetailHeaderViewCell.m */,
 				8285AE901A7C69FC004858FD /* BarDetailHeaderViewCell.xib */,
@@ -676,7 +676,7 @@
 				82BB5FF01A649E55002F5578 /* BarType.m in Sources */,
 				82EEC95F1A9C5B1A00E211BC /* SearchResultsViewController.m in Sources */,
 				823A59C11AAE819C00134A4B /* BarsFacade.m in Sources */,
-				82A5C7D31A63260B00D55A54 /* BarTableViewCell.m in Sources */,
+				82A5C7D31A63260B00D55A54 /* BarViewTableViewCell.m in Sources */,
 				82E917371A79B4D7002D610E /* District.m in Sources */,
 				823A59B41AAE7E5500134A4B /* SettingsItem.m in Sources */,
 				82A914A01A9990A40019D30A /* DistrictViewController.m in Sources */,
@@ -852,6 +852,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SFBars/Prefix.pch;
 				INFOPLIST_FILE = SFBars/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
 				PRODUCT_NAME = "SF Bars";
@@ -871,6 +872,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SFBars/Prefix.pch;
 				INFOPLIST_FILE = SFBars/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
 				PRODUCT_NAME = "SF Bars";
