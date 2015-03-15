@@ -35,7 +35,6 @@
         }
         [self hideLoadingIndicator];
     }];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,13 +43,12 @@
     //NSLog(@"%@", NSStringFromClass ([self class]));
 }
 
-- (void)initNavigation {
-    
+-(void)initNavigation {
+    [self addMenuButtonToNavigation];
     self.navigationItem.title = NSLocalizedString(@"NEAR ME", @"NEAR ME");
 }
 
 -(void)loadData:(NSArray*) data {
-    
     if (data) {
         for(int i=0; i < data.count; i++) {
             GMSMarker* marker = [self createMarker:data[i]];
@@ -60,7 +58,6 @@
 }
 
 -(void)initMapView {
-    
     CLLocationCoordinate2D cameraLocation;
     if (self.mapView.myLocationEnabled) {
         cameraLocation =   CLLocationCoordinate2DMake(self.mapView.myLocation.coordinate.latitude, self.mapView.myLocation.coordinate.longitude);
