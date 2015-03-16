@@ -243,11 +243,11 @@ typedef enum {
              if (![self.barsFacade favoriteExits: self.selectedBar.barId]) {
                 [self.barsFacade saveFavorite:self.selectedBar.barId];
                  
-                 alertView = [[UIAlertView alloc] initWithTitle:@"" message: NSLocalizedString(@"Saved", @"Saved") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
+                 alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Favorites", @"Favorites") message: NSLocalizedString(@"Favorite Added", @"Favorite Added") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
              } else {
              
                  [self.barsFacade removeFavorite:self.selectedBar.barId];
-                 alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Removed", @"Removed") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
+                 alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Favorites", @"Favorites") message:NSLocalizedString(@"Favorite Removed", @"Favorite Removed") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
              }
             
              [alertView show];

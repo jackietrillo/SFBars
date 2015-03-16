@@ -62,6 +62,8 @@
 		82A9149A1A9985BA0019D30A /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A914991A9985B90019D30A /* LoadingView.xib */; };
 		82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149C1A9985FF0019D30A /* LoadingView.m */; };
 		82A914A01A9990A40019D30A /* DistrictViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9149F1A9990A40019D30A /* DistrictViewController.m */; };
+		82AC67C51AB615D900CAE68E /* PartyPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AC67C41AB615D900CAE68E /* PartyPageViewController.m */; };
+		82AC67C71AB6177A00CAE68E /* PartyPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82AC67C61AB6177A00CAE68E /* PartyPageView.xib */; };
 		82B086541A9A6960005BD2BE /* MusicTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B086531A9A6960005BD2BE /* MusicTypeViewController.m */; };
 		82B086571A9A6A72005BD2BE /* BarDetailItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B086561A9A6A72005BD2BE /* BarDetailItem.m */; };
 		82B086591A9A6AC2005BD2BE /* BarDetailItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 82B086581A9A6AC2005BD2BE /* BarDetailItems.json */; };
@@ -75,7 +77,7 @@
 		82BF8A211A74978C00237060 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82BF8A201A74978C00237060 /* CoreLocation.framework */; };
 		82C705FB1A75BCAC0045F973 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C705FA1A75BCAC0045F973 /* MenuViewController.m */; };
 		82CF532E1A7C2E800087F0F5 /* TopListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CF532D1A7C2E800087F0F5 /* TopListViewController.m */; };
-		82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CF53301A7C2E9B0087F0F5 /* PartiesViewController.m */; };
+		82CF53311A7C2E9B0087F0F5 /* PartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CF53301A7C2E9B0087F0F5 /* PartyViewController.m */; };
 		82D43C401A95687300B4196C /* MusicType.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D43C3F1A95687300B4196C /* MusicType.m */; };
 		82D43C421A956FBB00B4196C /* MenuItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D43C411A956FBB00B4196C /* MenuItems.json */; };
 		82D43C4C1A95718700B4196C /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D43C4B1A95718700B4196C /* MenuItem.m */; };
@@ -188,6 +190,9 @@
 		82A9149C1A9985FF0019D30A /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Controls/LoadingView.m; sourceTree = "<group>"; };
 		82A9149E1A9990A40019D30A /* DistrictViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DistrictViewController.h; path = SFBars/Controllers/DistrictViewController.h; sourceTree = "<group>"; };
 		82A9149F1A9990A40019D30A /* DistrictViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistrictViewController.m; path = SFBars/Controllers/DistrictViewController.m; sourceTree = "<group>"; };
+		82AC67C31AB615D900CAE68E /* PartyPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartyPageViewController.h; path = SFBars/Controllers/PartyPageViewController.h; sourceTree = "<group>"; };
+		82AC67C41AB615D900CAE68E /* PartyPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartyPageViewController.m; path = SFBars/Controllers/PartyPageViewController.m; sourceTree = "<group>"; };
+		82AC67C61AB6177A00CAE68E /* PartyPageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PartyPageView.xib; path = Controllers/PartyPageView.xib; sourceTree = "<group>"; };
 		82B086521A9A6960005BD2BE /* MusicTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MusicTypeViewController.h; path = SFBars/Controllers/MusicTypeViewController.h; sourceTree = "<group>"; };
 		82B086531A9A6960005BD2BE /* MusicTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MusicTypeViewController.m; path = SFBars/Controllers/MusicTypeViewController.m; sourceTree = "<group>"; };
 		82B086551A9A6A72005BD2BE /* BarDetailItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailItem.h; path = SFBars/Models/BarDetailItem.h; sourceTree = "<group>"; };
@@ -209,8 +214,8 @@
 		82C705FA1A75BCAC0045F973 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = SFBars/Controllers/MenuViewController.m; sourceTree = "<group>"; };
 		82CF532C1A7C2E800087F0F5 /* TopListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopListViewController.h; path = SFBars/Controllers/TopListViewController.h; sourceTree = "<group>"; };
 		82CF532D1A7C2E800087F0F5 /* TopListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopListViewController.m; path = SFBars/Controllers/TopListViewController.m; sourceTree = "<group>"; };
-		82CF532F1A7C2E9B0087F0F5 /* PartiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartiesViewController.h; path = SFBars/Controllers/PartiesViewController.h; sourceTree = "<group>"; };
-		82CF53301A7C2E9B0087F0F5 /* PartiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartiesViewController.m; path = SFBars/Controllers/PartiesViewController.m; sourceTree = "<group>"; };
+		82CF532F1A7C2E9B0087F0F5 /* PartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartyViewController.h; path = SFBars/Controllers/PartyViewController.h; sourceTree = "<group>"; };
+		82CF53301A7C2E9B0087F0F5 /* PartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartyViewController.m; path = SFBars/Controllers/PartyViewController.m; sourceTree = "<group>"; };
 		82D43C3E1A95687300B4196C /* MusicType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MusicType.h; path = SFBars/Models/MusicType.h; sourceTree = "<group>"; };
 		82D43C3F1A95687300B4196C /* MusicType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MusicType.m; path = SFBars/Models/MusicType.m; sourceTree = "<group>"; };
 		82D43C411A956FBB00B4196C /* MenuItems.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MenuItems.json; path = SFBars/Resources/MenuItems.json; sourceTree = "<group>"; };
@@ -394,8 +399,10 @@
 				82B086641A9A8D36005BD2BE /* NearMeViewController.m */,
 				82CF532C1A7C2E800087F0F5 /* TopListViewController.h */,
 				82CF532D1A7C2E800087F0F5 /* TopListViewController.m */,
-				82CF532F1A7C2E9B0087F0F5 /* PartiesViewController.h */,
-				82CF53301A7C2E9B0087F0F5 /* PartiesViewController.m */,
+				82CF532F1A7C2E9B0087F0F5 /* PartyViewController.h */,
+				82CF53301A7C2E9B0087F0F5 /* PartyViewController.m */,
+				82AC67C31AB615D900CAE68E /* PartyPageViewController.h */,
+				82AC67C41AB615D900CAE68E /* PartyPageViewController.m */,
 				82D6680C1A86DBB4004B19DB /* BarsViewControllerBase.h */,
 				82D6680D1A86DBB4004B19DB /* BarsViewControllerBase.m */,
 			);
@@ -477,6 +484,7 @@
 				82A914991A9985B90019D30A /* LoadingView.xib */,
 				82A9149B1A9985FF0019D30A /* LoadingView.h */,
 				82A9149C1A9985FF0019D30A /* LoadingView.m */,
+				82AC67C61AB6177A00CAE68E /* PartyPageView.xib */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -612,6 +620,7 @@
 				82A5C8021A632B9800D55A54 /* DroidSans-Bold.ttf in Resources */,
 				82D43C421A956FBB00B4196C /* MenuItems.json in Resources */,
 				82A5C8041A632B9800D55A54 /* FontAwesome.ttf in Resources */,
+				82AC67C71AB6177A00CAE68E /* PartyPageView.xib in Resources */,
 				8291A6CA1A7DC0D00060D3FB /* SettingsItems.json in Resources */,
 				823918E91A9C613600001EF5 /* SearchTableViewCell.xib in Resources */,
 				82A9149A1A9985BA0019D30A /* LoadingView.xib in Resources */,
@@ -681,9 +690,10 @@
 				823A59B41AAE7E5500134A4B /* SettingsItem.m in Sources */,
 				82A914A01A9990A40019D30A /* DistrictViewController.m in Sources */,
 				828FE61C1A761AB200D2466D /* SettingsViewController.m in Sources */,
+				82AC67C51AB615D900CAE68E /* PartyPageViewController.m in Sources */,
 				829671031AAFCAAB0001CB9D /* BarDetailActionViewControllerFactory.m in Sources */,
 				829EFC9D1AB4B7D90052DE3C /* BarsMenuManager.m in Sources */,
-				82CF53311A7C2E9B0087F0F5 /* PartiesViewController.m in Sources */,
+				82CF53311A7C2E9B0087F0F5 /* PartyViewController.m in Sources */,
 				82A5C7831A63125C00D55A54 /* main.m in Sources */,
 				82814BD21AB2886E00194ACB /* BarsEnumParser.m in Sources */,
 			);
@@ -852,7 +862,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SFBars/Prefix.pch;
 				INFOPLIST_FILE = SFBars/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
 				PRODUCT_NAME = "SF Bars";
@@ -872,7 +882,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SFBars/Prefix.pch;
 				INFOPLIST_FILE = SFBars/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
 				PRODUCT_NAME = "SF Bars";

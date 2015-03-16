@@ -6,10 +6,11 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
+#import "ImageDownloader.h"
 #import "BarsViewControllerBase.h"
+#import "PartyPageViewController.h"
 #import "Party.h"
 
-@interface PartiesViewController : BarsViewControllerBase <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface PartyViewController : BarsViewControllerBase <UIScrollViewDelegate>
 
-@property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
 @end

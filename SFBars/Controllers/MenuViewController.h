@@ -12,7 +12,7 @@
 #import "NearMeViewController.h"
 #import "TopListViewController.h"
 #import "MusicTypeViewController.h"
-#import "PartiesViewController.h"
+#import "PartyViewController.h"
 #import "SettingsViewController.h"
 #import "DistrictViewController.h"
 #import "MenuItem.h"

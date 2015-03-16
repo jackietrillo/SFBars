@@ -100,7 +100,6 @@
             default:
                 break;
         }
-        
     }
     return filteredData;
 }
@@ -139,26 +138,21 @@
     return barTableViewCell;
 }
 
-
 #pragma mark - Table cell image download support
 
 - (void)terminateImageDownloads {
     NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
     [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
-    
-    self.tableView.hidden = YES;
     [self.imageDownloadsInProgress removeAllObjects];
 }
 
 - (void)startImageDownload:(Bar*)bar forIndexPath:(NSIndexPath *)indexPath {
-    
     ImageDownloader *imageDownloader = (self.imageDownloadsInProgress)[indexPath];
     if (imageDownloader == nil) {
         imageDownloader = [[ImageDownloader alloc] init];
         imageDownloader.Entity = bar;
     
         [imageDownloader setCompletionHandler:^{
-            
             BarViewTableViewCell* cell = (BarViewTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
         
             if (bar.icon != nil) {
@@ -167,9 +161,7 @@
             else {
                 cell.logo.image = [UIImage imageNamed:@"DefaultImage-Bar"];
             }
-            
             [self.imageDownloadsInProgress removeObjectForKey:indexPath];
-            
         }];
       
         (self.imageDownloadsInProgress)[indexPath] = imageDownloader;

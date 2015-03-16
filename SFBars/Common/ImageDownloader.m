@@ -55,13 +55,11 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     UIImage *image = [[UIImage alloc] initWithData:self.activeDownload];
     
-    if (image == nil)
-    {
+    if (image == nil) {
         self.entity.icon = nil;
         return;
     }
-    if (image.size.width != kAppIconSize || image.size.height != kAppIconSize)
-    {
+    if (image.size.width != kAppIconSize || image.size.height != kAppIconSize) {
         CGSize itemSize = CGSizeMake(kAppIconSize, kAppIconSize);
         UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0f);
         CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
@@ -69,16 +67,14 @@ static NSString* serviceUrl = @"http://www.sanfranciscostreets.net/images/";
         self.entity.icon = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
-    else
-    {
+    else {
         self.entity.icon = image;
     }
     
     self.activeDownload = nil;
     self.imageConnection = nil;
     
-    if (self.completionHandler)
-    {
+    if (self.completionHandler) {
         self.completionHandler();
     }
 }

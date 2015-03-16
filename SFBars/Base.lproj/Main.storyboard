@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vcv-AP-v6Y">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -176,62 +177,6 @@
             </objects>
             <point key="canvasLocation" x="-9771" y="-473"/>
         </scene>
-        <!--PartiesViewController-->
-        <scene sceneID="amg-Qf-bpo">
-            <objects>
-                <collectionViewController storyboardIdentifier="PartiesViewController" id="jMh-Lx-z5J" userLabel="PartiesViewController" customClass="PartiesViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="XWU-bd-U5U">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Kfq-5c-9F4">
-                            <size key="itemSize" width="150" height="150"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="aE6-cq-qUT">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cQZ-VI-ZPR">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aR-nE-3Ux">
-                                            <rect key="frame" x="54" y="119" width="42" height="20"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="cQZ-VI-ZPR" secondAttribute="trailing" id="MEl-hR-KiX"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="5aR-nE-3Ux" secondAttribute="bottom" constant="3" id="SnY-0x-lTB"/>
-                                    <constraint firstItem="cQZ-VI-ZPR" firstAttribute="leading" secondItem="aE6-cq-qUT" secondAttribute="leading" id="XXw-pI-Y4o"/>
-                                    <constraint firstItem="cQZ-VI-ZPR" firstAttribute="top" secondItem="aE6-cq-qUT" secondAttribute="top" id="agc-PY-IKh"/>
-                                    <constraint firstAttribute="bottom" secondItem="cQZ-VI-ZPR" secondAttribute="bottom" id="gZg-1a-iie"/>
-                                    <constraint firstItem="cQZ-VI-ZPR" firstAttribute="centerX" secondItem="5aR-nE-3Ux" secondAttribute="centerX" id="wYg-BI-VqK"/>
-                                </constraints>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="jMh-Lx-z5J" id="jl3-AE-WTB"/>
-                            <outlet property="delegate" destination="jMh-Lx-z5J" id="wuz-9c-hVI"/>
-                        </connections>
-                    </collectionView>
-                    <connections>
-                        <outlet property="collectionView" destination="XWU-bd-U5U" id="nb6-z9-OMD"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="teG-6h-yJj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-10512" y="258"/>
-        </scene>
         <!--SettingsViewController-->
         <scene sceneID="Pnl-Za-QEa">
             <objects>
@@ -296,6 +241,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OyS-20-KXK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-11203" y="258"/>
+        </scene>
+        <!--PartyViewController-->
+        <scene sceneID="f2t-R9-3gl">
+            <objects>
+                <viewController storyboardIdentifier="PartyViewController" id="PL3-ZT-uVQ" userLabel="PartyViewController" customClass="PartyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PnY-lR-tVW"/>
+                        <viewControllerLayoutGuide type="bottom" id="d8a-nB-ifz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4C9-eZ-8F2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="sbK-sD-3mq">
+                                <rect key="frame" x="0.0" y="563" width="600" height="37"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="changePage:" destination="PL3-ZT-uVQ" eventType="valueChanged" id="lPX-y1-Kd5"/>
+                                </connections>
+                            </pageControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rjp-XX-qAd">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="563"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sbK-sD-3mq" firstAttribute="bottom" secondItem="d8a-nB-ifz" secondAttribute="top" id="9DJ-Gr-h4U"/>
+                            <constraint firstItem="sbK-sD-3mq" firstAttribute="top" secondItem="Rjp-XX-qAd" secondAttribute="bottom" id="Fct-Fh-bmG"/>
+                            <constraint firstItem="sbK-sD-3mq" firstAttribute="leading" secondItem="4C9-eZ-8F2" secondAttribute="leading" id="LOt-OW-n3v"/>
+                            <constraint firstItem="sbK-sD-3mq" firstAttribute="leading" secondItem="Rjp-XX-qAd" secondAttribute="leading" id="Uo5-QK-PbP"/>
+                            <constraint firstAttribute="trailing" secondItem="sbK-sD-3mq" secondAttribute="trailing" id="i9o-Io-p9P"/>
+                            <constraint firstItem="sbK-sD-3mq" firstAttribute="trailing" secondItem="Rjp-XX-qAd" secondAttribute="trailing" id="og3-A1-GBA"/>
+                            <constraint firstItem="Rjp-XX-qAd" firstAttribute="top" secondItem="4C9-eZ-8F2" secondAttribute="top" id="pYU-At-UYv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pageControl" destination="sbK-sD-3mq" id="wKq-1u-MLr"/>
+                        <outlet property="scrollView" destination="Rjp-XX-qAd" id="bXa-qi-F5G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="acU-kI-g7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-10517" y="327"/>
         </scene>
         <!--MusicTypeViewController-->
         <scene sceneID="lo9-Uz-fTi">
@@ -471,10 +459,10 @@
             </objects>
             <point key="canvasLocation" x="-10512" y="-1172"/>
         </scene>
-        <!--BarsViewController-->
+        <!--BarViewController-->
         <scene sceneID="1RD-FC-YnW">
             <objects>
-                <viewController storyboardIdentifier="BarViewController" id="mQ5-sf-Jxx" userLabel="BarsViewController" customClass="BarViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BarViewController" id="mQ5-sf-Jxx" userLabel="BarViewController" customClass="BarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dcN-pM-Cao"/>
                         <viewControllerLayoutGuide type="bottom" id="Fe0-tV-OXO"/>
@@ -490,7 +478,7 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="150" id="0b2-06-faE" customClass="BarTableViewCell">
+                                    <tableViewCell contentMode="scaleAspectFit" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="150" id="0b2-06-faE" customClass="BarViewTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0b2-06-faE" id="JRp-J9-dHd">

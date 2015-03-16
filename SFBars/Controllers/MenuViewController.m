@@ -245,7 +245,7 @@ typedef enum {
             }
             else if ([menuItem.name isEqualToString: NSLocalizedString(@"Parties", @"Parties")]){
                 storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                PartiesViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"PartiesViewController"];
+                PartyViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"PartyViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
             break;

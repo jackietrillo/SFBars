@@ -240,8 +240,8 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
                     if (partiesArray.count > 0) {
                        for (int i = 0; i < partiesArray.count; i++) {
                            NSDictionary* dictTemp = partiesArray[i];
-                           Party* musicType = [Party initFromDictionary:dictTemp];
-                           [parties addObject:musicType];
+                           Party* party = [Party initFromDictionary:dictTemp];
+                           [parties addObject:party];
                        }
                     }
 

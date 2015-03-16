@@ -14,7 +14,7 @@
 
 @implementation Party
 
-static const NSString* PARTYID = @"PartyId";
+static const NSString* PARTYID = @"partyId";
 
 -(id)init {
     self = [super init];
@@ -26,7 +26,7 @@ static const NSString* PARTYID = @"PartyId";
     
     Party* party = [super initFromDictionary:dict forEntity:[[Party alloc] init]];
     party.partyId = [dict[PARTYID] longValue];
-    
+    party.imageUrl =  [NSString stringWithFormat:@"Party-%@.png",  [party.name stringByReplacingOccurrencesOfString:@" " withString: @""]]; // TODO remove temporary code
     return party;
 }
 
