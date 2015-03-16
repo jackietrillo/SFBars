@@ -77,7 +77,6 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
                }
                
                dispatch_async(dispatch_get_main_queue(), ^{
-                   
                    if (completionHandler) {
                        completionHandler(self.bars);
                    }
@@ -118,7 +117,6 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
             }
 
             dispatch_async(dispatch_get_main_queue(), ^{
-                
                  if (completionHandler) {
                      completionHandler(self.barTypes);
                  }
@@ -162,7 +160,6 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
              }
     
              dispatch_async(dispatch_get_main_queue(), ^{
-                 
                 if (completionHandler) {
                      completionHandler(self.districts);
                  }
@@ -206,7 +203,6 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
                }
                
                dispatch_async(dispatch_get_main_queue(), ^{
-                   
                    if (completionHandler) {
                        completionHandler(self.musicTypes);
                    }
@@ -249,7 +245,6 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
                 }
 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                   
                    if (completionHandler) {
                        completionHandler(self.parties);
                    }

@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-
 @interface BarsGatewayBase : NSObject
 
 typedef void (^BarsGatewayCompletionHandler) (NSArray* result);
