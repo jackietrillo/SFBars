@@ -15,17 +15,17 @@
 @property (nonatomic, strong) NSMutableArray* partyPageViewControllers;
 
 @property (nonatomic, nonatomic, strong) NSMutableDictionary* imageDownloadsInProgress;
-
+@property (readwrite, nonatomic) NSUInteger numberOfPages;
 @property (readwrite, nonatomic, strong) NSArray* parties;
 @end
 
 @implementation PartyViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     [self initNavigation];
+    
     [self showLoadingIndicator];
     
     [self.barsFacade getParties: ^(NSArray* data) {
@@ -51,22 +51,22 @@
 
 -(void)initPartyViewController {
 
-    NSUInteger numberPages = self.parties.count;
+    self.numberOfPages = self.parties.count;
     
     NSMutableArray* partyPageViewControllers = [[NSMutableArray alloc] init];
-    for (NSUInteger i = 0; i < numberPages; i++) {
+    for (NSUInteger i = 0; i < self.numberOfPages; i++) {
         [partyPageViewControllers addObject:[NSNull null]]; //lazy load later
     }
     self.partyPageViewControllers = partyPageViewControllers;
     
     self.scrollView.pagingEnabled = YES;
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * self.numberOfPages, CGRectGetHeight(self.scrollView.frame));
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.scrollsToTop = NO;
     self.scrollView.delegate = self;
     
-    self.pageControl.numberOfPages = numberPages;
+    self.pageControl.numberOfPages = self.numberOfPages;
     self.pageControl.currentPage = 0;
     
     [self loadScrollViewWithPage:0];
@@ -117,9 +117,14 @@
     // switch the indicator when more than 50% of the previous/next page is visible
     CGFloat pageWidth = CGRectGetWidth(self.scrollView.frame);
     NSUInteger page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    self.pageControl.currentPage = page;
-    
-    [self loadScrollViewWithPage:page];
+    if (page < self.numberOfPages ) {
+        self.pageControl.currentPage = page;
+        [self loadScrollViewWithPage:page];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+     [scrollView setContentOffset: CGPointMake(scrollView.contentOffset.x, 0)];
 }
 
 - (void)gotoPage:(BOOL)animated {
