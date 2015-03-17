@@ -20,19 +20,17 @@
 @implementation SearchBaseViewController
 
 NSString* const kTableCellNibName = @"SearchTableViewCell";
-NSString* const kCellIdentifier2 = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
   
-    [self.tableView registerNib:[UINib nibWithNibName: kTableCellNibName bundle:nil] forCellReuseIdentifier:kCellIdentifier2];
+    [self.tableView registerNib:[UINib nibWithNibName: kTableCellNibName bundle:nil] forCellReuseIdentifier:kCellIdentifier];
 }
 
 - (void)configureCell:(UITableViewCell *)cell forBar:(Bar *)bar {
     cell.textLabel.text = bar.name;
-    
     cell.detailTextLabel.text = bar.descrip;
     
     [self setTableViewCellStyle:cell];

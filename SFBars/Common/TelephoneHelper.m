@@ -17,7 +17,6 @@
     phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@"-"];
     
     return [NSURL URLWithString:[NSString stringWithFormat:@"tel:1-%@", phoneNumber]];
-
 }
 
 @end

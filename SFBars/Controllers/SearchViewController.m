@@ -12,12 +12,9 @@
 @interface SearchViewController ()
 
 @property (nonatomic, strong) UISearchController *searchController;
-
 @property (nonatomic, strong) SearchResultsViewController* searchResultsViewController;
-
 @property BOOL searchControllerWasActive;
 @property BOOL searchControllerSearchFieldWasFirstResponder;
-
 @property (nonatomic, strong) AppDelegate* appDelegate;
 
 @end
@@ -43,7 +40,7 @@
     self.searchController.searchResultsUpdater = self;
     [self.searchController.searchBar sizeToFit];
     self.searchController.searchBar.backgroundColor = [UIColor blackColor];
-    
+
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.tableView.frame = CGRectMake(0, 250, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
     
@@ -144,7 +141,6 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
-
 #pragma mark - UISearchResultsUpdating
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
@@ -197,7 +193,7 @@ NSString *const SearchBarIsFirstResponderKey = @"SearchBarIsFirstResponderKey";
     BOOL searchDisplayControllerIsActive = searchController.isActive;
     [coder encodeBool:searchDisplayControllerIsActive forKey:SearchControllerIsActiveKey];
     
-    // encode the first responser status
+    // encode the first responder status
     if (searchDisplayControllerIsActive) {
         [coder encodeBool:[searchController.searchBar isFirstResponder] forKey:SearchBarIsFirstResponderKey];
     }

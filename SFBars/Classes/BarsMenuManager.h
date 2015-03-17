@@ -10,6 +10,7 @@
 
 @interface BarsMenuManager : NSObject
 
--(NSArray*)getMenuItems;
+-(NSArray*)getMainMenuItems;
+-(NSArray*)getBrowseMenuItems;
 
 @end

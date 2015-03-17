@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "MFSideMenuContainerViewController.h"
+#import "MenuViewController.h"
+#import "SettingsViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,13 +19,33 @@
 
 @implementation AppDelegate
 
+- (UINavigationController *)navigationController {
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"NavigationViewController"];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-   
+    
     [GMSServices provideAPIKey:@"AIzaSyBwemjLYLhOFeh7NRdaiMUesp_sawcnZh0"];
     
     self.barsFacade = [[BarsFacade alloc] init];
+  
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
+
+    MenuViewController* leftMenuViewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
+    SettingsViewController *rightMenuViewController = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+    MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController
+                                                    containerWithCenterViewController:[self navigationController]
+                                                    leftMenuViewController:leftMenuViewController
+                                                    rightMenuViewController:rightMenuViewController];
+
+    // Set root view controller and make windows visible
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = container;
+    [self.window makeKeyAndVisible];
+
+
     return YES;
 }
 

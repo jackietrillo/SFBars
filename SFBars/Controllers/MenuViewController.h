@@ -9,12 +9,14 @@
 #import "BarsViewControllerBase.h"
 #import "SearchViewController.h"
 #import "BrowseViewController.h"
+#import "BarBrowseViewController.h"
 #import "NearMeViewController.h"
 #import "TopListViewController.h"
 #import "MusicTypeViewController.h"
 #import "PartyViewController.h"
 #import "SettingsViewController.h"
 #import "DistrictViewController.h"
+#import "MFSideMenu.h"
 #import "MenuItem.h"
 
 @interface MenuViewController : BarsViewControllerBase <UITableViewDataSource, UITableViewDelegate>

@@ -24,6 +24,11 @@
 		823A59BA1AAE7FBC00134A4B /* BarsGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 823A59B71AAE7FBC00134A4B /* BarsGateway.m */; };
 		823A59BB1AAE7FBC00134A4B /* BarsGatewayBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 823A59B91AAE7FBC00134A4B /* BarsGatewayBase.m */; };
 		823A59C11AAE819C00134A4B /* BarsFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 823A59C01AAE819C00134A4B /* BarsFacade.m */; };
+		825339AE1AB758CB00405B73 /* BarBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 825339AD1AB758CB00405B73 /* BarBrowseViewController.m */; };
+		825339B01AB765CC00405B73 /* BrowseMenuItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 825339AF1AB765CC00405B73 /* BrowseMenuItems.json */; };
+		8279ACFA1AB8D60C00059A20 /* MFSideMenuContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8279ACF51AB8D60C00059A20 /* MFSideMenuContainerViewController.m */; };
+		8279ACFB1AB8D60C00059A20 /* MFSideMenuShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8279ACF71AB8D60C00059A20 /* MFSideMenuShadow.m */; };
+		8279ACFC1AB8D60C00059A20 /* UIViewController+MFSideMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8279ACF91AB8D60C00059A20 /* UIViewController+MFSideMenuAdditions.m */; };
 		827C029B1AAD02B4008EC2FA /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 827C029A1AAD02B4008EC2FA /* Party.m */; };
 		827C029E1AAD02C2008EC2FA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 827C029D1AAD02C2008EC2FA /* Event.m */; };
 		82814BC81AB27DDB00194ACB /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 82814BC31AB27DDB00194ACB /* Configuration.m */; };
@@ -124,6 +129,16 @@
 		823A59B91AAE7FBC00134A4B /* BarsGatewayBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarsGatewayBase.m; path = Classes/BarsGatewayBase.m; sourceTree = "<group>"; };
 		823A59BF1AAE819C00134A4B /* BarsFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarsFacade.h; path = Classes/BarsFacade.h; sourceTree = "<group>"; };
 		823A59C01AAE819C00134A4B /* BarsFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarsFacade.m; path = Classes/BarsFacade.m; sourceTree = "<group>"; };
+		825339AC1AB758CB00405B73 /* BarBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarBrowseViewController.h; path = SFBars/Controllers/BarBrowseViewController.h; sourceTree = "<group>"; };
+		825339AD1AB758CB00405B73 /* BarBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarBrowseViewController.m; path = SFBars/Controllers/BarBrowseViewController.m; sourceTree = "<group>"; };
+		825339AF1AB765CC00405B73 /* BrowseMenuItems.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BrowseMenuItems.json; path = SFBars/Resources/BrowseMenuItems.json; sourceTree = "<group>"; };
+		8279ACF31AB8D60C00059A20 /* MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFSideMenu.h; path = Controls/MFSideMenu/MFSideMenu.h; sourceTree = "<group>"; };
+		8279ACF41AB8D60C00059A20 /* MFSideMenuContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFSideMenuContainerViewController.h; path = Controls/MFSideMenu/MFSideMenuContainerViewController.h; sourceTree = "<group>"; };
+		8279ACF51AB8D60C00059A20 /* MFSideMenuContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MFSideMenuContainerViewController.m; path = Controls/MFSideMenu/MFSideMenuContainerViewController.m; sourceTree = "<group>"; };
+		8279ACF61AB8D60C00059A20 /* MFSideMenuShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFSideMenuShadow.h; path = Controls/MFSideMenu/MFSideMenuShadow.h; sourceTree = "<group>"; };
+		8279ACF71AB8D60C00059A20 /* MFSideMenuShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MFSideMenuShadow.m; path = Controls/MFSideMenu/MFSideMenuShadow.m; sourceTree = "<group>"; };
+		8279ACF81AB8D60C00059A20 /* UIViewController+MFSideMenuAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MFSideMenuAdditions.h"; path = "Controls/MFSideMenu/UIViewController+MFSideMenuAdditions.h"; sourceTree = "<group>"; };
+		8279ACF91AB8D60C00059A20 /* UIViewController+MFSideMenuAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MFSideMenuAdditions.m"; path = "Controls/MFSideMenu/UIViewController+MFSideMenuAdditions.m"; sourceTree = "<group>"; };
 		827C02991AAD02B4008EC2FA /* Party.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Party.h; path = SFBars/Models/Party.h; sourceTree = "<group>"; };
 		827C029A1AAD02B4008EC2FA /* Party.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Party.m; path = SFBars/Models/Party.m; sourceTree = "<group>"; };
 		827C029C1AAD02C2008EC2FA /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = SFBars/Models/Event.h; sourceTree = "<group>"; };
@@ -294,6 +309,20 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
+		8279ACF21AB8D5D700059A20 /* MFSideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				8279ACF31AB8D60C00059A20 /* MFSideMenu.h */,
+				8279ACF41AB8D60C00059A20 /* MFSideMenuContainerViewController.h */,
+				8279ACF51AB8D60C00059A20 /* MFSideMenuContainerViewController.m */,
+				8279ACF61AB8D60C00059A20 /* MFSideMenuShadow.h */,
+				8279ACF71AB8D60C00059A20 /* MFSideMenuShadow.m */,
+				8279ACF81AB8D60C00059A20 /* UIViewController+MFSideMenuAdditions.h */,
+				8279ACF91AB8D60C00059A20 /* UIViewController+MFSideMenuAdditions.m */,
+			);
+			name = MFSideMenu;
+			sourceTree = "<group>";
+		};
 		82814BCE1AB281EE00194ACB /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,6 +434,8 @@
 				82AC67C41AB615D900CAE68E /* PartyPageViewController.m */,
 				82D6680C1A86DBB4004B19DB /* BarsViewControllerBase.h */,
 				82D6680D1A86DBB4004B19DB /* BarsViewControllerBase.m */,
+				825339AC1AB758CB00405B73 /* BarBrowseViewController.h */,
+				825339AD1AB758CB00405B73 /* BarBrowseViewController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -444,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				82D43C411A956FBB00B4196C /* MenuItems.json */,
+				825339AF1AB765CC00405B73 /* BrowseMenuItems.json */,
 				82B086581A9A6AC2005BD2BE /* BarDetailItems.json */,
 				8291A6C91A7DC0D00060D3FB /* SettingsItems.json */,
 				82A5C7CC1A63250400D55A54 /* LaunchScreen.xib */,
@@ -475,6 +507,7 @@
 		82A5C7AA1A631F9F00D55A54 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				8279ACF21AB8D5D700059A20 /* MFSideMenu */,
 				823918E71A9C613600001EF5 /* SearchTableViewCell.xib */,
 				82A5C7CF1A63260B00D55A54 /* BarViewTableViewCell.h */,
 				82A5C7D01A63260B00D55A54 /* BarViewTableViewCell.m */,
@@ -615,6 +648,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82D668161A86E133004B19DB /* GoogleMaps.bundle in Resources */,
+				825339B01AB765CC00405B73 /* BrowseMenuItems.json in Resources */,
 				82B828F61A85FE5700F90A33 /* glyphicons-halflings-regular.ttf in Resources */,
 				82B086591A9A6AC2005BD2BE /* BarDetailItems.json in Resources */,
 				82A5C8021A632B9800D55A54 /* DroidSans-Bold.ttf in Resources */,
@@ -652,6 +686,7 @@
 			files = (
 				827C029E1AAD02C2008EC2FA /* Event.m in Sources */,
 				823A59BB1AAE7FBC00134A4B /* BarsGatewayBase.m in Sources */,
+				8279ACFB1AB8D60C00059A20 /* MFSideMenuShadow.m in Sources */,
 				829EFCA01AB4B8020052DE3C /* BarsSettingsManager.m in Sources */,
 				8285AE851A7C4B97004858FD /* BarDetailViewController.m in Sources */,
 				82A5C7F81A632A5400D55A54 /* NavigationViewController.m in Sources */,
@@ -666,6 +701,7 @@
 				82D43C4C1A95718700B4196C /* MenuItem.m in Sources */,
 				8285AE8F1A7C69D4004858FD /* BarDetailHeaderViewCell.m in Sources */,
 				82B086541A9A6960005BD2BE /* MusicTypeViewController.m in Sources */,
+				8279ACFC1AB8D60C00059A20 /* UIViewController+MFSideMenuAdditions.m in Sources */,
 				82D6680E1A86DBB4004B19DB /* BarsViewControllerBase.m in Sources */,
 				823A59B11AAE780500134A4B /* BaseItem.m in Sources */,
 				829EFCA31AB4B8320052DE3C /* BarDetailItemsManager.m in Sources */,
@@ -675,6 +711,7 @@
 				828FE6181A761A8B00D2466D /* BrowseViewController.m in Sources */,
 				82A5C7E11A63263400D55A54 /* BarWebViewController.m in Sources */,
 				82814BCA1AB27DDB00194ACB /* ImageDownloader.m in Sources */,
+				825339AE1AB758CB00405B73 /* BarBrowseViewController.m in Sources */,
 				82A9149D1A9985FF0019D30A /* LoadingView.m in Sources */,
 				82814BC81AB27DDB00194ACB /* Configuration.m in Sources */,
 				827C029B1AAD02B4008EC2FA /* Party.m in Sources */,
@@ -686,6 +723,7 @@
 				82EEC95F1A9C5B1A00E211BC /* SearchResultsViewController.m in Sources */,
 				823A59C11AAE819C00134A4B /* BarsFacade.m in Sources */,
 				82A5C7D31A63260B00D55A54 /* BarViewTableViewCell.m in Sources */,
+				8279ACFA1AB8D60C00059A20 /* MFSideMenuContainerViewController.m in Sources */,
 				82E917371A79B4D7002D610E /* District.m in Sources */,
 				823A59B41AAE7E5500134A4B /* SettingsItem.m in Sources */,
 				82A914A01A9990A40019D30A /* DistrictViewController.m in Sources */,

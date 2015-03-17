@@ -31,7 +31,7 @@ typedef enum {
     [self initNavigation];
     [self initTableView];
     
-    [self loadTableViewData:[self.barsFacade getMenuItems]];
+    [self loadTableViewData:[self.barsFacade getMainMenuItems]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -207,47 +207,46 @@ typedef enum {
     
     MenuItem* menuItem;
     
-    UIStoryboard* storyboard;
-    
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController* navigationController = self.menuContainerViewController.centerViewController;
     switch(indexPath.section) {
             
         case MenuTableViewSectionTop:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
             
-            //TODO: use factory here?
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Search", @"Search")]) {
-                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 SearchViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
-                [self.navigationController pushViewController:vc animated:YES];
+                [navigationController pushViewController:vc animated:YES];
             }
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Browse", @"Browse")]) {
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [navigationController popToRootViewControllerAnimated:YES];
+            }
+            if ([menuItem.name isEqualToString: NSLocalizedString(@"Browse2", @"Browse2")]) {
+                BarBrowseViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarBrowseViewController"];
+                [navigationController pushViewController:vc animated:YES];
             }
             else if ([menuItem.name isEqualToString: NSLocalizedString(@"Near Me", @"Near Me")]) {
-                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 NearMeViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"NearMeViewController"];
-                [self.navigationController pushViewController:vc animated:YES];
+                [navigationController pushViewController:vc animated:YES];
             }
             else if ([menuItem.name isEqualToString: NSLocalizedString(@"Neighborhoods", @"Neighborhoods")]) {
-                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 DistrictViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"DistrictViewController"];
-                [self.navigationController pushViewController:vc animated:YES];
+                [navigationController pushViewController:vc animated:YES];
             }
             else if ([menuItem.name isEqualToString: NSLocalizedString(@"Top List", @"Top List")]){
-                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 TopListViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"TopListViewController"];
-                [self.navigationController pushViewController:vc animated:YES];
+                [navigationController pushViewController:vc animated:YES];
             }
             else if ([menuItem.name isEqualToString: NSLocalizedString(@"Music", @"Music")]){
-                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 MusicTypeViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MusicTypeViewController"];
-                [self.navigationController pushViewController:vc animated:YES];
+                [navigationController pushViewController:vc animated:YES];
             }
             else if ([menuItem.name isEqualToString: NSLocalizedString(@"Parties", @"Parties")]){
-                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 PartyViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"PartyViewController"];
-                [self.navigationController pushViewController:vc animated:YES];
+                [navigationController pushViewController:vc animated:YES];
             }
+            
+            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
             break;
             
         case MenuTableViewSectionMiddle:

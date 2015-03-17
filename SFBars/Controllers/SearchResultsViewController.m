@@ -8,7 +8,7 @@
 
 
 #import "SearchResultsViewController.h"
-#import "Bar.h"
+
 
 @implementation SearchResultsViewController
 
@@ -18,7 +18,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* tableViewCell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    UITableViewCell* tableViewCell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     Bar* bar = self.filteredBars[indexPath.row];
     

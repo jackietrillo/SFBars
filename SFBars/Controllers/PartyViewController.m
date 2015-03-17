@@ -25,7 +25,6 @@
     [super viewDidLoad];
     
     [self initNavigation];
-    
     [self showLoadingIndicator];
     
     [self.barsFacade getParties: ^(NSArray* data) {

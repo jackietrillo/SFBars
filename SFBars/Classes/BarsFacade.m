@@ -40,8 +40,12 @@
     self.barsGateway = nil;
 }
 
--(NSArray*)getMenuItems {
-    return [self.barsMenuManager getMenuItems];
+-(NSArray*)getMainMenuItems {
+    return [self.barsMenuManager getMainMenuItems];
+}
+
+-(NSArray*)getBrowseMenuItems {
+    return [self.barsMenuManager getBrowseMenuItems];
 }
 
 -(NSArray*)getBarDetailItems {

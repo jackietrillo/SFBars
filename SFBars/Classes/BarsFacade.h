@@ -20,7 +20,8 @@ typedef void (^BarsCompletionHandler) (NSArray* result);
 
 @interface BarsFacade : NSObject
 
--(NSArray*)getMenuItems;
+-(NSArray*)getMainMenuItems;
+-(NSArray*)getBrowseMenuItems;
 -(NSArray*)getBarDetailItems;
 -(NSArray*)getSettingsItems;
 

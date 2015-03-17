@@ -6,11 +6,14 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
-@class Bar;
+#import "BarsViewControllerBase.h"
+#import "Bar.h"
 
 @interface SearchBaseViewController : UITableViewController
 
+
 - (void)configureCell:(UITableViewCell *)cell forBar:(Bar *)bar;
 
+//@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

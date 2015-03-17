@@ -1,0 +1,30 @@
+ [
+  {
+  "itemId": 1,
+  "section": 0,
+  "name": "Top List",
+  "imageUrl": "Icon-TopList",
+  "statusFlag": 1
+  },
+  {
+  "itemId": 2,
+  "section": 0,
+  "name": "Parties",
+  "imageUrl": "Icon-Parties",
+  "statusFlag": 1
+  },
+  {
+  "itemId": 3,
+  "section": 0,
+  "name": " By Neighborhood",
+  "imageUrl": "Icon-Map",
+  "statusFlag": 1
+  },
+  {
+  "itemId": 4,
+  "section": 0,
+  "name": "By Music",
+  "imageUrl": "Icon-Music",
+  "statusFlag": 1
+  }
+  ]

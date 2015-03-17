@@ -21,27 +21,6 @@
     "statusFlag": 1
   },
   {
-    "itemId": 4,
-    "section": 0,
-    "name": "Neighborhoods",
-    "imageUrl": "Icon-Map",
-    "statusFlag": 1
-  },
-  {
-    "itemId": 5,
-    "section": 0,
-    "name": "Music",
-    "imageUrl": "Icon-Music",
-    "statusFlag": 1
- },
-  {
-    "itemId": 6,
-    "section": 0,
-    "name": "Top List",
-    "imageUrl": "Icon-TopList",
-    "statusFlag": 1
-  },
-  {
     "itemId": 7,
     "section": 0,
     "name": "Events",
@@ -67,6 +46,13 @@
     "section": 2,
     "name": "Settings",
     "imageUrl": "Icon-Settings",
+    "statusFlag": 1
+ },
+ {
+    "itemId": 11,
+    "section": 0,
+    "name": "Browse2",
+    "imageUrl": "Icon-Browse",
     "statusFlag": 1
  }
 ]
