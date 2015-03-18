@@ -432,10 +432,10 @@
 				82CF53301A7C2E9B0087F0F5 /* PartyViewController.m */,
 				82AC67C31AB615D900CAE68E /* PartyPageViewController.h */,
 				82AC67C41AB615D900CAE68E /* PartyPageViewController.m */,
-				82D6680C1A86DBB4004B19DB /* BarsViewControllerBase.h */,
-				82D6680D1A86DBB4004B19DB /* BarsViewControllerBase.m */,
 				825339AC1AB758CB00405B73 /* BarBrowseViewController.h */,
 				825339AD1AB758CB00405B73 /* BarBrowseViewController.m */,
+				82D6680C1A86DBB4004B19DB /* BarsViewControllerBase.h */,
+				82D6680D1A86DBB4004B19DB /* BarsViewControllerBase.m */,
 			);
 			name = Controllers;
 			path = ..;

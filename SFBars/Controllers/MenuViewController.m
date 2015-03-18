@@ -34,16 +34,11 @@ typedef enum {
     [self loadTableViewData:[self.barsFacade getMainMenuItems]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-   // NSLog(@"%@", NSStringFromClass ([self class]));
-}
-
 -(void)initNavigation {
     self.navigationItem.title = NSLocalizedString(@"MENU", @"MENU");
     [self.navigationItem setHidesBackButton:YES animated:YES];
     
-    //TODO: find a better way to remove the "Back" text from segued controller's back bar button
+    // TODO find a better way to remove the "Back" text from segued controller's back bar button
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
@@ -61,7 +56,6 @@ typedef enum {
     MenuItem* menuItem;
     
     for (int i = 0; i < menuItems.count; i++) {
-        
         menuItem = menuItems[i];
         
         if (menuItem.section == MenuTableViewSectionTop && menuItem.statusFlag == 1) {
@@ -145,7 +139,7 @@ typedef enum {
 -(void)setTableViewCellStyle:(UITableViewCell *)tableViewCell {
     [tableViewCell.textLabel setTextColor:[UIColor whiteColor]];
     tableViewCell.textLabel.highlightedTextColor = [UIColor grayColor];
-    tableViewCell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
+    tableViewCell.accessoryType =  UITableViewCellAccessoryNone;
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -154,12 +148,12 @@ typedef enum {
     cell.selectedBackgroundView = [[UIView alloc] init];
     cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
     
-    //Hack because seperator disappears when cell is selected
+    // Hack because seperator disappears when cell is selected
     UIView* separatorLineTop = [[UIView alloc] initWithFrame:CGRectMake(42, 0, cell.bounds.size.width, 0.5)];
     separatorLineTop.backgroundColor = [UIColor yellowColor];
     [cell.selectedBackgroundView addSubview:separatorLineTop];
     
-    //Hack because seperator disappears when cell is selected
+    // Hack because seperator disappears when cell is selected
     UIView* separatorLineBotton = [[UIView alloc] initWithFrame:CGRectMake(42, cell.bounds.size.height - 1, cell.bounds.size.width , 0.5)];
     separatorLineBotton.backgroundColor = [UIColor yellowColor];
     [cell.selectedBackgroundView addSubview:separatorLineBotton];
@@ -196,7 +190,6 @@ typedef enum {
         default:
             break;
     }
-    
     [self setTableViewCellStyle:tableViewCell];
     
     return tableViewCell;
@@ -204,11 +197,12 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger rowIndex = indexPath.row;
-    
-    MenuItem* menuItem;
-    
+
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UINavigationController* navigationController = self.menuContainerViewController.centerViewController;
+
+    MenuItem* menuItem;
+
     switch(indexPath.section) {
             
         case MenuTableViewSectionTop:

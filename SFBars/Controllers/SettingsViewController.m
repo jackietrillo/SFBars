@@ -33,14 +33,11 @@ typedef enum {
 }
 
 -(void)initNavigation {
-    [super addDoneButtonToNavigation];
-    
-    self.navigationItem.title = NSLocalizedString(@"SETTINGS", @"SETTINGS");
+     self.navigationItem.title = NSLocalizedString(@"SETTINGS", @"SETTINGS");
     [self.navigationItem setHidesBackButton:YES animated:YES];
 }
 
 -(void)loadTableViewData:(NSArray*)settingsItems {
-    
     self.settingsDataTop = [[NSMutableArray alloc] init];
     self.settingsDataBottom = [[NSMutableArray alloc] init];
     
@@ -216,10 +213,5 @@ typedef enum {
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-}
 
 @end

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LoadingView.h"
+#import "MFSideMenu.h"
 
 extern NSString* kCellIdentifier;
 extern NSString* kGlyphIconsFontName;
@@ -16,13 +17,10 @@ extern NSString* kServiceUrl;
 
 @interface BarsViewControllerBase : UIViewController
 
-//@property (readonly, nonatomic, strong) BarsGateway* barsGateway;
 @property (readonly, nonatomic, strong) BarsFacade* barsFacade;
 @property (readwrite, nonatomic, strong) LoadingView* loadingView;
 
 -(void)addMenuButtonToNavigation;
--(void)addDoneButtonToNavigation;
-
 -(void)showLoadingIndicator;
 -(void)hideLoadingIndicator;
 

@@ -26,38 +26,99 @@ NSString* kFontAwesomeFontName  = @"FontAwesome";
     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate] ;
     
     self.barsFacade = appDelegate.barsFacade;
+    
+   // [self setupMenuBarButtonItems];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return YES;
 }
 
-- (void)addMenuButtonToNavigation {
+#pragma mark - UIBarButtonItems
+
+- (void)setupMenuBarButtonItems {
+    self.navigationItem.rightBarButtonItem = [self rightSettingsButton];
+    if(self.menuContainerViewController.menuState == MFSideMenuStateClosed &&
+       ![[self.navigationController.viewControllers objectAtIndex:0] isEqual:self]) {
+        self.navigationItem.leftBarButtonItem = [self leftMenuButton];
+    } else {
+        self.navigationItem.leftBarButtonItem = [self leftMenuButton];
+    }
+}
+
+- (UIBarButtonItem *)leftMenuBarButtonItem {
+    return [[UIBarButtonItem alloc]
+            initWithImage:[UIImage imageNamed:@"icon-menu"] style:UIBarButtonItemStylePlain
+            target:self
+            action:@selector(leftSideMenuButtonPressed:)];
+}
+
+- (UIBarButtonItem *)rightMenuBarButtonItem {
+    return [[UIBarButtonItem alloc]
+            initWithImage:[UIImage imageNamed:@"icon-menu"] style:UIBarButtonItemStylePlain
+            target:self
+            action:@selector(rightSideMenuButtonPressed:)];
+}
+
+- (UIBarButtonItem *)backBarButtonItem {
+    return [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back-arrow"]
+                                            style:UIBarButtonItemStylePlain
+                                           target:self
+                                           action:@selector(backButtonPressed:)];
+}
+
+
+#pragma mark -
+#pragma mark - UIBarButtonItem Callbacks
+
+- (void)backButtonPressed:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)leftSideMenuButtonPressed:(id)sender {
+    [self.menuContainerViewController toggleLeftSideMenuCompletion:^{
+        [self setupMenuBarButtonItems];
+    }];
+}
+
+- (void)rightSideMenuButtonPressed:(id)sender {
+    [self.menuContainerViewController toggleRightSideMenuCompletion:^{
+        [self setupMenuBarButtonItems];
+    }];
+}
+
+-(UIBarButtonItem*)leftMenuButton {
+    UIFont* font = [UIFont fontWithName: kGlyphIconsFontName size:25.0];
+    NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
+     
+    UIBarButtonItem* barButtonItem = [[UIBarButtonItem alloc] init];
+    [barButtonItem setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
+    [barButtonItem setTitle:[NSString stringWithUTF8String:"\ue012"]];
+     
+    [barButtonItem setTarget:self];
+    [barButtonItem setAction:@selector(leftSideMenuButtonPressed:)];
+     
+    return barButtonItem;
+}
+
+-(UIBarButtonItem*)rightSettingsButton {
     UIFont* font = [UIFont fontWithName: kGlyphIconsFontName size:25.0];
     NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
     
     UIBarButtonItem* barButtonItem = [[UIBarButtonItem alloc] init];
     [barButtonItem setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
     [barButtonItem setTitle:[NSString stringWithUTF8String:"\ue012"]];
-   
-    [barButtonItem setTarget:self];
-    [barButtonItem setAction:@selector(presentMenuViewController:)];
     
-    self.navigationItem.leftBarButtonItem = barButtonItem;
-}  
+    [barButtonItem setTarget:self];
+    [barButtonItem setAction:@selector(rightSideMenuButtonPressed:)];
+    
+    return barButtonItem;
+}
 
-- (void)addDoneButtonToNavigation {
-    UIFont* font = [UIFont fontWithName: kFontAwesomeFontName size:30.0];
-    NSDictionary* attributesNormal =  @{ NSFontAttributeName: font};
+-(void)addMenuButtonToNavigation {
+  
+    [self setupMenuBarButtonItems];
     
-    UIBarButtonItem* barButtonItem = [[UIBarButtonItem alloc] init];
-    
-    [barButtonItem setTarget:self];
-    [barButtonItem setAction:@selector(presentBrowseViewController:)];
-    [barButtonItem setTitleTextAttributes:attributesNormal forState:UIControlStateNormal];
-    [barButtonItem setTitle:[NSString stringWithUTF8String:"\uf00c"]];
-    
-    self.navigationItem.rightBarButtonItem = barButtonItem;
 }
 
 -(void)showLoadingIndicator {
