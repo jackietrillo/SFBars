@@ -169,7 +169,6 @@ typedef enum {
     MenuItem* menuItem;
     
     switch(indexPath.section) {
-            
         case MenuTableViewSectionTop:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
             tableViewCell.textLabel.text = menuItem.name;
@@ -204,7 +203,6 @@ typedef enum {
     MenuItem* menuItem;
 
     switch(indexPath.section) {
-            
         case MenuTableViewSectionTop:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
             
@@ -249,11 +247,11 @@ typedef enum {
                
                 NSArray* favoriteBars = [self.barsFacade getFavorites];
                 if (favoriteBars) {
-                    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                     BarViewController* barViewController = [storyboard instantiateViewControllerWithIdentifier:@"BarViewController"];
                     barViewController.filterType = FilterByBarIds;
                     barViewController.filterIds = favoriteBars;
-                    [self.navigationController pushViewController:barViewController animated:YES];
+                    [navigationController pushViewController:barViewController animated:YES];
+                    [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
                 }
                 else {
                     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info", @"Info")
@@ -270,9 +268,9 @@ typedef enum {
             menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
             
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Settings", @"Settings")]) {
-                storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 SettingsViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
-                [self.navigationController pushViewController:vc animated:YES];
+                [navigationController pushViewController:vc animated:YES];
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
             }
             break;
         

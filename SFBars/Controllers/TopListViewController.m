@@ -20,45 +20,35 @@
     [super viewDidLoad];
 
     [self initNavigation];
-    
-    self.tableView.hidden = YES;
-    self.tableView.delegate = self;
+    [self initTableView];
     
     [self.barsFacade getBars: ^(NSArray* data) {
-    
         if (data) {
-            self.tableView.hidden = NO;
-            self.tableView.delegate = self;
             self.dataTopList = data;
             [self.tableView reloadData];
         }
-        
         self.tableView.hidden = NO;
         [self hideLoadingIndicator];
     }];
 }
 
 - (void)initNavigation {
-    
-   [super addMenuButtonToNavigation];
-    
     self.navigationItem.title = NSLocalizedString(@"TOP LIST", @"TOP LIST");
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kCellIdentifier style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+-(void)initTableView {
+    self.tableView.hidden = YES;
+    self.tableView.delegate = self;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     switch(section) {
         case 0:
             return [self.dataTopList count];
@@ -68,7 +58,6 @@
 }
 
 -(void)setTableViewCellStyle:(UITableViewCell *)tableViewCell {
-    
     UILabel* ranklabel = (UILabel*)[tableViewCell viewWithTag:1];
     UILabel* namelabel = (UILabel*)[tableViewCell viewWithTag:2];
     UILabel* descriplabel = (UILabel*)[tableViewCell viewWithTag:3];

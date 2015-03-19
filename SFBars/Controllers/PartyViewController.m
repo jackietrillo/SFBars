@@ -71,9 +71,7 @@
     [self loadScrollViewWithPage:0];
 }
 
--(void)initNavigation {
-    [self addMenuButtonToNavigation];
-    
+-(void)initNavigation {    
     self.navigationItem.title = NSLocalizedString(@"PARTIES", @"PARTIES");
     
     // note Hack to remove text in back button on segued view controller

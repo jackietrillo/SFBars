@@ -21,12 +21,11 @@
     
     [self initNavigation];
     [self initMusicTypeCollectionView];
+   
     [self showLoadingIndicator];
-
     [self.barsFacade getMusicTypes: ^(NSArray* data) {
         if (data) {
             self.musicTypesData = data;
-            
             [self.collectionView reloadData];
         }
         self.collectionView.hidden = NO;
@@ -35,7 +34,6 @@
 }
 
 -(void)initNavigation {
-    [self addMenuButtonToNavigation];
     self.navigationItem.title = NSLocalizedString(@"MUSIC", @"MUSIC");
 }
 

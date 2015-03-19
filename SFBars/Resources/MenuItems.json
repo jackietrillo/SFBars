@@ -32,7 +32,7 @@
     "section": 0,
     "name": "Parties",
     "imageUrl": "Icon-Parties",
-    "statusFlag": 1
+    "statusFlag": 0
   },
   {
     "itemId": 9,
@@ -46,7 +46,7 @@
     "section": 2,
     "name": "Settings",
     "imageUrl": "Icon-Settings",
-    "statusFlag": 1
+    "statusFlag": 0
  },
  {
     "itemId": 11,

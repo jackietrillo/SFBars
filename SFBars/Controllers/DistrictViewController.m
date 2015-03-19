@@ -23,12 +23,9 @@
     self.canDisplayBannerAds = YES;
     
     [self initNavigation];
+    [self initTableView];
     
     [self showLoadingIndicator];
-    
-    self.tableView.hidden = YES;
-    self.tableView.delegate = self;
-    
     [self.barsFacade getDistricts: ^(NSArray* data) {
         if (data) {
             self.districtsData = data;
@@ -41,11 +38,13 @@
 }
 
 -(void)initNavigation {
-   
-   [super addMenuButtonToNavigation];
-    
     self.navigationItem.title = NSLocalizedString(@"NEIGHBORHOODS", @"NEIGHBORHOODS");
     [self.navigationController setToolbarHidden:YES animated:YES];
+}
+
+-(void)initTableView {
+    self.tableView.hidden = YES;
+    self.tableView.delegate = self;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -130,9 +129,6 @@
     
     barsViewController.filterType = FilterByDistricts;
     barsViewController.filterIds = @[[[NSNumber numberWithInteger:district.itemId] stringValue]];
-    
-    // Hack to remove back button text on segued screen
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 

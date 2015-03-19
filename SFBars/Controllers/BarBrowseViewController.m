@@ -35,12 +35,14 @@
     }];
     
     self.browseMenuItems = [self.barsFacade getBrowseMenuItems];
-   
 }
 
 -(void)initNavigation {
     [self addMenuButtonToNavigation];
     self.navigationItem.title = NSLocalizedString(@"BROWSE", @"BROWSE");
+   
+    // note Hack to remove text in back button on segued view controller
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 -(void)initBrowseMenuTableView {
@@ -95,11 +97,11 @@
 #pragma UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 30;
+    return 0;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -126,8 +128,34 @@
 
 #pragma UITableViewDelegate
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger rowIndex = indexPath.row;
     
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController* navigationController = self.menuContainerViewController.centerViewController;
+    
+    MenuItem* menuItem = (MenuItem*)self.browseMenuItems  [rowIndex];
+    
+    if ([menuItem.name isEqualToString: NSLocalizedString(@"Top List", @"Top List")]){
+        UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"TopListViewController"];
+        [navigationController pushViewController:vc animated:YES];
+    }
+    else if ([menuItem.name isEqualToString: NSLocalizedString(@"By Neighborhood", @"By Neighborhood")]) {
+        UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"DistrictViewController"];
+        [navigationController pushViewController:vc animated:YES];
+    }
+    else if ([menuItem.name isEqualToString: NSLocalizedString(@"By Music", @"BY Music")]){
+        UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MusicTypeViewController"];
+        [navigationController pushViewController:vc animated:YES];
+    }
+    else if ([menuItem.name isEqualToString: NSLocalizedString(@"Parties", @"Parties")]){
+        UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"PartyViewController"];
+        [navigationController pushViewController:vc animated:YES];
+    }
+    
+    [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
 }
+
 
 @end

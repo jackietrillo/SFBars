@@ -101,13 +101,21 @@ NSString* kFontAwesomeFontName  = @"FontAwesome";
     return barButtonItem;
 }
 
+- (UIBarButtonItem *)rightSettingsButton2 {
+    return [[UIBarButtonItem alloc]
+            initWithImage:[UIImage imageNamed:@"Icon-Settings"] style:UIBarButtonItemStylePlain
+            target:self
+            action:@selector(rightSideMenuButtonPressed:)];
+}
+
 -(UIBarButtonItem*)rightSettingsButton {
     UIFont* font = [UIFont fontWithName: kGlyphIconsFontName size:25.0];
     NSDictionary* attributesForNormalState =  @{ NSFontAttributeName: font};
     
     UIBarButtonItem* barButtonItem = [[UIBarButtonItem alloc] init];
+   // [barButtonItem.titleLabel setFont:[UIFont fontWithName:@"fontawesome" size:25.0]];
     [barButtonItem setTitleTextAttributes: attributesForNormalState forState:UIControlStateNormal];
-    [barButtonItem setTitle:[NSString stringWithUTF8String:"\ue012"]];
+    [barButtonItem setTitle:[NSString stringWithUTF8String:"\ue019"]];
     
     [barButtonItem setTarget:self];
     [barButtonItem setAction:@selector(rightSideMenuButtonPressed:)];
