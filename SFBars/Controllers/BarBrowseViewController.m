@@ -128,7 +128,6 @@
 
 #pragma UITableViewDelegate
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger rowIndex = indexPath.row;
     
@@ -157,5 +156,17 @@
     [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
 }
 
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath* indexPath =   [self.barTypesCollectionView indexPathForCell:sender];
+    
+    BarViewController* barsViewController = segue.destinationViewController;
+    BarType* barType = self.barTypes[indexPath.row];
+    
+    barsViewController.titleText = barType.name;
+    barsViewController.filterIds = @[[[NSNumber numberWithInteger:barType.itemId] stringValue]];
+    barsViewController.filterType = FilterByBarTypes;
+}
 
 @end

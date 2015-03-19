@@ -47,12 +47,5 @@
     "name": "Settings",
     "imageUrl": "Icon-Settings",
     "statusFlag": 0
- },
- {
-    "itemId": 11,
-    "section": 0,
-    "name": "Browse2",
-    "imageUrl": "Icon-Browse",
-    "statusFlag": 1
  }
 ]

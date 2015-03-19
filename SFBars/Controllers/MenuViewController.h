@@ -8,7 +8,6 @@
 
 #import "BarsViewControllerBase.h"
 #import "SearchViewController.h"
-#import "BrowseViewController.h"
 #import "BarBrowseViewController.h"
 #import "NearMeViewController.h"
 #import "TopListViewController.h"

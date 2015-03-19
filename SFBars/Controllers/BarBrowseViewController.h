@@ -7,6 +7,7 @@
 //
 
 #import "BarsViewControllerBase.h"
+#import "BarViewController.h"
 
 @interface BarBrowseViewController : BarsViewControllerBase <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 
