@@ -10,6 +10,8 @@
 
 @interface MenuItem : BaseItem
 
+@property (nonatomic, strong) NSString* controller;
+
 +(id)initFromDictionary:(NSDictionary*)dict;
 
 @end

@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 JACKIE TRILLO. All rights reserved.
 //
 
+@import UIKit;
+
 @interface BaseEntity : NSObject
 
 @property (readwrite, nonatomic) NSInteger itemId;

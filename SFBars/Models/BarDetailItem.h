@@ -11,6 +11,8 @@
 
 @interface BarDetailItem : BaseItem
 
+@property (nonatomic, strong) NSString* controller;
+
 +(id)initFromDictionary:(NSDictionary*)dict;
 
 @end

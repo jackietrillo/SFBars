@@ -7,16 +7,15 @@
 //
 
 #import "BarsViewControllerBase.h"
-#import "BarWebViewController.h"
-#import "NearMeViewController.h"
 #import "BarDetailHeaderViewCell.h"
-#import "BarDetailActionViewControllerFactory.h"
 #import "TelephoneHelper.h"
 #import "BarDetailItem.h"
 #import "BarsEnumParser.h"
 #import "BarsEnums.h"
 #import "Enums.h"
 #import "Bar.h"
+
+@import MessageUI;
 
 @interface BarDetailViewController : BarsViewControllerBase <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
 

@@ -42,6 +42,12 @@ static NSString* BARFAVORITESKEY = @"barFavoritesKey";
 }
 
 -(void)saveFavorite:(NSInteger)barId {
+     if (barId <= 0) {
+         @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                        reason:[NSString stringWithFormat:@"BarId %ld must be greater than zero.", (long)barId]
+                                      userInfo:nil];
+     }
+    
      NSString* barIdAsString =  [NSString stringWithFormat:@"%ld", (long)barId];
     
      if (![self favoriteExits:barId]) {

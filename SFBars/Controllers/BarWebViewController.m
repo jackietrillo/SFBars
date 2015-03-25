@@ -28,14 +28,10 @@
 }
 
 -(void)initWebView {
-    
     if (self.url != nil) {
-      
         NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
-        
         [self.webView loadRequest:request];
-        
-         self.webView.scalesPageToFit = YES;
+        self.webView.scalesPageToFit = YES;
     }
     else {
         

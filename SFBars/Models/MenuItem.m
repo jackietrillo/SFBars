@@ -14,6 +14,8 @@
 
 @implementation MenuItem
 
+static const NSString* CONTROLLER = @"controller";
+
 -(id)init {
     self = [super init];
     
@@ -23,7 +25,7 @@
 +(id)initFromDictionary:(NSDictionary*)dict {
     
     MenuItem* menuItem = [super initFromDictionary:dict forItem:[[MenuItem alloc] init]];
-
+    menuItem.controller = dict[CONTROLLER];
     return menuItem;
 }
 

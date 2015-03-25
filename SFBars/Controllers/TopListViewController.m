@@ -34,7 +34,9 @@
 
 - (void)initNavigation {
     self.navigationItem.title = NSLocalizedString(@"TOP LIST", @"TOP LIST");
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kCellIdentifier style:UIBarButtonItemStyleDone target:nil action:nil];
+    
+    // Hack to remove text in back button on segued view controller
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 -(void)initTableView {

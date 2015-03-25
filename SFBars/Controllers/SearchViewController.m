@@ -29,15 +29,16 @@
         [self.tableView reloadData];
     }];
     
+    [self initNavigation];
     [self initSearchViewController];
 }
 
 -(void)initSearchViewController {
 
-    _searchResultsViewController = [[SearchResultsViewController alloc] init];
-    _searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsViewController];
-    
+    self.searchResultsViewController = [[SearchResultsViewController alloc] init];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsViewController];
     self.searchController.searchResultsUpdater = self;
+    
     [self.searchController.searchBar sizeToFit];
     self.searchController.searchBar.backgroundColor = [UIColor blackColor];
 
@@ -53,8 +54,13 @@
     self.searchController.searchBar.delegate = self;
     
     self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
+}
+
+-(void)initNavigation {
+     self.navigationItem.title = NSLocalizedString(@"SEARCH", @"SEARCH");
     
-    self.navigationItem.title = NSLocalizedString(@"SEARCH", @"SEARCH");
+    // Hack to remove text in back button on segued view controller
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -76,36 +82,6 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
-}
-
-
-#pragma mark - UISearchControllerDelegate
-
-// Called after the search controller's search bar has agreed to begin editing or when
-// 'active' is set to YES.
-// If you choose not to present the controller yourself or do not implement this method,
-// a default presentation is performed on your behalf.
-//
-// Implement this method if the default presentation is not adequate for your purposes.
-//
-- (void)presentSearchController:(UISearchController *)searchController {
-    
-}
-
-- (void)willPresentSearchController:(UISearchController *)searchController {
-    // do something before the search controller is presented
-}
-
-- (void)didPresentSearchController:(UISearchController *)searchController {
-    // do something after the search controller is presented
-}
-
-- (void)willDismissSearchController:(UISearchController *)searchController {
-    // do something before the search controller is dismissed
-}
-
-- (void)didDismissSearchController:(UISearchController *)searchController {
-    // do something after the search controller is dismissed
 }
 
 
@@ -134,7 +110,7 @@
     
     [self.navigationController pushViewController:barDetailViewController animated:YES];
     
-    // note: iOS 8.0 bug
+    // note iOS 8.0 bug
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     // Hack to remove back button text on segued screen
@@ -145,12 +121,10 @@
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
    
+    // TODO move this logic into a BarSearchManager
     NSString *searchText = searchController.searchBar.text;
-
     NSMutableArray *searchResults = [[NSMutableArray alloc] init];
-
     for (Bar *bar in self.bars ) {
-        
         NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
         NSRange barNameRange = NSMakeRange(0, bar.name.length);
         NSRange foundRange = [bar.name rangeOfString:searchText options:searchOptions range:barNameRange];

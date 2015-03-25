@@ -15,7 +15,6 @@
 @property (readwrite, nonatomic, strong) NSMutableArray* dataFavoriteSection;
 @property (readwrite, nonatomic, strong) NSMutableArray* dataShareSection;
 
-@property (readwrite, nonatomic, strong) BarDetailActionViewControllerFactory* barDetailActionViewControllerFactory;
 @end
 
 @implementation BarDetailViewController
@@ -28,22 +27,14 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    self.barDetailActionViewControllerFactory = [[BarDetailActionViewControllerFactory alloc] init];
     
     [self initNavigation];
     [self initTableView];
    
     [self loadTableViewData:[self.barsFacade getBarDetailItems]];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    //NSLog(@"%@", NSStringFromClass ([self class]));
-}
           
 - (void)initNavigation {
-    
     self.navigationItem.title = [self.selectedBar.name uppercaseString];
 }
 
@@ -66,7 +57,7 @@ typedef enum {
     self.dataShareSection = [[NSMutableArray alloc] init];
     
     BarDetailItem* barDetailItem;
-    
+
     for (int i = 0; i < barDetailItems.count; i++) {
         
         barDetailItem = barDetailItems[i];
@@ -89,7 +80,7 @@ typedef enum {
     
     UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, -30, tableView.bounds.size.width-10, 100)];
     
-    [titleLabel setFont:[UIFont fontWithName: @"Helvetica Neue" size: 15.0f]];
+   [titleLabel setFont:[UIFont fontWithName: @"Helvetica Neue" size: 18.0f]];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     titleLabel.numberOfLines = 0;
@@ -211,7 +202,6 @@ typedef enum {
     UIAlertView* alertView;
 
     switch(indexPath.section) {
-            
         case DetailTableViewSection:
             barDetailItem = self.dataDetailSection[rowIndex];
             
@@ -224,15 +214,18 @@ typedef enum {
                     [[UIApplication sharedApplication] openURL: telephoneURL];
                 }
                 else {
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info",@"Info") message: NSLocalizedString(@"Unable to dial phone number", @"Unable to dial phone number") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK",@"OK") otherButtonTitles:nil];
-                    
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info",@"Info")
+                                                                        message: NSLocalizedString(@"Unable to dial phone number", @"Unable to dial phone number")
+                                                                       delegate:nil
+                                                              cancelButtonTitle: NSLocalizedString(@"OK",@"OK")
+                                                              otherButtonTitles:nil];
                     [alertView show];
                    }
                 }
-            else {
-                BarDetailActionType barDetailActionType = [BarsEnumParser barDetailActionTypeEnumFromString: barDetailItem.name];
-                viewController = [self.barDetailActionViewControllerFactory viewControllerForAction: barDetailActionType withBar: self.selectedBar];
-                
+            else if ([barDetailItem.name  isEqual: @"Events"] || [barDetailItem.name  isEqual: @"Yelp Reviews"] ||
+                     [barDetailItem.name  isEqual: @"Facebook Page"]) {
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                [storyboard instantiateViewControllerWithIdentifier:barDetailItem.controller];
                 [self.navigationController pushViewController:viewController animated:YES];
             }
             break;
@@ -255,18 +248,17 @@ typedef enum {
             
         case ShareTableViewSection:
             barDetailItem = self.dataShareSection[rowIndex];
-        
-            BarDetailActionType barDetailActionType = [BarsEnumParser barDetailActionTypeEnumFromString: barDetailItem.name];
-           
-            viewController = [self.barDetailActionViewControllerFactory viewControllerForAction: barDetailActionType withBar: self.selectedBar];
-        
-            if ([viewController isKindOfClass: [MFMailComposeViewController class]]) {
-                ((MFMailComposeViewController*)viewController).mailComposeDelegate = self;
-                 [self presentViewController:viewController animated:YES completion:nil];
+            if ([barDetailItem.name isEqual:@"Message"]) {
+                MFMessageComposeViewController* vc = [[MFMessageComposeViewController alloc] init];
+                [vc setSubject: self.selectedBar.name];
+                [vc setBody:[NSString stringWithFormat:@"%@ - %@", self.selectedBar.name, self.selectedBar.address]];
+                [self presentViewController:vc animated:YES completion:nil];
             }
-            if ([viewController isKindOfClass: [MFMessageComposeViewController class]]) {
-                ((MFMessageComposeViewController*)viewController).messageComposeDelegate = self;
-                 [self presentViewController:viewController animated:YES completion:nil];
+            if ([barDetailItem.name isEqual:@"Email"]) {
+                MFMailComposeViewController* vc = [[MFMailComposeViewController alloc] init];
+                [vc setSubject: self.selectedBar.name];
+                [vc setMessageBody: self.selectedBar.address isHTML:YES];
+                [self presentViewController:viewController animated:YES completion:nil];
             }
             break;
             

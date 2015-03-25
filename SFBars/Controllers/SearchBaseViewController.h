@@ -11,9 +11,6 @@
 
 @interface SearchBaseViewController : UITableViewController
 
-
 - (void)configureCell:(UITableViewCell *)cell forBar:(Bar *)bar;
-
-//@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

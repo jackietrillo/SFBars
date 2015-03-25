@@ -20,8 +20,8 @@
 
 @property (readwrite, nonatomic, strong) NSString* titleText;
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
-@property (readwrite, nonatomic) FilterType filterType;
-@property (readwrite, nonatomic) NSArray* filterIds; // note filterIds depend on the filterType
+@property (readwrite, nonatomic) BarsFilterBy filterBy;
+@property (readwrite, nonatomic) NSArray* filterIds; 
 
 
 @end

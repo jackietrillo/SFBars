@@ -40,6 +40,9 @@
 -(void)initNavigation {
     self.navigationItem.title = NSLocalizedString(@"NEIGHBORHOODS", @"NEIGHBORHOODS");
     [self.navigationController setToolbarHidden:YES animated:YES];
+    
+    // note Hack to remove text in back button on segued view controller
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 -(void)initTableView {
@@ -96,7 +99,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     
     switch(indexPath.section) {
@@ -123,13 +125,13 @@
     
     NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
     
-    BarViewController* barsViewController = segue.destinationViewController;
+    BarViewController* barViewController = segue.destinationViewController;
     
     District* district = self.districtsData[indexPath.row];
     
-    barsViewController.filterType = FilterByDistricts;
-    barsViewController.filterIds = @[[[NSNumber numberWithInteger:district.itemId] stringValue]];
+    barViewController.titleText = district.name;
+    barViewController.filterBy = BarsFilterByDistrict;
+    barViewController.filterIds = @[[[NSNumber numberWithInteger:district.itemId] stringValue]];
 }
-
 
 @end

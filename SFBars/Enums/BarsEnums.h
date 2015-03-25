@@ -7,12 +7,12 @@
 //
 
 typedef enum {
-    FilterByNotAssigned = -1,
-    FilterByBarTypes = 0,
-    FilterByDistricts = 1,
-    FilterByMusicTypes = 2,
-    FilterByBarIds = 3
-} FilterType;
+    BarsFilterByNotAssigned = -1,
+    BarsFilterByBarType = 0,
+    BarsFilterByDistrict = 1,
+    BarsFilterByMusicType = 2,
+    BarsFilterByBars = 3
+} BarsFilterBy;
 
 typedef enum {
     BarDetailActionTypePhone = 0,

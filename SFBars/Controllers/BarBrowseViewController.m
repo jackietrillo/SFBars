@@ -20,21 +20,22 @@
     [super viewDidLoad];
     
     [self initNavigation];
-    [self initBarTypesCollectionView];
     [self initBrowseMenuTableView];
+    
+    self.browseMenuItems = [self.barsFacade getBrowseMenuItems];
     
     [self showLoadingIndicator];
     [self.barsFacade getBarTypes: ^(NSArray* data) {
         if (data) {
             self.barTypes = data;
             
-            [self.barTypesCollectionView reloadData];
+            [self.browseMenuTableView reloadData];
         }
-        self.barTypesCollectionView.hidden = NO;
+        
+        
+        self.browseMenuTableView.hidden = NO;
         [self hideLoadingIndicator];
     }];
-    
-    self.browseMenuItems = [self.barsFacade getBrowseMenuItems];
 }
 
 -(void)initNavigation {
@@ -49,43 +50,7 @@
     self.browseMenuTableView.delegate = self;
     self.eventsScrollView.backgroundColor  = [UIColor blackColor];
     self.browseMenuTableView.tableFooterView.backgroundColor = [UIColor blackColor];
-    self.barTypesCollectionView.backgroundColor = [UIColor blackColor];
-}
-
--(void)initBarTypesCollectionView {
-    self.barTypesCollectionView.hidden = YES;
-    self.barTypesCollectionView.delegate = self;
-    self.barTypesCollectionView.frame = CGRectMake(self.barTypesCollectionView.frame.origin.x - 10,
-                                                   self.barTypesCollectionView.frame.origin.y - 10,
-                                                   self.barTypesCollectionView.frame.size.width,
-                                                   self.barTypesCollectionView.frame.size.height);
-}
-
--(void)setBarTypesCollectionViewCellStyle:(UICollectionViewCell*)collectionViewCell {
-    self.barTypesCollectionView.layer.borderWidth= 1.0f;
-    self.barTypesCollectionView.layer.borderColor=[UIColor whiteColor].CGColor;
-}
-
-#pragma UICollectionViewDataSource
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.barTypes.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell* collectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
-    
-    UIImageView* imageView = (UIImageView*)[collectionViewCell viewWithTag:1];
-    imageView.frame = collectionViewCell.bounds;
-    imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
-    
-    UILabel* textlabel = (UILabel*)[collectionViewCell viewWithTag:2];
-    BarType* barType = (BarType*)self.barTypes[indexPath.row];
-    textlabel.text = barType.name;
-    
-    [self setBarTypesCollectionViewCellStyle:collectionViewCell];
-    
-    return collectionViewCell;
+    self.browseMenuTableView.tableHeaderView.backgroundColor = [UIColor blackColor];
 }
 
 -(void)setBrowseMenuTableViewCellStyle:(UITableViewCell *)tableViewCell {
@@ -97,32 +62,76 @@
 #pragma UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0;
+    switch (section) {
+        case 0:
+            return 10.0;
+        case 1:
+            return 30.0;
+        default:
+            return 0;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    // Background color
+    view.tintColor = [UIColor blackColor];
+    
+    // Text Color
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor grayColor]];
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0;
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return @" ";
+        case 1:
+            return @"SOCIAL & MOODS";
+        default:
+            return 0;
+    }
+
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.browseMenuItems count];
+    switch (section) {
+        case 0:
+            return [self.browseMenuItems count];
+        case 1:
+            return [self.barTypes count];
+        default:
+            return 0;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger rowIndex = indexPath.row;
-    
+  
     UITableViewCell* tableViewCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-    
-    MenuItem* menuItem = (MenuItem*)self.browseMenuItems[rowIndex];
-    
-    tableViewCell.textLabel.text = menuItem.name;
-    tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
+  
+    if (indexPath.section == 0) {
+        MenuItem* menuItem = (MenuItem*)self.browseMenuItems[rowIndex];
+        tableViewCell.textLabel.text = menuItem.name;
+        tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
 
-    [self setBrowseMenuTableViewCellStyle:tableViewCell];
+        [self setBrowseMenuTableViewCellStyle:tableViewCell];
+    } else {
     
+        BarType* barType = (BarType*)self.barTypes[indexPath.row];
+        tableViewCell.imageView.image = [UIImage imageNamed:@"DefaultImage-Bar"];
+        tableViewCell.textLabel.text = barType.name;
+        
+        [self setBrowseMenuTableViewCellStyle:tableViewCell];
+    }
     return tableViewCell;
 }
 
@@ -133,40 +142,26 @@
     
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UINavigationController* navigationController = self.menuContainerViewController.centerViewController;
-    
-    MenuItem* menuItem = (MenuItem*)self.browseMenuItems  [rowIndex];
-    
-    if ([menuItem.name isEqualToString: NSLocalizedString(@"Top List", @"Top List")]){
-        UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"TopListViewController"];
-        [navigationController pushViewController:vc animated:YES];
-    }
-    else if ([menuItem.name isEqualToString: NSLocalizedString(@"By Neighborhood", @"By Neighborhood")]) {
-        UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"DistrictViewController"];
-        [navigationController pushViewController:vc animated:YES];
-    }
-    else if ([menuItem.name isEqualToString: NSLocalizedString(@"By Music", @"BY Music")]){
-        UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MusicTypeViewController"];
-        [navigationController pushViewController:vc animated:YES];
-    }
-    else if ([menuItem.name isEqualToString: NSLocalizedString(@"Parties", @"Parties")]){
-        UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"PartyViewController"];
-        [navigationController pushViewController:vc animated:YES];
-    }
-    
-    [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
-}
 
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSIndexPath* indexPath =   [self.barTypesCollectionView indexPathForCell:sender];
-    
-    BarViewController* barsViewController = segue.destinationViewController;
-    BarType* barType = self.barTypes[indexPath.row];
-    
-    barsViewController.titleText = barType.name;
-    barsViewController.filterIds = @[[[NSNumber numberWithInteger:barType.itemId] stringValue]];
-    barsViewController.filterType = FilterByBarTypes;
+    if (indexPath.section == 0 ) {
+        MenuItem* menuItem = (MenuItem*)self.browseMenuItems[rowIndex];
+        
+        UIViewController* viewController = [storyboard instantiateViewControllerWithIdentifier:menuItem.controller];
+        
+        [navigationController pushViewController:viewController animated:YES];
+        
+        [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+    } else {
+        BarViewController* barsViewController = [storyboard instantiateViewControllerWithIdentifier:@"BarViewController"];
+        BarType* barType = self.barTypes[indexPath.row];
+        
+        barsViewController.titleText = barType.name;
+        barsViewController.filterIds = @[[[NSNumber numberWithInteger:barType.itemId] stringValue]];
+        barsViewController.filterBy = BarsFilterByBarType;
+        [navigationController pushViewController:barsViewController animated:YES];
+        
+        [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+    }
 }
 
 @end

@@ -13,7 +13,6 @@
 extern NSString* kCellIdentifier;
 extern NSString* kGlyphIconsFontName;
 extern NSString* kFontAwesomeFontName;
-extern NSString* kServiceUrl;
 
 @interface BarsViewControllerBase : UIViewController
 
@@ -23,6 +22,5 @@ extern NSString* kServiceUrl;
 -(void)addMenuButtonToNavigation;
 -(void)showLoadingIndicator;
 -(void)hideLoadingIndicator;
-
 
 @end

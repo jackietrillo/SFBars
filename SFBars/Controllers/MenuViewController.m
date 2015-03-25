@@ -38,7 +38,7 @@ typedef enum {
     self.navigationItem.title = NSLocalizedString(@"MENU", @"MENU");
     [self.navigationItem setHidesBackButton:YES animated:YES];
     
-    // TODO find a better way to remove the "Back" text from segued controller's back bar button
+    // hack remove the "Back" text from segued controller's back bar button item
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
@@ -148,15 +148,13 @@ typedef enum {
     cell.selectedBackgroundView = [[UIView alloc] init];
     cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
     
-    // Hack because seperator disappears when cell is selected
     UIView* separatorLineTop = [[UIView alloc] initWithFrame:CGRectMake(42, 0, cell.bounds.size.width, 0.5)];
     separatorLineTop.backgroundColor = [UIColor yellowColor];
     [cell.selectedBackgroundView addSubview:separatorLineTop];
     
-    // Hack because seperator disappears when cell is selected
-    UIView* separatorLineBotton = [[UIView alloc] initWithFrame:CGRectMake(42, cell.bounds.size.height - 1, cell.bounds.size.width , 0.5)];
-    separatorLineBotton.backgroundColor = [UIColor yellowColor];
-    [cell.selectedBackgroundView addSubview:separatorLineBotton];
+    UIView* separatorLineBottom = [[UIView alloc] initWithFrame:CGRectMake(42, cell.bounds.size.height - 1, cell.bounds.size.width , 0.5)];
+    separatorLineBottom.backgroundColor = [UIColor yellowColor];
+    [cell.selectedBackgroundView addSubview:separatorLineBottom];
     
     return YES;
 }
@@ -167,10 +165,10 @@ typedef enum {
     UITableViewCell* tableViewCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     MenuItem* menuItem;
-    
     switch(indexPath.section) {
         case MenuTableViewSectionTop:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
+            
             tableViewCell.textLabel.text = menuItem.name;
             tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
@@ -181,8 +179,8 @@ typedef enum {
             tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
         case MenuTableViewSectionBottom:
-             menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
-            
+            menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
+        
             tableViewCell.textLabel.text = menuItem.name;
             tableViewCell.imageView.image = [UIImage imageNamed:menuItem.imageUrl];
             break;
@@ -199,44 +197,16 @@ typedef enum {
 
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UINavigationController* navigationController = self.menuContainerViewController.centerViewController;
-
+    UIViewController* viewController;
+    
     MenuItem* menuItem;
 
     switch(indexPath.section) {
         case MenuTableViewSectionTop:
             menuItem = (MenuItem*)self.menuDataTop[rowIndex];
             
-            if ([menuItem.name isEqualToString: NSLocalizedString(@"Search", @"Search")]) {
-                SearchViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
-                [navigationController pushViewController:vc animated:YES];
-            }
-            if ([menuItem.name isEqualToString: NSLocalizedString(@"Browse", @"Browse")]) {
-                [navigationController popToRootViewControllerAnimated:YES];
-            }
-            if ([menuItem.name isEqualToString: NSLocalizedString(@"Browse2", @"Browse2")]) {
-                BarBrowseViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"BarBrowseViewController"];
-                [navigationController pushViewController:vc animated:YES];
-            }
-            else if ([menuItem.name isEqualToString: NSLocalizedString(@"Near Me", @"Near Me")]) {
-                NearMeViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"NearMeViewController"];
-                [navigationController pushViewController:vc animated:YES];
-            }
-            else if ([menuItem.name isEqualToString: NSLocalizedString(@"Neighborhoods", @"Neighborhoods")]) {
-                DistrictViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"DistrictViewController"];
-                [navigationController pushViewController:vc animated:YES];
-            }
-            else if ([menuItem.name isEqualToString: NSLocalizedString(@"Top List", @"Top List")]){
-                TopListViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"TopListViewController"];
-                [navigationController pushViewController:vc animated:YES];
-            }
-            else if ([menuItem.name isEqualToString: NSLocalizedString(@"Music", @"Music")]){
-                MusicTypeViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"MusicTypeViewController"];
-                [navigationController pushViewController:vc animated:YES];
-            }
-            else if ([menuItem.name isEqualToString: NSLocalizedString(@"Parties", @"Parties")]){
-                PartyViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"PartyViewController"];
-                [navigationController pushViewController:vc animated:YES];
-            }
+            viewController = [storyboard instantiateViewControllerWithIdentifier:menuItem.controller];
+            [navigationController pushViewController:viewController animated:YES];
             
             [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
             break;
@@ -248,7 +218,7 @@ typedef enum {
                 NSArray* favoriteBars = [self.barsFacade getFavorites];
                 if (favoriteBars) {
                     BarViewController* barViewController = [storyboard instantiateViewControllerWithIdentifier:@"BarViewController"];
-                    barViewController.filterType = FilterByBarIds;
+                    barViewController.filterBy = BarsFilterByBars;
                     barViewController.filterIds = favoriteBars;
                     [navigationController pushViewController:barViewController animated:YES];
                     [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
@@ -266,10 +236,9 @@ typedef enum {
             
         case MenuTableViewSectionBottom:
             menuItem = (MenuItem*)self.menuDataBottom[rowIndex];
-            
             if ([menuItem.name isEqualToString: NSLocalizedString(@"Settings", @"Settings")]) {
-                SettingsViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
-                [navigationController pushViewController:vc animated:YES];
+                viewController = [storyboard instantiateViewControllerWithIdentifier:menuItem.controller];
+                [navigationController pushViewController:viewController animated:YES];
                 [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
             }
             break;

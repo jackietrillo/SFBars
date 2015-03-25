@@ -9,10 +9,10 @@
 #import "BarsViewControllerBase.h"
 #import "BarViewController.h"
 
-@interface BarBrowseViewController : BarsViewControllerBase <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface BarBrowseViewController : BarsViewControllerBase <UITableViewDelegate, UITableViewDataSource>
 
 @property (readwrite, nonatomic, strong) IBOutlet UIScrollView* eventsScrollView;
 @property (readwrite, nonatomic, strong) IBOutlet UITableView* browseMenuTableView;
-@property (readwrite, nonatomic, strong) IBOutlet UICollectionView* barTypesCollectionView;
+
 
 @end

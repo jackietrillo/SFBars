@@ -35,6 +35,9 @@
 
 -(void)initNavigation {
     self.navigationItem.title = NSLocalizedString(@"MUSIC", @"MUSIC");
+    
+    // Hack to remove text from back button
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 -(void)initMusicTypeCollectionView {
@@ -77,7 +80,6 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
     NSIndexPath* indexPath =   [self.collectionView indexPathForCell:sender];
    
     BarViewController* barViewController = segue.destinationViewController;
@@ -85,12 +87,8 @@
     MusicType* musicType = self.musicTypesData[indexPath.row];
     
     barViewController.titleText = musicType.name;
+    barViewController.filterBy = BarsFilterByMusicType;
     barViewController.filterIds = @[[[NSNumber numberWithInteger:musicType.itemId] stringValue]];
-    barViewController.filterType = FilterByMusicTypes;
-    
-    //Hack to remove text from back button
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
-
 
 @end

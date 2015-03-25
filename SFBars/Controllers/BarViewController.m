@@ -10,13 +10,12 @@
 
 @interface BarViewController () 
 
-@property (readwrite, nonatomic, strong) NSArray* barsData;
+@property (readwrite, nonatomic, strong) NSArray* bars;
 @property (nonatomic, nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 
 @end
 
 @implementation BarViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,16 +24,15 @@
     
     [self initNavigation];
     [self initTableView];
+    
     [self showLoadingIndicator];
-
     [self.barsFacade getBars: ^(NSArray* data) {
         if (data) {
-            
-            if (self.filterType != FilterByNotAssigned && self.filterIds) {
-                self.barsData = [self filterBars:data];
+            if (self.filterBy != BarsFilterByNotAssigned && self.filterIds) {
+                self.bars = [self filterBars:data];
             }
             else {
-                self.barsData = data;
+                self.bars = data;
             }
             
             [self.tableView reloadData];
@@ -51,57 +49,55 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    
     [super didReceiveMemoryWarning];
     [self terminateImageDownloads];
 }
 
 -(void)initNavigation {
-    
     self.navigationItem.title = [self.titleText uppercaseString];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
 -(void)initTableView {
     self.tableView.hidden = YES;
-    
     self.tableView.delegate = self;
 }
 
+// Todo move this out into seperate object - What pattern should to use here?
 -(NSArray*)filterBars: (NSArray*) data {
-    NSMutableArray* filteredData = [[NSMutableArray alloc] init];
+    NSMutableArray* filteredBars = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < data.count; i++) {
         Bar* bar = (Bar*)data[i];
         
-        switch (self.filterType) {
-            case FilterByBarTypes:
-                for (int i = 0; i < self.filterIds.count; i++) {
-                    if ([bar.barTypes containsObject: self.filterIds[i]] ) {
-                        [filteredData addObject:bar];
+        switch (self.filterBy) {
+            case BarsFilterByBarType:
+                for (int j = 0; j < self.filterIds.count; j++) {
+                    if ([bar.barTypes containsObject: self.filterIds[j]] ) {
+                        [filteredBars addObject:bar];
                     }
                 }
                 break;
-            case FilterByDistricts:
+            case BarsFilterByDistrict:
                 if ([self.filterIds containsObject: [[NSNumber numberWithInteger:bar.districtId] stringValue]]) {
-                    [filteredData addObject:bar];
+                    [filteredBars addObject:bar];
                 }
                 break;
-            case FilterByMusicTypes:
+            case BarsFilterByMusicType:
                 if ([self.filterIds containsObject: [[NSNumber numberWithInteger:bar.musicTypeId] stringValue]]) {
-                    [filteredData addObject:bar];
+                    [filteredBars addObject:bar];
                 }
                 break;
-            case FilterByBarIds:
+            case BarsFilterByBars:
                 if ([self.filterIds containsObject: [[NSNumber numberWithInteger:bar.barId] stringValue]]) {
-                    [filteredData addObject:bar];
+                    [filteredBars addObject:bar];
                 }
                 break;
             default:
                 break;
         }
     }
-    return filteredData;
+    return filteredBars;
 }
 
 - (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell {
@@ -113,12 +109,12 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.barsData.count;
+    return self.bars.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger rowIndex = indexPath.row;
-    Bar* bar = self.barsData[rowIndex];
+    Bar* bar = self.bars[rowIndex];
     
     BarViewTableViewCell* barTableViewCell = [tableView dequeueReusableCellWithIdentifier: kCellIdentifier];
     
@@ -170,10 +166,10 @@
 }
 
 - (void)loadImagesForOnscreenRows {
-    if (self.barsData.count > 0) {
+    if (self.bars.count > 0) {
         NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
         for (NSIndexPath *indexPath in visiblePaths) {
-            Bar* bar = (self.barsData)[indexPath.row];
+            Bar* bar = (self.bars)[indexPath.row];
             
             if (!bar.icon)  // Avoid the download if there is already an icon
             {
@@ -201,7 +197,7 @@
     if ([segue.destinationViewController isKindOfClass: [BarDetailViewController class]]) {
         BarDetailViewController* barDetailViewController = segue.destinationViewController;
         NSIndexPath* indexPath =   [self.tableView indexPathForSelectedRow];
-        barDetailViewController.selectedBar = self.barsData[indexPath.row];
+        barDetailViewController.selectedBar = self.bars[indexPath.row];
     }
 }
 

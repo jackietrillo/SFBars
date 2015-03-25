@@ -14,6 +14,7 @@
 
 @implementation BarDetailItem
 
+static const NSString* CONTROLLER = @"controller";
 
 -(id)init {
     self = [super init];
@@ -24,6 +25,7 @@
 +(id)initFromDictionary:(NSDictionary*)dict {
     
     BarDetailItem* barDetailItem = [super initFromDictionary:dict forItem:[[BarDetailItem alloc] init]];
+    barDetailItem.controller = dict[CONTROLLER];
     return barDetailItem;
 }
 
