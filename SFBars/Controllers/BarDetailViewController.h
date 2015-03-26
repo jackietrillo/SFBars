@@ -8,11 +8,9 @@
 
 #import "BarsViewControllerBase.h"
 #import "BarDetailHeaderViewCell.h"
+#import "BarWebViewController.h"
 #import "TelephoneHelper.h"
 #import "BarDetailItem.h"
-#import "BarsEnumParser.h"
-#import "BarsEnums.h"
-#import "Enums.h"
 #import "Bar.h"
 
 @import MessageUI;
