@@ -13,8 +13,14 @@
 #import "BarViewTableViewCell.h"
 #import "LoadingView.h"
 #import "Bar.h"
-#import "Enums.h"
 
+typedef enum {
+    BarsFilterByNotAssigned = -1,
+    BarsFilterByBarType = 0,
+    BarsFilterByDistrict = 1,
+    BarsFilterByMusicType = 2,
+    BarsFilterByBars = 3
+} BarsFilterBy;
 
 @interface BarViewController : BarsViewControllerBase <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 

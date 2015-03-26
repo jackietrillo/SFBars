@@ -111,5 +111,4 @@ NSString* kFontAwesomeFontName  = @"FontAwesome";
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
-
 @end

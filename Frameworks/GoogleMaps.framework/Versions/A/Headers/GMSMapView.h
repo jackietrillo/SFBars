@@ -348,7 +348,7 @@ typedef enum {
 /**
  * Build a GMSCameraPosition that presents |bounds| with |padding|. The camera
  * will have a zero bearing and tilt (i.e., facing north and looking directly at
- * the Earth). This takes the frame and padding of this GMSMapView into account.
+ * the Earth). This takes the frame and padding of this ttGMSMapView into account.
  *
  * If the bounds is nil or invalid this method will return a nil camera.
  */

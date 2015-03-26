@@ -12,6 +12,6 @@
 #import "AppDelegate.h"
 #import "Bar.h"
 
-@interface NearMeViewController : BarsViewControllerBase;
+@interface NearMeViewController : BarsViewControllerBase <GMSMapViewDelegate>
 
 @end

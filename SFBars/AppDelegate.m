@@ -27,6 +27,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [GMSServices provideAPIKey:@"AIzaSyBwemjLYLhOFeh7NRdaiMUesp_sawcnZh0"];
+   
     
     self.barsFacade = [[BarsFacade alloc] init];
   

@@ -20,6 +20,7 @@
     [super viewDidLoad];
     
     [self initNavigation];
+    
     [self initBrowseMenuTableView];
     
     self.browseMenuItems = [self.barsFacade getBrowseMenuItems];
@@ -31,8 +32,6 @@
             
             [self.browseMenuTableView reloadData];
         }
-        
-        
         self.browseMenuTableView.hidden = NO;
         [self hideLoadingIndicator];
     }];
@@ -77,7 +76,6 @@
     // Background color
     view.tintColor = [UIColor blackColor];
     
-    // Text Color
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     [header.textLabel setTextColor:[UIColor grayColor]];
     
@@ -96,12 +94,12 @@
         case 0:
             return @" ";
         case 1:
-            return @"SOCIAL & MOODS";
+            return NSLocalizedString(@"SOCIAL & MOOD", @"SOCIAL & MOOD");
         default:
             return 0;
     }
-
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:

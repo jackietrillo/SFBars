@@ -17,6 +17,11 @@
 
 @end
 
+typedef enum {
+    AppleMaps = 0,
+    GoogleMaps = 1,
+} VendorMaps;
+
 @implementation BarDetailViewController
 
 typedef enum {
@@ -29,6 +34,7 @@ typedef enum {
     [super viewDidLoad];
     
     [self initNavigation];
+    
     [self initTableView];
    
     [self loadTableViewData:[self.barsFacade getBarDetailItems]];
@@ -107,7 +113,7 @@ typedef enum {
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView* sectionFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 50.0)];
-    sectionFooterView.backgroundColor = [UIColor blackColor];
+   // sectionFooterView.con = [UIColor blackColor];
     return sectionFooterView;
 }
 
@@ -118,7 +124,7 @@ typedef enum {
         case FavoriteTableViewSection:
             return 10;
         case ShareTableViewSection:
-            return 20;
+            return 30;
         default:
             return 0;
     }
@@ -170,22 +176,28 @@ typedef enum {
     switch(indexPath.section) {
         case DetailTableViewSection:
             barDetailItem = self.dataDetailSection[rowIndex];
+            tableViewCell.textLabel.text = [Bar getPropertyValueFromPropertyName: barDetailItem.name forBar:self.selectedBar];
             break;
         case FavoriteTableViewSection:
             barDetailItem = self.dataFavoriteSection[rowIndex];
+            if ([self.barsFacade favoriteExits:self.selectedBar.barId]) {
+                tableViewCell.textLabel.text = NSLocalizedString(@"Remove from Favorites", @"Remove from Favorites");
+            }
+            else {
+                tableViewCell.textLabel.text = NSLocalizedString(@"Add to Favorites", @"Add to Favorites");
+            }
             break;
         case ShareTableViewSection:
             barDetailItem = self.dataShareSection[rowIndex];
+            tableViewCell.textLabel.text = [Bar getPropertyValueFromPropertyName: barDetailItem.name forBar:self.selectedBar];
             break;
         default:
             break;
     }
     
-    tableViewCell.textLabel.text = [Bar getPropertyValueFromPropertyName: barDetailItem.name forBar:self.selectedBar];
-    
     tableViewCell.imageView.image = [UIImage imageNamed: barDetailItem.imageUrl];
     if (tableViewCell.imageView.image == nil) {
-        tableViewCell.imageView.image = [UIImage imageNamed:@"Icon-Search"];
+        tableViewCell.imageView.image = [UIImage imageNamed:@"Icon-Search"]; //??
     }
     
     [self setTableViewCellStyle:tableViewCell];
@@ -197,8 +209,7 @@ typedef enum {
     NSInteger rowIndex = indexPath.row;
     
     BarDetailItem* barDetailItem;
-    
-    UIViewController* viewController;
+
     UIAlertView* alertView;
 
     switch(indexPath.section) {
@@ -210,10 +221,12 @@ typedef enum {
             }
             else if ([barDetailItem.name isEqualToString: NSLocalizedString(@"Phone", @"Phone")]) {
                 NSURL* telephoneURL = [TelephoneHelper telephoneUrl:self.selectedBar.phone];
+                
                 if ([[UIApplication sharedApplication] canOpenURL: telephoneURL]) {
                     [[UIApplication sharedApplication] openURL: telephoneURL];
                 }
                 else {
+                    
                     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info",@"Info")
                                                                         message: NSLocalizedString(@"Unable to dial phone number", @"Unable to dial phone number")
                                                                        delegate:nil
@@ -222,11 +235,29 @@ typedef enum {
                     [alertView show];
                    }
                 }
-            else if ([barDetailItem.name  isEqual: @"Events"] || [barDetailItem.name  isEqual: @"Yelp Reviews"] ||
-                     [barDetailItem.name  isEqual: @"Facebook Page"]) {
+            else {
+                
                 UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                [storyboard instantiateViewControllerWithIdentifier:barDetailItem.controller];
-                [self.navigationController pushViewController:viewController animated:YES];
+                
+                BarWebViewController* webViewController = [storyboard instantiateViewControllerWithIdentifier:barDetailItem.controller];
+                
+                if ([barDetailItem.name  isEqual: @"Website"]) {
+                    webViewController.url = self.selectedBar.websiteUrl;
+                }
+                
+                if ([barDetailItem.name  isEqual: @"Events"]) {
+                    webViewController.url = self.selectedBar.calendarUrl;
+                }
+                
+                if ([barDetailItem.name  isEqual: @"Yelp Reviews"]) {
+                    webViewController.url = self.selectedBar.yelpUrl;
+                }
+                    
+                if ([barDetailItem.name  isEqual: @"Facebook Page"]) {
+                    webViewController.url = self.selectedBar.facebookUrl;
+                }
+                
+                [self.navigationController pushViewController:webViewController animated:YES];
             }
             break;
             
@@ -236,11 +267,19 @@ typedef enum {
              if (![self.barsFacade favoriteExits: self.selectedBar.barId]) {
                 [self.barsFacade saveFavorite:self.selectedBar.barId];
                  
-                 alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Favorites", @"Favorites") message: NSLocalizedString(@"Favorite Added", @"Favorite Added") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
+                alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Favorites", @"Favorites")
+                                                       message: NSLocalizedString(@"Favorite Added", @"Favorite Added")
+                                                      delegate:nil
+                                             cancelButtonTitle: NSLocalizedString(@"OK", @"OK")
+                                             otherButtonTitles:nil];
              } else {
              
-                 [self.barsFacade removeFavorite:self.selectedBar.barId];
-                 alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Favorites", @"Favorites") message:NSLocalizedString(@"Favorite Removed", @"Favorite Removed") delegate:nil cancelButtonTitle: NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
+                [self.barsFacade removeFavorite:self.selectedBar.barId];
+                 alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Favorites", @"Favorites")
+                                                        message:NSLocalizedString(@"Favorite Removed", @"Favorite Removed")
+                                                       delegate:nil
+                                              cancelButtonTitle: NSLocalizedString(@"OK", @"OK")
+                                              otherButtonTitles:nil];
              }
             
              [alertView show];
@@ -249,16 +288,18 @@ typedef enum {
         case ShareTableViewSection:
             barDetailItem = self.dataShareSection[rowIndex];
             if ([barDetailItem.name isEqual:@"Message"]) {
-                MFMessageComposeViewController* vc = [[MFMessageComposeViewController alloc] init];
-                [vc setSubject: self.selectedBar.name];
-                [vc setBody:[NSString stringWithFormat:@"%@ - %@", self.selectedBar.name, self.selectedBar.address]];
-                [self presentViewController:vc animated:YES completion:nil];
+                MFMessageComposeViewController* messageViewController = [[MFMessageComposeViewController alloc] init];
+                messageViewController.messageComposeDelegate = self;
+                [messageViewController setSubject: self.selectedBar.name];
+                [messageViewController setBody:[NSString stringWithFormat:@"%@ - %@", self.selectedBar.name, self.selectedBar.address]];
+                [self presentViewController:messageViewController animated:NO completion:nil];
             }
             if ([barDetailItem.name isEqual:@"Email"]) {
-                MFMailComposeViewController* vc = [[MFMailComposeViewController alloc] init];
-                [vc setSubject: self.selectedBar.name];
-                [vc setMessageBody: self.selectedBar.address isHTML:YES];
-                [self presentViewController:viewController animated:YES completion:nil];
+                MFMailComposeViewController* mailViewController = [[MFMailComposeViewController alloc] init];
+                 mailViewController.mailComposeDelegate = self;
+                [mailViewController setSubject: self.selectedBar.name];
+                [mailViewController setMessageBody: self.selectedBar.address isHTML:YES];
+                [self presentViewController:mailViewController animated:NO completion:nil];
             }
             break;
             
@@ -299,7 +340,7 @@ typedef enum {
             [[UIApplication sharedApplication] openURL:url];
         } else {
             
-            //TODO: if google maps is not installed launch maps.google.com in safari instead of giving this alert.
+            // TODO if google maps is not installed launch maps.google.com in safari instead of displaying this alert.
              UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Info", @"Info")
                                                                 message: NSLocalizedString(@"Google Maps is not installed on your device.", @"Google Maps is not installed on your device.")
                                                                 delegate:self

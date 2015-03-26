@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
@@ -11,21 +10,18 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="p4K-ts-Dd6">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="480"/>
-                    <variation key="widthClass=compact" misplaced="YES">
-                        <rect key="frame" x="0.0" y="-1" width="480" height="668"/>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    </variation>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="Y0e-or-9bk">
+                    <rect key="frame" x="150" y="165" width="180" height="180"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="180" id="CVn-94-M8a"/>
+                        <constraint firstAttribute="height" constant="180" id="SNe-YC-5YR"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="p4K-ts-Dd6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jaO-B1-Tri"/>
-                <constraint firstAttribute="bottom" secondItem="p4K-ts-Dd6" secondAttribute="bottom" id="nqD-tu-xX2"/>
-                <constraint firstItem="p4K-ts-Dd6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zrW-cf-B6n"/>
+                <constraint firstItem="Y0e-or-9bk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="165" id="4x2-Ga-M5I"/>
+                <constraint firstItem="Y0e-or-9bk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LRp-Co-ErZ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -33,6 +29,6 @@
         </view>
     </objects>
     <resources>
-        <image name="LaunchImage" width="375" height="665"/>
+        <image name="LaunchImage" width="90" height="90"/>
     </resources>
 </document>

@@ -34,7 +34,6 @@
 		82814BC81AB27DDB00194ACB /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 82814BC31AB27DDB00194ACB /* Configuration.m */; };
 		82814BC91AB27DDB00194ACB /* ConfigurationBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 82814BC51AB27DDB00194ACB /* ConfigurationBase.m */; };
 		82814BCA1AB27DDB00194ACB /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82814BC71AB27DDB00194ACB /* ImageDownloader.m */; };
-		82814BD21AB2886E00194ACB /* BarsEnumParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 82814BD01AB2886E00194ACB /* BarsEnumParser.m */; };
 		82814BD51AB2A29D00194ACB /* BarsFavoriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82814BD41AB2A29D00194ACB /* BarsFavoriteManager.m */; };
 		8285AE851A7C4B97004858FD /* BarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 828FE61D1A761B7200D2466D /* BarDetailViewController.m */; };
 		8285AE8F1A7C69D4004858FD /* BarDetailHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8285AE8E1A7C69D4004858FD /* BarDetailHeaderViewCell.m */; };
@@ -147,9 +146,6 @@
 		82814BC51AB27DDB00194ACB /* ConfigurationBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationBase.m; path = Common/ConfigurationBase.m; sourceTree = "<group>"; };
 		82814BC61AB27DDB00194ACB /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Common/ImageDownloader.h; sourceTree = "<group>"; };
 		82814BC71AB27DDB00194ACB /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Common/ImageDownloader.m; sourceTree = "<group>"; };
-		82814BCF1AB2886E00194ACB /* BarsEnumParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarsEnumParser.h; path = Enums/BarsEnumParser.h; sourceTree = "<group>"; };
-		82814BD01AB2886E00194ACB /* BarsEnumParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarsEnumParser.m; path = Enums/BarsEnumParser.m; sourceTree = "<group>"; };
-		82814BD11AB2886E00194ACB /* BarsEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarsEnums.h; path = Enums/BarsEnums.h; sourceTree = "<group>"; };
 		82814BD31AB2A29D00194ACB /* BarsFavoriteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarsFavoriteManager.h; path = Classes/BarsFavoriteManager.h; sourceTree = "<group>"; };
 		82814BD41AB2A29D00194ACB /* BarsFavoriteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarsFavoriteManager.m; path = Classes/BarsFavoriteManager.m; sourceTree = "<group>"; };
 		8285AE8D1A7C69D4004858FD /* BarDetailHeaderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailHeaderViewCell.h; path = Controls/BarDetailHeaderViewCell.h; sourceTree = "<group>"; };
@@ -172,7 +168,7 @@
 		829EFC9F1AB4B8020052DE3C /* BarsSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarsSettingsManager.m; path = Classes/BarsSettingsManager.m; sourceTree = "<group>"; };
 		829EFCA11AB4B8320052DE3C /* BarDetailItemsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarDetailItemsManager.h; path = Classes/BarDetailItemsManager.h; sourceTree = "<group>"; };
 		829EFCA21AB4B8320052DE3C /* BarDetailItemsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarDetailItemsManager.m; path = Classes/BarDetailItemsManager.m; sourceTree = "<group>"; };
-		82A5C77D1A63125C00D55A54 /* SF Bars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SF Bars.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82A5C77D1A63125C00D55A54 /* SFBars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFBars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A5C7811A63125C00D55A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82A5C7821A63125C00D55A54 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		82A5C7841A63125C00D55A54 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -234,7 +230,6 @@
 		82D6680D1A86DBB4004B19DB /* BarsViewControllerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarsViewControllerBase.m; path = SFBars/Controllers/BarsViewControllerBase.m; sourceTree = "<group>"; };
 		82D668131A86E0E7004B19DB /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Frameworks/GoogleMaps.framework; sourceTree = SOURCE_ROOT; };
 		82D668151A86E133004B19DB /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
-		82E8E1921A8DAB1A0042F2C4 /* Enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Enums.h; path = Common/Enums.h; sourceTree = "<group>"; };
 		82E917351A79B4D7002D610E /* District.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = District.h; path = SFBars/Models/District.h; sourceTree = "<group>"; };
 		82E917361A79B4D7002D610E /* District.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = District.m; path = SFBars/Models/District.m; sourceTree = "<group>"; };
 		82EEC9571A9C5B1A00E211BC /* SearchBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchBaseViewController.h; path = SFBars/Controllers/SearchBaseViewController.h; sourceTree = "<group>"; };
@@ -315,16 +310,6 @@
 			name = MFSideMenu;
 			sourceTree = "<group>";
 		};
-		82814BCE1AB281EE00194ACB /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				82814BD11AB2886E00194ACB /* BarsEnums.h */,
-				82814BCF1AB2886E00194ACB /* BarsEnumParser.h */,
-				82814BD01AB2886E00194ACB /* BarsEnumParser.m */,
-			);
-			name = Enums;
-			sourceTree = "<group>";
-		};
 		829671861AAFFE0B0001CB9D /* SFBarsTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +341,7 @@
 		82A5C77E1A63125C00D55A54 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				82A5C77D1A63125C00D55A54 /* SF Bars.app */,
+				82A5C77D1A63125C00D55A54 /* SFBars.app */,
 				829671851AAFFE0B0001CB9D /* SFBarsTests.xctest */,
 			);
 			name = Products;
@@ -365,7 +350,6 @@
 		82A5C77F1A63125C00D55A54 /* SFBars */ = {
 			isa = PBXGroup;
 			children = (
-				82814BCE1AB281EE00194ACB /* Enums */,
 				82A5C7A91A631F3B00D55A54 /* Common */,
 				823A59B51AAE7F4900134A4B /* Classes */,
 				82A5C7A61A631F0B00D55A54 /* Controllers */,
@@ -487,7 +471,6 @@
 				82814BC31AB27DDB00194ACB /* Configuration.m */,
 				82814BC61AB27DDB00194ACB /* ImageDownloader.h */,
 				82814BC71AB27DDB00194ACB /* ImageDownloader.m */,
-				82E8E1921A8DAB1A0042F2C4 /* Enums.h */,
 				829EFC981AB4ABF90052DE3C /* TelephoneHelper.h */,
 				829EFC991AB4ABF90052DE3C /* TelephoneHelper.m */,
 			);
@@ -585,7 +568,7 @@
 			);
 			name = SFBars;
 			productName = SFBars;
-			productReference = 82A5C77D1A63125C00D55A54 /* SF Bars.app */;
+			productReference = 82A5C77D1A63125C00D55A54 /* SFBars.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -721,7 +704,6 @@
 				829EFC9D1AB4B7D90052DE3C /* BarsMenuManager.m in Sources */,
 				82CF53311A7C2E9B0087F0F5 /* PartyViewController.m in Sources */,
 				82A5C7831A63125C00D55A54 /* main.m in Sources */,
-				82814BD21AB2886E00194ACB /* BarsEnumParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -891,7 +873,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
-				PRODUCT_NAME = "SF Bars";
+				PRODUCT_NAME = SFBars;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -911,7 +893,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
-				PRODUCT_NAME = "SF Bars";
+				PRODUCT_NAME = SFBars;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

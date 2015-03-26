@@ -37,12 +37,6 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-   
-    //NSLog(@"%@", NSStringFromClass ([self class]));
-}
-
 -(void)initNavigation {
     [self addMenuButtonToNavigation];
     self.navigationItem.title = NSLocalizedString(@"NEAR ME", @"NEAR ME");
@@ -58,28 +52,34 @@
 }
 
 -(void)initMapView {
+   
+    self.mapView.settings.myLocationButton  = YES;
+    self.mapView.myLocationEnabled = YES;
+    self.mapView.delegate = self;
+    
     CLLocationCoordinate2D cameraLocation;
     if (self.mapView.myLocationEnabled) {
         cameraLocation =   CLLocationCoordinate2DMake(self.mapView.myLocation.coordinate.latitude, self.mapView.myLocation.coordinate.longitude);
     }
     else {
-        cameraLocation =   CLLocationCoordinate2DMake(37.761622, -122.435285); //TODO: remove these hardcoded values
+        cameraLocation =   CLLocationCoordinate2DMake(37.776507, -122.435767);
     }
     
-    GMSCameraPosition* camera = [GMSCameraPosition cameraWithLatitude:cameraLocation.latitude longitude:cameraLocation.longitude zoom:0 bearing:0 viewingAngle:0];
+    GMSCameraPosition* cameraPosition = [GMSCameraPosition cameraWithLatitude:cameraLocation.latitude longitude:cameraLocation.longitude zoom:9 bearing:0 viewingAngle:0];
     
-    self.mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
-    self.mapView.mapType = kGMSTypeNormal;
-    self.mapView.buildingsEnabled = true;
-    self.mapView.myLocationEnabled = YES;
-    self.mapView.settings.myLocationButton = YES;
-    self.mapView.settings.compassButton = YES;
-    [self.mapView setMinZoom:10.0 maxZoom:20.0];
-    
+    self.mapView = [[GMSMapView alloc] initWithFrame:self.view.bounds];
+    [self.mapView animateToCameraPosition:cameraPosition];
     self.view = self.mapView;
     
-    [self.mapView animateToZoom:15];
-    [self.mapView animateToViewingAngle:180];
+    self.mapView.mapType = kGMSTypeNormal;
+    self.mapView.buildingsEnabled = true;
+    self.mapView.settings.compassButton = YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.mapView animateToZoom:11.5];
+        [self.mapView animateToViewingAngle:40.0];
+    });
+    
 }
 
 -(GMSMarker*)createMarker:(Bar*)bar {
@@ -91,4 +91,10 @@
     return marker;
 }
 
+#pragma mark - GMSMapViewDelegate
+
+- (void)mapView:(GMSMapView *)mapView
+didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
+    NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
+}
 @end

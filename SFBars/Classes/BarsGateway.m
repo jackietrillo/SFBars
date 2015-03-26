@@ -23,7 +23,7 @@
 
 static NSString* kGET = @"GET";
 static NSString* kJSON = @"JSON";
-static NSString* kAccept = @"Accept";
+static NSString* kAccept = @"ACCEPT";
 
 static NSString* kBarServiceUrl = @"http://www.sanfranciscostreets.net/api/bars/bar/";
 static NSString* kDistrictServiceUrl = @"http://www.sanfranciscostreets.net/api/bars/district/";
@@ -49,7 +49,6 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
 
 -(void)getBars:(BarsGatewayCompletionHandler)completionHandler {
     if (!self.bars) {
-        
         NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kBarServiceUrl]];
         
         [urlRequest setHTTPMethod:kGET];
