@@ -292,14 +292,14 @@ typedef enum {
                 messageViewController.messageComposeDelegate = self;
                 [messageViewController setSubject: self.selectedBar.name];
                 [messageViewController setBody:[NSString stringWithFormat:@"%@ - %@", self.selectedBar.name, self.selectedBar.address]];
-                [self presentViewController:messageViewController animated:NO completion:nil];
+                [self presentViewController:messageViewController animated:YES completion:nil];
             }
             if ([barDetailItem.name isEqual:@"Email"]) {
                 MFMailComposeViewController* mailViewController = [[MFMailComposeViewController alloc] init];
                  mailViewController.mailComposeDelegate = self;
                 [mailViewController setSubject: self.selectedBar.name];
                 [mailViewController setMessageBody: self.selectedBar.address isHTML:YES];
-                [self presentViewController:mailViewController animated:NO completion:nil];
+                [self presentViewController:mailViewController animated:YES completion:nil];
             }
             break;
             
