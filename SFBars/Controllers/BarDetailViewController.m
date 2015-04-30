@@ -112,7 +112,7 @@ typedef enum {
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView* sectionFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 50.0)];
+    UIView* sectionFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 10.0)];
    // sectionFooterView.con = [UIColor blackColor];
     return sectionFooterView;
 }
@@ -141,7 +141,7 @@ typedef enum {
         case FavoriteTableViewSection:
             return 0.0f;
         case ShareTableViewSection:
-            return 50.0f;
+            return 30.0f;
         default:
             return 0;
     }

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "82A5C77C1A63125C00D55A54"
-               BuildableName = "SF Bars.app"
+               BuildableName = "SFBars.app"
                BlueprintName = "SFBars"
                ReferencedContainer = "container:SFBars.xcodeproj">
             </BuildableReference>
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "82A5C7951A63125C00D55A54"
+               BlueprintIdentifier = "829671841AAFFE0B0001CB9D"
                BuildableName = "SFBarsTests.xctest"
                BlueprintName = "SFBarsTests"
                ReferencedContainer = "container:SFBars.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "82A5C7951A63125C00D55A54"
+               BlueprintIdentifier = "829671841AAFFE0B0001CB9D"
                BuildableName = "SFBarsTests.xctest"
                BlueprintName = "SFBarsTests"
                ReferencedContainer = "container:SFBars.xcodeproj">
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "82A5C77C1A63125C00D55A54"
-            BuildableName = "SF Bars.app"
+            BuildableName = "SFBars.app"
             BlueprintName = "SFBars"
             ReferencedContainer = "container:SFBars.xcodeproj">
          </BuildableReference>
@@ -77,11 +77,12 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "82A5C77C1A63125C00D55A54"
-            BuildableName = "SF Bars.app"
+            BuildableName = "SFBars.app"
             BlueprintName = "SFBars"
             ReferencedContainer = "container:SFBars.xcodeproj">
          </BuildableReference>
@@ -95,11 +96,12 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "82A5C77C1A63125C00D55A54"
-            BuildableName = "SF Bars.app"
+            BuildableName = "SFBars.app"
             BlueprintName = "SFBars"
             ReferencedContainer = "container:SFBars.xcodeproj">
          </BuildableReference>

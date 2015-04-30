@@ -26,12 +26,10 @@
         NSMutableArray* barDetailItems = [[NSMutableArray alloc] init];
         BarDetailItem* barDetailItem;
         
-        if (arrayData.count > 0) {
-            for (int i = 0; i < arrayData.count; i++) {
-                NSDictionary* dictTemp = arrayData[i];
-                barDetailItem = [BarDetailItem initFromDictionary: dictTemp];
-                [barDetailItems addObject:barDetailItem];
-            }
+        for (int i = 0; i < arrayData.count; i++) {
+            NSDictionary* dictTemp = arrayData[i];
+            barDetailItem = [BarDetailItem initFromDictionary: dictTemp];
+            [barDetailItems addObject:barDetailItem];
         }
         
         self.barDetailItems = [barDetailItems copy];

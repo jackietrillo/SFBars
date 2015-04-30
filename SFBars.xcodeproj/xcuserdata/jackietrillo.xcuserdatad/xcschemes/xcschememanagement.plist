@@ -4,19 +4,24 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>SFBars copy.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 		<key>SFBars.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SFBars7.1.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>82890F341AC4A668006C537F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>829671061AAFFC300001CB9D</key>
 		<dict>
 			<key>primary</key>

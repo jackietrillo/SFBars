@@ -18,7 +18,6 @@
 
 -(NSArray*)getSettings {
     if (!self.settings) {
-        
         NSString* path = [[NSBundle mainBundle] pathForResource:@"SettingsItems" ofType:@"json"];
         NSData* data = [NSData dataWithContentsOfFile:path];
         NSArray* arrayData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error: nil];

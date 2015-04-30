@@ -26,13 +26,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [GMSServices provideAPIKey:@"AIzaSyBwemjLYLhOFeh7NRdaiMUesp_sawcnZh0"];
+    [GMSServices provideAPIKey:@"AIzaSyBwemjLYLhOFeh7NRdaiMUesp_sawcnZh0"]; // configuration
    
     
     self.barsFacade = [[BarsFacade alloc] init];
   
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
 
     MenuViewController* leftMenuViewController = [storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
     SettingsViewController *rightMenuViewController = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
@@ -61,6 +60,7 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

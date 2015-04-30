@@ -32,14 +32,6 @@
     return self;
 }
 
--(void)dealloc {
-    self.barsSettingsManager = nil;
-    self.barsMenuManager = nil;
-    self.barDetailItemsManager = nil;
-    self.barsFavoriteManager = nil;
-    self.barsGateway = nil;
-}
-
 -(NSArray*)getMainMenuItems {
     return [self.barsMenuManager getMainMenuItems];
 }
@@ -57,6 +49,7 @@
 }
 
 -(void)getBars:(BarsCompletionHandler) completionHandler {
+    // Todo create barsManger and use here
     [self.barsGateway getBars: ^(NSArray* data) {
         if (completionHandler) {
             completionHandler(data);
@@ -65,6 +58,7 @@
 }
 
 -(void)getBarTypes:(BarsCompletionHandler) completionHandler {
+    // Todo create barsManger and use here
     [self.barsGateway getBarTypes: ^(NSArray* data) {
         if (completionHandler) {
             completionHandler(data);
@@ -73,6 +67,7 @@
 }
 
 -(void)getDistricts:(BarsCompletionHandler) completionHandler {
+    // Todo create barsManger and use here
     [self.barsGateway getDistricts: ^(NSArray* data) {
         if (completionHandler) {
             completionHandler(data);

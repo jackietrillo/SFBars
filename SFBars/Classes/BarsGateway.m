@@ -38,17 +38,9 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
     return self;
 }
 
--(void)dealloc {
-    self.bars = nil;
-    self.barTypes = nil;
-    self.districts = nil;
-    self.parties = nil;
-    self.events = nil;
-    self.musicTypes = nil;
-}
-
 -(void)getBars:(BarsGatewayCompletionHandler)completionHandler {
-    if (!self.bars) {
+    if (!self.bars) { //reverse conditional
+        
         NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kBarServiceUrl]];
         
         [urlRequest setHTTPMethod:kGET];
@@ -65,13 +57,12 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
                   
                    NSMutableArray* bars = [[NSMutableArray alloc] init];
                    
-                   if (barsArray.count > 0) {
-                       for (int i = 0; i < barsArray.count; i++) {
-                           NSDictionary* dictTemp = barsArray[i];
-                           Bar* bar = [Bar initFromDictionary:dictTemp];
-                           [bars addObject:bar];
-                       }
+                   for (int i = 0; i < barsArray.count; i++) {
+                       NSDictionary* dictTemp = barsArray[i];
+                       Bar* bar = [Bar initFromDictionary:dictTemp];
+                       [bars addObject:bar];
                    }
+                   
                    self.bars  = [bars copy];
                }
                
@@ -90,6 +81,8 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
 
 -(void)getBarTypes:(BarsGatewayCompletionHandler)completionHandler {
     if (!self.barTypes) {
+        
+        // Todo baseURI in config and stem uri here
         NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kBarTypeServiceUrl]];
 
         [urlRequest setHTTPMethod:kGET];
@@ -104,15 +97,18 @@ static NSString* kPartyServiceUrl = @"http://www.sanfranciscostreets.net/api/bar
 
                  NSArray* barTypesArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
                  NSMutableArray* barTypes = [[NSMutableArray alloc] init];
-                 
-                 if (barTypesArray.count > 0) {
-                     for (int i = 0; i < barTypesArray.count; i++) {
-                         NSDictionary* dictTemp = barTypesArray[i];
-                         BarType* barType = [BarType initFromDictionary:dictTemp];
-                         [barTypes addObject:barType];
-                     }
+                 // Todo move this out BarMapper with static methods
+              
+                 for (int i = 0; i < barTypesArray.count; i++) {
+                     NSDictionary* dictTemp = barTypesArray[i];
+                     BarType* barType = [BarType initFromDictionary:dictTemp];
+                     [barTypes addObject:barType];
                  }
+                
                  self.barTypes  = [barTypes copy];
+            }else
+            {
+                //throw specific exception for different types of errors
             }
 
             dispatch_async(dispatch_get_main_queue(), ^{
