@@ -1,0 +1,586 @@
+{
+   "html_attributions" : [],
+   "next_page_token" : "CuQB2gAAAM2EI4ACTPvy6-rS2V1GgzTtknZODwUa0W1EMHG7a_OvzywJQGDdf4yRRs8XsS8LbdQ5CvM-jF6co2ORsIrFreuqqVr_lDbq8CMg13MvcnY2h8mBN25As5G5YCg0rMinlMmjGXcrwKkeMHLgRS0FVOFCUN8jwZ7zcuPf0ICv4lmbArCZl9MTdz-AoYFxb-N_IwOHI4Lt7TZTVZsU9K5djFOTTN_EBm39sGCUdf3UxSjJfcINhhFyWX0h661-wDwAuhoiX8tAnhjAQlGJH5RI-rfx4HJIppa7KdkfTZgZzAwiEhBDd_a28Tzb4tMXMUTQVB_nGhQyh6v9cyI-62to0ZuhtlKA3R--jQ",
+   "results" : [
+      {
+         "formatted_address" : "2490 3rd Street, San Francisco, CA 94107, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.758224,
+               "lng" : -122.388641
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "e72cba171d9dafbbc598a0d2ccff4c3248a61ec4",
+         "name" : "Yield",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 803,
+               "html_attributions" : [],
+               "photo_reference" : "CoQBdAAAAIMJwvY_HKMuSuxRo810huM96d-rdTEUwlYRKihW2R1ou0XP5v6MQoY41_GVklyY2OEeDtcQRn39Wpy2XZJcRMlkjOtDqUSETJcRMb2kz4Tl5CX0ievEPDujbd0lGKzSbnYcBap8n9_Jgb0TfYWpoa0QTzVQ6_RlxVrFwXN17HqhEhDd7P8ehHiDa5WAD7fKuloMGhQXY0TMmQKSUivStUJHI7S6YuPfcA",
+               "width" : 804
+            }
+         ],
+         "place_id" : "ChIJDw0djbl_j4ARF-oLuBpaXtk",
+         "price_level" : 3,
+         "rating" : 4.3,
+         "reference" : "CmRZAAAAzW5RJIRhNGfsd3fiu8yJHxSdfIJMrTHjFZ5NPX0Qy-SU7eKd66YwRlX-lXfpuZgY_4DLqEmjyzyVJZ4Bqpkikl2OA2ivv1jzx31TtTKAnQQFdq8Jqf31HRf63t7CFMVCEhDt0i3UMVrn30pyNIK2wv0BGhRuE-WFg71FhDtk9MzRPi-mbpqRrg",
+         "types" : [ "bar", "food", "establishment" ]
+      },
+      {
+         "formatted_address" : "501 Jones Street, San Francisco, CA 94102, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.785957,
+               "lng" : -122.413246
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "7d239956d8c4a746e24ebbd93a55dc0be293630f",
+         "name" : "Bourbon & Branch",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 294,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAAovJ7fA1EipMJ9xr1Megf3N_irLTr4MCsG2582bcl60Nz9IEkG6YhhllK1T2eMaHTpF3b3IEUMsIAqTOHUSelsZCZ6Bv6LrGjSRcxtvoKEkNm4NzDzJMWE-gKO52qFMZIoAQMZw14JIE1QVOvLUmw7xIQT3C_CkJQ2QVBb2WU-Nz1yxoUeIEVqgjl9B0_5W4sYOMpssQOnMQ",
+               "width" : 301
+            }
+         ],
+         "place_id" : "ChIJaZ68K5CAhYARBLiNrwnNReA",
+         "price_level" : 3,
+         "rating" : 4.4,
+         "reference" : "CnRkAAAAmr5gnN8eZHIC0FGuKx6cnAZ1Fm9_4GQQjN0aA8P2_NG3xlnwvX54I4-Nlb-tCiSf1AuPw5-btYBc9tx-Ckn3TzSRDYXEAAUrDH3NDCSHXwVwG1G1C6jTlEQLT7H3L4x1CjqBqGcyWFj7VEPMj6fgDhIQL-0ddAc2QqLGYmyjOcCtrBoUEG4R2BgdodTjGo4D2kNbs-Zsb-I",
+         "types" : [ "bar", "establishment" ]
+      },
+      {
+         "formatted_address" : "335 Powell Street, San Francisco, CA 94102, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.787838,
+               "lng" : -122.408841
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "aa3242bf0d0165a7a0794a86d23521515123eaf2",
+         "name" : "Clock Bar",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "place_id" : "ChIJnxmQ3o6AhYARzxE30e6E-LY",
+         "price_level" : 3,
+         "rating" : 4.2,
+         "reference" : "CmRdAAAAWluzkMnfQlc6f4--xMWVquJbiwDr1ohrhWaZA0pwxfvkNLYA0OPT1cZzlU3UDXqaz5OBcs2lsnLMB6yeNXUXKGV00qXf-NWINnQ6D25LriATEGGIsCX4lYTP5mUl6bCyEhCXSAXCKaQyVbBfkGGSh8dSGhSZCK4eh4pZri9wmCLps_d5Svaasw",
+         "types" : [ "bar", "night_club", "restaurant", "food", "establishment" ]
+      },
+      {
+         "formatted_address" : "246 Kearny Street, San Francisco, CA 94108, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.790502,
+               "lng" : -122.403812
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/wine-71.png",
+         "id" : "741018f384fe613129a17228d7163627c81c8413",
+         "name" : "Rickhouse",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 518,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAAsaHMNDA7HXWMsWN8_G-SWxIxQimpkdfZbRagap1vi4xOi6fiTmI6HqvXlKNQWZMkoKC7lplHRzr2ip3JaocM66NkctL15c_z9QTOU_GFIVkIDIqPRPk6mnTk9grhdkdOdExuuNeoAMGeqcHrTilxPRIQ5Bc2Eh5G9zfaMdK2DZa5ehoUAGXQF15fickyTAXxvvGyWESke5I",
+               "width" : 640
+            }
+         ],
+         "place_id" : "ChIJd7ebnImAhYARhr91iINx01g",
+         "price_level" : 2,
+         "rating" : 4.3,
+         "reference" : "CmRcAAAAC-i7FsgjkoMUwEQo79XeqcEkRgn3Pla1n8muRpYY0xXsTfCZsbnw-8o_vJZE7639uwcjZn0aKJ6mF-oKHUnRWRwEYbt47TwhV-cAwECGb7lyDohFAPm5It2gfp9K8QSWEhBRpJoEOrrHduia9yZpMC4wGhRofegazJYtwAlhYH3LtH9-4jNWHg",
+         "types" : [ "liquor_store", "store", "bar", "restaurant", "food", "establishment" ]
+      },
+      {
+         "formatted_address" : "547 Haight Street, San Francisco, CA 94117, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.771826,
+               "lng" : -122.431196
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "e8231b90ee9d5b462111ce206b42164f02bf0736",
+         "name" : "Toronado",
+         "opening_hours" : {
+            "open_now" : true,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 768,
+               "html_attributions" : [ "From a Google User" ],
+               "photo_reference" : "CnRmAAAAzLHxI0poAQOMknVZ9-VOa2dru_NjUFGHZa4UKBeGIfCJvOImsqE9Mm2ktx_b_FBMzJgGXQKeSpW7hvb_2yH5vrIePoJwxaz0lSmxJkYbqolnP50XCVqacHQ5H_DtLBjWP_TRBpUF7PSJJCi3RRH7DRIQW7eIWMRbq2C2_YmSvvdXfRoUOcdNUW0rJhKmr-gwIpJULbNn_pI",
+               "width" : 1024
+            }
+         ],
+         "place_id" : "ChIJxdfH6qaAhYARzC3Pt9m9gc8",
+         "price_level" : 2,
+         "rating" : 4.1,
+         "reference" : "CmRcAAAA93pmnPA2c3E14mh339lXyXqxrX9-ji5l2IcAx60E03yk7MTgaXHHXbzc1N_n2yf6NXh_qGiujzdRbGXDE_QJ1reLfvuZhDGfXRcsjzDAFeZdgQ54O1yCDb34j8a_P8DCEhCx4fSaALftP6jsyUb6_e8CGhRGHmvms2QjQFplWsJxj5AeshUxjg",
+         "types" : [ "bar", "establishment" ]
+      },
+      {
+         "formatted_address" : "1166 Geneva Avenue, San Francisco, CA 94112, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.714312,
+               "lng" : -122.436988
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "92bb284793771e00e0d6a9e9fee76bd127869f35",
+         "name" : "The Broken Record",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "place_id" : "ChIJEVRUIJp-j4ARb43ptfnaz_w",
+         "price_level" : 2,
+         "rating" : 4.3,
+         "reference" : "CnRlAAAAN3OWxQuT_rrjHbqL4iRGnFuKuzloG5j7w5tQ0stAU-dXe-0FCl9_fsCElqAYaiPq5matnVAaljiFiirnSaib9LN2rVTyWhRVn_vk4ukVkxLh9-AnHEOlNkhFWn-uL-b1sgn05lSSr_Afowe6ZhBNTxIQLkujjNRJjQW58v7_AqELBxoUXiTsNB3soQ7ycyumpDLwqiP4908",
+         "types" : [ "bar", "establishment" ]
+      },
+      {
+         "formatted_address" : "431 Natoma Street, San Francisco, CA 94103, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.781168,
+               "lng" : -122.406289
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "60093be5ae72079520507dea3f0da1f10fdf3c79",
+         "name" : "Tempest",
+         "opening_hours" : {
+            "open_now" : true,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 1830,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAAioebTt_rucF-UmkLnHInlnMMgC_d73dwQfFH8mYEmxUdl8RSYakwIyn1XHr9BiCoFFnoC1uAJQ8_NClkjcwvKge0Ae3oGemybtV8i4i8x_bdWy1LdYxC1etNcAwusurc8bt7tOCQ_VaOdAeesLmQNxIQjhyLEj1jM2sHPuobhYvFQxoU1ugNtpqkZYKJitLgA9lj0jCfSMY",
+               "width" : 1140
+            }
+         ],
+         "place_id" : "ChIJH06UsYaAhYARDLoNE6XupW4",
+         "price_level" : 2,
+         "rating" : 4.4,
+         "reference" : "CmRaAAAAXaGsUMpzOqs0YRb1oypUjfNB0hYGRBbkDnOGKFaokRG1HPouANXBWHttrVLTKByQ6fK0N2WFwpzU8YAh-fpXnGhUwJRNPNZdUo0z-7x8wzB7yoYwZGtXQ5-dmoDlshJ_EhD9wWDCj7KoVxiRuRYLDMFuGhQog__emajscx6yYu3BuO-AZ6zymw",
+         "types" : [ "bar", "establishment" ]
+      },
+      {
+         "formatted_address" : "255 Columbus Avenue, San Francisco, CA 94133, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.797494,
+               "lng" : -122.406454
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "b7ab672fcc3e8ae578630a5b387d747d5c98614c",
+         "name" : "Vesuvio Cafe",
+         "opening_hours" : {
+            "open_now" : true,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 1224,
+               "html_attributions" : [
+                  "\u003ca href=\"https://plus.google.com/116147615850842878224\"\u003eDave Toledo\u003c/a\u003e"
+               ],
+               "photo_reference" : "CnRoAAAA28mLCcDjGmhLf9hcUiPTKT1AYIaEYo8-uQ9loT2Yl_hMR2yjL_892zC2N1XCUA7Y--olOhuxO09pC7H6llpObvE95CPrXbNqBytBE8TBSrbghjWj1bl6ZVgvd8G3ROT6TRfyz2Fd6TA42o3xCKzK3RIQALoHkCDyCqfDp7mLsOEpoxoUmuXJSh5xwxvBiILTjNp7emb-DaI",
+               "width" : 1632
+            }
+         ],
+         "place_id" : "ChIJT2cmiPSAhYARwyhb3VgcriM",
+         "price_level" : 2,
+         "rating" : 4.1,
+         "reference" : "CmRfAAAANC6ieSWmsMw0CMrVM9nr0PJUbnRYEfLtLkar6QLYyTDO89N2ewGSsS6cD2jU1nkNT1dlN0LxlmHRdKuY70SP3zUYUbiF_xAm0K2SD87-C1tCXvRVmDPX2TgyeoUA2rn0EhCtsO0x3-SMBCPhuTHn1aWtGhTCvlj4fA6Dfsa8IHD8SQO2d_uMDA",
+         "types" : [ "bar", "establishment" ]
+      },
+      {
+         "formatted_address" : "563 2nd Street, San Francisco, CA 94107, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.782431,
+               "lng" : -122.39259
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "1a2b945f442515a064543cdb049db0ac8d5f1654",
+         "name" : "21st Amendment Brewery",
+         "opening_hours" : {
+            "open_now" : true,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 853,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAADMcrLkHxrEXHg4Jm_Ztt4S22u8TTgkn9lCh_E0vT3TCdsHz2IJoncSFPfg7WChGkAaMsQBOG49WcjgTGF0m3FOJIRMAf-AHaop1p61-kJPvnXUeyY0CI7cjWoDgGW_Ns4ClTlNzLfKkZfJn7gw6JJxIQqu6CsPL3DywkigMSMsMUohoU-OX39R-f1F6SfbqdNDgV2-YZLcA",
+               "width" : 1280
+            }
+         ],
+         "place_id" : "ChIJJ1IbVHiAhYARzdzAp8CIMJg",
+         "price_level" : 1,
+         "rating" : 4,
+         "reference" : "CnRqAAAA5yq6xDWugqK4_z716pIOQfNM-RJxp1K8t8EXzxFXgAl8DGG4Od2pkBOWlagHXUerNOYhK5xZH1dhLoU_Ce4QfLGQT9z8NUPEYKx5OCtgy260R2ljxRGM8TPoj0lkUBg328jyw7oGcnRMVBULoFMToBIQqevMHyCxqXHFPYwgCZHGJRoUuKll0h9w4PiG_C50nrm755d8ORQ",
+         "types" : [ "bar", "restaurant", "food", "establishment" ]
+      },
+      {
+         "formatted_address" : "456 Castro Street, San Francisco, CA 94114, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.761621,
+               "lng" : -122.435288
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "e3642fad01f5791fbd39361c0499785f10918c07",
+         "name" : "QBar",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 2048,
+               "html_attributions" : [
+                  "\u003ca href=\"https://plus.google.com/117211711134427721008\"\u003eMary Smith\u003c/a\u003e"
+               ],
+               "photo_reference" : "CnRqAAAA73jVksoHjw_9xoqPlNipQQ0k667CoHdveqkSN9VdK68-YbOTXvBOS9YZCWeTQGz-6i_0Q0kQ4UUaZYEKOV3yCGQ0TjyARNQ7R9ECV8kLvDx0-l-47_MUdPuw_TRbJZNyMLcJ7v9leujM4_PQwGOtkBIQ3S6yHvneoU24x1ReWjH1eBoUE1iFQ9qtd9kEMvHUgnQei_8IPNs",
+               "width" : 1367
+            }
+         ],
+         "place_id" : "ChIJCXJhTBt-j4ARnj6HCH9JX-0",
+         "price_level" : 1,
+         "rating" : 3.6,
+         "reference" : "CmRYAAAADE5hErwlNJ96a_uIZf4haiXeRob64GmoU3dpBcEweeJztLkrlza5J5vB5Q_7q-OMOSTo-OBgQiWtm-BZyWXgqVs03yydBYt0aoFYPbxshsAQNfeOgg0sC4kZz7AwCJAjEhDfmgUjljBAD0wkzKijlH9jGhQfQMOSHB7WRXZtxjEss7MrgRnRrw",
+         "types" : [ "bar", "establishment" ]
+      },
+      {
+         "formatted_address" : "420 Mason St, San Francisco, CA 94109, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.787592,
+               "lng" : -122.409805
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "11452a14c85264972daec4296d103dcf265bc027",
+         "name" : "Ruby Skye",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 1080,
+               "html_attributions" : [
+                  "\u003ca href=\"https://plus.google.com/112027620209669148530\"\u003eD Wong\u003c/a\u003e"
+               ],
+               "photo_reference" : "CnRpAAAAAUeB2-Jr1Zgt8pTK2FgEEDOVFgmFRO3YpT2HwFeUti2Y3Qw7m2Iy5LsUYCF7k5ERLDHN3KZe1XHQOAWKYuGoxYxOLeiV6SjTRYQBc9pLCwak7PksGpdZN16SRDqwXnnln8ebdKL-_GdbtpzseyuAOxIQnJtIo8DcV68WPYaOV1pR_RoUBf4k_HT9PVGrkBMTrubovc9nJNE",
+               "width" : 1920
+            }
+         ],
+         "place_id" : "ChIJPdWN946AhYARTBj2TvNrctQ",
+         "price_level" : 3,
+         "rating" : 3.7,
+         "reference" : "CmRdAAAAjmpBbhnA7zOYyw0b3Iuo_F9T7rAt0P0UsPIb0MwHVCS7IN1llEEWxdYCyRVeJdD-vSVh9Lu6-jgsEq-ycnMicqcV827y-AVCphq6RElMczc3STV2MNsv0MUu8XOh0jGyEhA3SCGKoxG47t4CdlUgBneFGhRc1uriPx948kvspRJ5D7yBCdbd2w",
+         "types" : [ "night_club", "bar", "establishment" ]
+      },
+      {
+         "formatted_address" : "3192 16th Street, San Francisco, CA 94103, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.765002,
+               "lng" : -122.423885
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "66094d91c756122e827c6e45690c1569ca904bc9",
+         "name" : "Double Dutch",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 1068,
+               "html_attributions" : [ "\u003ca href=\"https://plus.google.com/104111246635874032234\"\u003eZAGAT\u003c/a\u003e" ],
+               "photo_reference" : "CnRqAAAAY7dPgW34zCGpRVOX-WSx9gDOmLnND9JJS6Mb9a8NrYUuLK2lGaq4zzYItP-Lins4FeJom3uSChcTCVtnu1SZo3O6SNzR_ITiRn8ym2gABOJ2K-zuTIQaCj7jPo54weFheZJ07lda84sJQ4z9tpaJpBIQX4ETmySgauo_h-LX_fLkTRoUWKDx4l-58rISqdInISGuPYXBzWI",
+               "width" : 2048
+            }
+         ],
+         "place_id" : "ChIJsZgNCyJ-j4ARyMTa3AObJDQ",
+         "price_level" : 2,
+         "rating" : 3.8,
+         "reference" : "CmRfAAAAGcJJh1rrRlKhEu8In5zH2DWMgVlzB2pt8kpoZd0lf_QDsudx9VB-fOGUkC_mH_hfM_DlM0H9VO82ZnJuXfiqMnLZkdRPV4azAV-qPbA8YAlYI78EfTLqC-Uo4F0lI2KBEhDumPdSGgMQO9BoU0KIntwzGhQ8XxoqQWZb5JpqoElnZs4xXMuVcw",
+         "types" : [ "bar", "establishment" ]
+      },
+      {
+         "formatted_address" : "355 11th Street, San Francisco, CA 94103, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.771528,
+               "lng" : -122.412901
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "54e8902d86574cded9e6b5050eae1ceddb2c9619",
+         "name" : "Bar Agricole",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 1521,
+               "html_attributions" : [],
+               "photo_reference" : "CoQBcQAAAAo08MNrs4RCUqbA2Y-58hGw7VKvVDVAh7R-n_XpZqUeGkEmhqu91alte_RQAH3_H1GZPABbcup9dDfElt1HoHGkuYMqeHaY2CtKZ0nqc_-t0BsL4uIeJrcNBunwBU9xaWEW8IQjrztjBiFiyXe_SrRxqFnch4Tww-FGujIcJXu5EhD6a8jl3usSrF-fcEYrgKJzGhTL1P43ba6yBL71d35P3S-qx6ueSA",
+               "width" : 1523
+            }
+         ],
+         "place_id" : "ChIJCSdjKSZ-j4ARY5HrLSxbatQ",
+         "price_level" : 3,
+         "rating" : 4.2,
+         "reference" : "CmRgAAAAk-GfbDeiMwp2rzfTBs5qsBMD5PL7bpdxCj0HCvdC8naAALl3oemEJzSA_QvJBvVCpW3eem7FEsTmHAu4zoVKY4ZKhjhcJZ8QrWnIbDUVxVhY3pMgOPSjfg4qgalrCNBpEhD5V68BeTzMKb6fJWaMhHdmGhR2nbI44EUgISOh0z-9Sk4oxfhb-Q",
+         "types" : [ "bar", "restaurant", "food", "establishment" ]
+      },
+      {
+         "formatted_address" : "688 Geary Street, San Francisco, CA 94102, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.78669,
+               "lng" : -122.41458
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "556605aa9eeac0e313038aa6b04ede01cf390ea4",
+         "name" : "Rye",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 972,
+               "html_attributions" : [
+                  "\u003ca href=\"https://plus.google.com/115181284336253070220\"\u003eWalkerthree SFO\u003c/a\u003e"
+               ],
+               "photo_reference" : "CnRoAAAAmAxNUAJ6dKQJdN9K4l5QRdA-o1wSJMwaQsBrNBmOeR0xxsKfbAR5xHyl-Z0HxcGmsnvDFCMxPrtP6cmeQRiNZJPPQbbUv-WpQcQ6TqVsekDQskFVB0O7ZoBzloJvUMsbB_EDiK98YdR3fsMLJnaDBBIQLKul8r2s3LqaI6n1LkbQ_RoUSCbwLQsHgBeqoshQZ0VMDx7ef6E",
+               "width" : 1296
+            }
+         ],
+         "place_id" : "ChIJIU63vZGAhYARM4foBPHnzd4",
+         "price_level" : 2,
+         "rating" : 4.2,
+         "reference" : "CmRXAAAAQvxDjQyYHKuyRlhXu5lnwyXtp_0_j4nDqsHrWwExbByWSWOq1Sn72sIaTzWzklo4cC6FVihygaTszyiUAbrIwduj1U2dLH2du8FpoPyl2gQTKLbBV5JXiSeL6mLr2JScEhCUn9AWJjyh844XXFBlimcyGhTFsrBT9E3biq5aDKMK2ahPJT-leQ",
+         "types" : [ "night_club", "bar", "establishment" ]
+      },
+      {
+         "formatted_address" : "199 Valencia Street, San Francisco, CA 94103, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.77003,
+               "lng" : -122.422109
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "e5789d7d53306d5728767f676e17ca15cc1dd3b7",
+         "name" : "Zeitgeist",
+         "opening_hours" : {
+            "open_now" : true,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 1600,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAAkA9VD3T49BiYq3zlgC7o-KlkEOs1kcZSI8Zz2NQP8HuvMP6JP9hsuJPaooWL_z8L7qIP-eDyQaK5nyyoXgis29XHDRCV2Sn4XT_TobyHV35i5DiEBu7PnI1rRdU5L_IoABI0GYrzs_CT6kI31izqbRIQ-gf5tFJ38KyUp-SlvKkIGxoUmyJhsj670lfs6bQ9tHgGLStEusU",
+               "width" : 2844
+            }
+         ],
+         "place_id" : "ChIJU889QiB-j4ARzQofqaFrMJU",
+         "price_level" : 1,
+         "rating" : 4,
+         "reference" : "CmRdAAAANXgQdNl2sxqGEQ_cVNWLmVaWVx3LeX5JA7Z3OGE64XOWLkje8N1ZqN5CYg1OajDF9g6KOXZff-cBizNcsEa2b4aPwUiBC3_IEPIt3Bsh1xVpqgRkrRjPMYZ7UDXK3zRTEhCCIjgmohVsZyq8EqSes6S4GhSqnnLmoVsYUtxWqIHFDwtiGrIsOA",
+         "types" : [ "bar", "restaurant", "food", "establishment" ]
+      },
+      {
+         "formatted_address" : "1725 Haight Street, San Francisco, CA 94117, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.76929,
+               "lng" : -122.451163
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "a6f9cc1b9ce4231e15e3880d9c1a6012ae0ee425",
+         "name" : "Alembic",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 369,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAA1KfZ9H0IiPI2gve09oEdxNyhTO4a6bJvDOa7ksif9CFFCei-7NZvFryHs-Mz1m-L5pvZUE-0crYbs5_bcakL4VvK_iuXeEguYm6K7xVz9s46VeUKxcNPbbSqRkN5jrKiteJGB4pK46sMcBOkeg5RNBIQFnRU1OVpzBaeXNeRK1LVtRoUOuxK5oetdtB1Upn9EzswH7jj71A",
+               "width" : 500
+            }
+         ],
+         "place_id" : "ChIJ4RMby1OHhYARsGxnl40kWbg",
+         "price_level" : 2,
+         "rating" : 4.2,
+         "reference" : "CmRbAAAAs42uCvzki6lpcTIPWridQMkEhmz14bVCatnI8vFjDlPNSRnq_ZYYyihIEDxCQZe6EueAWcFc1ee0bYhAhJ0wmv4PfZSN8jMayayfg-FINMdkvgzzHoSIGa3PU8n1xFLFEhCHvzaqflnNSZIyfBLqXanAGhQt9v2tA9iMrvoMqDOtN3sUFxE1LA",
+         "types" : [ "bar", "restaurant", "food", "establishment" ]
+      },
+      {
+         "formatted_address" : "601 Bush Street, San Francisco, CA 94108, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.790202,
+               "lng" : -122.407397
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "600e0cb7274764ddc18b868e3e278bdb1a4a0778",
+         "name" : "Tunnel Top Lounge and Bar",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 1363,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAA8GxCAO2pjy5GTnUQY8s82DIEsOQLBmYbhg364_6ggj1kmF6UXqwbuiXbiRG3zfjzrNiK0Q0KmGemkeZkuQWqnWLqXqeWXX950N6EFkZQxVdGH5kAELPR9IHPN7eDrCgUaqgr3UNHib-rvOYYarMpeRIQQ_4GLBrXM6YipRKZFZjyMhoUwCpngn3nyQSU_Pv2j4kVfHP-N1o",
+               "width" : 2048
+            }
+         ],
+         "place_id" : "ChIJqT7tAIyAhYAR8xuT_7pZM5k",
+         "rating" : 3.8,
+         "reference" : "CnRtAAAAti37rDS1nj3EUtA-uRqvwXayxtSDscgGCmAii4hw5VymYW6wL5qbAqg17jgt_YS1NURqji_EOkdSUSlmcsA4xFUWL8iJp63FIC4At_p0voRkoTle3zinOFh5Ujo8VAdnb0hCcygeg9e1no7kCIDRMhIQG2GlIxsiHc4htJ-jYbHBvhoUFmK_puEvx5IdoY-3G8Y4sBWBOTE",
+         "types" : [
+            "bar",
+            "night_club",
+            "restaurant",
+            "art_gallery",
+            "food",
+            "establishment"
+         ]
+      },
+      {
+         "formatted_address" : "15 Romolo Place, San Francisco, CA 94133, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.798213,
+               "lng" : -122.406452
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "ba20f803721af91dce55445841ef8e3a30e12aa3",
+         "name" : "15 Romolo",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 250,
+               "html_attributions" : [],
+               "photo_reference" : "CnRqAAAALQC749F2r_gAWgCpX7QSnVfd7VoGNi4pm1jHPOzzFp95TWkTDLt3Ee7WY-uBRM821WPB8-26KKEUSMMBnKCFc0DLil0r_neGiBqPjGZyV4FYExGqQx6gJ5cw-H_0F9E9BEcnzCgHBJGROGQPU8rhzBIQS5ku0dZXoUc2Rqa2dc-OgBoUZ85v-eE-IEZOhTNDTAI1Jxq3kYg",
+               "width" : 250
+            }
+         ],
+         "place_id" : "ChIJWaH7b_SAhYARIZwxxHKahLI",
+         "price_level" : 2,
+         "rating" : 4.3,
+         "reference" : "CmRdAAAApSLf_4s6YZTNGLdbQ9k3PpoANEcoKyurGmcLLLjuxn9RKMZ749KM8Yupv1o1R8Nh0pqBhj6Xf1aJIFQl4XEw4hL2RyVXiXAmFSF5Lkg7CRHRMuxwDwBl2zQlTgc1mgalEhBzE-vey7zcc_uup24dzYsHGhQMeceInN9yJbS5WjIhP6E0j-gzhg",
+         "types" : [ "bar", "restaurant", "food", "establishment" ]
+      },
+      {
+         "formatted_address" : "141 2nd Street, San Francisco, CA 94105, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.787576,
+               "lng" : -122.399007
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "941736389a3b82b507a82a5d4e9a83533d791bcd",
+         "name" : "Steffs",
+         "opening_hours" : {
+            "open_now" : true,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 648,
+               "html_attributions" : [
+                  "\u003ca href=\"https://plus.google.com/109992690393865986029\"\u003eWalkerseven SFO\u003c/a\u003e"
+               ],
+               "photo_reference" : "CnRoAAAAZHGqqjxGR5-tbWs0IBawl---navq9a5vYslDbQAXm9uSrEIMedO92O_4VNx6Y-tg_pzhrglAsfKsY3oYXCEpJYpG6sActe-b7wf5YVcP4dMlwrafHXgNtoyVXJ1vbr0NMqsrXOtwOyZaJIL5p-OLeRIQ5y1G3ZjOgT6CWbVVxH_HhhoU5vtKyZ5SNVzxHQk3K2OtJloyBro",
+               "width" : 1152
+            }
+         ],
+         "place_id" : "ChIJMTCYLn2AhYARCMowlgqh6UA",
+         "rating" : 3.6,
+         "reference" : "CmRZAAAAZmgeQPr6saRnpNi0bmsAhm_aa69EQGYJ2tUz-RwGkKp_VU__Q-15V7C1napVV9mMsyd-ARkQPT55MeDbF6clZjjfYt4GOeALX7iWJevq6sw2T1SckBEnQBxW9iXgX97MEhCbSdB4wwRaYiffYbVQAkoyGhRAnbuBe0PS2-3LlxIxhGwWZQ-mhQ",
+         "types" : [ "bar", "establishment" ]
+      },
+      {
+         "formatted_address" : "650 Gough Street, San Francisco, CA 94102, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.779409,
+               "lng" : -122.423257
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "d05ded174f999b7f9886701c60812e5dab73f815",
+         "name" : "Smuggler's Cove",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 1371,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAA_vmIuNjvGdIcC8fKPyPGOmRmPnEaLcvc06fpQ4wp7lT5yBYMTJ9wdQalpkG8m6Euu-KeDiM3Ic5eoF6N25ASTDQ4uheuXgM7MaZD7KtpmKBfrh1yp4I8JvAW09GVUI_vRiQrP5Bup5kr0IAKxRulxxIQlUxUirZmzLmDIOpbHx9W3RoUg1SyBlUw5RfBUIn9IpEayQBGHjE",
+               "width" : 2048
+            }
+         ],
+         "place_id" : "ChIJZYKHDZiAhYARXV0sNJgKAi8",
+         "price_level" : 3,
+         "rating" : 4.3,
+         "reference" : "CnRiAAAAhwKTKbaGfzAVnZ23wdoJvALvhe0nJr1O-ApU5xt6OO7kxPwaBfuVwT7iOARo0p1SRV62XMluciiGEGe64c8WaWpdYAw0xeKN6BtvRyvweKUpXbf9aPDCj-YrzsQX7QJxJB8kbLX5N8i6HePYqzo2XhIQq0bhy-s7wsh9Ub9vnUPWXxoUhyXoO4YJet8ag_jdYbcE5IhnvSY",
+         "types" : [ "bar", "night_club", "establishment" ]
+      }
+   ],
+   "status" : "OK"
+}
